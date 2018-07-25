@@ -4,11 +4,9 @@ import com.ocelot.betteranimals.BetterAnimals;
 import com.ocelot.betteranimals.client.model.ModelNewSpider;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.entity.RenderLiving;
-import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.entity.layers.LayerRenderer;
 import net.minecraft.entity.monster.EntitySpider;
 import net.minecraft.util.ResourceLocation;
@@ -17,11 +15,11 @@ public class RenderNewSpider extends RenderLiving<EntitySpider> implements Layer
 
 	private static final ResourceLocation BASE = new ResourceLocation(BetterAnimals.MODID, "textures/mobs/spider.png");
 	private static final ResourceLocation GLOW = new ResourceLocation(BetterAnimals.MODID, "textures/mobs/spider_eyes.png");
-	
+
 	private ModelNewSpider model;
 
 	public RenderNewSpider() {
-		super(Minecraft.getMinecraft().getRenderManager(), new ModelNewSpider(), 0.4f);
+		super(Minecraft.getMinecraft().getRenderManager(), new ModelNewSpider(), 1f);
 		model = ((ModelNewSpider) mainModel);
 		this.addLayer(this);
 	}
@@ -41,25 +39,23 @@ public class RenderNewSpider extends RenderLiving<EntitySpider> implements Layer
 
 	@Override
 	public void doRenderLayer(EntitySpider entity, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, float scale) {
-		if (!entity.isInvisible()) {
-			this.bindTexture(GLOW);
-			GlStateManager.enableBlend();
-			GlStateManager.blendFunc(GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ONE);
+		this.bindTexture(GLOW);
+		GlStateManager.enableBlend();
+		GlStateManager.blendFunc(GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ONE);
 
-			int i = 61680;
-			int j = i % 65536;
-			int k = i / 65536;
-			OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, (float) j, (float) k);
-			GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
-			this.getMainModel().render(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale);
-			i = entity.getBrightnessForRender();
-			j = i % 65536;
-			k = i / 65536;
-			OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, (float) j, (float) k);
-			this.setLightmap(entity);
-			GlStateManager.disableBlend();
-			GlStateManager.color(1, 1, 1, 1);
-		}
+		int i = 61680;
+		int j = i % 65536;
+		int k = i / 65536;
+		OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, (float) j, (float) k);
+		GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
+		this.getMainModel().render(entity, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale);
+		i = entity.getBrightnessForRender();
+		j = i % 65536;
+		k = i / 65536;
+		OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, (float) j, (float) k);
+		this.setLightmap(entity);
+		GlStateManager.disableBlend();
+		GlStateManager.color(1, 1, 1, 1);
 	}
 
 	@Override

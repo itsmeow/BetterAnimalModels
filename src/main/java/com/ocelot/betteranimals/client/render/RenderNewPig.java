@@ -14,7 +14,7 @@ import net.minecraft.util.ResourceLocation;
 public class RenderNewPig extends RenderLiving<EntityPig> {
 
 	private static final ResourceLocation BASE = new ResourceLocation(BetterAnimals.MODID, "textures/mobs/pig.png");
-	protected ModelNewPig model;
+	private ModelNewPig model;
 
 	public RenderNewPig() {
 		super(Minecraft.getMinecraft().getRenderManager(), new ModelNewPig(), 0.4f);

@@ -130,10 +130,4 @@ public class ModelNewChicken extends Model {
 			this.rWing.rotateAngleZ = ageInTicks;
 		}
 	}
-
-	public void setRotateAngle(ModelRenderer modelRenderer, float x, float y, float z) {
-		modelRenderer.rotateAngleX = x;
-		modelRenderer.rotateAngleY = y;
-		modelRenderer.rotateAngleZ = z;
-	}
 }

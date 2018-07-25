@@ -1,15 +1,17 @@
 package com.ocelot.betteranimals.client.model;
 
-import net.minecraft.client.model.ModelBase;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.passive.EntitySheep;
 import net.minecraft.util.math.MathHelper;
 
 /**
  * sheep3 - cybercat5555 Created using Tabula 6.0.0
  */
-public class ModelNewSheep extends ModelBase {
+public class ModelNewSheep extends Model {
+
 	public ModelRenderer body;
 	public ModelRenderer tail;
 	public ModelRenderer neck;
@@ -229,23 +231,21 @@ public class ModelNewSheep extends ModelBase {
 	}
 
 	@Override
-	public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entityIn) {
-		this.head.rotateAngleY = netHeadYaw * 0.0017453292F;
+	public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entity) {		
 		float swingModifier = 0.9f;
-		lLeg01.rotateAngleX = MathHelper.sin(limbSwing * 0.8665F + (float) Math.PI) * swingModifier * limbSwingAmount;
-		lArm01.rotateAngleX = MathHelper.cos(limbSwing * 0.8665F) * swingModifier * limbSwingAmount;
-		rLeg01.rotateAngleX = MathHelper.sin(limbSwing * 0.8665F) * swingModifier * limbSwingAmount;
-		rArm01.rotateAngleX = MathHelper.cos(limbSwing * 0.8665F + (float) Math.PI) * swingModifier * limbSwingAmount;
-		this.neck.rotateAngleX = -0.6F;
-		this.head.rotateAngleX = -0.6F;
-	}
-
-	/**
-	 * This is a helper function from Tabula to set the rotation of model parts
-	 */
-	public void setRotateAngle(ModelRenderer modelRenderer, float x, float y, float z) {
-		modelRenderer.rotateAngleX = x;
-		modelRenderer.rotateAngleY = y;
-		modelRenderer.rotateAngleZ = z;
+		float partialTicks = Minecraft.getMinecraft().getRenderPartialTicks();
+		if (entity instanceof EntityLivingBase) {
+			EntityLivingBase living = (EntityLivingBase) entity;
+			limbSwing = limbSwing + this.getSwingProgressPrev(living);
+			this.head.rotateAngleY = this.getHeadYaw(living) * 0.01f;
+			this.head.rotateAngleZ = this.head.rotateAngleY;
+			this.head.rotateAngleX = (float) Math.toRadians(this.getHeadPitch(living));
+			lLeg01.rotateAngleX = MathHelper.sin(limbSwing * 0.8665F + (float) Math.PI) * swingModifier * limbSwingAmount;
+			lArm01.rotateAngleX = MathHelper.cos(limbSwing * 0.8665F) * swingModifier * limbSwingAmount;
+			rLeg01.rotateAngleX = MathHelper.sin(limbSwing * 0.8665F) * swingModifier * limbSwingAmount;
+			rArm01.rotateAngleX = MathHelper.cos(limbSwing * 0.8665F + (float) Math.PI) * swingModifier * limbSwingAmount;
+			this.neck.rotateAngleX = -0.6F;
+			this.head.rotateAngleX = -0.6F;
+		}
 	}
 }

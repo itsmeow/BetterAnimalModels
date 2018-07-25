@@ -11,6 +11,7 @@ import net.minecraft.util.math.MathHelper;
  * cow2 - cybercat5555 Created using Tabula 6.0.0
  */
 public class ModelNewCow extends Model {
+	
 	public ModelRenderer body;
 	public ModelRenderer udder;
 	public ModelRenderer neck;
