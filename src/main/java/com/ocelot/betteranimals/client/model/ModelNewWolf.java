@@ -228,6 +228,29 @@ public class ModelNewWolf extends Model {
 		this.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
 		this.chest.render(f5);
 	}
+	
+	/**
+	 * Used for easily adding entity-dependent animations. The second and third float params here are the same second
+	 * and third as in the setRotationAngles method.
+	 */
+	public void setLivingAnimations(EntityLivingBase entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTickTime)
+	{
+		EntityWolf wolf = (EntityWolf)entitylivingbaseIn;
+
+		if (!entitywolf.isTamed())
+		{
+			this.tail01.rotateAngleY = 0.0F;
+		}
+		else
+		{
+			this.tail01.rotateAngleY = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
+		}
+
+		this.head.rotateAngleZ = entitywolf.getInterestedAngle(partialTickTime) + entitywolf.getShakeAngle(partialTickTime, 0.0F);
+		this.neck.rotateAngleZ = entitywolf.getShakeAngle(partialTickTime, -0.08F);
+		this.body.rotateAngleZ = entitywolf.getShakeAngle(partialTickTime, -0.16F);
+		this.tail01.rotateAngleZ = entitywolf.getShakeAngle(partialTickTime, -0.2F);
+	}
 
 	@Override
 	public void setRotationAngles(float limbSwing, float limbSwingAmount, float tailRotation, float netHeadYaw, float headPitch, float scaleFactor, Entity entity) {
@@ -237,7 +260,6 @@ public class ModelNewWolf extends Model {
 			EntityLivingBase living = (EntityLivingBase) entity;
 			limbSwing = limbSwing + this.getSwingProgressPrev(living);
 			this.head.rotateAngleY = this.getHeadYaw(living) * 0.01f;
-			this.head.rotateAngleZ = this.head.rotateAngleY;
 			this.head.rotateAngleX = (float) Math.toRadians(this.getHeadPitch(living)) + 0.6f;
 			lHindLeg01.rotateAngleX = MathHelper.sin(limbSwing * 0.8665F + (float) Math.PI) * swingModifier * limbSwingAmount;
 			rHindLeg01.rotateAngleX = MathHelper.cos(limbSwing * 0.8665F) * swingModifier * limbSwingAmount;
@@ -250,11 +272,57 @@ public class ModelNewWolf extends Model {
 		if(entity instanceof EntityWolf) {
 			EntityWolf wolf = (EntityWolf) entity;
 			if(wolf.isSitting()) {
-				this.body.rotateAngleX = -1;
-				this.tail01.rotateAngleX = 1;
-			}else {
-				this.body.rotateAngleX = 0;
+				this.setRotateAngle360(neck, 30, 0, 0);
+				this.setRotateAngle360(chest, -40, 0, 0);
+				this.setRotateAngle360(body, -40, 0, 0);
+				this.setRotateAngle360(tail01, 90, 0, 0);
+				this.setRotateAngle360(lArm01, 36, 0, -5);
+				this.setRotateAngle360(lArm01_1, -26, 0, 5);
+				this.setRotateAngle360(lForepaw, 28, 0, 0);
+				this.setRotateAngle360(rArm01, 36, 0, 5);
+				this.setRotateAngle360(rArm01_1, -26, 0, -5);
+				this.setRotateAngle360(rForepaw, 28, 0, 0);
+				this.setRotateAngle360(lHindLeg01, -13, 0, -16);
+				this.setRotateAngle(lHindLeg02, 0.8996066167365371F, 0.0F, 0.0F);
+				this.setRotateAngle360(lHindpaw, 90, 0, 0);
+				this.setRotateAngle360(rHindLeg01, -13, 0, 16);
+				this.setRotateAngle(rHindLeg02, 0.8996066167365371F, 0.0F, 0.0F);
+				this.setRotateAngle360(rHindpaw, 90, 0, 0);
+				this.head.rotateAngleX -= Math.toRadians(20);
+				this.chest.setRotationPoint(0F, 16.8F, -0.8F);
+			} else {
+				this.setRotateAngle(rHindLeg02, 0.8196066167365371F, 0.0F, 0.0F);
+				this.setRotateAngle(lHindLeg02, 0.8196066167365371F, 0.0F, 0.0F);
+				this.lArm01.rotateAngleZ = -0.091106186954104F;
+				this.setRotateAngle(lArm01_1, -0.22759093446006054F, 0.0F, 0.091106186954104F);
+				this.rArm01.rotateAngleZ = 0.091106186954104F;
+				this.setRotateAngle(rArm01_1, -0.22759093446006054F, 0.0F, -0.091106186954104F);
+				this.lHindLeg01.rotateAngleZ = 0;
+				this.rHindLeg01.rotateAngleZ = 0;
+				this.setRotateAngle(rHindpaw, 0, 0, 0);
+				this.setRotateAngle(lHindpaw, 0, 0, 0);
+				this.body.rotateAngleX = -0.091106186954104F;
+				this.setRotateAngle(chest, 0, 0, 0);
+				this.setRotateAngle(lForepaw, 0, 0, 0);
+				this.setRotateAngle(rForepaw, 0, 0, 0);
+				this.chest.setRotationPoint(0F, 12.8F, -0.8F);
 			}
 		}
 	}
+	
+	/**
+	 * This is a helper function from Tabula to set the rotation of model parts
+	 */
+	public void setRotateAngle(ModelRenderer modelRenderer, float x, float y, float z) {
+		modelRenderer.rotateAngleX = x;
+		modelRenderer.rotateAngleY = y;
+		modelRenderer.rotateAngleZ = z;
+	}
+	
+	public void setRotateAngle360(ModelRenderer modelRenderer, float x, float y, float z) {
+		modelRenderer.rotateAngleX = (float) Math.toRadians(x);
+		modelRenderer.rotateAngleY = (float) Math.toRadians(y);
+		modelRenderer.rotateAngleZ = (float) Math.toRadians(z);
+	}
+	
 }
