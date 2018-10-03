@@ -25,9 +25,9 @@ public class RenderNewSheep extends RenderLiving<EntitySheep> {
 	@Override
 	protected void preRenderCallback(EntitySheep entitylivingbaseIn, float partialTickTime) {
 		if (model.isChild) {
-			GlStateManager.scale(0.9D, 0.9D, 0.9D);
+			GlStateManager.scale(0.5D, 0.5D, 0.5D);
 		} else {
-			GlStateManager.scale(1.35D, 1.35D, 1.35D);
+			GlStateManager.scale(1.0D, 1.0D, 1.0D);
 		}
 	}
 
