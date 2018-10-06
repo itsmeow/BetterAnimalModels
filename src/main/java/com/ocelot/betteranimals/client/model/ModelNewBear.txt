@@ -413,3 +413,4 @@ public class ModelNewBear extends Model {
 		modelRenderer.rotateAngleZ = z;
 	}
 }
+
