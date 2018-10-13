@@ -237,7 +237,7 @@ public class ModelNewWolf extends Model {
 	{
 		EntityWolf wolf = (EntityWolf)entitylivingbaseIn;
 
-		if (!entitywolf.isTamed())
+		if (!wolf.isTamed())
 		{
 			this.tail01.rotateAngleY = 0.0F;
 		}
@@ -246,10 +246,10 @@ public class ModelNewWolf extends Model {
 			this.tail01.rotateAngleY = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
 		}
 
-		this.head.rotateAngleZ = entitywolf.getInterestedAngle(partialTickTime) + entitywolf.getShakeAngle(partialTickTime, 0.0F);
-		this.neck.rotateAngleZ = entitywolf.getShakeAngle(partialTickTime, -0.08F);
-		this.body.rotateAngleZ = entitywolf.getShakeAngle(partialTickTime, -0.16F);
-		this.tail01.rotateAngleZ = entitywolf.getShakeAngle(partialTickTime, -0.2F);
+		this.head.rotateAngleZ = wolf.getInterestedAngle(partialTickTime) + wolf.getShakeAngle(partialTickTime, 0.0F);
+		this.neck.rotateAngleZ = wolf.getShakeAngle(partialTickTime, -0.08F);
+		this.body.rotateAngleZ = wolf.getShakeAngle(partialTickTime, -0.16F);
+		this.tail01.rotateAngleZ = wolf.getShakeAngle(partialTickTime, -0.2F);
 	}
 
 	@Override
