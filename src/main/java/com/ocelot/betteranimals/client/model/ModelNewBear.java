@@ -1,8 +1,8 @@
-package ocelot.betteranimals.client.model;
+package com.ocelot.betteranimals.client.model;
 
 import org.lwjgl.opengl.GL11;
 
-import ocelot.betteranimals.client.model.Model;
+import com.ocelot.betteranimals.client.model.Model;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
@@ -73,7 +73,7 @@ public class ModelNewBear extends Model {
 	public ModelRenderer rForeClaw04;
 	public ModelRenderer rForeClaw05;
 
-	public ModelBear() {
+	public ModelNewBear() {
 		this.textureWidth = 128;
 		this.textureHeight = 128;
 		this.lEar02 = new ModelRenderer(this, 45, 42);
