@@ -27,7 +27,7 @@ public class ActiveCompatSophisticatedWolves implements ModInteropProxySophistic
 			e.printStackTrace();
 		}
 		
-		RenderingRegistry.registerEntityRenderingHandler(wolfClass, new RenderNewSophisticatedWolf());
+		CompatUtils.reg(wolfClass, new RenderNewSophisticatedWolf());
 	}
 
 }

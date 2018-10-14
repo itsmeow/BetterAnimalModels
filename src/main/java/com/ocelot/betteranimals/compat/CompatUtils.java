@@ -39,4 +39,8 @@ public class CompatUtils {
 		return null;
 	}
 	
+	public static void reg(Class theClass, RenderLiving renderer) {
+		RenderingRegistry.registerEntityRenderingHandler(theClass, renderer);
+	}
+	
 }
