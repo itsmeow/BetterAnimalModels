@@ -1,5 +1,7 @@
 package com.ocelot.betteranimals.client.model;
 
+import com.ocelot.betteranimals.compat.ActiveCompatPrimalCore;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
@@ -228,28 +230,30 @@ public class ModelNewWolf extends Model {
 		this.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
 		this.chest.render(f5);
 	}
-	
+
 	/**
 	 * Used for easily adding entity-dependent animations. The second and third float params here are the same second
 	 * and third as in the setRotationAngles method.
 	 */
 	public void setLivingAnimations(EntityLivingBase entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTickTime)
 	{
-		EntityWolf wolf = (EntityWolf)entitylivingbaseIn;
+		if(entitylivingbaseIn instanceof EntityWolf) {
+			EntityWolf wolf = (EntityWolf)entitylivingbaseIn;
 
-		if (!wolf.isTamed())
-		{
-			this.tail01.rotateAngleY = 0.0F;
-		}
-		else
-		{
-			this.tail01.rotateAngleY = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
-		}
+			if (!wolf.isTamed())
+			{
+				this.tail01.rotateAngleY = 0.0F;
+			}
+			else
+			{
+				this.tail01.rotateAngleY = MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
+			}
 
-		this.head.rotateAngleZ = wolf.getInterestedAngle(partialTickTime) + wolf.getShakeAngle(partialTickTime, 0.0F);
-		this.neck.rotateAngleZ = wolf.getShakeAngle(partialTickTime, -0.08F);
-		this.body.rotateAngleZ = wolf.getShakeAngle(partialTickTime, -0.16F);
-		this.tail01.rotateAngleZ = wolf.getShakeAngle(partialTickTime, -0.2F);
+			this.head.rotateAngleZ = wolf.getInterestedAngle(partialTickTime) + wolf.getShakeAngle(partialTickTime, 0.0F);
+			this.neck.rotateAngleZ = wolf.getShakeAngle(partialTickTime, -0.08F);
+			this.body.rotateAngleZ = wolf.getShakeAngle(partialTickTime, -0.16F);
+			this.tail01.rotateAngleZ = wolf.getShakeAngle(partialTickTime, -0.2F);
+		}
 	}
 
 	@Override
@@ -265,10 +269,10 @@ public class ModelNewWolf extends Model {
 			rHindLeg01.rotateAngleX = MathHelper.cos(limbSwing * 0.8665F) * swingModifier * limbSwingAmount;
 			lArm01.rotateAngleX = MathHelper.sin(limbSwing * 0.8665F) * swingModifier * limbSwingAmount;
 			rArm01.rotateAngleX = MathHelper.cos(limbSwing * 0.8665F + (float) Math.PI) * swingModifier * limbSwingAmount;
-			tail01.rotateAngleX = -0.6829473363053812F + tailRotation / 2f;
+			tail01.rotateAngleX = -0.6829473363053812F + tailRotation;
 			this.neck.rotateAngleX = -0.6F;
 		}
-		
+
 		if(entity instanceof EntityWolf) {
 			EntityWolf wolf = (EntityWolf) entity;
 			if(wolf.isSitting()) {
@@ -309,7 +313,7 @@ public class ModelNewWolf extends Model {
 			}
 		}
 	}
-	
+
 	/**
 	 * This is a helper function from Tabula to set the rotation of model parts
 	 */
@@ -318,11 +322,11 @@ public class ModelNewWolf extends Model {
 		modelRenderer.rotateAngleY = y;
 		modelRenderer.rotateAngleZ = z;
 	}
-	
+
 	public void setRotateAngle360(ModelRenderer modelRenderer, float x, float y, float z) {
 		modelRenderer.rotateAngleX = (float) Math.toRadians(x);
 		modelRenderer.rotateAngleY = (float) Math.toRadians(y);
 		modelRenderer.rotateAngleZ = (float) Math.toRadians(z);
 	}
-	
+
 }

@@ -7,6 +7,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.layers.LayerWolfCollar;
+import net.minecraft.entity.passive.EntitySheep;
 import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.util.ResourceLocation;
 
@@ -26,6 +27,15 @@ public class RenderNewWolf extends RenderLiving<EntityWolf> {
 	@Override
 	protected float handleRotationFloat(EntityWolf livingBase, float partialTicks) {
 		return livingBase.getTailRotation();
+	}
+	
+	@Override
+	protected void preRenderCallback(EntityWolf entitylivingbaseIn, float partialTickTime) {
+		if (model.isChild) {
+			GlStateManager.scale(0.5D, 0.5D, 0.5D);
+		} else {
+			GlStateManager.scale(1.0D, 1.0D, 1.0D);
+		}
 	}
 
 	@Override

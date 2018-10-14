@@ -2,39 +2,40 @@ package com.ocelot.betteranimals.compat;
 
 import java.lang.reflect.Method;
 
+import com.ocelot.betteranimals.client.render.entity.RenderNewBlackBear;
+import com.ocelot.betteranimals.client.render.entity.RenderNewBrownBear;
 import com.ocelot.betteranimals.client.render.entity.RenderNewOvisAtre;
+import com.ocelot.betteranimals.client.render.entity.RenderNewSteppeWolf;
 
-import net.minecraft.client.renderer.entity.RenderLiving;
-import net.minecraft.entity.EntityLiving;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
-import net.minecraftforge.fml.common.registry.EntityEntry;
-import net.minecraftforge.fml.common.registry.EntityRegistry;
-import net.minecraftforge.fml.common.registry.GameRegistry.ObjectHolder;
 
 public class ActiveCompatPrimalCore implements ModInteropProxyPrimalCore {
-	
+
 	public static Class atreClass = null;
 	public static Method shearMethod;
+
+	public static Class steppeWolfClass = null;
 	
+	public static Class brownBearClass = null;
+	public static Class blackBearClass = null;
+
 	@Override
 	public void primalcore_register() {
-		try {
-			EntityEntry ovisatreentry = EntityRegistry.getEntry(
-					Class.forName("nmd.primal.core.common.entities.living.EntityOvisAtre").asSubclass(EntityLiving.class)
-			);
-			atreClass = ovisatreentry.getEntityClass();
-			try {
-				shearMethod = atreClass.getMethod("getSheared");
-			} catch (NoSuchMethodException e) {
-				e.printStackTrace();
-			} catch (SecurityException e) {
-				e.printStackTrace();
-			}
-			System.out.println("Found class " + atreClass);
-			RenderingRegistry.registerEntityRenderingHandler(atreClass, new RenderNewOvisAtre());
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}
+		//Ovis Atre
+		atreClass = CompatUtils.getClassForEntity("nmd.primal.core.common.entities.living.EntityOvisAtre");
+		shearMethod = CompatUtils.getMethod("getSheared", atreClass);
+		
+		// Steppe Wolf
+		steppeWolfClass = CompatUtils.getClassForEntity("nmd.primal.core.common.entities.living.EntityCanisCampestris");
+		
+		brownBearClass = CompatUtils.getClassForEntity("nmd.primal.core.common.entities.living.EntityBrownBear");
+		
+		blackBearClass = CompatUtils.getClassForEntity("nmd.primal.core.common.entities.living.EntityBlackBear");
+				
+		CompatUtils.reg(atreClass, new RenderNewOvisAtre());
+		CompatUtils.reg(steppeWolfClass, new RenderNewSteppeWolf());
+		CompatUtils.reg(brownBearClass, new RenderNewBrownBear());
+		CompatUtils.reg(blackBearClass, new RenderNewBlackBear());
 	}
-
+	
 }
