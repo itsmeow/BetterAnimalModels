@@ -265,7 +265,7 @@ public class ModelNewWolf extends Model {
 			rHindLeg01.rotateAngleX = MathHelper.cos(limbSwing * 0.8665F) * swingModifier * limbSwingAmount;
 			lArm01.rotateAngleX = MathHelper.sin(limbSwing * 0.8665F) * swingModifier * limbSwingAmount;
 			rArm01.rotateAngleX = MathHelper.cos(limbSwing * 0.8665F + (float) Math.PI) * swingModifier * limbSwingAmount;
-			tail01.rotateAngleX = -0.6829473363053812F + tailRotation / 2f;
+			tail01.rotateAngleX = -0.6829473363053812F + tailRotation;
 			this.neck.rotateAngleX = -0.6F;
 		}
 		

@@ -13,7 +13,7 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
-@Mod(modid = BetterAnimals.MODID, acceptedMinecraftVersions = "[1.12,1.12.2]", version = BetterAnimals.VERSION, clientSideOnly = true)
+@Mod(modid = BetterAnimals.MODID, acceptedMinecraftVersions = "[1.12,1.12.2]", version = BetterAnimals.VERSION, clientSideOnly = true, dependencies = "after:sophisticatedwolves|primal")
 public class BetterAnimals {
 
 	public static final String MODID = "betteranimals";
@@ -32,6 +32,11 @@ public class BetterAnimals {
 	@EventHandler
 	public void init(FMLInitializationEvent event) {
 		RenderHandler.init();
+	}
+	
+	@EventHandler
+	public void postInit(FMLPostInitializationEvent event) {
+		RenderHandler.postinit();
 	}
 
 	public static Logger logger() {

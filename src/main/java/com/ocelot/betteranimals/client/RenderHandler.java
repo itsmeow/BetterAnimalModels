@@ -49,6 +49,10 @@ public class RenderHandler {
 		if(primalcore != null) {
 			primalcore.primalcore_register();
 		}
+	}
+	
+	// This must take place in postinit because sophisticatedwolves has placed it in init
+	public static void postinit() {
 		System.out.println("SophisticatedWolves proxy: " + sophisticatedwolves);
 		if(sophisticatedwolves != null) {
 			sophisticatedwolves.sophisticatedwolves_register();
