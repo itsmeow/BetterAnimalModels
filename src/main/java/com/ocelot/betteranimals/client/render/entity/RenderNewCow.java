@@ -22,7 +22,7 @@ public class RenderNewCow extends RenderLiving<EntityCow> {
 	@Override
 	protected void preRenderCallback(EntityCow entitylivingbaseIn, float partialTickTime) {
 		if (!model.isChild) {
-			GlStateManager.scale(1.25D, 1.25D, 1.25D);
+			GlStateManager.scale(0.80D, 0.80, 0.80);
 		} else {
 			GlStateManager.translate(0, 0.15D, 0);
 		}

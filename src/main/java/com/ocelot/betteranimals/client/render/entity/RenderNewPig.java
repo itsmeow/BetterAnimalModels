@@ -24,7 +24,7 @@ public class RenderNewPig extends RenderLiving<EntityPig> {
 	@Override
 	protected void preRenderCallback(EntityPig entitylivingbaseIn, float partialTickTime) {
 		if (!model.isChild) {
-			GlStateManager.scale(1.15D, 1.15D, 1.15D);
+			GlStateManager.scale(1.00D, 1.00D, 1.00D);
 		}
 	}
 
