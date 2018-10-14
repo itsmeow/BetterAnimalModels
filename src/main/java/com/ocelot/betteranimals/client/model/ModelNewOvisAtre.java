@@ -1,5 +1,12 @@
 package com.ocelot.betteranimals.client.model;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+
+import org.objectweb.asm.Type;
+
+import com.ocelot.betteranimals.compat.ActiveCompatPrimalCore;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
@@ -434,54 +441,66 @@ public class ModelNewOvisAtre extends Model {
 		super.render(entity, f, f1, f2, f3, f4, f5);
 		this.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
 		this.body.render(f5);
-
-		if (entity instanceof EntitySheep) {
-			if (((EntitySheep) entity).getSheared()) {
-				this.lLegWool03.isHidden = true;
-				this.lLegWool02.isHidden = true;
-				this.lLegWool01.isHidden = true;
-				this.rLegWool03.isHidden = true;
-				this.rLegWool02.isHidden = true;
-				this.rLegWool01.isHidden = true;
-				this.wool07.isHidden = true;
-				this.wool02.isHidden = true;
-				this.wool05.isHidden = true;
-				this.wool08.isHidden = true;
-				this.wool06.isHidden = true;
-				this.wool04.isHidden = true;
-				this.woolFur02.isHidden = true;
-				this.wool03.isHidden = true;
-				this.woolFur01.isHidden = true;
-				this.woolFur03.isHidden = true;
-				this.lArmWool01_1.isHidden = true;
-				this.lArmWool01.isHidden = true;
-				this.rArmWool01_1.isHidden = true;
-				this.rArmWool01.isHidden = true;
-				this.wool01.isHidden = true;
-				this.woolFur04.isHidden = true;
-			} else {
-				this.lLegWool03.isHidden = false;
-				this.lLegWool02.isHidden = false;
-				this.lLegWool01.isHidden = false;
-				this.rLegWool03.isHidden = false;
-				this.rLegWool02.isHidden = false;
-				this.rLegWool01.isHidden = false;
-				this.wool07.isHidden = false;
-				this.wool02.isHidden = false;
-				this.wool05.isHidden = false;
-				this.wool08.isHidden = false;
-				this.wool06.isHidden = false;
-				this.wool04.isHidden = false;
-				this.woolFur02.isHidden = false;
-				this.wool03.isHidden = false;
-				this.woolFur01.isHidden = false;
-				this.woolFur03.isHidden = false;
-				this.lArmWool01_1.isHidden = false;
-				this.lArmWool01.isHidden = false;
-				this.rArmWool01_1.isHidden = false;
-				this.rArmWool01.isHidden = false;
-				this.wool01.isHidden = false;
-				this.woolFur04.isHidden = false;
+		//Messy reflection code
+		Class atreClass = ActiveCompatPrimalCore.atreClass;
+		Method shearMethod = ActiveCompatPrimalCore.shearMethod;
+		if (atreClass.isInstance(entity)) {
+			try {
+				if ((boolean) shearMethod.invoke(atreClass.cast(entity))) {
+					this.lLegWool03.isHidden = true;
+					this.lLegWool02.isHidden = true;
+					this.lLegWool01.isHidden = true;
+					this.rLegWool03.isHidden = true;
+					this.rLegWool02.isHidden = true;
+					this.rLegWool01.isHidden = true;
+					this.wool07.isHidden = true;
+					this.wool02.isHidden = true;
+					this.wool05.isHidden = true;
+					this.wool08.isHidden = true;
+					this.wool06.isHidden = true;
+					this.wool04.isHidden = true;
+					this.woolFur02.isHidden = true;
+					this.wool03.isHidden = true;
+					this.woolFur01.isHidden = true;
+					this.woolFur03.isHidden = true;
+					this.lArmWool01_1.isHidden = true;
+					this.lArmWool01.isHidden = true;
+					this.rArmWool01_1.isHidden = true;
+					this.rArmWool01.isHidden = true;
+					this.wool01.isHidden = true;
+					this.woolFur04.isHidden = true;
+				} else {
+					this.lLegWool03.isHidden = false;
+					this.lLegWool02.isHidden = false;
+					this.lLegWool01.isHidden = false;
+					this.rLegWool03.isHidden = false;
+					this.rLegWool02.isHidden = false;
+					this.rLegWool01.isHidden = false;
+					this.wool07.isHidden = false;
+					this.wool02.isHidden = false;
+					this.wool05.isHidden = false;
+					this.wool08.isHidden = false;
+					this.wool06.isHidden = false;
+					this.wool04.isHidden = false;
+					this.woolFur02.isHidden = false;
+					this.wool03.isHidden = false;
+					this.woolFur01.isHidden = false;
+					this.woolFur03.isHidden = false;
+					this.lArmWool01_1.isHidden = false;
+					this.lArmWool01.isHidden = false;
+					this.rArmWool01_1.isHidden = false;
+					this.rArmWool01.isHidden = false;
+					this.wool01.isHidden = false;
+					this.woolFur04.isHidden = false;
+				}
+			} catch (IllegalAccessException e) {
+				e.printStackTrace();
+			} catch (IllegalArgumentException e) {
+				e.printStackTrace();
+			} catch (InvocationTargetException e) {
+				e.printStackTrace();
+			} catch (SecurityException e) {
+				e.printStackTrace();
 			}
 		}
 	}
