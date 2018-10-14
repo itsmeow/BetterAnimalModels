@@ -12,14 +12,13 @@ import net.minecraftforge.fml.common.registry.EntityRegistry;
 
 public class CompatUtils {
 	
-	public static Class registerClassRenderer(String classpath, RenderLiving renderer) {
+	public static Class getClassForEntity(String classpath) {
 		try {
 			EntityEntry entry = EntityRegistry.getEntry(
 					Class.forName(classpath).asSubclass(EntityLiving.class)
 					);
 			Class entryClass = entry.getEntityClass();
 			System.out.println("Found class " + entryClass);
-			RenderingRegistry.registerEntityRenderingHandler(entryClass, new RenderNewSteppeWolf());
 			return entryClass;
 		} catch(ClassNotFoundException e) {
 			e.printStackTrace();

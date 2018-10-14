@@ -1,11 +1,5 @@
 package com.ocelot.betteranimals.client.render.entity;
 
-import static com.ocelot.betteranimals.compat.ActiveCompatSophisticatedWolves.angryMethod;
-import static com.ocelot.betteranimals.compat.ActiveCompatSophisticatedWolves.enums;
-import static com.ocelot.betteranimals.compat.ActiveCompatSophisticatedWolves.speciesMethod;
-import static com.ocelot.betteranimals.compat.ActiveCompatSophisticatedWolves.tamedMethod;
-import static com.ocelot.betteranimals.compat.ActiveCompatSophisticatedWolves.wolfClass;
-
 import java.lang.reflect.InvocationTargetException;
 
 import com.ocelot.betteranimals.BetterAnimals;

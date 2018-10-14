@@ -20,8 +20,6 @@ import java.lang.reflect.InvocationTargetException;
 import com.ocelot.betteranimals.BetterAnimals;
 
 import static com.ocelot.betteranimals.compat.ActiveCompatSophisticatedWolves.enums;
-import static com.ocelot.betteranimals.compat.ActiveCompatSophisticatedWolves.tamedMethod;
-import static com.ocelot.betteranimals.compat.ActiveCompatSophisticatedWolves.angryMethod;
 import static com.ocelot.betteranimals.compat.ActiveCompatSophisticatedWolves.tailRotateMethod;
 
 public class RenderNewSophisticatedWolf extends RenderLiving {
@@ -87,33 +85,34 @@ public class RenderNewSophisticatedWolf extends RenderLiving {
 	protected ResourceLocation getEntityTexture(Entity entity) {
 		try {
 			Object wolf = wolfClass.cast(entity);
+			EntityWolf wolfForm = (EntityWolf) wolf;
 			if (speciesMethod.invoke(wolf) == enums[3]) {
-				if ((boolean) tamedMethod.invoke(wolf))
+				if (wolfForm.isTamed())
 					return BROWN_WOLF_TAME;
-				if ((boolean) angryMethod.invoke(wolf))
+				if (wolfForm.isAngry())
 					return BROWN_WOLF_ANGRY;
 				else
 					return BROWN_WOLF;
 			}
 			if (speciesMethod.invoke(wolf) == enums[2]) {
-				if ((boolean) tamedMethod.invoke(wolf))
+				if (wolfForm.isTamed())
 					return BLACK_WOLF_TAME;
-				if ((boolean) angryMethod.invoke(wolf))
+				if (wolfForm.isAngry())
 					return BLACK_WOLF_ANGRY;
 				else
 					return BLACK_WOLF;
 			}
 			if (speciesMethod.invoke(wolf) == enums[1]) {
-				if ((boolean) tamedMethod.invoke(wolf))
+				if (wolfForm.isTamed())
 					return FOREST_WOLF_TAME;
-				if ((boolean) angryMethod.invoke(wolf))
+				if (wolfForm.isAngry())
 					return FOREST_WOLF_ANGRY;
 				else
 					return FOREST_WOLF;
 			} else if(speciesMethod.invoke(wolf) == enums[0]){
-				if ((boolean) tamedMethod.invoke(wolf))
+				if (wolfForm.isTamed())
 					return WOLF_TAME;
-				if ((boolean) angryMethod.invoke(wolf))
+				if (wolfForm.isAngry())
 					return WOLF_ANGRY;
 				else
 					return WOLF;
