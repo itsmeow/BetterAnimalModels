@@ -1,4 +1,6 @@
-package com.ocelot.betteranimals.client.render;
+package com.ocelot.betteranimals.client.render.layer;
+
+import com.ocelot.betteranimals.client.render.entity.RenderNewOvisAtre;
 
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.layers.LayerRenderer;

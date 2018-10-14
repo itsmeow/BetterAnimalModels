@@ -1,5 +1,6 @@
-package com.ocelot.betteranimals.client.render;
+package com.ocelot.betteranimals.client.render.layer;
 
+import com.ocelot.betteranimals.client.render.entity.RenderNewSheep;
 import com.ocelot.betteranimals.enums.EnumNewSheepWoolColors;
 
 import net.minecraft.client.renderer.GlStateManager;

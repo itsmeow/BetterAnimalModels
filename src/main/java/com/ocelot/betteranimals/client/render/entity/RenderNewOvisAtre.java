@@ -1,7 +1,9 @@
-package com.ocelot.betteranimals.client.render;
+package com.ocelot.betteranimals.client.render.entity;
 
 import com.ocelot.betteranimals.BetterAnimals;
 import com.ocelot.betteranimals.client.model.ModelNewOvisAtre;
+import com.ocelot.betteranimals.client.render.layer.LayerNewOvisAtreEyes;
+import com.ocelot.betteranimals.client.render.layer.LayerNewOvisAtreWool;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelBase;

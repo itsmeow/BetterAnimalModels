@@ -2,7 +2,7 @@ package com.ocelot.betteranimals.compat;
 
 import java.lang.reflect.Method;
 
-import com.ocelot.betteranimals.client.render.RenderNewOvisAtre;
+import com.ocelot.betteranimals.client.render.entity.RenderNewOvisAtre;
 
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.entity.EntityLiving;

@@ -1,13 +1,6 @@
 package com.ocelot.betteranimals.client;
 
-import com.ocelot.betteranimals.client.render.RenderNewCaveSpider;
-import com.ocelot.betteranimals.client.render.RenderNewChicken;
-import com.ocelot.betteranimals.client.render.RenderNewCow;
-import com.ocelot.betteranimals.client.render.RenderNewPig;
-import com.ocelot.betteranimals.client.render.RenderNewSheep;
-import com.ocelot.betteranimals.client.render.RenderNewSilverfish;
-import com.ocelot.betteranimals.client.render.RenderNewSpider;
-import com.ocelot.betteranimals.client.render.RenderNewWolf;
+import com.ocelot.betteranimals.client.render.entity.*;
 import com.ocelot.betteranimals.compat.InactiveCompatPrimalCore;
 import com.ocelot.betteranimals.compat.ModInteropProxy;
 import com.ocelot.betteranimals.compat.ModInteropProxyPrimalCore;
@@ -18,6 +11,7 @@ import net.minecraft.entity.monster.EntitySilverfish;
 import net.minecraft.entity.monster.EntitySpider;
 import net.minecraft.entity.passive.EntityChicken;
 import net.minecraft.entity.passive.EntityCow;
+import net.minecraft.entity.passive.EntityMooshroom;
 import net.minecraft.entity.passive.EntityPig;
 import net.minecraft.entity.passive.EntitySheep;
 import net.minecraft.entity.passive.EntityWolf;
@@ -35,7 +29,9 @@ public class RenderHandler {
 		RenderingRegistry.registerEntityRenderingHandler(EntityChicken.class, new RenderNewChicken());
 		RenderingRegistry.registerEntityRenderingHandler(EntitySheep.class, new RenderNewSheep());
 		RenderingRegistry.registerEntityRenderingHandler(EntityWolf.class, new RenderNewWolf());
-
+		
+		RenderingRegistry.registerEntityRenderingHandler(EntityMooshroom.class, new RenderNewMooshroom());
+		
 		// Mobs
 		RenderingRegistry.registerEntityRenderingHandler(EntitySpider.class, new RenderNewSpider());
 		RenderingRegistry.registerEntityRenderingHandler(EntityCaveSpider.class, new RenderNewCaveSpider());

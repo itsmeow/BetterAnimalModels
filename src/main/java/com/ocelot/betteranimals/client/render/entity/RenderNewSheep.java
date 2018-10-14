@@ -1,7 +1,8 @@
-package com.ocelot.betteranimals.client.render;
+package com.ocelot.betteranimals.client.render.entity;
 
 import com.ocelot.betteranimals.BetterAnimals;
 import com.ocelot.betteranimals.client.model.ModelNewSheep;
+import com.ocelot.betteranimals.client.render.layer.LayerNewSheepWool;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelBase;
