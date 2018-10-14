@@ -12,6 +12,8 @@ import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.passive.EntitySheep;
 import net.minecraft.util.ResourceLocation;
 
 public class RenderNewOvisAtre extends RenderLiving {
@@ -25,7 +27,16 @@ public class RenderNewOvisAtre extends RenderLiving {
 		this.addLayer(new LayerNewOvisAtreWool(this));
 		this.addLayer(new LayerNewOvisAtreEyes(this));
 	}
-
+	
+	@Override
+	protected void preRenderCallback(EntityLivingBase entitylivingbaseIn, float partialTickTime) {
+		if (model.isChild) {
+			GlStateManager.scale(0.5D, 0.5D, 0.5D);
+		} else {
+			GlStateManager.scale(1.0D, 1.0D, 1.0D);
+		}
+	}
+	
 	@Override
 	protected ResourceLocation getEntityTexture(Entity entity) {
 		return BASE;
