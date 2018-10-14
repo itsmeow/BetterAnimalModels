@@ -380,10 +380,8 @@ public class ModelNewBear extends Model {
 
 	@Override
 	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) { 
-    this.hind.render(f5);
+		this.hind.render(f5);
 	}
-
-
 
 	@Override
 	public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw,
@@ -403,6 +401,7 @@ public class ModelNewBear extends Model {
 
 		super.setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scaleFactor, entityIn);
 	}
+
 
 	/**
 	 * This is a helper function from Tabula to set the rotation of model parts

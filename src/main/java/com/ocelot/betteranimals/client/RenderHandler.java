@@ -7,6 +7,7 @@ import com.ocelot.betteranimals.compat.ModInteropProxyPrimalCore;
 import com.ocelot.betteranimals.compat.ModInteropProxySophisticatedWolves;
 
 import net.minecraft.entity.monster.EntityCaveSpider;
+import net.minecraft.entity.monster.EntityPolarBear;
 import net.minecraft.entity.monster.EntitySilverfish;
 import net.minecraft.entity.monster.EntitySpider;
 import net.minecraft.entity.passive.EntityChicken;
@@ -29,13 +30,13 @@ public class RenderHandler {
 		RenderingRegistry.registerEntityRenderingHandler(EntityChicken.class, new RenderNewChicken());
 		RenderingRegistry.registerEntityRenderingHandler(EntitySheep.class, new RenderNewSheep());
 		RenderingRegistry.registerEntityRenderingHandler(EntityWolf.class, new RenderNewWolf());
-		
 		RenderingRegistry.registerEntityRenderingHandler(EntityMooshroom.class, new RenderNewMooshroom());
 		
 		// Mobs
 		RenderingRegistry.registerEntityRenderingHandler(EntitySpider.class, new RenderNewSpider());
 		RenderingRegistry.registerEntityRenderingHandler(EntityCaveSpider.class, new RenderNewCaveSpider());
 		RenderingRegistry.registerEntityRenderingHandler(EntitySilverfish.class, new RenderNewSilverfish());
+		RenderingRegistry.registerEntityRenderingHandler(EntityPolarBear.class, new RenderNewPolarBear());
 		
 		//Mod Compat
 		
