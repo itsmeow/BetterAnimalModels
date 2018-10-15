@@ -27,7 +27,7 @@ public class RenderNewSteppeWolf extends RenderLiving {
 
 	@Override
 	protected float handleRotationFloat(EntityLivingBase livingBase, float partialTicks) {
-		return -0.6829473363053812F;
+		return  1.5393804F;
 	}
 
 	@Override
