@@ -9,7 +9,7 @@ import com.ocelot.betteranimals.client.render.entity.RenderNewSteppeWolf;
 
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 
-public class ActiveCompatPrimalCore implements ModInteropProxyPrimalCore {
+public class ActiveCompatPrimalCore implements ModInteropProxy {
 
 	public static Class atreClass = null;
 	public static Method shearMethod;
@@ -20,7 +20,7 @@ public class ActiveCompatPrimalCore implements ModInteropProxyPrimalCore {
 	public static Class blackBearClass = null;
 
 	@Override
-	public void primalcore_register() {
+	public void register() {
 		//Ovis Atre
 		atreClass = CompatUtils.getClassForEntity("nmd.primal.core.common.entities.living.EntityOvisAtre");
 		shearMethod = CompatUtils.getMethod("getSheared", atreClass);

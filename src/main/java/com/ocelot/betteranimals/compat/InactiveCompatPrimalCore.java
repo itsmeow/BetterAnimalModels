@@ -2,10 +2,10 @@ package com.ocelot.betteranimals.compat;
 
 import net.minecraft.client.renderer.entity.RenderLiving;
 
-public class InactiveCompatPrimalCore implements ModInteropProxyPrimalCore {
+public class InactiveCompatPrimalCore implements ModInteropProxy {
 
 	@Override
-	public void primalcore_register() {
+	public void register() {
 		
 	}
 

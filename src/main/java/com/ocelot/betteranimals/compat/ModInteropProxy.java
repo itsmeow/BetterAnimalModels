@@ -11,5 +11,5 @@ import net.minecraftforge.fml.common.registry.EntityEntry;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 
 public interface ModInteropProxy {
-	
+	void register();
 }

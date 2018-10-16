@@ -3,8 +3,6 @@ package com.ocelot.betteranimals.client;
 import com.ocelot.betteranimals.client.render.entity.*;
 import com.ocelot.betteranimals.compat.InactiveCompatPrimalCore;
 import com.ocelot.betteranimals.compat.ModInteropProxy;
-import com.ocelot.betteranimals.compat.ModInteropProxyPrimalCore;
-import com.ocelot.betteranimals.compat.ModInteropProxySophisticatedWolves;
 
 import net.minecraft.entity.monster.EntityCaveSpider;
 import net.minecraft.entity.monster.EntityPolarBear;
@@ -21,8 +19,8 @@ import net.minecraftforge.fml.common.Loader;
 
 public class RenderHandler {
 	
-	static ModInteropProxyPrimalCore primalcore;
-	static ModInteropProxySophisticatedWolves sophisticatedwolves;
+	static ModInteropProxy primalcore;
+	static ModInteropProxy sophisticatedwolves;
 	
 	public static void init() {
 		RenderingRegistry.registerEntityRenderingHandler(EntityCow.class, new RenderNewCow());
@@ -41,14 +39,14 @@ public class RenderHandler {
 		//Mod Compat
 		
 		//Load proxy classes
-		primalcore = (ModInteropProxyPrimalCore) getInteropProxy("primal", "ActiveCompatPrimalCore", "InactiveCompatPrimalCore");
-		sophisticatedwolves = (ModInteropProxySophisticatedWolves) getInteropProxy("sophisticatedwolves", "ActiveCompatSophisticatedWolves", "InactiveCompatSophisticatedWolves");
+		primalcore = getInteropProxy("primal", "ActiveCompatPrimalCore", "InactiveCompatPrimalCore");
+		sophisticatedwolves = getInteropProxy("sophisticatedwolves", "ActiveCompatSophisticatedWolves", "InactiveCompatSophisticatedWolves");
 		
 		//Register renderers for classes
 		//Check for non null to prevent NullPointers if exceptions are thrown
 		System.out.println("Primal proxy: " + primalcore);
 		if(primalcore != null) {
-			primalcore.primalcore_register();
+			primalcore.register();
 		}
 	}
 	
@@ -56,7 +54,7 @@ public class RenderHandler {
 	public static void postinit() {
 		System.out.println("SophisticatedWolves proxy: " + sophisticatedwolves);
 		if(sophisticatedwolves != null) {
-			sophisticatedwolves.sophisticatedwolves_register();
+			sophisticatedwolves.register();
 		}
 	}
 	
