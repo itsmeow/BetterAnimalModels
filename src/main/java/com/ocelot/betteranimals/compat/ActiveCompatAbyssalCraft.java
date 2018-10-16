@@ -10,9 +10,9 @@ public class ActiveCompatAbyssalCraft implements ModInteropProxy {
 	
 	@Override
 	public void register() {
-		Class evilPig = CompatUtils.getClassForEntity("com.sinoow.abyssalcraft.common.entity.demon.EntityEvilpig");
+		Class evilPig = CompatUtils.getClassForEntity("com.shinoow.abyssalcraft.common.entity.demon.EntityEvilpig");
 		if(evilPig == null) {
-			CompatUtils.getClassForEntity("com.sinoow.abyssalcraft.common.entity.demon.EntityEvilPig");
+			CompatUtils.getClassForEntity("com.shinoow.abyssalcraft.common.entity.demon.EntityEvilPig");
 		}
 		
 		

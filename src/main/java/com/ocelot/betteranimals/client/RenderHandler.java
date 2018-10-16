@@ -21,6 +21,7 @@ public class RenderHandler {
 	
 	static ModInteropProxy primalcore;
 	static ModInteropProxy sophisticatedwolves;
+	static ModInteropProxy abyssalcraft;
 	
 	public static void init() {
 		RenderingRegistry.registerEntityRenderingHandler(EntityCow.class, new RenderNewCow());
@@ -41,12 +42,16 @@ public class RenderHandler {
 		//Load proxy classes
 		primalcore = getInteropProxy("primal", "ActiveCompatPrimalCore", "InactiveCompatPrimalCore");
 		sophisticatedwolves = getInteropProxy("sophisticatedwolves", "ActiveCompatSophisticatedWolves", "InactiveCompatSophisticatedWolves");
+		abyssalcraft = getInteropProxy("abyssalcraft", "ActiveCompatAbyssalCraft", "InactiveCompatAbyssalCraft");
 		
 		//Register renderers for classes
 		//Check for non null to prevent NullPointers if exceptions are thrown
 		System.out.println("Primal proxy: " + primalcore);
 		if(primalcore != null) {
 			primalcore.register();
+		}
+		if(abyssalcraft != null) {
+			abyssalcraft.register();
 		}
 	}
 	
