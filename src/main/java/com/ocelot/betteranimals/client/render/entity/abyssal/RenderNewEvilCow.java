@@ -18,7 +18,7 @@ import net.minecraft.util.ResourceLocation;
 
 public class RenderNewEvilCow extends RenderLiving<EntityMob>{
 
-	private static ResourceLocation texture = new ResourceLocation(BetterAnimals.MODID, "textures/mobs/cow.png");
+	private ResourceLocation texture = new ResourceLocation(BetterAnimals.MODID, "textures/mobs/cow.png");
 	
 	public RenderNewEvilCow(ResourceLocation texture) {
 		super(Minecraft.getMinecraft().getRenderManager(), new ModelNewCow(), 0.4F);
