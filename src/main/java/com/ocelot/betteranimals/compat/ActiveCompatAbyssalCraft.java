@@ -28,6 +28,12 @@ public class ActiveCompatAbyssalCraft implements ModInteropProxy {
 		Class demonChicken = CompatUtils.getClassForEntity("com.shinoow.abyssalcraft.common.entity.demon.EntityDemonChicken");
 		Class demonSheep = CompatUtils.getClassForEntity("com.shinoow.abyssalcraft.common.entity.demon.EntityDemonSheep");
 		
+		Class antiPig = CompatUtils.getClassForEntity("com.shinoow.abyssalcraft.common.entity.anti.EntityAntiPig");
+		Class antiCow = CompatUtils.getClassForEntity("com.shinoow.abyssalcraft.common.entity.anti.EntityAntiCow");
+		Class antiChicken = CompatUtils.getClassForEntity("com.shinoow.abyssalcraft.common.entity.anti.EntityAntiChicken");
+		Class antiSheep = CompatUtils.getClassForEntity("com.shinoow.abyssalcraft.common.entity.anti.EntityAntiSheep");
+		Class antiSpider = CompatUtils.getClassForEntity("com.shinoow.abyssalcraft.common.entity.anti.EntityAntiSpider");
+		
 		CompatUtils.reg(evilPig, new RenderNewEvilPig(new ModelNewPig(), new ResourceLocation(BetterAnimals.MODID, "textures/mobs/pig.png")));
 		CompatUtils.reg(evilCow, new RenderNewEvilCow(new ResourceLocation(BetterAnimals.MODID, "textures/mobs/cow.png")));
 		CompatUtils.reg(evilSheep, new RenderNewEvilSheep(new ResourceLocation(BetterAnimals.MODID, "textures/mobs/sheep.png"), new ResourceLocation(BetterAnimals.MODID, "textures/mobs/sheep_fur.png")));
