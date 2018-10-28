@@ -2,7 +2,8 @@ package com.ocelot.betteranimals.compat;
 
 import java.lang.reflect.Method;
 
-import com.ocelot.betteranimals.client.render.entity.RenderNewSophisticatedWolf;
+import com.ocelot.betteranimals.client.render.entity.sophisticatedwolves.RenderNewSophisticatedWolf;
+
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 
 public class ActiveCompatSophisticatedWolves implements ModInteropProxy {

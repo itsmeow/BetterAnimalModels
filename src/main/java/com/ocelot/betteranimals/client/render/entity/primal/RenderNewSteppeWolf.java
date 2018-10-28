@@ -1,4 +1,4 @@
-package com.ocelot.betteranimals.client.render.entity;
+package com.ocelot.betteranimals.client.render.entity.primal;
 
 import java.lang.reflect.InvocationTargetException;
 

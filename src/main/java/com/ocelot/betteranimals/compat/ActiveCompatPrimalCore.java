@@ -2,10 +2,10 @@ package com.ocelot.betteranimals.compat;
 
 import java.lang.reflect.Method;
 
-import com.ocelot.betteranimals.client.render.entity.RenderNewBlackBear;
-import com.ocelot.betteranimals.client.render.entity.RenderNewBrownBear;
-import com.ocelot.betteranimals.client.render.entity.RenderNewOvisAtre;
-import com.ocelot.betteranimals.client.render.entity.RenderNewSteppeWolf;
+import com.ocelot.betteranimals.client.render.entity.primal.RenderNewBlackBear;
+import com.ocelot.betteranimals.client.render.entity.primal.RenderNewBrownBear;
+import com.ocelot.betteranimals.client.render.entity.primal.RenderNewOvisAtre;
+import com.ocelot.betteranimals.client.render.entity.primal.RenderNewSteppeWolf;
 
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 

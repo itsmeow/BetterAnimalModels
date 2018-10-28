@@ -1,4 +1,4 @@
-package com.ocelot.betteranimals.client.render.entity;
+package com.ocelot.betteranimals.client.render.entity.abyssal;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelBase;
@@ -12,11 +12,11 @@ import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.passive.EntitySheep;
 import net.minecraft.util.ResourceLocation;
 
-public class RenderNewEvilAbyssalMob extends RenderLiving<EntityMob>{
+public class RenderNewEvilPig extends RenderLiving<EntityMob>{
 
 	private ResourceLocation texture = null;
 	
-	public RenderNewEvilAbyssalMob(ModelBase modelbaseIn, ResourceLocation texture) {
+	public RenderNewEvilPig(ModelBase modelbaseIn, ResourceLocation texture) {
 		super(Minecraft.getMinecraft().getRenderManager(), modelbaseIn, 0.4F);
 		this.texture = texture;
 	}

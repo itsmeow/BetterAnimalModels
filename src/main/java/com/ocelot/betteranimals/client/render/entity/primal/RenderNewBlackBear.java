@@ -1,4 +1,4 @@
-package com.ocelot.betteranimals.client.render.entity;
+package com.ocelot.betteranimals.client.render.entity.primal;
 
 import com.ocelot.betteranimals.BetterAnimals;
 import com.ocelot.betteranimals.client.model.ModelNewBear;

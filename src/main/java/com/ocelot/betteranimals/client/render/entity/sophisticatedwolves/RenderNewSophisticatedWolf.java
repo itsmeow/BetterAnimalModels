@@ -1,4 +1,4 @@
-package com.ocelot.betteranimals.client.render.entity;
+package com.ocelot.betteranimals.client.render.entity.sophisticatedwolves;
 
 import com.ocelot.betteranimals.client.model.ModelNewWolf;
 import com.ocelot.betteranimals.compat.ActiveCompatSophisticatedWolves;
