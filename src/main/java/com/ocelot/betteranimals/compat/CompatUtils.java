@@ -1,5 +1,6 @@
 package com.ocelot.betteranimals.compat;
 
+import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
 import com.ocelot.betteranimals.client.render.entity.primal.RenderNewSteppeWolf;
@@ -41,6 +42,19 @@ public class CompatUtils {
 	
 	public static void reg(Class theClass, RenderLiving renderer) {
 		RenderingRegistry.registerEntityRenderingHandler(theClass, renderer);
+	}
+
+	public static Field getField(String name, Class theClass) {
+		try {
+			Field field = theClass.getField(name);
+			System.out.println("Retrieved field: " + field);
+			return field;
+		} catch (NoSuchFieldException e) {
+			e.printStackTrace();
+		} catch (SecurityException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 	
 }

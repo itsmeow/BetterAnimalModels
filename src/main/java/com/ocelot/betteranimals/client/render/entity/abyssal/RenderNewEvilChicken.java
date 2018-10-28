@@ -5,6 +5,7 @@ import java.lang.reflect.Field;
 import com.ocelot.betteranimals.BetterAnimals;
 import com.ocelot.betteranimals.client.model.ModelNewChicken;
 import com.ocelot.betteranimals.compat.ActiveCompatAbyssalCraft;
+import com.ocelot.betteranimals.compat.CompatUtils;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
@@ -23,30 +24,24 @@ public class RenderNewEvilChicken extends RenderLiving<EntityMob>{
 	private Field oFlapSpeedF = null;
 	private Field oFlapF = null;
 	private Field wingRotDeltaF = null;
-	
+
 	public RenderNewEvilChicken(ResourceLocation texture, Class base) {
 		super(Minecraft.getMinecraft().getRenderManager(), new ModelNewChicken(), 0.4F);
 		this.base = base;
 		this.texture = texture;
-		try {
-			wingRotationF = base.getField("field_70886_e");
-			destPosF = base.getField("destPos");
-			oFlapSpeedF = base.getField("field_70884_g");
-			oFlapF = base.getField("field_70888_h");
-		} catch (NoSuchFieldException e) {
-			e.printStackTrace();
-		} catch (SecurityException e) {
-			e.printStackTrace();
-		}
+		wingRotationF = CompatUtils.getField("field_70886_e", base);
+		destPosF = CompatUtils.getField("destPos", base);
+		oFlapSpeedF = CompatUtils.getField("field_70884_g", base);
+		oFlapF = CompatUtils.getField("field_70888_h", base);
 	}
-	
+
 	@Override
 	protected void preRenderCallback(EntityMob entitylivingbaseIn, float partialTickTime) {
 		if (!getMainModel().isChild) {
 			GlStateManager.scale(0.9D, 0.9D, 0.9D);
 		}
 	}
-	
+
 	@Override
 	protected float handleRotationFloat(EntityMob livingBase, float partialTicks) {
 		Object chicken = base.cast(livingBase);
@@ -64,15 +59,15 @@ public class RenderNewEvilChicken extends RenderLiving<EntityMob>{
 		} catch (IllegalAccessException e) {
 			e.printStackTrace();
 		}
-	
+
 		return (MathHelper.sin(f) + 1.0F) * f1;
 	}
-	
+
 	@Override
 	protected ResourceLocation getEntityTexture(EntityMob entity) {
 		return texture;
 	}
-	
-	
+
+
 }
 
