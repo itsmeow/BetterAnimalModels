@@ -3,6 +3,7 @@ package com.ocelot.betteranimals.client;
 import com.ocelot.betteranimals.client.render.entity.*;
 import com.ocelot.betteranimals.compat.InactiveCompatPrimalCore;
 import com.ocelot.betteranimals.compat.ModInteropProxy;
+import com.ocelot.betteranimals.config.BetterAnimalsConfig;
 
 import net.minecraft.entity.monster.EntityCaveSpider;
 import net.minecraft.entity.monster.EntityPolarBear;
@@ -18,32 +19,42 @@ import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Loader;
 
 public class RenderHandler {
-	
+
 	static ModInteropProxy primalcore;
 	static ModInteropProxy sophisticatedwolves;
 	static ModInteropProxy abyssalcraft;
-	
+
 	public static void init() {
-		RenderingRegistry.registerEntityRenderingHandler(EntityCow.class, new RenderNewCow());
-		RenderingRegistry.registerEntityRenderingHandler(EntityPig.class, new RenderNewPig());
-		RenderingRegistry.registerEntityRenderingHandler(EntityChicken.class, new RenderNewChicken());
-		RenderingRegistry.registerEntityRenderingHandler(EntitySheep.class, new RenderNewSheep());
-		RenderingRegistry.registerEntityRenderingHandler(EntityWolf.class, new RenderNewWolf());
-		RenderingRegistry.registerEntityRenderingHandler(EntityMooshroom.class, new RenderNewMooshroom());
-		
+		if(BetterAnimalsConfig.enableCow)
+			RenderingRegistry.registerEntityRenderingHandler(EntityCow.class, new RenderNewCow());
+		if(BetterAnimalsConfig.enablePig)
+			RenderingRegistry.registerEntityRenderingHandler(EntityPig.class, new RenderNewPig());
+		if(BetterAnimalsConfig.enableChicken)
+			RenderingRegistry.registerEntityRenderingHandler(EntityChicken.class, new RenderNewChicken());
+		if(BetterAnimalsConfig.enableSheep)
+			RenderingRegistry.registerEntityRenderingHandler(EntitySheep.class, new RenderNewSheep());
+		if(BetterAnimalsConfig.enableWolf)
+			RenderingRegistry.registerEntityRenderingHandler(EntityWolf.class, new RenderNewWolf());
+		if(BetterAnimalsConfig.enableMooshroom)
+			RenderingRegistry.registerEntityRenderingHandler(EntityMooshroom.class, new RenderNewMooshroom());
+
 		// Mobs
-		RenderingRegistry.registerEntityRenderingHandler(EntitySpider.class, new RenderNewSpider());
-		RenderingRegistry.registerEntityRenderingHandler(EntityCaveSpider.class, new RenderNewCaveSpider());
-		RenderingRegistry.registerEntityRenderingHandler(EntitySilverfish.class, new RenderNewSilverfish());
-		RenderingRegistry.registerEntityRenderingHandler(EntityPolarBear.class, new RenderNewPolarBear());
-		
+		if(BetterAnimalsConfig.enableSpider)
+			RenderingRegistry.registerEntityRenderingHandler(EntitySpider.class, new RenderNewSpider());
+		if(BetterAnimalsConfig.enableCaveSpider)
+			RenderingRegistry.registerEntityRenderingHandler(EntityCaveSpider.class, new RenderNewCaveSpider());
+		if(BetterAnimalsConfig.enableSilverfish)
+			RenderingRegistry.registerEntityRenderingHandler(EntitySilverfish.class, new RenderNewSilverfish());
+		if(BetterAnimalsConfig.enablePolarBear)
+			RenderingRegistry.registerEntityRenderingHandler(EntityPolarBear.class, new RenderNewPolarBear());
+
 		//Mod Compat
-		
+
 		//Load proxy classes
 		primalcore = getInteropProxy("primal", "ActiveCompatPrimalCore", "InactiveCompatPrimalCore");
 		sophisticatedwolves = getInteropProxy("sophisticatedwolves", "ActiveCompatSophisticatedWolves", "InactiveCompatSophisticatedWolves");
 		abyssalcraft = getInteropProxy("abyssalcraft", "ActiveCompatAbyssalCraft", "InactiveCompatAbyssalCraft");
-		
+
 		//Register renderers for classes
 		//Check for non null to prevent NullPointers if exceptions are thrown
 		System.out.println("Primal proxy: " + primalcore);
@@ -54,33 +65,33 @@ public class RenderHandler {
 			abyssalcraft.register();
 		}
 	}
-	
+
 	// This must take place in postinit because sophisticatedwolves has placed it in init
 	public static void postinit() {
 		System.out.println("SophisticatedWolves proxy: " + sophisticatedwolves);
-		if(sophisticatedwolves != null) {
+		if(sophisticatedwolves != null && BetterAnimalsConfig.enableSophisticatedWolf) {
 			sophisticatedwolves.register();
 		}
 	}
-	
+
 	private static ModInteropProxy getInteropProxy(String modid, String classNameActive, String classNameInactive) {
 		ModInteropProxy proxy = null;
 		if (Loader.isModLoaded(modid)) {
 			System.out.println("Loading compat classes for mod: " + modid);
-	        // reflection to avoid hard dependency
-	        try {
+			// reflection to avoid hard dependency
+			try {
 				proxy = Class.forName("com.ocelot.betteranimals.compat." + classNameActive).asSubclass(ModInteropProxy.class).newInstance();
 				System.out.println("Found proxy: " + proxy);
-	        } catch (Exception e) {
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		} else {
-	        try {
+			try {
 				proxy = Class.forName("com.ocelot.betteranimals.compat." + classNameInactive).asSubclass(ModInteropProxy.class).newInstance();
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-	    }
+		}
 		return proxy;
 	}
 }
