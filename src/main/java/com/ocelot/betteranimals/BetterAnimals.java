@@ -17,7 +17,7 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 public class BetterAnimals {
 
 	public static final String MODID = "betteranimals";
-	public static final String VERSION = "3.0";
+	public static final String VERSION = "3.1";
 
 	@Instance(MODID)
 	public static BetterAnimals instance;
