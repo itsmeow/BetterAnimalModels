@@ -1,5 +1,8 @@
 package com.ocelot.betteranimals.client;
 
+import org.apache.logging.log4j.Level;
+
+import com.ocelot.betteranimals.BetterAnimals;
 import com.ocelot.betteranimals.client.render.entity.*;
 import com.ocelot.betteranimals.compat.InactiveCompatPrimalCore;
 import com.ocelot.betteranimals.compat.ModInteropProxy;
@@ -57,7 +60,8 @@ public class RenderHandler {
 
 		//Register renderers for classes
 		//Check for non null to prevent NullPointers if exceptions are thrown
-		System.out.println("Primal proxy: " + primalcore);
+		BetterAnimals.logger().log(Level.DEBUG, "Primalcore proxy: " + primalcore);
+		BetterAnimals.logger().log(Level.DEBUG, "Abyssalcraft proxy: " + abyssalcraft);
 		if(primalcore != null) {
 			primalcore.register();
 		}
@@ -68,7 +72,7 @@ public class RenderHandler {
 
 	// This must take place in postinit because sophisticatedwolves has placed it in init
 	public static void postinit() {
-		System.out.println("SophisticatedWolves proxy: " + sophisticatedwolves);
+		BetterAnimals.logger().log(Level.DEBUG, "SophisticatedWolves proxy: " + sophisticatedwolves);
 		if(sophisticatedwolves != null && BetterAnimalsConfig.enableSophisticatedWolf) {
 			sophisticatedwolves.register();
 		}
@@ -77,11 +81,11 @@ public class RenderHandler {
 	private static ModInteropProxy getInteropProxy(String modid, String classNameActive, String classNameInactive) {
 		ModInteropProxy proxy = null;
 		if (Loader.isModLoaded(modid)) {
-			System.out.println("Loading compat classes for mod: " + modid);
+			BetterAnimals.logger().log(Level.DEBUG, "Loading compat classes for mod: " + modid);
 			// reflection to avoid hard dependency
 			try {
 				proxy = Class.forName("com.ocelot.betteranimals.compat." + classNameActive).asSubclass(ModInteropProxy.class).newInstance();
-				System.out.println("Found proxy: " + proxy);
+				BetterAnimals.logger().log(Level.DEBUG, "Found proxy: " + proxy);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
