@@ -67,7 +67,7 @@ public class ActiveCompatAbyssalCraft implements ModInteropProxy {
 		if(BetterAnimalsConfig.enableAntiChicken)
 			CompatUtils.reg(antiChicken, new RenderNewAntiChicken(new ResourceLocation(BetterAnimals.MODID, "textures/mobs/abyssalcraft/anti/antichicken.png"), antiChicken));
 		if(BetterAnimalsConfig.enableAntiSpider)
-			CompatUtils.reg(antiSpider, new RenderNewAntiSpider(new ResourceLocation(BetterAnimals.MODID, "textures/mobs/abyssalcraft/anti/antispider.png"), new ResourceLocation(BetterAnimals.MODID, "textures/abyssalcraft/anti/antispider_eyes.png")));
+			CompatUtils.reg(antiSpider, new RenderNewAntiSpider(new ResourceLocation(BetterAnimals.MODID, "textures/mobs/abyssalcraft/anti/antispider.png"), new ResourceLocation(BetterAnimals.MODID, "textures/mobs/abyssalcraft/anti/antispider_eyes.png")));
 	}
 
 }
