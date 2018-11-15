@@ -32,8 +32,9 @@ public class RenderNewAntiSpider extends RenderLiving<EntityMob> implements Laye
 
 	@Override
 	protected void preRenderCallback(EntityMob entity, float partialTickTime) {
+		Object thisSpider = ActiveCompatAbyssalCraft.antiSpider.asSubclass(EntityMob.class).cast(entity);
 		try {
-			if ((boolean) ActiveCompatAbyssalCraft.spiderAsideClimbableBlock.invoke(ActiveCompatAbyssalCraft.antiSpider.cast(entity))) {
+			if ((boolean) ActiveCompatAbyssalCraft.spiderAsideClimbableBlock.invoke(thisSpider)) {
 				GlStateManager.rotate(-90, 1, 0, 0);
 				GlStateManager.translate(0.0F, 0.75F, -0.5F);
 			}

@@ -42,7 +42,7 @@ public class ActiveCompatAbyssalCraft implements ModInteropProxy {
 		Class antiChicken = CompatUtils.getClassForEntity("com.shinoow.abyssalcraft.common.entity.anti.EntityAntiChicken");
 		antiSpider = CompatUtils.getClassForEntity("com.shinoow.abyssalcraft.common.entity.anti.EntityAntiSpider");
 
-		CompatUtils.getMethod("isBesideClimbableBlock", antiSpider);
+		spiderAsideClimbableBlock = CompatUtils.getMethod("isBesideClimbableBlock", antiSpider);
 
 		if(BetterAnimalsConfig.enableEvilPig)
 			CompatUtils.reg(evilPig, new RenderNewEvilPig(new ResourceLocation(BetterAnimals.MODID, "textures/mobs/pig.png")));
@@ -63,13 +63,13 @@ public class ActiveCompatAbyssalCraft implements ModInteropProxy {
 			CompatUtils.reg(demonChicken, new RenderNewEvilChicken(new ResourceLocation(BetterAnimals.MODID, "textures/mobs/abyssalcraft/demon_chicken.png"), demonChicken));
 
 		if(BetterAnimalsConfig.enableAntiPig)
-			CompatUtils.reg(antiPig, new RenderNewAntiPig(new ResourceLocation(BetterAnimals.MODID, "textures/abyssalcraft/anti/antipig.png")));
+			CompatUtils.reg(antiPig, new RenderNewAntiPig(new ResourceLocation(BetterAnimals.MODID, "textures/mobs/abyssalcraft/anti/antipig.png")));
 		if(BetterAnimalsConfig.enableAntiCow)
-			CompatUtils.reg(antiCow, new RenderNewAntiCow(new ResourceLocation(BetterAnimals.MODID, "textures/abyssalcraft/anti/anticow.png")));
+			CompatUtils.reg(antiCow, new RenderNewAntiCow(new ResourceLocation(BetterAnimals.MODID, "textures/mobs/abyssalcraft/anti/anticow.png")));
 		if(BetterAnimalsConfig.enableAntiChicken)
-			CompatUtils.reg(antiChicken, new RenderNewAntiChicken(new ResourceLocation(BetterAnimals.MODID, "textures/abyssalcraft/anti/antichicken.png"), antiChicken));
+			CompatUtils.reg(antiChicken, new RenderNewAntiChicken(new ResourceLocation(BetterAnimals.MODID, "textures/mobs/abyssalcraft/anti/antichicken.png"), antiChicken));
 		if(BetterAnimalsConfig.enableAntiSpider)
-			CompatUtils.reg(antiSpider, new RenderNewAntiSpider(new ResourceLocation(BetterAnimals.MODID, "textures/abyssalcraft/anti/antispider.png"), new ResourceLocation(BetterAnimals.MODID, "textures/abyssalcraft/anti/antispider_eyes.png")));
+			CompatUtils.reg(antiSpider, new RenderNewAntiSpider(new ResourceLocation(BetterAnimals.MODID, "textures/mobs/abyssalcraft/anti/antispider.png"), new ResourceLocation(BetterAnimals.MODID, "textures/abyssalcraft/anti/antispider_eyes.png")));
 	}
 
 }
