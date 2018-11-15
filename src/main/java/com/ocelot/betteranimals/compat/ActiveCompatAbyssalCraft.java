@@ -1,10 +1,8 @@
 package com.ocelot.betteranimals.compat;
 
-import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
 import com.ocelot.betteranimals.BetterAnimals;
-import com.ocelot.betteranimals.client.model.ModelNewPig;
 import com.ocelot.betteranimals.client.render.entity.abyssal.RenderNewAntiChicken;
 import com.ocelot.betteranimals.client.render.entity.abyssal.RenderNewAntiCow;
 import com.ocelot.betteranimals.client.render.entity.abyssal.RenderNewAntiPig;
