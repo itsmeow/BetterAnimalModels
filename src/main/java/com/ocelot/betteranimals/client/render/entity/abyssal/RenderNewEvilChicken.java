@@ -32,8 +32,8 @@ public class RenderNewEvilChicken extends RenderLiving<EntityEvilChicken>{
 		float f1 = 0;
 		float wingRotation = chicken.field_70886_e;
 		float destPos = chicken.destPos;
-		float oFlap = chicken.field_70884_g;
-		float oFlapSpeed = chicken.field_70888_h;
+		float oFlap = chicken.field_70888_h;
+		float oFlapSpeed = chicken.field_70884_g;
 		f = oFlap + (wingRotation - oFlap) * partialTicks;
 		f1 = oFlapSpeed + (destPos - oFlapSpeed) * partialTicks;
 
