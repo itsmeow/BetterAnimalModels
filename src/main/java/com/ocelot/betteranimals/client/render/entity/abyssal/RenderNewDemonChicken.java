@@ -2,7 +2,6 @@ package com.ocelot.betteranimals.client.render.entity.abyssal;
 
 import com.ocelot.betteranimals.BetterAnimals;
 import com.ocelot.betteranimals.client.model.ModelNewChicken;
-import com.shinoow.abyssalcraft.common.entity.anti.EntityAntiChicken;
 import com.shinoow.abyssalcraft.common.entity.demon.EntityDemonChicken;
 
 import net.minecraft.client.Minecraft;
