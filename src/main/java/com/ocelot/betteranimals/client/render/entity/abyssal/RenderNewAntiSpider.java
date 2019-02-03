@@ -1,24 +1,19 @@
 package com.ocelot.betteranimals.client.render.entity.abyssal;
 
-import java.lang.reflect.InvocationTargetException;
-
-import com.ocelot.betteranimals.BetterAnimals;
 import com.ocelot.betteranimals.client.model.ModelNewSpider;
-import com.ocelot.betteranimals.compat.ActiveCompatAbyssalCraft;
+import com.shinoow.abyssalcraft.common.entity.anti.EntityAntiSpider;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.layers.LayerRenderer;
-import net.minecraft.entity.monster.EntityMob;
-import net.minecraft.entity.monster.EntitySpider;
 import net.minecraft.util.ResourceLocation;
 
-public class RenderNewAntiSpider extends RenderLiving<EntityMob> implements LayerRenderer<EntityMob> {
+public class RenderNewAntiSpider extends RenderLiving<EntityAntiSpider> implements LayerRenderer<EntityAntiSpider> {
 
 	private ModelNewSpider model;
-	
+
 	private ResourceLocation base;
 	private ResourceLocation eyes;
 
@@ -31,29 +26,20 @@ public class RenderNewAntiSpider extends RenderLiving<EntityMob> implements Laye
 	}
 
 	@Override
-	protected void preRenderCallback(EntityMob entity, float partialTickTime) {
-		Object thisSpider = ActiveCompatAbyssalCraft.antiSpider.asSubclass(EntityMob.class).cast(entity);
-		try {
-			if ((boolean) ActiveCompatAbyssalCraft.spiderAsideClimbableBlock.invoke(thisSpider)) {
-				GlStateManager.rotate(-90, 1, 0, 0);
-				GlStateManager.translate(0.0F, 0.75F, -0.5F);
-			}
-		} catch (IllegalAccessException e) {
-			e.printStackTrace();
-		} catch (IllegalArgumentException e) {
-			e.printStackTrace();
-		} catch (InvocationTargetException e) {
-			e.printStackTrace();
+	protected void preRenderCallback(EntityAntiSpider entity, float partialTickTime) {
+		if (entity.isBesideClimbableBlock()) {
+			GlStateManager.rotate(-90, 1, 0, 0);
+			GlStateManager.translate(0.0F, 0.75F, -0.5F);
 		}
 	}
 
 	@Override
-	protected ResourceLocation getEntityTexture(EntityMob entity) {
+	protected ResourceLocation getEntityTexture(EntityAntiSpider entity) {
 		return base;
 	}
 
 	@Override
-	public void doRenderLayer(EntityMob entity, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, float scale) {
+	public void doRenderLayer(EntityAntiSpider entity, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, float scale) {
 		this.bindTexture(eyes);
 		GlStateManager.enableBlend();
 		GlStateManager.blendFunc(GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ONE);

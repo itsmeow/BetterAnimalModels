@@ -3,8 +3,16 @@ package com.ocelot.betteranimals.client;
 import org.apache.logging.log4j.Level;
 
 import com.ocelot.betteranimals.BetterAnimals;
-import com.ocelot.betteranimals.client.render.entity.*;
-import com.ocelot.betteranimals.compat.InactiveCompatPrimalCore;
+import com.ocelot.betteranimals.client.render.entity.RenderNewCaveSpider;
+import com.ocelot.betteranimals.client.render.entity.RenderNewChicken;
+import com.ocelot.betteranimals.client.render.entity.RenderNewCow;
+import com.ocelot.betteranimals.client.render.entity.RenderNewMooshroom;
+import com.ocelot.betteranimals.client.render.entity.RenderNewPig;
+import com.ocelot.betteranimals.client.render.entity.RenderNewPolarBear;
+import com.ocelot.betteranimals.client.render.entity.RenderNewSheep;
+import com.ocelot.betteranimals.client.render.entity.RenderNewSilverfish;
+import com.ocelot.betteranimals.client.render.entity.RenderNewSpider;
+import com.ocelot.betteranimals.client.render.entity.RenderNewWolf;
 import com.ocelot.betteranimals.compat.ModInteropProxy;
 import com.ocelot.betteranimals.config.BetterAnimalsConfig;
 
@@ -60,8 +68,8 @@ public class RenderHandler {
 
 		//Register renderers for classes
 		//Check for non null to prevent NullPointers if exceptions are thrown
-		BetterAnimals.logger().log(Level.DEBUG, "Primalcore proxy: " + primalcore);
-		BetterAnimals.logger().log(Level.DEBUG, "Abyssalcraft proxy: " + abyssalcraft);
+		BetterAnimals.logger().log(Level.DEBUG, "PrimalCore proxy: " + primalcore);
+		BetterAnimals.logger().log(Level.DEBUG, "AbyssalCraft proxy: " + abyssalcraft);
 		if(primalcore != null) {
 			primalcore.register();
 		}
@@ -70,14 +78,19 @@ public class RenderHandler {
 		}
 	}
 
-	// This must take place in postinit because sophisticatedwolves has placed it in init
+	// This must take place in postinit because sophisticatedwolves has placed it in init (fixed in later versions)
 	public static void postinit() {
 		BetterAnimals.logger().log(Level.DEBUG, "SophisticatedWolves proxy: " + sophisticatedwolves);
 		if(sophisticatedwolves != null && BetterAnimalsConfig.enableSophisticatedWolf) {
 			sophisticatedwolves.register();
 		}
 	}
-
+	
+	/** Get the compatability proxy for a given modid, uses reflection.
+	 * @param modid - Modid to check if loaded
+	 * @param classNameActive - The class name to return if the mod is active
+	 * @param classNameInactive - The class name to return if the mod is not present
+	 * @return The proper proxy class for whether the mod is loaded or not **/
 	private static ModInteropProxy getInteropProxy(String modid, String classNameActive, String classNameInactive) {
 		ModInteropProxy proxy = null;
 		if (Loader.isModLoaded(modid)) {

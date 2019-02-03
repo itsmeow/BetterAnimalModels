@@ -1,16 +1,12 @@
 package com.ocelot.betteranimals.client.render.entity.primal;
 
-import java.lang.reflect.InvocationTargetException;
-
 import com.ocelot.betteranimals.BetterAnimals;
 import com.ocelot.betteranimals.client.model.ModelNewWolf;
-import com.ocelot.betteranimals.compat.ActiveCompatPrimalCore;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.util.ResourceLocation;

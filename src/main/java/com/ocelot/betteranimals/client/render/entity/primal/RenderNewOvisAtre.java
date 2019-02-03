@@ -6,14 +6,10 @@ import com.ocelot.betteranimals.client.render.layer.LayerNewOvisAtreEyes;
 import com.ocelot.betteranimals.client.render.layer.LayerNewOvisAtreWool;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderLiving;
-import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.passive.EntitySheep;
 import net.minecraft.util.ResourceLocation;
 
 public class RenderNewOvisAtre extends RenderLiving {

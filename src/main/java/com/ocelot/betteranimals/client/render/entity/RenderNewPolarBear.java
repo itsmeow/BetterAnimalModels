@@ -4,10 +4,8 @@ import com.ocelot.betteranimals.BetterAnimals;
 import com.ocelot.betteranimals.client.model.ModelNewBear;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.model.ModelPolarBear;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.RenderLiving;
-import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.monster.EntityPolarBear;
 import net.minecraft.util.ResourceLocation;
 

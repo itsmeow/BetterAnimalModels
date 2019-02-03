@@ -3,13 +3,10 @@ package com.ocelot.betteranimals.client.render.entity.abyssal;
 import com.ocelot.betteranimals.BetterAnimals;
 import com.ocelot.betteranimals.client.model.ModelNewSheep;
 import com.ocelot.betteranimals.client.render.layer.LayerNewEvilSheepWool;
-import com.ocelot.betteranimals.client.render.layer.LayerNewSheepWool;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.RenderLiving;
-import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.util.ResourceLocation;
 

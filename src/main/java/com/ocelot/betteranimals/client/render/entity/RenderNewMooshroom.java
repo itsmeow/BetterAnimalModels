@@ -7,9 +7,6 @@ import com.ocelot.betteranimals.client.render.layer.LayerNewMooshroomMushroom;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.RenderLiving;
-import net.minecraft.client.renderer.entity.RenderManager;
-import net.minecraft.client.renderer.entity.layers.LayerMooshroomMushroom;
-import net.minecraft.entity.passive.EntityCow;
 import net.minecraft.entity.passive.EntityMooshroom;
 import net.minecraft.util.ResourceLocation;
 

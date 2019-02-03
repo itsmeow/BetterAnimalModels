@@ -1,16 +1,12 @@
 package com.ocelot.betteranimals.client.render.entity;
 
 import com.ocelot.betteranimals.BetterAnimals;
-import com.ocelot.betteranimals.client.model.ModelNewPig;
 import com.ocelot.betteranimals.client.model.ModelNewSilverfish;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.RenderLiving;
-import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.monster.EntitySilverfish;
-import net.minecraft.entity.passive.EntityPig;
 import net.minecraft.util.ResourceLocation;
 
 public class RenderNewSilverfish extends RenderLiving<EntitySilverfish> {

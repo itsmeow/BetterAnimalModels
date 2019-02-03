@@ -1,7 +1,5 @@
 package com.ocelot.betteranimals.client.model;
 
-import com.ocelot.betteranimals.compat.ActiveCompatPrimalCore;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;

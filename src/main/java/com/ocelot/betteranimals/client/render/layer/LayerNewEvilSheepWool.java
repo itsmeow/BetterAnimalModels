@@ -1,12 +1,10 @@
 package com.ocelot.betteranimals.client.render.layer;
 
 import com.ocelot.betteranimals.client.render.entity.abyssal.RenderNewEvilSheep;
-import com.ocelot.betteranimals.enums.EnumNewSheepWoolColors;
 
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.layers.LayerRenderer;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.passive.EntitySheep;
 import net.minecraft.util.ResourceLocation;
 
 public class LayerNewEvilSheepWool implements LayerRenderer {
