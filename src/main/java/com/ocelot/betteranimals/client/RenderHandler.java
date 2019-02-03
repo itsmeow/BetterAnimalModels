@@ -12,6 +12,7 @@ import com.ocelot.betteranimals.client.render.entity.RenderNewPolarBear;
 import com.ocelot.betteranimals.client.render.entity.RenderNewSheep;
 import com.ocelot.betteranimals.client.render.entity.RenderNewSilverfish;
 import com.ocelot.betteranimals.client.render.entity.RenderNewSpider;
+import com.ocelot.betteranimals.client.render.entity.RenderNewSquid;
 import com.ocelot.betteranimals.client.render.entity.RenderNewWolf;
 import com.ocelot.betteranimals.compat.ModInteropProxy;
 import com.ocelot.betteranimals.config.BetterAnimalsConfig;
@@ -25,7 +26,9 @@ import net.minecraft.entity.passive.EntityCow;
 import net.minecraft.entity.passive.EntityMooshroom;
 import net.minecraft.entity.passive.EntityPig;
 import net.minecraft.entity.passive.EntitySheep;
+import net.minecraft.entity.passive.EntitySquid;
 import net.minecraft.entity.passive.EntityWolf;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Loader;
 
@@ -49,6 +52,8 @@ public class RenderHandler {
 			RenderingRegistry.registerEntityRenderingHandler(EntityWolf.class, new RenderNewWolf());
 		if(BetterAnimalsConfig.enableMooshroom)
 			RenderingRegistry.registerEntityRenderingHandler(EntityMooshroom.class, new RenderNewMooshroom());
+		if(BetterAnimalsConfig.enableSquid)
+			RenderingRegistry.registerEntityRenderingHandler(EntitySquid.class, new RenderNewSquid(new ResourceLocation(BetterAnimals.MODID, "textures/mobs/squid.png")));
 
 		// Mobs
 		if(BetterAnimalsConfig.enableSpider)

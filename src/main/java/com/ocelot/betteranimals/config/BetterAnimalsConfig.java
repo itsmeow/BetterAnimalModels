@@ -35,6 +35,9 @@ public class BetterAnimalsConfig {
 	public static boolean enableAntiCow = true;
 	public static boolean enableAntiChicken = true;
 	public static boolean enableAntiSpider = true;
+	public static boolean enableBrownMushroom = true;
+	public static boolean enableSquid = true;
+	public static boolean enableCoraliumSquid = true;
 
 	public static void readConfig(){
 		Configuration cfg = BetterAnimals.config;
@@ -63,23 +66,26 @@ public class BetterAnimalsConfig {
 		enablePolarBear = cfg.getBoolean("enablepolarbear", cDS, true, "");
 		enableMooshroom = cfg.getBoolean("enablemooshroom", cDS, true, "");
 		enableCaveSpider = cfg.getBoolean("enablecavespider", cDS, true, "");
-		enableSophisticatedWolf = cfg.getBoolean("enablesophisticatedwolf", cDS, true, "");
-		enableSteppeWolf_primalcore = cfg.getBoolean("enablesteppewolf_primalcore", cDS, true, "");
-		enableOvisAtre_primalcore = cfg.getBoolean("enableovisatre_primalcore", cDS, true, "");
-		enableBlackBear_primalcore = cfg.getBoolean("enableblackbear_primalcore", cDS, true, "");
-		enableBrownBear_primalcore = cfg.getBoolean("enablebrownbear_primalcore", cDS, true, "");
-		enableEvilPig = cfg.getBoolean("enableevilpig", cDS, true, "");
-		enableEvilCow = cfg.getBoolean("enableevilcow", cDS, true, "");
-		enableEvilChicken = cfg.getBoolean("enableevilchicken", cDS, true, "");
-		enableEvilSheep = cfg.getBoolean("enableevilsheep", cDS, true, "");
-		enableDemonPig = cfg.getBoolean("enabledemonpig", cDS, true, "");
-		enableDemonCow = cfg.getBoolean("enabledemoncow", cDS, true, "");
-		enableDemonChicken = cfg.getBoolean("enabledemonchicken", cDS, true, "");
-		enableDemonSheep = cfg.getBoolean("enabledemonsheep", cDS, true, "");
-		enableAntiPig = cfg.getBoolean("enableantipig", cDS, true, "");
-		enableAntiCow = cfg.getBoolean("enableanticow", cDS, true, "");
-		enableAntiChicken = cfg.getBoolean("enableantichicken", cDS, true, "");
-		enableAntiSpider = cfg.getBoolean("enableantispider", cDS, true, "");
+		enableSquid = cfg.getBoolean("enablesquid", cDS, true, "");
+		enableSophisticatedWolf = cfg.getBoolean("enablesophisticatedwolf", cDS, true, "from Sophisticated Wolves");
+		enableSteppeWolf_primalcore = cfg.getBoolean("enablesteppewolf_primalcore", cDS, true, "from PrimalCore");
+		enableOvisAtre_primalcore = cfg.getBoolean("enableovisatre_primalcore", cDS, true, "from PrimalCore");
+		enableBlackBear_primalcore = cfg.getBoolean("enableblackbear_primalcore", cDS, true, "from PrimalCore");
+		enableBrownBear_primalcore = cfg.getBoolean("enablebrownbear_primalcore", cDS, true, "from PrimalCore");
+		enableEvilPig = cfg.getBoolean("enableevilpig", cDS, true, "from Abyssalcraft");
+		enableEvilCow = cfg.getBoolean("enableevilcow", cDS, true, "from Abyssalcraft");
+		enableEvilChicken = cfg.getBoolean("enableevilchicken", cDS, true, "from Abyssalcraft");
+		enableEvilSheep = cfg.getBoolean("enableevilsheep", cDS, true, "from Abyssalcraft");
+		enableDemonPig = cfg.getBoolean("enabledemonpig", cDS, true, "from Abyssalcraft");
+		enableDemonCow = cfg.getBoolean("enabledemoncow", cDS, true, "from Abyssalcraft");
+		enableDemonChicken = cfg.getBoolean("enabledemonchicken", cDS, true, "from Abyssalcraft");
+		enableDemonSheep = cfg.getBoolean("enabledemonsheep", cDS, true, "from Abyssalcraft");
+		enableAntiPig = cfg.getBoolean("enableantipig", cDS, true, "from Abyssalcraft");
+		enableAntiCow = cfg.getBoolean("enableanticow", cDS, true, "from Abyssalcraft");
+		enableAntiChicken = cfg.getBoolean("enableantichicken", cDS, true, "from Abyssalcraft");
+		enableAntiSpider = cfg.getBoolean("enableantispider", cDS, true, "from Abyssalcraft");
+		enableCoraliumSquid = cfg.getBoolean("enablecoraliumsquid", cDS, true, "from Abyssalcraft");
+		enableBrownMushroom = cfg.getBoolean("enablebrownmushroom", cDS, true, "from Brown Mushrooms mod");
 	}
 
 }

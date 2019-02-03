@@ -11,7 +11,7 @@ import net.minecraft.util.ResourceLocation;
 import quaternary.brownmooshrooms.EntityBrownMooshroom;
 
 public class RenderNewBrownMooshroom extends RenderLiving<EntityBrownMooshroom>{
-    private static final ResourceLocation MOOSHROOM_TEXTURES = new ResourceLocation(BetterAnimals.MODID, "textures/mobs/mooshroom.png");
+    private static final ResourceLocation MOOSHROOM_TEXTURES = new ResourceLocation(BetterAnimals.MODID, "textures/mobs/brownmooshrooms/brownmooshroom.png");
 
     public RenderNewBrownMooshroom()
     {

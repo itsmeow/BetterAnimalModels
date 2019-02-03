@@ -1,6 +1,7 @@
 package com.ocelot.betteranimals.compat;
 
 import com.ocelot.betteranimals.BetterAnimals;
+import com.ocelot.betteranimals.client.render.entity.RenderNewSquid;
 import com.ocelot.betteranimals.client.render.entity.abyssal.RenderNewAntiChicken;
 import com.ocelot.betteranimals.client.render.entity.abyssal.RenderNewAntiCow;
 import com.ocelot.betteranimals.client.render.entity.abyssal.RenderNewAntiPig;
@@ -11,6 +12,7 @@ import com.ocelot.betteranimals.client.render.entity.abyssal.RenderNewEvilCow;
 import com.ocelot.betteranimals.client.render.entity.abyssal.RenderNewEvilPig;
 import com.ocelot.betteranimals.client.render.entity.abyssal.RenderNewEvilSheep;
 import com.ocelot.betteranimals.config.BetterAnimalsConfig;
+import com.shinoow.abyssalcraft.common.entity.EntityCoraliumSquid;
 import com.shinoow.abyssalcraft.common.entity.anti.EntityAntiChicken;
 import com.shinoow.abyssalcraft.common.entity.anti.EntityAntiCow;
 import com.shinoow.abyssalcraft.common.entity.anti.EntityAntiPig;
@@ -56,6 +58,8 @@ public class ActiveCompatAbyssalCraft implements ModInteropProxy {
 			CompatUtils.reg(EntityAntiChicken.class, new RenderNewAntiChicken(new ResourceLocation(BetterAnimals.MODID, "textures/mobs/abyssalcraft/anti/antichicken.png")));
 		if(BetterAnimalsConfig.enableAntiSpider)
 			CompatUtils.reg(EntityAntiSpider.class, new RenderNewAntiSpider(new ResourceLocation(BetterAnimals.MODID, "textures/mobs/abyssalcraft/anti/antispider.png"), new ResourceLocation(BetterAnimals.MODID, "textures/mobs/abyssalcraft/anti/antispider_eyes.png")));
+		if(BetterAnimalsConfig.enableCoraliumSquid)
+			CompatUtils.reg(EntityCoraliumSquid.class, new RenderNewSquid(new ResourceLocation(BetterAnimals.MODID, "textures/mobs/abyssalcraft/coraliumsquid.png")));
 	}
 
 }
