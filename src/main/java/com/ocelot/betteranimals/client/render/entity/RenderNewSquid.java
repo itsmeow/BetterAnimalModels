@@ -49,6 +49,6 @@ public class RenderNewSquid extends RenderLiving<EntitySquid>
     @Override
 	protected float handleRotationFloat(EntitySquid livingBase, float partialTicks)
     {
-        return livingBase.lastTentacleAngle + (livingBase.tentacleAngle - livingBase.lastTentacleAngle) * partialTicks;
+        return -(livingBase.lastTentacleAngle + (livingBase.tentacleAngle - livingBase.lastTentacleAngle) * partialTicks);
     }
 }
