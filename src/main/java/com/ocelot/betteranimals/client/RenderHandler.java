@@ -31,9 +31,10 @@ import net.minecraftforge.fml.common.Loader;
 
 public class RenderHandler {
 
-	static ModInteropProxy primalcore;
-	static ModInteropProxy sophisticatedwolves;
-	static ModInteropProxy abyssalcraft;
+	public static ModInteropProxy primalcore;
+	public static ModInteropProxy sophisticatedwolves;
+	public static ModInteropProxy abyssalcraft;
+	public static ModInteropProxy brownmooshrooms;
 
 	public static void init() {
 		if(BetterAnimalsConfig.enableCow)
@@ -65,16 +66,21 @@ public class RenderHandler {
 		primalcore = getInteropProxy("primal", "ActiveCompatPrimalCore", "InactiveCompatPrimalCore");
 		sophisticatedwolves = getInteropProxy("sophisticatedwolves", "ActiveCompatSophisticatedWolves", "InactiveCompatSophisticatedWolves");
 		abyssalcraft = getInteropProxy("abyssalcraft", "ActiveCompatAbyssalCraft", "InactiveCompatAbyssalCraft");
+		brownmooshrooms = getInteropProxy("brownmooshrooms", "ActiveCompatBrownMooshrooms", "InactiveCompatBrownMooshrooms");
 
 		//Register renderers for classes
 		//Check for non null to prevent NullPointers if exceptions are thrown
 		BetterAnimals.logger().log(Level.DEBUG, "PrimalCore proxy: " + primalcore);
 		BetterAnimals.logger().log(Level.DEBUG, "AbyssalCraft proxy: " + abyssalcraft);
+		BetterAnimals.logger().log(Level.DEBUG, "BrownMooshrooms proxy: " + brownmooshrooms);
 		if(primalcore != null) {
 			primalcore.register();
 		}
 		if(abyssalcraft != null) {
 			abyssalcraft.register();
+		}
+		if(brownmooshrooms != null) {
+			brownmooshrooms.register();
 		}
 	}
 
@@ -88,8 +94,8 @@ public class RenderHandler {
 	
 	/** Get the compatability proxy for a given modid, uses reflection.
 	 * @param modid - Modid to check if loaded
-	 * @param classNameActive - The class name to return if the mod is active
-	 * @param classNameInactive - The class name to return if the mod is not present
+	 * @param classNameActive - The class name to return if the mod is active in com.ocelot.betteranimals.compat
+	 * @param classNameInactive - The class name to return if the mod is not present located in com.ocelot.betteranimals.compat
 	 * @return The proper proxy class for whether the mod is loaded or not **/
 	private static ModInteropProxy getInteropProxy(String modid, String classNameActive, String classNameInactive) {
 		ModInteropProxy proxy = null;
