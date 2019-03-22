@@ -1,13 +1,8 @@
 package com.ocelot.betteranimals.client.model;
 
-import org.lwjgl.opengl.GL11;
-
-import com.ocelot.betteranimals.client.model.Model;
-import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
-import net.minecraft.entity.monster.EntityPolarBear;
 import net.minecraft.util.math.MathHelper;
 
 /**
