@@ -1,14 +1,14 @@
 [
 {
   "modid": "betteranimals",
-  "name": "Better Animals Mod",
-  "description": "A mod to improve the vanilla animals appearence in Minecraft.",
-  "version": "4.0",
-  "mcversion": "[1.12,1.12.2]",
+  "name": "Cyber's Better Animal Models",
+  "description": "A mod to improve the vanilla animals' appearance in Minecraft.",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
   "url": "",
   "updateUrl": "",
-  "authorList": ["Hypeirochus, Ocelot5836, Cybercat5555, its_meow/hiotewdew"],
-  "credits": "Cybercat555 for supplying models and textures for the mobs. its_meow/hiotewdew for mod compat and several fixes as well as maintaining and adding new mobs.",
+  "authorList": ["Hypeirochus, Ocelot5836, Cybercat5555, its_meow"],
+  "credits": "Cybercat555 for supplying models and textures for the mobs. its_meow for mod compat and several fixes as well as maintaining and adding new mobs.",
   "logoFile": "logo.png",
   "screenshots": [],
   "dependencies": []
