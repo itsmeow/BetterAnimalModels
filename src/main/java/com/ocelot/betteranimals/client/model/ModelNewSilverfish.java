@@ -1,6 +1,5 @@
 package com.ocelot.betteranimals.client.model;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -175,19 +174,9 @@ public class ModelNewSilverfish extends Model {
 	public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entity) {
 		super.setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scaleFactor, entity);
 		float swingModifier = 0.9f;
-		float partialTicks = Minecraft.getMinecraft().getRenderPartialTicks();
 		if (entity instanceof EntityLivingBase) {
 			EntityLivingBase living = (EntityLivingBase) entity;
-			limbSwing = limbSwing + this.getSwingProgressPrev(living);
-//			this.head.rotateAngleY = this.getHeadYaw(living) * 0.01f;
-//			this.head.rotateAngleZ = this.head.rotateAngleY;
-//			this.head.rotateAngleX = (float) Math.toRadians(this.getHeadPitch(living));
-//			lLeg01.rotateAngleX = MathHelper.sin(limbSwing * 0.8665F + (float) Math.PI) * swingModifier * limbSwingAmount;
-//			lArm01.rotateAngleX = MathHelper.cos(limbSwing * 0.8665F) * swingModifier * limbSwingAmount;
-//			rLeg01.rotateAngleX = MathHelper.sin(limbSwing * 0.8665F) * swingModifier * limbSwingAmount;
-//			rArm01.rotateAngleX = MathHelper.cos(limbSwing * 0.8665F + (float) Math.PI) * swingModifier * limbSwingAmount;
-//			this.neck.rotateAngleX = -0.6F;
-//			this.head.rotateAngleX = -0.6F;
+			limbSwing = limbSwing + Model.getSwingProgressPrev(living);
 			this.lLeg01a.rotateAngleX = MathHelper.sin(limbSwing * 0.8665F + (float) Math.PI) * swingModifier * limbSwingAmount;
 			this.lLeg01b.rotateAngleX = MathHelper.sin(limbSwing * 0.8665F + (float) Math.PI) * swingModifier * limbSwingAmount;
 			

@@ -8,7 +8,7 @@ public class ActiveCompatSophisticatedWolves implements ModInteropProxy {
 
 	@Override
 	public void register() {
-		CompatUtils.reg(EntitySophisticatedWolf.class, new RenderNewSophisticatedWolf());
+		CompatUtils.reg(EntitySophisticatedWolf.class, m -> new RenderNewSophisticatedWolf());
 	}
 
 }

@@ -1,6 +1,5 @@
 package com.ocelot.betteranimals.client.model;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -488,7 +487,6 @@ public class ModelNewOvisAtre extends Model {
 	@Override
 	public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entity) {		
 		float swingModifier = 0.9f;
-		float partialTicks = Minecraft.getMinecraft().getRenderPartialTicks();
 		if (entity instanceof EntityLivingBase) {
 			EntityLivingBase living = (EntityLivingBase) entity;
 			limbSwing = limbSwing + Model.getSwingProgressPrev(living);

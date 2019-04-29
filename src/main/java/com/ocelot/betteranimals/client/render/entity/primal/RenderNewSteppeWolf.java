@@ -6,12 +6,10 @@ import com.ocelot.betteranimals.client.model.ModelNewWolf;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.RenderLiving;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.util.ResourceLocation;
+import nmd.primal.core.common.entities.living.EntityCanisCampestris;
 
-public class RenderNewSteppeWolf extends RenderLiving {
+public class RenderNewSteppeWolf extends RenderLiving<EntityCanisCampestris> {
 
 	private static final ResourceLocation BASE = new ResourceLocation(BetterAnimals.MODID, "textures/mobs/primal/primal_wolf_steppe.png");
 	protected ModelNewWolf model;
@@ -22,12 +20,12 @@ public class RenderNewSteppeWolf extends RenderLiving {
 	}
 
 	@Override
-	protected float handleRotationFloat(EntityLivingBase livingBase, float partialTicks) {
+	protected float handleRotationFloat(EntityCanisCampestris livingBase, float partialTicks) {
 		return 0.2F;
 	}
 
 	@Override
-	protected void preRenderCallback(EntityLivingBase entitylivingbaseIn, float partialTickTime) {
+	protected void preRenderCallback(EntityCanisCampestris entitylivingbaseIn, float partialTickTime) {
 		if (model.isChild) {
 			GlStateManager.scale(0.5D, 0.5D, 0.5D);
 		} else {
@@ -35,7 +33,7 @@ public class RenderNewSteppeWolf extends RenderLiving {
 		}
 	}
 
-	public void doRender(EntityWolf entity, double x, double y, double z, float entityYaw, float partialTicks) {
+	public void doRender(EntityCanisCampestris entity, double x, double y, double z, float entityYaw, float partialTicks) {
 		if (entity.isWolfWet()) {
 			float f = entity.getBrightness() * entity.getShadingWhileWet(partialTicks);
 			GlStateManager.color(f, f, f);
@@ -45,7 +43,7 @@ public class RenderNewSteppeWolf extends RenderLiving {
 	}
 
 	@Override
-	protected ResourceLocation getEntityTexture(Entity entity) {
+	protected ResourceLocation getEntityTexture(EntityCanisCampestris entity) {
 		return BASE;
 	}
 

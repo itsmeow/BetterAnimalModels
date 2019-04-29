@@ -16,11 +16,8 @@ public class RenderNewSpider extends RenderLiving<EntitySpider> implements Layer
 	private static final ResourceLocation BASE = new ResourceLocation(BetterAnimals.MODID, "textures/mobs/spider.png");
 	private static final ResourceLocation GLOW = new ResourceLocation(BetterAnimals.MODID, "textures/mobs/spider_eyes.png");
 
-	private ModelNewSpider model;
-
 	public RenderNewSpider() {
 		super(Minecraft.getMinecraft().getRenderManager(), new ModelNewSpider(), 1f);
-		model = ((ModelNewSpider) mainModel);
 		this.addLayer(this);
 	}
 

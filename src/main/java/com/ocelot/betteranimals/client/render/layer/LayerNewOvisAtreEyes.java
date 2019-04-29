@@ -7,11 +7,10 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.entity.layers.LayerRenderer;
-import net.minecraft.entity.EntityLiving;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.ResourceLocation;
+import nmd.primal.core.common.entities.living.EntityOvisAtre;
 
-public class LayerNewOvisAtreEyes implements LayerRenderer {
+public class LayerNewOvisAtreEyes implements LayerRenderer<EntityOvisAtre> {
 
 	private static final ResourceLocation EYES = new ResourceLocation(BetterAnimals.MODID, "textures/mobs/primal/primal_ovis_atre_eyes.png");
 	private final RenderNewOvisAtre entityRenderer;
@@ -22,7 +21,7 @@ public class LayerNewOvisAtreEyes implements LayerRenderer {
 	}
 
 	@Override
-	public void doRenderLayer(EntityLivingBase entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, float scale)
+	public void doRenderLayer(EntityOvisAtre entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, float scale)
 	{
 		this.entityRenderer.bindTexture(EYES);
 
@@ -51,7 +50,7 @@ public class LayerNewOvisAtreEyes implements LayerRenderer {
 		j = i % 65536;
 		k = i / 65536;
 		OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, (float)j, (float)k);
-		this.entityRenderer.setLightmap((EntityLiving) entitylivingbaseIn);
+		this.entityRenderer.setLightmap(entitylivingbaseIn);
 		GlStateManager.disableBlend();
 		GlStateManager.enableAlpha();
 	}

@@ -12,14 +12,11 @@ import net.minecraft.util.ResourceLocation;
 
 public class RenderNewAntiSpider extends RenderLiving<EntityAntiSpider> implements LayerRenderer<EntityAntiSpider> {
 
-	private ModelNewSpider model;
-
 	private ResourceLocation base;
 	private ResourceLocation eyes;
 
 	public RenderNewAntiSpider(ResourceLocation base, ResourceLocation eyes) {
 		super(Minecraft.getMinecraft().getRenderManager(), new ModelNewSpider(), 1f);
-		model = ((ModelNewSpider) mainModel);
 		this.base = base;
 		this.eyes = eyes;
 		this.addLayer(this);

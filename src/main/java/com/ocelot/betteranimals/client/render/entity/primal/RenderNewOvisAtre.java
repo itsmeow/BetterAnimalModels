@@ -8,11 +8,10 @@ import com.ocelot.betteranimals.client.render.layer.LayerNewOvisAtreWool;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.RenderLiving;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.ResourceLocation;
+import nmd.primal.core.common.entities.living.EntityOvisAtre;
 
-public class RenderNewOvisAtre extends RenderLiving {
+public class RenderNewOvisAtre extends RenderLiving<EntityOvisAtre> {
 	
 	private static final ResourceLocation BASE = new ResourceLocation(BetterAnimals.MODID, "textures/mobs/primal/primal_ovis_atre.png");
 	protected ModelNewOvisAtre model;
@@ -25,7 +24,7 @@ public class RenderNewOvisAtre extends RenderLiving {
 	}
 	
 	@Override
-	protected void preRenderCallback(EntityLivingBase entitylivingbaseIn, float partialTickTime) {
+	protected void preRenderCallback(EntityOvisAtre entitylivingbaseIn, float partialTickTime) {
 		if (model.isChild) {
 			GlStateManager.scale(0.5D, 0.5D, 0.5D);
 		} else {
@@ -34,7 +33,7 @@ public class RenderNewOvisAtre extends RenderLiving {
 	}
 	
 	@Override
-	protected ResourceLocation getEntityTexture(Entity entity) {
+	protected ResourceLocation getEntityTexture(EntityOvisAtre entity) {
 		return BASE;
 	}
 

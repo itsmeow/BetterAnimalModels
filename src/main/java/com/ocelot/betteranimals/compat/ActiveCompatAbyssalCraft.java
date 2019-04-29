@@ -33,33 +33,33 @@ public class ActiveCompatAbyssalCraft implements ModInteropProxy {
 	@Override
 	public void register() {
 		if(BetterAnimalsConfig.enableEvilPig)
-			CompatUtils.reg(EntityEvilpig.class, new RenderNewEvilPig(new ResourceLocation(BetterAnimals.MODID, "textures/mobs/pig.png")));
+			CompatUtils.reg(EntityEvilpig.class, m -> new RenderNewEvilPig(new ResourceLocation(BetterAnimals.MODID, "textures/mobs/pig.png")));
 		if(BetterAnimalsConfig.enableEvilCow)
-			CompatUtils.reg(EntityEvilCow.class, new RenderNewEvilCow(new ResourceLocation(BetterAnimals.MODID, "textures/mobs/cow.png")));
+			CompatUtils.reg(EntityEvilCow.class, m -> new RenderNewEvilCow(new ResourceLocation(BetterAnimals.MODID, "textures/mobs/cow.png")));
 		if(BetterAnimalsConfig.enableEvilSheep)
-			CompatUtils.reg(EntityEvilSheep.class, new RenderNewEvilSheep(new ResourceLocation(BetterAnimals.MODID, "textures/mobs/sheep.png"), new ResourceLocation(BetterAnimals.MODID, "textures/mobs/sheep_fur.png")));
+			CompatUtils.reg(EntityEvilSheep.class, m -> new RenderNewEvilSheep(new ResourceLocation(BetterAnimals.MODID, "textures/mobs/sheep.png"), new ResourceLocation(BetterAnimals.MODID, "textures/mobs/sheep_fur.png")));
 		if(BetterAnimalsConfig.enableEvilChicken)
-			CompatUtils.reg(EntityEvilChicken.class, new RenderNewEvilChicken(new ResourceLocation(BetterAnimals.MODID, "textures/mobs/chicken.png")));
+			CompatUtils.reg(EntityEvilChicken.class, m -> new RenderNewEvilChicken(new ResourceLocation(BetterAnimals.MODID, "textures/mobs/chicken.png")));
 
 		if(BetterAnimalsConfig.enableDemonPig)
-			CompatUtils.reg(EntityDemonPig.class, new RenderNewEvilPig(new ResourceLocation(BetterAnimals.MODID, "textures/mobs/abyssalcraft/demon_pig.png")));
+			CompatUtils.reg(EntityDemonPig.class, m -> new RenderNewEvilPig(new ResourceLocation(BetterAnimals.MODID, "textures/mobs/abyssalcraft/demon_pig.png")));
 		if(BetterAnimalsConfig.enableDemonCow)
-			CompatUtils.reg(EntityDemonCow.class, new RenderNewEvilCow(new ResourceLocation(BetterAnimals.MODID, "textures/mobs/abyssalcraft/demon_cow.png")));
+			CompatUtils.reg(EntityDemonCow.class, m -> new RenderNewEvilCow(new ResourceLocation(BetterAnimals.MODID, "textures/mobs/abyssalcraft/demon_cow.png")));
 		if(BetterAnimalsConfig.enableDemonSheep)
-			CompatUtils.reg(EntityDemonSheep.class, new RenderNewEvilSheep(new ResourceLocation(BetterAnimals.MODID, "textures/mobs/abyssalcraft/demon_sheep.png"), new ResourceLocation(BetterAnimals.MODID, "textures/mobs/abyssalcraft/demon_sheep_fur.png")));
+			CompatUtils.reg(EntityDemonSheep.class, m -> new RenderNewEvilSheep(new ResourceLocation(BetterAnimals.MODID, "textures/mobs/abyssalcraft/demon_sheep.png"), new ResourceLocation(BetterAnimals.MODID, "textures/mobs/abyssalcraft/demon_sheep_fur.png")));
 		if(BetterAnimalsConfig.enableDemonChicken)
-			CompatUtils.reg(EntityDemonChicken.class, new RenderNewDemonChicken(new ResourceLocation(BetterAnimals.MODID, "textures/mobs/abyssalcraft/demon_chicken.png")));
+			CompatUtils.reg(EntityDemonChicken.class, m -> new RenderNewDemonChicken(new ResourceLocation(BetterAnimals.MODID, "textures/mobs/abyssalcraft/demon_chicken.png")));
 
 		if(BetterAnimalsConfig.enableAntiPig)
-			CompatUtils.reg(EntityAntiPig.class, new RenderNewAntiPig(new ResourceLocation(BetterAnimals.MODID, "textures/mobs/abyssalcraft/anti/antipig.png")));
+			CompatUtils.reg(EntityAntiPig.class, m -> new RenderNewAntiPig(new ResourceLocation(BetterAnimals.MODID, "textures/mobs/abyssalcraft/anti/antipig.png")));
 		if(BetterAnimalsConfig.enableAntiCow)
-			CompatUtils.reg(EntityAntiCow.class, new RenderNewAntiCow(new ResourceLocation(BetterAnimals.MODID, "textures/mobs/abyssalcraft/anti/anticow.png")));
+			CompatUtils.reg(EntityAntiCow.class, m -> new RenderNewAntiCow(new ResourceLocation(BetterAnimals.MODID, "textures/mobs/abyssalcraft/anti/anticow.png")));
 		if(BetterAnimalsConfig.enableAntiChicken)
-			CompatUtils.reg(EntityAntiChicken.class, new RenderNewAntiChicken(new ResourceLocation(BetterAnimals.MODID, "textures/mobs/abyssalcraft/anti/antichicken.png")));
+			CompatUtils.reg(EntityAntiChicken.class, m -> new RenderNewAntiChicken(new ResourceLocation(BetterAnimals.MODID, "textures/mobs/abyssalcraft/anti/antichicken.png")));
 		if(BetterAnimalsConfig.enableAntiSpider)
-			CompatUtils.reg(EntityAntiSpider.class, new RenderNewAntiSpider(new ResourceLocation(BetterAnimals.MODID, "textures/mobs/abyssalcraft/anti/antispider.png"), new ResourceLocation(BetterAnimals.MODID, "textures/mobs/abyssalcraft/anti/antispider_eyes.png")));
+			CompatUtils.reg(EntityAntiSpider.class, m -> new RenderNewAntiSpider(new ResourceLocation(BetterAnimals.MODID, "textures/mobs/abyssalcraft/anti/antispider.png"), new ResourceLocation(BetterAnimals.MODID, "textures/mobs/abyssalcraft/anti/antispider_eyes.png")));
 		if(BetterAnimalsConfig.enableCoraliumSquid)
-			CompatUtils.reg(EntityCoraliumSquid.class, new RenderNewSquid(new ResourceLocation(BetterAnimals.MODID, "textures/mobs/abyssalcraft/coraliumsquid.png")));
+			CompatUtils.reg(EntityCoraliumSquid.class, m -> new RenderNewSquid(new ResourceLocation(BetterAnimals.MODID, "textures/mobs/abyssalcraft/coraliumsquid.png")));
 	}
 
 }

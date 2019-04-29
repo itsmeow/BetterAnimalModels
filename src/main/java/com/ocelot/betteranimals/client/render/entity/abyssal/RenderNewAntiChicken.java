@@ -30,10 +30,10 @@ public class RenderNewAntiChicken extends RenderLiving<EntityAntiChicken>{
 	protected float handleRotationFloat(EntityAntiChicken chicken, float partialTicks) {
 		float f = 0;
 		float f1 = 0;
-		float wingRotation = chicken.field_70886_e;
+		float wingRotation = chicken.wingRotation;
 		float destPos = chicken.destPos;
-		float oFlap = chicken.field_70888_h;
-		float oFlapSpeed = chicken.field_70884_g;
+		float oFlap = chicken.oFlap;
+		float oFlapSpeed = chicken.oFlapSpeed;
 		f = oFlap + (wingRotation - oFlap) * partialTicks;
 		f1 = oFlapSpeed + (destPos - oFlapSpeed) * partialTicks;
 

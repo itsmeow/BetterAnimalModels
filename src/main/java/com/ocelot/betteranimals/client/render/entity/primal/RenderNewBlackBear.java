@@ -6,12 +6,10 @@ import com.ocelot.betteranimals.client.model.ModelNewBear;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.RenderLiving;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLiving;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.ResourceLocation;
+import nmd.primal.core.common.entities.living.EntityBlackBear;
 
-public class RenderNewBlackBear extends RenderLiving {
+public class RenderNewBlackBear extends RenderLiving<EntityBlackBear> {
 	
 	private static final ResourceLocation BASE = new ResourceLocation(BetterAnimals.MODID, "textures/mobs/primal/primal_black_bear.png");
 
@@ -23,12 +21,12 @@ public class RenderNewBlackBear extends RenderLiving {
 	/**
 	 * Returns the location of an entity's texture. Doesn't seem to be called unless you call Render.bindEntityTexture.
 	 */
-	protected ResourceLocation getEntityTexture(Entity entity)
+	protected ResourceLocation getEntityTexture(EntityBlackBear entity)
 	{
 		return BASE;
 	}
 
-	public void doRender(EntityLiving entity, double x, double y, double z, float entityYaw, float partialTicks)
+	public void doRender(EntityBlackBear entity, double x, double y, double z, float entityYaw, float partialTicks)
 	{
 		super.doRender(entity, x, y, z, entityYaw, partialTicks);
 	}
@@ -36,7 +34,7 @@ public class RenderNewBlackBear extends RenderLiving {
 	/**
 	 * Allows the render to do state modifications necessary before the model is rendered.
 	 */
-	protected void preRenderCallback(EntityLivingBase entitylivingbaseIn, float partialTickTime)
+	protected void preRenderCallback(EntityBlackBear entitylivingbaseIn, float partialTickTime)
 	{
 		if(!getMainModel().isChild) {
 			GlStateManager.scale(1.0F, 1.0F, 1.0F);

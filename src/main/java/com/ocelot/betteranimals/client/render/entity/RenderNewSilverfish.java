@@ -12,11 +12,9 @@ import net.minecraft.util.ResourceLocation;
 public class RenderNewSilverfish extends RenderLiving<EntitySilverfish> {
 
 	private static final ResourceLocation BASE = new ResourceLocation(BetterAnimals.MODID, "textures/mobs/silverfish.png");
-	private ModelNewSilverfish model;
 
 	public RenderNewSilverfish() {
 		super(Minecraft.getMinecraft().getRenderManager(), new ModelNewSilverfish(), 0.25f);
-		model = ((ModelNewSilverfish) mainModel);
 	}
 	
 	@Override

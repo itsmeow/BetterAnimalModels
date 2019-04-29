@@ -1,6 +1,5 @@
 package com.ocelot.betteranimals.client.model;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -267,15 +266,13 @@ public class ModelNewSpider extends Model {
 
 	@Override
 	public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entity) {
-		float swingModifier = 0.9f;
-		float partialTicks = Minecraft.getMinecraft().getRenderPartialTicks();
 		if (entity instanceof EntityLivingBase) {
 			EntityLivingBase living = (EntityLivingBase) entity;
-			limbSwing = limbSwing + this.getSwingProgressPrev(living);
+			limbSwing = limbSwing + Model.getSwingProgressPrev(living);
 			
-			this.head.rotateAngleY = this.getHeadYaw(living) * 0.017453292F;
-			this.head.rotateAngleX = (float) Math.toRadians(this.getHeadPitch(living)) * 0.017453292F;
-			float f = ((float) Math.PI / 4F);
+			this.head.rotateAngleY = Model.getHeadYaw(living) * 0.017453292F;
+			this.head.rotateAngleX = (float) Math.toRadians(Model.getHeadPitch(living)) * 0.017453292F;
+			
 			this.rLeg01a.rotateAngleZ = -((float) Math.PI / 4F);
 			this.lLeg01a.rotateAngleZ = ((float) Math.PI / 4F);
 
@@ -290,9 +287,6 @@ public class ModelNewSpider extends Model {
 
 			this.lLeg04a.rotateAngleZ = ((float) Math.PI / 4F) + 0.3F;
 			this.lLeg04a.rotateAngleX = ((float) Math.PI / 4F) - 1.3F;
-
-			float f1 = -0.0F;
-			float f2 = 0.3926991F;
 
 			this.rLeg01a.rotateAngleY = ((float) Math.PI / 16F);
 			this.lLeg01a.rotateAngleY = -((float) Math.PI / 16F);

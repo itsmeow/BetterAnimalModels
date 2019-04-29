@@ -1,6 +1,5 @@
 package com.ocelot.betteranimals.client.model;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.entity.Entity;
@@ -265,13 +264,12 @@ public class ModelNewChicken extends Model {
 	@Override
 	public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entity) {
 		float swingModifier = 1.5f;
-		float partialTicks = Minecraft.getMinecraft().getRenderPartialTicks();
 		if (entity instanceof EntityLivingBase) {
 			EntityLivingBase living = (EntityLivingBase) entity;
-			limbSwing = limbSwing + this.getSwingProgressPrev(living);
-			this.head.rotateAngleX = (float) Math.toRadians(this.getHeadPitch(living));
-			this.head.rotateAngleZ = this.getHeadYaw(living) * 0.017453292F * 0.25f;
-			this.neck01.rotateAngleZ = this.getHeadYaw(living) * 0.017453292F * 0.5f;
+			limbSwing = limbSwing + Model.getSwingProgressPrev(living);
+			this.head.rotateAngleX = (float) Math.toRadians(Model.getHeadPitch(living));
+			this.head.rotateAngleZ = Model.getHeadYaw(living) * 0.017453292F * 0.25f;
+			this.neck01.rotateAngleZ = Model.getHeadYaw(living) * 0.017453292F * 0.5f;
 			this.lLeg.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float) Math.PI) * swingModifier * limbSwingAmount;
 			this.rLeg.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * swingModifier * limbSwingAmount;
 			this.lWing.rotateAngleZ = -ageInTicks;

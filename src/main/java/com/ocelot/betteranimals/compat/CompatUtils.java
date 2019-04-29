@@ -1,12 +1,13 @@
 package com.ocelot.betteranimals.compat;
 
-import net.minecraft.client.renderer.entity.RenderLiving;
+import net.minecraft.entity.Entity;
+import net.minecraftforge.fml.client.registry.IRenderFactory;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 
 public class CompatUtils {
-	
-	public static void reg(Class theClass, RenderLiving renderer) {
-		RenderingRegistry.registerEntityRenderingHandler(theClass, renderer);
-	}
-	
+    
+    public static <T extends Entity>void reg(Class<T> clazz, IRenderFactory<T> factory) {
+        RenderingRegistry.registerEntityRenderingHandler(clazz, factory);
+    }
+    
 }

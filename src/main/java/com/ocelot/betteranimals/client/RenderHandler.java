@@ -41,29 +41,29 @@ public class RenderHandler {
 
 	public static void init() {
 		if(BetterAnimalsConfig.enableCow)
-			RenderingRegistry.registerEntityRenderingHandler(EntityCow.class, new RenderNewCow());
+			RenderingRegistry.registerEntityRenderingHandler(EntityCow.class, m -> new RenderNewCow());
 		if(BetterAnimalsConfig.enablePig)
-			RenderingRegistry.registerEntityRenderingHandler(EntityPig.class, new RenderNewPig());
+			RenderingRegistry.registerEntityRenderingHandler(EntityPig.class, m -> new RenderNewPig());
 		if(BetterAnimalsConfig.enableChicken)
-			RenderingRegistry.registerEntityRenderingHandler(EntityChicken.class, new RenderNewChicken());
+			RenderingRegistry.registerEntityRenderingHandler(EntityChicken.class, m -> new RenderNewChicken());
 		if(BetterAnimalsConfig.enableSheep)
-			RenderingRegistry.registerEntityRenderingHandler(EntitySheep.class, new RenderNewSheep());
+			RenderingRegistry.registerEntityRenderingHandler(EntitySheep.class, m -> new RenderNewSheep());
 		if(BetterAnimalsConfig.enableWolf)
-			RenderingRegistry.registerEntityRenderingHandler(EntityWolf.class, new RenderNewWolf());
+			RenderingRegistry.registerEntityRenderingHandler(EntityWolf.class, m -> new RenderNewWolf());
 		if(BetterAnimalsConfig.enableMooshroom)
-			RenderingRegistry.registerEntityRenderingHandler(EntityMooshroom.class, new RenderNewMooshroom());
+			RenderingRegistry.registerEntityRenderingHandler(EntityMooshroom.class, m -> new RenderNewMooshroom());
 		if(BetterAnimalsConfig.enableSquid)
-			RenderingRegistry.registerEntityRenderingHandler(EntitySquid.class, new RenderNewSquid(new ResourceLocation(BetterAnimals.MODID, "textures/mobs/squid.png")));
+			RenderingRegistry.registerEntityRenderingHandler(EntitySquid.class, m -> new RenderNewSquid(new ResourceLocation(BetterAnimals.MODID, "textures/mobs/squid.png")));
 
 		// Mobs
 		if(BetterAnimalsConfig.enableSpider)
-			RenderingRegistry.registerEntityRenderingHandler(EntitySpider.class, new RenderNewSpider());
+			RenderingRegistry.registerEntityRenderingHandler(EntitySpider.class, m -> new RenderNewSpider());
 		if(BetterAnimalsConfig.enableCaveSpider)
-			RenderingRegistry.registerEntityRenderingHandler(EntityCaveSpider.class, new RenderNewCaveSpider());
+			RenderingRegistry.registerEntityRenderingHandler(EntityCaveSpider.class, m -> new RenderNewCaveSpider());
 		if(BetterAnimalsConfig.enableSilverfish)
-			RenderingRegistry.registerEntityRenderingHandler(EntitySilverfish.class, new RenderNewSilverfish());
+			RenderingRegistry.registerEntityRenderingHandler(EntitySilverfish.class, m -> new RenderNewSilverfish());
 		if(BetterAnimalsConfig.enablePolarBear)
-			RenderingRegistry.registerEntityRenderingHandler(EntityPolarBear.class, new RenderNewPolarBear());
+			RenderingRegistry.registerEntityRenderingHandler(EntityPolarBear.class, m -> new RenderNewPolarBear());
 
 		//Mod Compat
 

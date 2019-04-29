@@ -390,8 +390,8 @@ public class ModelNewBear extends Model {
 		this.lLeg01.rotateAngleX = MathHelper.cos(f * 0.6662F + (float)Math.PI) * 1.4F * f1;
 
 		if(entityIn instanceof EntityLiving) {
-			this.neck.rotateAngleX = this.getHeadPitch((EntityLiving)entityIn) * 0.017453292F;
-			this.neck.rotateAngleY = this.getHeadYaw((EntityLiving) entityIn) * 0.017453292F;
+			this.neck.rotateAngleX = Model.getHeadPitch((EntityLiving)entityIn) * 0.017453292F;
+			this.neck.rotateAngleY = Model.getHeadYaw((EntityLiving) entityIn) * 0.017453292F;
 		}
 
 		super.setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scaleFactor, entityIn);
