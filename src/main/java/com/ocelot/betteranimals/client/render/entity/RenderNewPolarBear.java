@@ -3,9 +3,9 @@ package com.ocelot.betteranimals.client.render.entity;
 import com.ocelot.betteranimals.BetterAnimals;
 import com.ocelot.betteranimals.client.model.ModelNewBear;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.RenderLiving;
+import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.monster.EntityPolarBear;
 import net.minecraft.util.ResourceLocation;
 
@@ -13,9 +13,9 @@ public class RenderNewPolarBear extends RenderLiving<EntityPolarBear> {
 
 	private static final ResourceLocation POLAR_BEAR_TEXTURE = new ResourceLocation(BetterAnimals.MODID, "textures/mobs/polarbear.png");
 
-	public RenderNewPolarBear()
+	public RenderNewPolarBear(RenderManager m)
 	{
-		super(Minecraft.getMinecraft().getRenderManager(), new ModelNewBear(), 0.7F);
+		super(m, new ModelNewBear(), 0.7F);
 	}
 
 	/**

@@ -2,10 +2,10 @@ package com.ocelot.betteranimals.client.render.entity;
 
 import com.ocelot.betteranimals.client.model.ModelNewSpider;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.entity.RenderLiving;
+import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.entity.layers.LayerRenderer;
 import net.minecraft.entity.monster.EntityCaveSpider;
 import net.minecraft.util.ResourceLocation;
@@ -15,8 +15,8 @@ public class RenderNewCaveSpider extends RenderLiving<EntityCaveSpider> implemen
 	private static final ResourceLocation BASE = new ResourceLocation("betteranimals", "textures/mobs/cave_spider.png");
 	private static final ResourceLocation GLOW = new ResourceLocation("betteranimals", "textures/mobs/spider_eyes.png");
 
-	public RenderNewCaveSpider() {
-		super(Minecraft.getMinecraft().getRenderManager(), new ModelNewSpider(), 0.4f);
+	public RenderNewCaveSpider(RenderManager m) {
+		super(m, new ModelNewSpider(), 0.4f);
 		this.addLayer(this);
 	}
 

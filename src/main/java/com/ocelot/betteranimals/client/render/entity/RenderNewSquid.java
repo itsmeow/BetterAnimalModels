@@ -3,9 +3,9 @@ package com.ocelot.betteranimals.client.render.entity;
 import com.ocelot.betteranimals.BetterAnimals;
 import com.ocelot.betteranimals.client.model.ModelNewSquid;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.RenderLiving;
+import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.passive.EntitySquid;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.relauncher.Side;
@@ -16,10 +16,12 @@ public class RenderNewSquid extends RenderLiving<EntitySquid>
 {
     private ResourceLocation texture = new ResourceLocation(BetterAnimals.MODID, "textures/mobs/squid.png");
 
-    public RenderNewSquid(ResourceLocation texture)
+    public RenderNewSquid(RenderManager m, ResourceLocation texture)
     {
-        super(Minecraft.getMinecraft().getRenderManager(), new ModelNewSquid(), 0.7F);
-        this.texture = texture;
+        super(m, new ModelNewSquid(), 0.7F);
+        if(texture != null) {
+            this.texture = texture;
+        }
     }
 
     /**

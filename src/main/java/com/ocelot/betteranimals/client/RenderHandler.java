@@ -28,7 +28,6 @@ import net.minecraft.entity.passive.EntityPig;
 import net.minecraft.entity.passive.EntitySheep;
 import net.minecraft.entity.passive.EntitySquid;
 import net.minecraft.entity.passive.EntityWolf;
-import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Loader;
 
@@ -41,29 +40,29 @@ public class RenderHandler {
 
 	public static void init() {
 		if(BetterAnimalsConfig.enableCow)
-			RenderingRegistry.registerEntityRenderingHandler(EntityCow.class, m -> new RenderNewCow());
+			RenderingRegistry.registerEntityRenderingHandler(EntityCow.class, RenderNewCow::new);
 		if(BetterAnimalsConfig.enablePig)
-			RenderingRegistry.registerEntityRenderingHandler(EntityPig.class, m -> new RenderNewPig());
+			RenderingRegistry.registerEntityRenderingHandler(EntityPig.class, RenderNewPig::new);
 		if(BetterAnimalsConfig.enableChicken)
-			RenderingRegistry.registerEntityRenderingHandler(EntityChicken.class, m -> new RenderNewChicken());
+			RenderingRegistry.registerEntityRenderingHandler(EntityChicken.class, RenderNewChicken::new);
 		if(BetterAnimalsConfig.enableSheep)
-			RenderingRegistry.registerEntityRenderingHandler(EntitySheep.class, m -> new RenderNewSheep());
+			RenderingRegistry.registerEntityRenderingHandler(EntitySheep.class, RenderNewSheep::new);
 		if(BetterAnimalsConfig.enableWolf)
-			RenderingRegistry.registerEntityRenderingHandler(EntityWolf.class, m -> new RenderNewWolf());
+			RenderingRegistry.registerEntityRenderingHandler(EntityWolf.class, RenderNewWolf::new);
 		if(BetterAnimalsConfig.enableMooshroom)
-			RenderingRegistry.registerEntityRenderingHandler(EntityMooshroom.class, m -> new RenderNewMooshroom());
+			RenderingRegistry.registerEntityRenderingHandler(EntityMooshroom.class, RenderNewMooshroom::new);
 		if(BetterAnimalsConfig.enableSquid)
-			RenderingRegistry.registerEntityRenderingHandler(EntitySquid.class, m -> new RenderNewSquid(new ResourceLocation(BetterAnimals.MODID, "textures/mobs/squid.png")));
+			RenderingRegistry.registerEntityRenderingHandler(EntitySquid.class, m -> new RenderNewSquid(m, null));
 
 		// Mobs
 		if(BetterAnimalsConfig.enableSpider)
-			RenderingRegistry.registerEntityRenderingHandler(EntitySpider.class, m -> new RenderNewSpider());
+			RenderingRegistry.registerEntityRenderingHandler(EntitySpider.class, RenderNewSpider::new);
 		if(BetterAnimalsConfig.enableCaveSpider)
-			RenderingRegistry.registerEntityRenderingHandler(EntityCaveSpider.class, m -> new RenderNewCaveSpider());
+			RenderingRegistry.registerEntityRenderingHandler(EntityCaveSpider.class, RenderNewCaveSpider::new);
 		if(BetterAnimalsConfig.enableSilverfish)
-			RenderingRegistry.registerEntityRenderingHandler(EntitySilverfish.class, m -> new RenderNewSilverfish());
+			RenderingRegistry.registerEntityRenderingHandler(EntitySilverfish.class, RenderNewSilverfish::new);
 		if(BetterAnimalsConfig.enablePolarBear)
-			RenderingRegistry.registerEntityRenderingHandler(EntityPolarBear.class, m -> new RenderNewPolarBear());
+			RenderingRegistry.registerEntityRenderingHandler(EntityPolarBear.class, RenderNewPolarBear::new);
 
 		//Mod Compat
 

@@ -59,7 +59,7 @@ public class ActiveCompatAbyssalCraft implements ModInteropProxy {
 		if(BetterAnimalsConfig.enableAntiSpider)
 			CompatUtils.reg(EntityAntiSpider.class, m -> new RenderNewAntiSpider(new ResourceLocation(BetterAnimals.MODID, "textures/mobs/abyssalcraft/anti/antispider.png"), new ResourceLocation(BetterAnimals.MODID, "textures/mobs/abyssalcraft/anti/antispider_eyes.png")));
 		if(BetterAnimalsConfig.enableCoraliumSquid)
-			CompatUtils.reg(EntityCoraliumSquid.class, m -> new RenderNewSquid(new ResourceLocation(BetterAnimals.MODID, "textures/mobs/abyssalcraft/coraliumsquid.png")));
+			CompatUtils.reg(EntityCoraliumSquid.class, m -> new RenderNewSquid(m, new ResourceLocation(BetterAnimals.MODID, "textures/mobs/abyssalcraft/coraliumsquid.png")));
 	}
 
 }

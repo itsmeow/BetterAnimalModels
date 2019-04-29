@@ -4,9 +4,9 @@ import com.ocelot.betteranimals.BetterAnimals;
 import com.ocelot.betteranimals.client.model.ModelNewSheep;
 import com.ocelot.betteranimals.client.render.layer.LayerNewSheepWool;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.RenderLiving;
+import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.passive.EntitySheep;
 import net.minecraft.util.ResourceLocation;
 
@@ -14,8 +14,8 @@ public class RenderNewSheep extends RenderLiving<EntitySheep> {
 
 	private static final ResourceLocation BASE = new ResourceLocation(BetterAnimals.MODID, "textures/mobs/sheep.png");
 
-	public RenderNewSheep() {
-		super(Minecraft.getMinecraft().getRenderManager(), new ModelNewSheep(), 0.4f);
+	public RenderNewSheep(RenderManager m) {
+		super(m, new ModelNewSheep(), 0.4f);
 		this.addLayer(new LayerNewSheepWool(this));
 	}
 
