@@ -36,10 +36,10 @@ repositories {
         name = "Mobius Repo"
         url = "http://tehnut.info/maven"
     }
-	maven {
-	    name = "AbyssalCraft"
-	    url = "https://dl.bintray.com/shinoow/maven"
-	}
+    maven {
+        name = "AbyssalCraft"
+        url = "https://dl.bintray.com/shinoow/maven"
+    }
     maven {
         url = "https://minecraft.curseforge.com/api/maven/"
     }
@@ -48,10 +48,10 @@ repositories {
 dependencies {
     deobfCompile "mezz.jei:jei_1.12.2:4.14.4.264"
     deobfCompile "mcp.mobius.waila:Hwyla:1.8.26-B41_1.12.2"
-	deobfCompile "com.shinoow.abyssalcraft:AbyssalCraft:1.12.2-1.9.7"
-	deobfCompile "sophisticated-wolves:SophisticatedWolves:1.12.2:3.13.7"
-	deobfCompile "primalcore:PrimalCore:1.12.2:0.6.104"
-	deobfCompile "brown-mooshrooms:brownmooshrooms:1.0.0"
+    deobfCompile "com.shinoow.abyssalcraft:AbyssalCraft:1.12.2-1.9.7"
+    deobfCompile "sophisticated-wolves:SophisticatedWolves:1.12.2:3.13.7"
+    deobfCompile "primalcore:PrimalCore:1.12.2:0.6.104"
+    deobfCompile "brown-mooshrooms:brownmooshrooms:1.0.0"
 }
 
 processResources {
