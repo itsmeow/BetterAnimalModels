@@ -41,6 +41,9 @@ repositories {
         url = "https://dl.bintray.com/shinoow/maven"
     }
     maven {
+        url = "https://maven.blamejared.com"
+    }
+    maven {
         url = "https://minecraft.curseforge.com/api/maven/"
     }
 }
@@ -52,6 +55,7 @@ dependencies {
     deobfCompile "sophisticated-wolves:SophisticatedWolves:1.12.2:3.13.7"
     deobfCompile "primalcore:PrimalCore:1.12.2:0.6.104"
     deobfCompile "brown-mooshrooms:brownmooshrooms:1.0.0"
+    deobfCompile "vazkii.quark:Quark:r1.5-149.77"
 }
 
 processResources {
