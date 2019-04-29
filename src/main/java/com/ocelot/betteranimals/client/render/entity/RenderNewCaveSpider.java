@@ -14,11 +14,9 @@ public class RenderNewCaveSpider extends RenderLiving<EntityCaveSpider> implemen
 
 	private static final ResourceLocation BASE = new ResourceLocation("betteranimals", "textures/mobs/cave_spider.png");
 	private static final ResourceLocation GLOW = new ResourceLocation("betteranimals", "textures/mobs/spider_eyes.png");
-	protected ModelNewSpider model;
 
 	public RenderNewCaveSpider() {
 		super(Minecraft.getMinecraft().getRenderManager(), new ModelNewSpider(), 0.4f);
-		model = ((ModelNewSpider) mainModel);
 		this.addLayer(this);
 	}
 

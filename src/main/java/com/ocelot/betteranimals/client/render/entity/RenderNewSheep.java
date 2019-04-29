@@ -13,17 +13,15 @@ import net.minecraft.util.ResourceLocation;
 public class RenderNewSheep extends RenderLiving<EntitySheep> {
 
 	private static final ResourceLocation BASE = new ResourceLocation(BetterAnimals.MODID, "textures/mobs/sheep.png");
-	protected ModelNewSheep model;
 
 	public RenderNewSheep() {
 		super(Minecraft.getMinecraft().getRenderManager(), new ModelNewSheep(), 0.4f);
-		model = ((ModelNewSheep) mainModel);
 		this.addLayer(new LayerNewSheepWool(this));
 	}
 
 	@Override
 	protected void preRenderCallback(EntitySheep entitylivingbaseIn, float partialTickTime) {
-		if (model.isChild) {
+		if (getMainModel().isChild) {
 			GlStateManager.scale(0.5D, 0.5D, 0.5D);
 		} else {
 			GlStateManager.scale(1.0D, 1.0D, 1.0D);

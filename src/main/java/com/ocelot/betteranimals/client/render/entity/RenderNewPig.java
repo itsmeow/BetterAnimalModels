@@ -12,16 +12,14 @@ import net.minecraft.util.ResourceLocation;
 public class RenderNewPig extends RenderLiving<EntityPig> {
 
 	private static final ResourceLocation BASE = new ResourceLocation(BetterAnimals.MODID, "textures/mobs/pig.png");
-	private ModelNewPig model;
 
 	public RenderNewPig() {
 		super(Minecraft.getMinecraft().getRenderManager(), new ModelNewPig(), 0.4f);
-		model = ((ModelNewPig) mainModel);
 	}
 
 	@Override
 	protected void preRenderCallback(EntityPig entitylivingbaseIn, float partialTickTime) {
-		if (!model.isChild) {
+		if (!getMainModel().isChild) {
 			GlStateManager.scale(1.00D, 1.00D, 1.00D);
 		}
 	}

@@ -15,11 +15,8 @@ public class RenderNewWolf extends RenderLiving<EntityWolf> {
 	private static final ResourceLocation TAMED_WOLF_TEXTURES = new ResourceLocation(BetterAnimals.MODID, "textures/mobs/wolf/wolf_tame.png");
 	private static final ResourceLocation ANRGY_WOLF_TEXTURES = new ResourceLocation(BetterAnimals.MODID, "textures/mobs/wolf/wolf_angry.png");
 
-	private ModelNewWolf model;
-
 	public RenderNewWolf() {
 		super(Minecraft.getMinecraft().getRenderManager(), new ModelNewWolf(), 0.25f);
-		model = ((ModelNewWolf) mainModel);
 	}
 
 	@Override
@@ -29,7 +26,7 @@ public class RenderNewWolf extends RenderLiving<EntityWolf> {
 	
 	@Override
 	protected void preRenderCallback(EntityWolf entitylivingbaseIn, float partialTickTime) {
-		if (model.isChild) {
+		if (getMainModel().isChild) {
 			GlStateManager.scale(0.5D, 0.5D, 0.5D);
 		} else {
 			GlStateManager.scale(1.0D, 1.0D, 1.0D);

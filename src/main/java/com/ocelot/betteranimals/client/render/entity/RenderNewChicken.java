@@ -13,11 +13,9 @@ import net.minecraft.util.math.MathHelper;
 public class RenderNewChicken extends RenderLiving<EntityChicken> {
 
 	private static final ResourceLocation BASE = new ResourceLocation(BetterAnimals.MODID, "textures/mobs/chicken.png");
-	protected ModelNewChicken model;
 
 	public RenderNewChicken() {
 		super(Minecraft.getMinecraft().getRenderManager(), new ModelNewChicken(), 0.4f);
-		model = ((ModelNewChicken) mainModel);
 	}
 
 	@Override
@@ -27,7 +25,7 @@ public class RenderNewChicken extends RenderLiving<EntityChicken> {
 
 	@Override
 	protected void preRenderCallback(EntityChicken entitylivingbaseIn, float partialTickTime) {
-		if (!model.isChild) {
+		if (!this.mainModel.isChild) {
 			GlStateManager.scale(0.9D, 0.9D, 0.9D);
 		}
 	}
