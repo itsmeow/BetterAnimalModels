@@ -38,6 +38,9 @@ public class BetterAnimalsConfig {
 	public static boolean enableBrownMushroom = true;
 	public static boolean enableSquid = true;
 	public static boolean enableCoraliumSquid = true;
+	public static boolean enableQuarkOverrideCow = true;
+	public static boolean enableQuarkOverridePig = true;
+	public static boolean enableQuarkOverrideChicken = true;
 
 	public static void readConfig(){
 		Configuration cfg = BetterAnimals.config;
@@ -86,6 +89,9 @@ public class BetterAnimalsConfig {
 		enableAntiSpider = cfg.getBoolean("enableantispider", cDS, true, "from Abyssalcraft");
 		enableCoraliumSquid = cfg.getBoolean("enablecoraliumsquid", cDS, true, "from Abyssalcraft");
 		enableBrownMushroom = cfg.getBoolean("enablebrownmushroom", cDS, true, "from Brown Mushrooms mod");
+		enableQuarkOverrideCow = cfg.getBoolean("enablequarkoverridecow", cDS, true, "enable overriding quark's override. Cow must be enabled as well.");
+		enableQuarkOverridePig = cfg.getBoolean("enablequarkoverridepig", cDS, true, "enable overriding quark's override. Pig must be enabled as well.");
+		enableQuarkOverrideChicken = cfg.getBoolean("enablequarkoverridechicken", cDS, true, "enable overriding quark's override. Chicken must be enabled as well.");
 	}
 
 }

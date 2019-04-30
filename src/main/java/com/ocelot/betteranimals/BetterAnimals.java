@@ -16,7 +16,7 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.relauncher.Side;
 
-@Mod(modid = BetterAnimals.MODID, acceptedMinecraftVersions = "[1.12,1.12.2]", version = BetterAnimals.VERSION, clientSideOnly = true, dependencies = "after:sophisticatedwolves|primal|abyssalcraft|brownmushrooms")
+@Mod(modid = BetterAnimals.MODID, acceptedMinecraftVersions = "[1.12,1.12.2]", version = BetterAnimals.VERSION, clientSideOnly = true, dependencies = "after:sophisticatedwolves|primal|abyssalcraft|brownmushrooms|quark")
 public class BetterAnimals {
 
 	public static final String MODID = "betteranimals";
