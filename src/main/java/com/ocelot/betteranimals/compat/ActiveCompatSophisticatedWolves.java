@@ -7,8 +7,9 @@ import sophisticated_wolves.entity.EntitySophisticatedWolf;
 public class ActiveCompatSophisticatedWolves implements ModInteropProxy {
 
 	@Override
-	public void register() {
+	public boolean register() {
 		CompatUtils.reg(EntitySophisticatedWolf.class, m -> new RenderNewSophisticatedWolf());
+		return true;
 	}
 
 }

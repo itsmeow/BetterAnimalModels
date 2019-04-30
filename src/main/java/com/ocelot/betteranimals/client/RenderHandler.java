@@ -15,6 +15,7 @@ import com.ocelot.betteranimals.client.render.entity.RenderNewSpider;
 import com.ocelot.betteranimals.client.render.entity.RenderNewSquid;
 import com.ocelot.betteranimals.client.render.entity.RenderNewWolf;
 import com.ocelot.betteranimals.compat.ModInteropProxy;
+import com.ocelot.betteranimals.compat.QuarkSpecialHandler;
 import com.ocelot.betteranimals.config.BetterAnimalsConfig;
 
 import net.minecraft.entity.monster.EntityCaveSpider;
@@ -38,13 +39,27 @@ public class RenderHandler {
     public static ModInteropProxy abyssalcraft;
     public static ModInteropProxy brownmooshrooms;
     public static ModInteropProxy quark;
+    public static QuarkSpecialHandler quarkSpecial;
+
+    public static void preinit() {
+        quark = getInteropProxy(ModInteropProxy.class, "quark", "ActiveCompatQuark", "InactiveCompatQuark");
+        quarkSpecial = getInteropProxy(QuarkSpecialHandler.class, "quark", "QuarkSpecialHandlerActive", "QuarkSpecialHandlerInactive");
+        BetterAnimals.logger().log(Level.DEBUG, "Quark proxy: " + quark);
+        if(quarkSpecial != null) {
+            quarkSpecial.preQuark();
+        }
+    }
 
     public static void init() {
-        if(BetterAnimalsConfig.enableCow)
+        boolean quarkLoaded = false;
+        if(quark != null) {
+            quarkLoaded = quark.register();
+        }
+        if(BetterAnimalsConfig.enableCow && (!BetterAnimalsConfig.enableQuarkOverrideCow || quark == null || !quarkLoaded))
             RenderingRegistry.registerEntityRenderingHandler(EntityCow.class, RenderNewCow::new);
-        if(BetterAnimalsConfig.enablePig)
+        if(BetterAnimalsConfig.enablePig && (!BetterAnimalsConfig.enableQuarkOverridePig || quark == null || !quarkLoaded))
             RenderingRegistry.registerEntityRenderingHandler(EntityPig.class, RenderNewPig::new);
-        if(BetterAnimalsConfig.enableChicken)
+        if(BetterAnimalsConfig.enableChicken && (!BetterAnimalsConfig.enableQuarkOverrideChicken || quark == null || !quarkLoaded))
             RenderingRegistry.registerEntityRenderingHandler(EntityChicken.class, RenderNewChicken::new);
         if(BetterAnimalsConfig.enableSheep)
             RenderingRegistry.registerEntityRenderingHandler(EntitySheep.class, RenderNewSheep::new);
@@ -68,18 +83,16 @@ public class RenderHandler {
         //Mod Compat
 
         //Load proxy classes
-        primalcore = getInteropProxy("primal", "ActiveCompatPrimalCore", "InactiveCompatPrimalCore");
-        sophisticatedwolves = getInteropProxy("sophisticatedwolves", "ActiveCompatSophisticatedWolves", "InactiveCompatSophisticatedWolves");
-        abyssalcraft = getInteropProxy("abyssalcraft", "ActiveCompatAbyssalCraft", "InactiveCompatAbyssalCraft");
-        brownmooshrooms = getInteropProxy("brownmooshrooms", "ActiveCompatBrownMooshrooms", "InactiveCompatBrownMooshrooms");
-        quark = getInteropProxy("quark", "ActiveCompatQuark", "InactiveCompatQuark");
+        primalcore = getInteropProxy(ModInteropProxy.class, "primal", "ActiveCompatPrimalCore", "InactiveCompatPrimalCore");
+        sophisticatedwolves = getInteropProxy(ModInteropProxy.class, "sophisticatedwolves", "ActiveCompatSophisticatedWolves", "InactiveCompatSophisticatedWolves");
+        abyssalcraft = getInteropProxy(ModInteropProxy.class, "abyssalcraft", "ActiveCompatAbyssalCraft", "InactiveCompatAbyssalCraft");
+        brownmooshrooms = getInteropProxy(ModInteropProxy.class, "brownmooshrooms", "ActiveCompatBrownMooshrooms", "InactiveCompatBrownMooshrooms");
 
         //Register renderers for classes
         //Check for non null to prevent NullPointers if exceptions are thrown
         BetterAnimals.logger().log(Level.DEBUG, "PrimalCore proxy: " + primalcore);
         BetterAnimals.logger().log(Level.DEBUG, "AbyssalCraft proxy: " + abyssalcraft);
         BetterAnimals.logger().log(Level.DEBUG, "BrownMooshrooms proxy: " + brownmooshrooms);
-        BetterAnimals.logger().log(Level.DEBUG, "Quark proxy: " + quark);
         if(primalcore != null) {
             primalcore.register();
         }
@@ -88,9 +101,6 @@ public class RenderHandler {
         }
         if(brownmooshrooms != null) {
             brownmooshrooms.register();
-        }
-        if(quark != null) {
-            quark.register();
         }
     }
 
@@ -107,21 +117,22 @@ public class RenderHandler {
      * @param classNameActive - The class name to return if the mod is active in com.ocelot.betteranimals.compat
      * @param classNameInactive - The class name to return if the mod is not present located in com.ocelot.betteranimals.compat
      * @return The proper proxy class for whether the mod is loaded or not **/
-    private static ModInteropProxy getInteropProxy(String modid, String classNameActive, String classNameInactive) {
-        ModInteropProxy proxy = null;
+    private static <T>T getInteropProxy(Class<T> type, String modid, String classNameActive, String classNameInactive) {
+        T proxy = null;
         try {
             if (Loader.isModLoaded(modid)) {
-                BetterAnimals.logger().log(Level.DEBUG, "Loading compat classes for mod: " + modid);
+                BetterAnimals.logger().log(Level.DEBUG, "Loading compat classes for mod " + modid + " with type " + type.getSimpleName());
                 // reflection to avoid hard dependency
-                proxy = Class.forName("com.ocelot.betteranimals.compat." + classNameActive).asSubclass(ModInteropProxy.class).newInstance();
+                proxy = Class.forName("com.ocelot.betteranimals.compat." + classNameActive).asSubclass(type).newInstance();
                 BetterAnimals.logger().log(Level.DEBUG, "Found proxy: " + proxy);
             } else {
-                proxy = Class.forName("com.ocelot.betteranimals.compat." + classNameInactive).asSubclass(ModInteropProxy.class).newInstance();
+                proxy = Class.forName("com.ocelot.betteranimals.compat." + classNameInactive).asSubclass(type).newInstance();
             }
         } catch(ClassNotFoundException | InstantiationException | IllegalAccessException e) {
             BetterAnimals.logger().error("Error retrieving compatibility class for mod " + modid + " in BetterAnimals. This is a bug. Report this on our issues page (see Curse).");
-            BetterAnimals.logger().error("BetterAnimals load status on " + modid + " is " + Loader.isModLoaded(modid));
+            BetterAnimals.logger().info("BetterAnimals load status on " + modid + " is " + Loader.isModLoaded(modid));
         }
         return proxy;
     }
+
 }

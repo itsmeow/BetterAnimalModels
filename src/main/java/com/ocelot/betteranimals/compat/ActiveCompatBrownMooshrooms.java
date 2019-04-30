@@ -8,9 +8,10 @@ import quaternary.brownmooshrooms.EntityBrownMooshroom;
 public class ActiveCompatBrownMooshrooms implements ModInteropProxy {
 
 	@Override
-	public void register() {
+	public boolean register() {
 		if(BetterAnimalsConfig.enableBrownMushroom)
 			CompatUtils.reg(EntityBrownMooshroom.class, m -> new RenderNewBrownMooshroom());
+		return true;
 	}
 
 }

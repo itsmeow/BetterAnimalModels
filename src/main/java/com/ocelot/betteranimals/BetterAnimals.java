@@ -39,6 +39,7 @@ public class BetterAnimals {
 		config = new Configuration(new File(directory.getPath(), "betteranimals.cfg")); 
 		BetterAnimalsConfig.readConfig();
 		BetterAnimalsConfig.initConfig(config);
+		RenderHandler.preinit();
 	}
 
 	@EventHandler

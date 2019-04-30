@@ -31,7 +31,7 @@ import net.minecraft.util.ResourceLocation;
 public class ActiveCompatAbyssalCraft implements ModInteropProxy {
 
 	@Override
-	public void register() {
+	public boolean register() {
 		if(BetterAnimalsConfig.enableEvilPig)
 			CompatUtils.reg(EntityEvilpig.class, m -> new RenderNewEvilPig(new ResourceLocation(BetterAnimals.MODID, "textures/mobs/pig.png")));
 		if(BetterAnimalsConfig.enableEvilCow)
@@ -60,6 +60,7 @@ public class ActiveCompatAbyssalCraft implements ModInteropProxy {
 			CompatUtils.reg(EntityAntiSpider.class, m -> new RenderNewAntiSpider(new ResourceLocation(BetterAnimals.MODID, "textures/mobs/abyssalcraft/anti/antispider.png"), new ResourceLocation(BetterAnimals.MODID, "textures/mobs/abyssalcraft/anti/antispider_eyes.png")));
 		if(BetterAnimalsConfig.enableCoraliumSquid)
 			CompatUtils.reg(EntityCoraliumSquid.class, m -> new RenderNewSquid(m, new ResourceLocation(BetterAnimals.MODID, "textures/mobs/abyssalcraft/coraliumsquid.png")));
+		return true;
 	}
 
 }

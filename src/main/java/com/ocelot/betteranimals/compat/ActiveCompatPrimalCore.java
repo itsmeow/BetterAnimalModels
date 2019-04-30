@@ -14,7 +14,7 @@ import nmd.primal.core.common.entities.living.EntityOvisAtre;
 public class ActiveCompatPrimalCore implements ModInteropProxy {
 
 	@Override
-	public void register() {
+	public boolean register() {
 
 		if(BetterAnimalsConfig.enableOvisAtre_primalcore)
 			CompatUtils.reg(EntityOvisAtre.class, m -> new RenderNewOvisAtre());
@@ -24,6 +24,7 @@ public class ActiveCompatPrimalCore implements ModInteropProxy {
 			CompatUtils.reg(EntityBrownBear.class, m -> new RenderNewBrownBear());
 		if(BetterAnimalsConfig.enableBlackBear_primalcore)
 			CompatUtils.reg(EntityBlackBear.class, m -> new RenderNewBlackBear());
+		return true;
 	}
 
 }
