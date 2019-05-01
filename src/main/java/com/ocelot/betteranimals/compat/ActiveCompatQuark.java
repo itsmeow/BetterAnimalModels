@@ -22,17 +22,18 @@ import net.minecraftforge.fml.client.registry.IRenderFactory;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import vazkii.quark.client.feature.RandomAnimalTextures;
 import vazkii.quark.client.feature.RandomAnimalTextures.RandomTextureType;
 
 public class ActiveCompatQuark implements ModInteropProxy {
 
     private static ListMultimap<RandomTextureType, ResourceLocation> textures;
 
-    @SuppressWarnings({ "unchecked", "rawtypes" })
     @Override
     public boolean register() {
-        textures = Multimaps.newListMultimap(new EnumMap(RandomTextureType.class), () -> new ArrayList<>());
-
+        
+        textures = Multimaps.newListMultimap(new EnumMap<>(RandomTextureType.class), ArrayList::new);
+        
         if(BetterAnimalsConfig.enableQuarkOverrideCow && BetterAnimalsConfig.enableCow)
             registerTextures(RandomTextureType.COW, 10, new ResourceLocation("betteranimals:textures/mobs/cow.png"));
         if(BetterAnimalsConfig.enableQuarkOverridePig && BetterAnimalsConfig.enablePig)
@@ -43,11 +44,11 @@ public class ActiveCompatQuark implements ModInteropProxy {
         }
 
         if(BetterAnimalsConfig.enableQuarkOverrideCow && BetterAnimalsConfig.enableCow)
-            registerOverride(EntityCow.class, RenderNewQuarkCow::new, true);
+            registerOverride(EntityCow.class, RenderNewQuarkCow::new, RandomAnimalTextures.enableCow);
         if(BetterAnimalsConfig.enableQuarkOverridePig && BetterAnimalsConfig.enablePig)
-            registerOverride(EntityPig.class, RenderNewQuarkPig::new, true);
+            registerOverride(EntityPig.class, RenderNewQuarkPig::new, RandomAnimalTextures.enablePig);
         if(BetterAnimalsConfig.enableQuarkOverrideChicken && BetterAnimalsConfig.enableChicken)
-            registerOverride(EntityChicken.class, RenderNewQuarkChicken::new, true);
+            registerOverride(EntityChicken.class, RenderNewQuarkChicken::new, RandomAnimalTextures.enableChick || RandomAnimalTextures.enableChicken);
         return true;
     }
 

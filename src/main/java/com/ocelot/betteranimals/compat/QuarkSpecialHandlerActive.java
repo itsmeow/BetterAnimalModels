@@ -1,19 +1,27 @@
 package com.ocelot.betteranimals.compat;
 
-import vazkii.quark.base.module.ModuleLoader;
-import vazkii.quark.client.QuarkClient;
+import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import vazkii.quark.api.module.FeatureEvent;
 import vazkii.quark.client.feature.RandomAnimalTextures;
 
+@EventBusSubscriber
 public class QuarkSpecialHandlerActive implements QuarkSpecialHandler {
     
-    public static boolean enableCow, enablePig, enableChicken, enableChick = true;
+    public static boolean featureEnabled = false;
     
     @Override
     public void preQuark() {
-        QuarkClient client = (QuarkClient) ModuleLoader.moduleInstances.get(QuarkClient.class);
-        RandomAnimalTextures feature = (RandomAnimalTextures) client.features.get("RANDOMANIMALTEXTURES");
-        feature.setupConfig();
-        feature.enabled = false;
+        
+        
+    }
+    
+    @SubscribeEvent
+    public static void onFeatureLoad(FeatureEvent.Loaded event) {
+        if(event.getFeature() instanceof RandomAnimalTextures) {
+            featureEnabled = event.getFeature().isEnabled();
+            event.setCanceled(true);
+        }
     }
     
 }
