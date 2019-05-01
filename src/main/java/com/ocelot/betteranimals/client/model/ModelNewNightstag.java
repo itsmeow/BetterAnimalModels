@@ -1,8 +1,13 @@
 package com.ocelot.betteranimals.client.model;
 
+import com.mushroom.midnight.Midnight;
+import com.mushroom.midnight.common.capability.AnimationCapability;
+
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
+import net.minecraft.util.math.MathHelper;
 
 /**
  * nightstagBA - cybercat5555
@@ -383,4 +388,54 @@ public class ModelNewNightstag extends ModelBase {
         modelRenderer.rotateAngleY = y;
         modelRenderer.rotateAngleZ = z;
     }
+    
+
+    @Override
+    public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entity) {
+        this.head.rotateAngleX = (headPitch * 0.017453292f) + 0.17453292519943295f;
+        this.head.rotateAngleY = netHeadYaw * 0.017453292f;
+        this.body.rotateAngleX = 0f;
+        this.lForeleg01.rotateAngleX = this.rHindLeg01.rotateAngleX = MathHelper.cos(limbSwing * 0.6662f) * 1.4f * limbSwingAmount;
+        this.rForeleg01.rotateAngleX = this.lHindLeg01.rotateAngleX = MathHelper.cos(limbSwing * 0.6662f + (float)Math.PI) * 1.4f * limbSwingAmount;
+        this.head.rotationPointX = 0f;
+        this.lHindLeg01.rotateAngleZ = 0f;
+
+        AnimationCapability animationCap = entity.getCapability(Midnight.ANIMATION_CAP, null);
+        if (animationCap != null && animationCap.isAnimate()) {
+            float partialTicks = Minecraft.getMinecraft().getRenderPartialTicks();
+            float progress = animationCap.getProgress(partialTicks);
+            float fctAnimation;
+            switch (animationCap.getAnimationType()) {
+                case ATTACK:
+                    fctAnimation = MathHelper.sin((float) (progress * Math.PI));
+                    this.body.rotateAngleX = fctAnimation * 0.2f;
+                    this.head.rotateAngleX = 0.17453292519943295f + (fctAnimation * 1.5f);
+                    break;
+                case CURTSEY:
+                    fctAnimation = MathHelper.sin((float) (progress * Math.PI));
+                    this.head.rotateAngleX = 0.17453292519943295f + fctAnimation;
+                    this.body.rotateAngleX = this.lForeleg01.rotateAngleX = this.lHindLeg01.rotateAngleZ = fctAnimation * 0.2f;
+                    this.lHindLeg01.rotateAngleX = -this.lHindLeg01.rotateAngleZ;
+                    break;
+                case EAT:
+                    this.body.rotateAngleX = MathHelper.sin((float) (progress * Math.PI)) * 0.2f;
+                    this.head.rotateAngleX = 0.17453292519943295f + (progress <= 0.1f ? progress * 15f : progress >= 0.9f ? (1f - progress) * 15f : 1.5f);
+                    if (progress > 0.1f && progress <0.9f) {
+                        this.head.rotationPointX = -partialTicks;
+                    }
+                    break;
+                case CHARGE:
+                    fctAnimation = MathHelper.sin((float) ((progress % 1) * 10f * Math.PI));
+                    this.head.rotateAngleX = 0.17453292519943295f + (progress <= 0.05f ? progress * 28f : progress >= 0.9f ? (1f - progress) * 14f : 1.4f + fctAnimation* 0.02f);
+                    this.head.rotateAngleY = 0f;
+                    this.body.rotateAngleX = fctAnimation * 0.05f;
+                    if (progress <= 0.1f) {
+                        this.lForeleg01.rotateAngleX = this.lForeleg01.rotateAngleY = fctAnimation * 0.3f;
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
+}
 }

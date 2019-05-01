@@ -41,6 +41,7 @@ public class BetterAnimalsConfig {
 	public static boolean enableQuarkOverrideCow = true;
 	public static boolean enableQuarkOverridePig = true;
 	public static boolean enableQuarkOverrideChicken = true;
+    public static boolean enableNightstag = true;
 
 	public static void readConfig(){
 		Configuration cfg = BetterAnimals.config;
@@ -92,6 +93,7 @@ public class BetterAnimalsConfig {
 		enableQuarkOverrideCow = cfg.getBoolean("enablequarkoverridecow", cDS, true, "enable overriding quark's override. Cow must be enabled as well.");
 		enableQuarkOverridePig = cfg.getBoolean("enablequarkoverridepig", cDS, true, "enable overriding quark's override. Pig must be enabled as well.");
 		enableQuarkOverrideChicken = cfg.getBoolean("enablequarkoverridechicken", cDS, true, "enable overriding quark's override. Chicken must be enabled as well.");
+		enableNightstag = cfg.getBoolean("enablenightstag", cDS, true, "from The Midnight");
 	}
 
 }

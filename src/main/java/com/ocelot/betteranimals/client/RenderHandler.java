@@ -40,10 +40,12 @@ public class RenderHandler {
     public static ModInteropProxy brownmooshrooms;
     public static ModInteropProxy quark;
     public static QuarkSpecialHandler quarkSpecial;
+    public static ModInteropProxy midnight;
     
     private static boolean quarkLoaded = false;
 
     public static void preinit() {
+        midnight = getInteropProxy(ModInteropProxy.class, "midnight", "ActiveCompatMidnight", "InactiveCompatMidnight");
         quark = getInteropProxy(ModInteropProxy.class, "quark", "ActiveCompatQuark", "InactiveCompatQuark");
         quarkSpecial = getInteropProxy(QuarkSpecialHandler.class, "quark", "QuarkSpecialHandlerActive", "QuarkSpecialHandlerInactive");
         BetterAnimals.logger().log(Level.DEBUG, "Quark proxy: " + quark);
@@ -52,6 +54,9 @@ public class RenderHandler {
         }
         if(quark != null) {
             quarkLoaded = quark.register();
+        }
+        if(midnight != null) {
+            midnight.register();
         }
     }
 
@@ -88,7 +93,7 @@ public class RenderHandler {
         sophisticatedwolves = getInteropProxy(ModInteropProxy.class, "sophisticatedwolves", "ActiveCompatSophisticatedWolves", "InactiveCompatSophisticatedWolves");
         abyssalcraft = getInteropProxy(ModInteropProxy.class, "abyssalcraft", "ActiveCompatAbyssalCraft", "InactiveCompatAbyssalCraft");
         brownmooshrooms = getInteropProxy(ModInteropProxy.class, "brownmooshrooms", "ActiveCompatBrownMooshrooms", "InactiveCompatBrownMooshrooms");
-
+        
         //Register renderers for classes
         //Check for non null to prevent NullPointers if exceptions are thrown
         BetterAnimals.logger().log(Level.DEBUG, "PrimalCore proxy: " + primalcore);
@@ -103,6 +108,9 @@ public class RenderHandler {
         if(brownmooshrooms != null) {
             brownmooshrooms.register();
         }
+        if(midnight != null) {
+            midnight.register();
+        }
     }
 
     // This must take place in postinit because sophisticatedwolves has placed it in init (fixed in later versions)
@@ -110,6 +118,10 @@ public class RenderHandler {
         BetterAnimals.logger().log(Level.DEBUG, "SophisticatedWolves proxy: " + sophisticatedwolves);
         if(sophisticatedwolves != null && BetterAnimalsConfig.enableSophisticatedWolf) {
             sophisticatedwolves.register();
+        }
+        BetterAnimals.logger().debug("Midnight proxy: " + midnight);
+        if(midnight != null) {
+            midnight.register();
         }
     }
 
