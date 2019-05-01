@@ -6,7 +6,6 @@ import com.ocelot.betteranimals.compat.ActiveCompatQuark;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.passive.EntityChicken;
 import net.minecraft.util.ResourceLocation;
-import vazkii.quark.client.feature.RandomAnimalTextures;
 import vazkii.quark.client.feature.RandomAnimalTextures.RandomTextureType;
 
 public class RenderNewQuarkChicken extends RenderNewChicken {
@@ -17,10 +16,10 @@ public class RenderNewQuarkChicken extends RenderNewChicken {
     
     @Override
     protected ResourceLocation getEntityTexture(EntityChicken entity) {
-        if(RandomAnimalTextures.enableChick && entity.isChild())
+        if(entity.isChild())
             return ActiveCompatQuark.getRandomTexture(entity, RandomTextureType.CHICK);
         
-        return ActiveCompatQuark.getRandomTexture(entity, RandomTextureType.CHICKEN, RandomAnimalTextures.enableChicken);
+        return ActiveCompatQuark.getRandomTexture(entity, RandomTextureType.CHICKEN);
     }
     
 }

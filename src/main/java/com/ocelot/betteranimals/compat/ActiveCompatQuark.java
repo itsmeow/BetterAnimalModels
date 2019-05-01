@@ -18,11 +18,9 @@ import net.minecraft.entity.passive.EntityChicken;
 import net.minecraft.entity.passive.EntityCow;
 import net.minecraft.entity.passive.EntityPig;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fml.client.registry.IRenderFactory;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import vazkii.quark.client.feature.RandomAnimalTextures;
 import vazkii.quark.client.feature.RandomAnimalTextures.RandomTextureType;
 
 public class ActiveCompatQuark implements ModInteropProxy {
@@ -44,11 +42,11 @@ public class ActiveCompatQuark implements ModInteropProxy {
         }
 
         if(BetterAnimalsConfig.enableQuarkOverrideCow && BetterAnimalsConfig.enableCow)
-            registerOverride(EntityCow.class, RenderNewQuarkCow::new, RandomAnimalTextures.enableCow);
+            RenderingRegistry.registerEntityRenderingHandler(EntityCow.class, RenderNewQuarkCow::new);
         if(BetterAnimalsConfig.enableQuarkOverridePig && BetterAnimalsConfig.enablePig)
-            registerOverride(EntityPig.class, RenderNewQuarkPig::new, RandomAnimalTextures.enablePig);
+            RenderingRegistry.registerEntityRenderingHandler(EntityPig.class, RenderNewQuarkPig::new);
         if(BetterAnimalsConfig.enableQuarkOverrideChicken && BetterAnimalsConfig.enableChicken)
-            registerOverride(EntityChicken.class, RenderNewQuarkChicken::new, RandomAnimalTextures.enableChick || RandomAnimalTextures.enableChicken);
+            RenderingRegistry.registerEntityRenderingHandler(EntityChicken.class, RenderNewQuarkChicken::new);
         return true;
     }
 
@@ -79,11 +77,6 @@ public class ActiveCompatQuark implements ModInteropProxy {
 
         if(vanilla != null)
             textures.put(type, vanilla);
-    }
-
-    private static <T extends Entity>void registerOverride(Class<T> clazz, IRenderFactory<? super T> factory, boolean enabled) {
-        if(enabled)
-            RenderingRegistry.registerEntityRenderingHandler(clazz, factory);
     }
 
 }

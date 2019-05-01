@@ -40,6 +40,8 @@ public class RenderHandler {
     public static ModInteropProxy brownmooshrooms;
     public static ModInteropProxy quark;
     public static QuarkSpecialHandler quarkSpecial;
+    
+    private static boolean quarkLoaded = false;
 
     public static void preinit() {
         quark = getInteropProxy(ModInteropProxy.class, "quark", "ActiveCompatQuark", "InactiveCompatQuark");
@@ -48,13 +50,12 @@ public class RenderHandler {
         if(quarkSpecial != null) {
             quarkSpecial.preQuark();
         }
-    }
-
-    public static void init() {
-        boolean quarkLoaded = false;
         if(quark != null) {
             quarkLoaded = quark.register();
         }
+    }
+
+    public static void init() {
         if(BetterAnimalsConfig.enableCow && (!BetterAnimalsConfig.enableQuarkOverrideCow || quark == null || !quarkLoaded))
             RenderingRegistry.registerEntityRenderingHandler(EntityCow.class, RenderNewCow::new);
         if(BetterAnimalsConfig.enablePig && (!BetterAnimalsConfig.enableQuarkOverridePig || quark == null || !quarkLoaded))
