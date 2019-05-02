@@ -1,7 +1,5 @@
 package com.ocelot.betteranimals.client;
 
-import org.apache.logging.log4j.Level;
-
 import com.ocelot.betteranimals.BetterAnimals;
 import com.ocelot.betteranimals.client.render.entity.RenderNewCaveSpider;
 import com.ocelot.betteranimals.client.render.entity.RenderNewChicken;
@@ -45,18 +43,14 @@ public class RenderHandler {
     private static boolean quarkLoaded = false;
 
     public static void preinit() {
-        midnight = getInteropProxy(ModInteropProxy.class, "midnight", "ActiveCompatMidnight", "InactiveCompatMidnight");
         quark = getInteropProxy(ModInteropProxy.class, "quark", "ActiveCompatQuark", "InactiveCompatQuark");
         quarkSpecial = getInteropProxy(QuarkSpecialHandler.class, "quark", "QuarkSpecialHandlerActive", "QuarkSpecialHandlerInactive");
-        BetterAnimals.logger().log(Level.DEBUG, "Quark proxy: " + quark);
+        BetterAnimals.logger().debug("Quark proxy: " + quark);
         if(quarkSpecial != null) {
             quarkSpecial.preQuark();
         }
         if(quark != null) {
             quarkLoaded = quark.register();
-        }
-        if(midnight != null) {
-            midnight.register();
         }
     }
 
@@ -93,12 +87,14 @@ public class RenderHandler {
         sophisticatedwolves = getInteropProxy(ModInteropProxy.class, "sophisticatedwolves", "ActiveCompatSophisticatedWolves", "InactiveCompatSophisticatedWolves");
         abyssalcraft = getInteropProxy(ModInteropProxy.class, "abyssalcraft", "ActiveCompatAbyssalCraft", "InactiveCompatAbyssalCraft");
         brownmooshrooms = getInteropProxy(ModInteropProxy.class, "brownmooshrooms", "ActiveCompatBrownMooshrooms", "InactiveCompatBrownMooshrooms");
+        midnight = getInteropProxy(ModInteropProxy.class, "midnight", "ActiveCompatMidnight", "InactiveCompatMidnight");
         
         //Register renderers for classes
         //Check for non null to prevent NullPointers if exceptions are thrown
-        BetterAnimals.logger().log(Level.DEBUG, "PrimalCore proxy: " + primalcore);
-        BetterAnimals.logger().log(Level.DEBUG, "AbyssalCraft proxy: " + abyssalcraft);
-        BetterAnimals.logger().log(Level.DEBUG, "BrownMooshrooms proxy: " + brownmooshrooms);
+        BetterAnimals.logger().debug("PrimalCore proxy: " + primalcore);
+        BetterAnimals.logger().debug("AbyssalCraft proxy: " + abyssalcraft);
+        BetterAnimals.logger().debug("BrownMooshrooms proxy: " + brownmooshrooms);
+        BetterAnimals.logger().debug("Midnight proxy: " + midnight);
         if(primalcore != null) {
             primalcore.register();
         }
@@ -115,13 +111,9 @@ public class RenderHandler {
 
     // This must take place in postinit because sophisticatedwolves has placed it in init (fixed in later versions)
     public static void postinit() {
-        BetterAnimals.logger().log(Level.DEBUG, "SophisticatedWolves proxy: " + sophisticatedwolves);
+        BetterAnimals.logger().debug("SophisticatedWolves proxy: " + sophisticatedwolves);
         if(sophisticatedwolves != null && BetterAnimalsConfig.enableSophisticatedWolf) {
             sophisticatedwolves.register();
-        }
-        BetterAnimals.logger().debug("Midnight proxy: " + midnight);
-        if(midnight != null) {
-            midnight.register();
         }
     }
 
@@ -134,10 +126,10 @@ public class RenderHandler {
         T proxy = null;
         try {
             if (Loader.isModLoaded(modid)) {
-                BetterAnimals.logger().log(Level.DEBUG, "Loading compat classes for mod " + modid + " with type " + type.getSimpleName());
+                BetterAnimals.logger().debug("Loading compat classes for mod " + modid + " with type " + type.getSimpleName());
                 // reflection to avoid hard dependency
                 proxy = Class.forName("com.ocelot.betteranimals.compat." + classNameActive).asSubclass(type).newInstance();
-                BetterAnimals.logger().log(Level.DEBUG, "Found proxy: " + proxy);
+                BetterAnimals.logger().debug("Found proxy: " + proxy);
             } else {
                 proxy = Class.forName("com.ocelot.betteranimals.compat." + classNameInactive).asSubclass(type).newInstance();
             }
