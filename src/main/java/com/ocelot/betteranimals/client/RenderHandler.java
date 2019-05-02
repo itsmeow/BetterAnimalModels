@@ -45,12 +45,17 @@ public class RenderHandler {
     public static void preinit() {
         quark = getInteropProxy(ModInteropProxy.class, "quark", "ActiveCompatQuark", "InactiveCompatQuark");
         quarkSpecial = getInteropProxy(QuarkSpecialHandler.class, "quark", "QuarkSpecialHandlerActive", "QuarkSpecialHandlerInactive");
+        midnight = getInteropProxy(ModInteropProxy.class, "midnight", "ActiveCompatMidnight", "InactiveCompatMidnight");
         BetterAnimals.logger().debug("Quark proxy: " + quark);
+        BetterAnimals.logger().debug("Midnight proxy: " + midnight);
         if(quarkSpecial != null) {
             quarkSpecial.preQuark();
         }
         if(quark != null) {
             quarkLoaded = quark.register();
+        }
+        if(midnight != null) {
+            midnight.register();
         }
     }
 
@@ -87,14 +92,12 @@ public class RenderHandler {
         sophisticatedwolves = getInteropProxy(ModInteropProxy.class, "sophisticatedwolves", "ActiveCompatSophisticatedWolves", "InactiveCompatSophisticatedWolves");
         abyssalcraft = getInteropProxy(ModInteropProxy.class, "abyssalcraft", "ActiveCompatAbyssalCraft", "InactiveCompatAbyssalCraft");
         brownmooshrooms = getInteropProxy(ModInteropProxy.class, "brownmooshrooms", "ActiveCompatBrownMooshrooms", "InactiveCompatBrownMooshrooms");
-        midnight = getInteropProxy(ModInteropProxy.class, "midnight", "ActiveCompatMidnight", "InactiveCompatMidnight");
         
         //Register renderers for classes
         //Check for non null to prevent NullPointers if exceptions are thrown
         BetterAnimals.logger().debug("PrimalCore proxy: " + primalcore);
         BetterAnimals.logger().debug("AbyssalCraft proxy: " + abyssalcraft);
         BetterAnimals.logger().debug("BrownMooshrooms proxy: " + brownmooshrooms);
-        BetterAnimals.logger().debug("Midnight proxy: " + midnight);
         if(primalcore != null) {
             primalcore.register();
         }
@@ -103,9 +106,6 @@ public class RenderHandler {
         }
         if(brownmooshrooms != null) {
             brownmooshrooms.register();
-        }
-        if(midnight != null) {
-            midnight.register();
         }
     }
 

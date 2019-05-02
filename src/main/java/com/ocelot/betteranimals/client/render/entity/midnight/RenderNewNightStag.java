@@ -30,7 +30,7 @@ public class RenderNewNightStag extends RenderLiving<EntityNightStag> {
 
     public RenderNewNightStag(RenderManager renderManager) {
         super(renderManager, new ModelNewNightstag(), 0.0F);
-        this.addLayer(new LayerRendererEmissive<>(new ModelNewNightstag(), EMISSIVE_TEXTURE, RenderNewNightStag::computeBrightness, RenderNewNightStag::computeColor));
+        this.addLayer(new LayerRendererEmissive<EntityNightStag>(this.mainModel, EMISSIVE_TEXTURE, RenderNewNightStag::computeBrightness, RenderNewNightStag::computeColor));
     }
 
     @SubscribeEvent
