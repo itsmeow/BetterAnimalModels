@@ -12,7 +12,6 @@ import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 
@@ -32,11 +31,10 @@ public class RenderNewNightStag extends RenderLiving<EntityNightStag> {
     public RenderNewNightStag(RenderManager renderManager) {
         super(renderManager, new ModelNewNightstag(), 0.0F);
         this.addLayer(new LayerRendererEmissive<>(new ModelNewNightstag(), EMISSIVE_TEXTURE, RenderNewNightStag::computeBrightness, RenderNewNightStag::computeColor));
-        MinecraftForge.EVENT_BUS.register(this);
     }
 
     @SubscribeEvent
-    public void onClientTick(TickEvent.ClientTickEvent event) {
+    public static void onClientTick(TickEvent.ClientTickEvent event) {
         if (event.phase == TickEvent.Phase.START) {
             prevFlicker = flicker;
 
