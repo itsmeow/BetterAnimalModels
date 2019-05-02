@@ -3,10 +3,10 @@ package com.ocelot.betteranimals.client.render.entity.abyssal;
 import com.ocelot.betteranimals.client.model.ModelNewSpider;
 import com.shinoow.abyssalcraft.common.entity.anti.EntityAntiSpider;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.entity.RenderLiving;
+import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.entity.layers.LayerRenderer;
 import net.minecraft.util.ResourceLocation;
 
@@ -15,8 +15,8 @@ public class RenderNewAntiSpider extends RenderLiving<EntityAntiSpider> implemen
 	private ResourceLocation base;
 	private ResourceLocation eyes;
 
-	public RenderNewAntiSpider(ResourceLocation base, ResourceLocation eyes) {
-		super(Minecraft.getMinecraft().getRenderManager(), new ModelNewSpider(), 1f);
+	public RenderNewAntiSpider(RenderManager m, ResourceLocation base, ResourceLocation eyes) {
+		super(m, new ModelNewSpider(), 1f);
 		this.base = base;
 		this.eyes = eyes;
 		this.addLayer(this);

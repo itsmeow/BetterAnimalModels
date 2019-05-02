@@ -42,6 +42,14 @@ public class ActiveCompatAbyssalCraft implements ModInteropProxy {
     public static final ResourceLocation DEMON_SHEEP_LAYER_TEX = new ResourceLocation(BetterAnimals.MODID, "textures/mobs/abyssalcraft/demon_sheep_fur.png");
     public static final ResourceLocation DEMON_CHICKEN_TEX = new ResourceLocation(BetterAnimals.MODID, "textures/mobs/abyssalcraft/demon_chicken.png");
     
+    public static final ResourceLocation ANTI_PIG_TEX = new ResourceLocation(BetterAnimals.MODID, "textures/mobs/abyssalcraft/anti/antipig.png");
+    public static final ResourceLocation ANTI_COW_TEX = new ResourceLocation(BetterAnimals.MODID, "textures/mobs/abyssalcraft/anti/anticow.png");
+    public static final ResourceLocation ANTI_CHICKEN_TEX = new ResourceLocation(BetterAnimals.MODID, "textures/mobs/abyssalcraft/anti/antichicken.png");
+    public static final ResourceLocation ANTI_SPIDER_TEX = new ResourceLocation(BetterAnimals.MODID, "textures/mobs/abyssalcraft/anti/antispider.png");
+    public static final ResourceLocation ANTI_SPIDER_LAYER_TEX = new ResourceLocation(BetterAnimals.MODID, "textures/mobs/abyssalcraft/anti/antispider_eyes.png");
+    
+    public static final ResourceLocation CORALIUM_SQUID_TEX = new ResourceLocation(BetterAnimals.MODID, "textures/mobs/abyssalcraft/coraliumsquid.png");
+    
 	@Override
 	public boolean register() {
 		if(BetterAnimalsConfig.enableEvilPig)
@@ -63,15 +71,15 @@ public class ActiveCompatAbyssalCraft implements ModInteropProxy {
 			CompatUtils.reg(EntityDemonChicken.class, m -> new RenderNewDemonChicken(m, DEMON_CHICKEN_TEX));
 
 		if(BetterAnimalsConfig.enableAntiPig)
-			CompatUtils.reg(EntityAntiPig.class, m -> new RenderNewAntiPig(new ResourceLocation(BetterAnimals.MODID, "textures/mobs/abyssalcraft/anti/antipig.png")));
+			CompatUtils.reg(EntityAntiPig.class, m -> new RenderNewAntiPig(m, ANTI_PIG_TEX));
 		if(BetterAnimalsConfig.enableAntiCow)
-			CompatUtils.reg(EntityAntiCow.class, m -> new RenderNewAntiCow(new ResourceLocation(BetterAnimals.MODID, "textures/mobs/abyssalcraft/anti/anticow.png")));
+			CompatUtils.reg(EntityAntiCow.class, m -> new RenderNewAntiCow(m, ANTI_COW_TEX));
 		if(BetterAnimalsConfig.enableAntiChicken)
-			CompatUtils.reg(EntityAntiChicken.class, m -> new RenderNewAntiChicken(new ResourceLocation(BetterAnimals.MODID, "textures/mobs/abyssalcraft/anti/antichicken.png")));
+			CompatUtils.reg(EntityAntiChicken.class, m -> new RenderNewAntiChicken(m, ANTI_CHICKEN_TEX));
 		if(BetterAnimalsConfig.enableAntiSpider)
-			CompatUtils.reg(EntityAntiSpider.class, m -> new RenderNewAntiSpider(new ResourceLocation(BetterAnimals.MODID, "textures/mobs/abyssalcraft/anti/antispider.png"), new ResourceLocation(BetterAnimals.MODID, "textures/mobs/abyssalcraft/anti/antispider_eyes.png")));
+			CompatUtils.reg(EntityAntiSpider.class, m -> new RenderNewAntiSpider(m, ANTI_SPIDER_TEX, ANTI_SPIDER_LAYER_TEX));
 		if(BetterAnimalsConfig.enableCoraliumSquid)
-			CompatUtils.reg(EntityCoraliumSquid.class, m -> new RenderNewSquid(m, new ResourceLocation(BetterAnimals.MODID, "textures/mobs/abyssalcraft/coraliumsquid.png")));
+			CompatUtils.reg(EntityCoraliumSquid.class, m -> new RenderNewSquid(m, CORALIUM_SQUID_TEX));
 		return true;
 	}
 
