@@ -3,9 +3,9 @@ package com.ocelot.betteranimals.client.render.entity.primal;
 import com.ocelot.betteranimals.BetterAnimals;
 import com.ocelot.betteranimals.client.model.ModelNewBear;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.RenderLiving;
+import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;
 import nmd.primal.core.common.entities.living.EntityBrownBear;
 
@@ -13,9 +13,9 @@ public class RenderNewBrownBear extends RenderLiving<EntityBrownBear> {
 	
 	private static final ResourceLocation BASE = new ResourceLocation(BetterAnimals.MODID, "textures/mobs/primal/primal_brown_bear.png");
 
-	public RenderNewBrownBear()
+	public RenderNewBrownBear(RenderManager m)
 	{
-		super(Minecraft.getMinecraft().getRenderManager(), new ModelNewBear(), 0.7F);
+		super(m, new ModelNewBear(), 0.7F);
 	}
 
 	/**

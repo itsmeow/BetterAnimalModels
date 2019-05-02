@@ -15,7 +15,11 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class RenderNewSquid extends RenderLiving<EntitySquid>
 {
     private ResourceLocation texture = new ResourceLocation(BetterAnimals.MODID, "textures/mobs/squid.png");
-
+    
+    public RenderNewSquid(RenderManager m) {
+        super(m, new ModelNewSquid(), 0.7F);
+    }
+    
     public RenderNewSquid(RenderManager m, ResourceLocation texture)
     {
         super(m, new ModelNewSquid(), 0.7F);

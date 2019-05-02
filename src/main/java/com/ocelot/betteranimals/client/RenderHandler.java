@@ -68,7 +68,7 @@ public class RenderHandler {
         if(BetterAnimalsConfig.enableMooshroom)
             RenderingRegistry.registerEntityRenderingHandler(EntityMooshroom.class, RenderNewMooshroom::new);
         if(BetterAnimalsConfig.enableSquid)
-            RenderingRegistry.registerEntityRenderingHandler(EntitySquid.class, m -> new RenderNewSquid(m, null));
+            RenderingRegistry.registerEntityRenderingHandler(EntitySquid.class, RenderNewSquid::new);
 
         // Mobs
         if(BetterAnimalsConfig.enableSpider)

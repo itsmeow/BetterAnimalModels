@@ -10,7 +10,7 @@ public class ActiveCompatBrownMooshrooms implements ModInteropProxy {
 	@Override
 	public boolean register() {
 		if(BetterAnimalsConfig.enableBrownMushroom)
-			CompatUtils.reg(EntityBrownMooshroom.class, m -> new RenderNewBrownMooshroom());
+			CompatUtils.reg(EntityBrownMooshroom.class, RenderNewBrownMooshroom::new);
 		return true;
 	}
 

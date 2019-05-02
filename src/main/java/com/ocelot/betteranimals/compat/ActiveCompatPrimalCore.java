@@ -17,13 +17,13 @@ public class ActiveCompatPrimalCore implements ModInteropProxy {
 	public boolean register() {
 
 		if(BetterAnimalsConfig.enableOvisAtre_primalcore)
-			CompatUtils.reg(EntityOvisAtre.class, m -> new RenderNewOvisAtre());
+			CompatUtils.reg(EntityOvisAtre.class, RenderNewOvisAtre::new);
 		if(BetterAnimalsConfig.enableSteppeWolf_primalcore)
-			CompatUtils.reg(EntityCanisCampestris.class, m -> new RenderNewSteppeWolf());
+			CompatUtils.reg(EntityCanisCampestris.class, RenderNewSteppeWolf::new);
 		if(BetterAnimalsConfig.enableBrownBear_primalcore)
-			CompatUtils.reg(EntityBrownBear.class, m -> new RenderNewBrownBear());
+			CompatUtils.reg(EntityBrownBear.class, RenderNewBrownBear::new);
 		if(BetterAnimalsConfig.enableBlackBear_primalcore)
-			CompatUtils.reg(EntityBlackBear.class, m -> new RenderNewBlackBear());
+			CompatUtils.reg(EntityBlackBear.class, RenderNewBlackBear::new);
 		return true;
 	}
 

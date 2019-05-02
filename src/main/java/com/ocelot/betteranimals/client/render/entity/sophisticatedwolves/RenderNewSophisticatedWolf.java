@@ -3,9 +3,9 @@ package com.ocelot.betteranimals.client.render.entity.sophisticatedwolves;
 import com.ocelot.betteranimals.BetterAnimals;
 import com.ocelot.betteranimals.client.model.ModelNewWolf;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.RenderLiving;
+import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;
 import sophisticated_wolves.api.EnumWolfSpecies;
 import sophisticated_wolves.entity.EntitySophisticatedWolf;
@@ -28,8 +28,8 @@ public class RenderNewSophisticatedWolf extends RenderLiving<EntitySophisticated
 	private static final ResourceLocation WOLF_TAME = new ResourceLocation(BetterAnimals.MODID, "textures/mobs/wolf/wolf_tame.png");
 	private static final ResourceLocation WOLF_ANGRY = new ResourceLocation(BetterAnimals.MODID, "textures/mobs/wolf/wolf_angry.png");
 
-	public RenderNewSophisticatedWolf() {
-		super(Minecraft.getMinecraft().getRenderManager(), new ModelNewWolf(), 0.4F);
+	public RenderNewSophisticatedWolf(RenderManager m) {
+		super(m, new ModelNewWolf(), 0.4F);
 	}
 
 	/**
