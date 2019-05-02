@@ -30,25 +30,37 @@ import net.minecraft.util.ResourceLocation;
 
 public class ActiveCompatAbyssalCraft implements ModInteropProxy {
 
+    public static final ResourceLocation PIG_TEX = new ResourceLocation(BetterAnimals.MODID, "textures/mobs/pig.png");
+    public static final ResourceLocation COW_TEX = new ResourceLocation(BetterAnimals.MODID, "textures/mobs/cow.png");
+    public static final ResourceLocation SHEEP_TEX = new ResourceLocation(BetterAnimals.MODID, "textures/mobs/sheep.png");
+    public static final ResourceLocation SHEEP_LAYER_TEX = new ResourceLocation(BetterAnimals.MODID, "textures/mobs/sheep_fur.png");
+    public static final ResourceLocation CHICKEN_TEX = new ResourceLocation(BetterAnimals.MODID, "textures/mobs/chicken.png");
+    
+    public static final ResourceLocation DEMON_PIG_TEX = new ResourceLocation(BetterAnimals.MODID, "textures/mobs/abyssalcraft/demon_pig.png");
+    public static final ResourceLocation DEMON_COW_TEX = new ResourceLocation(BetterAnimals.MODID, "textures/mobs/abyssalcraft/demon_cow.png");
+    public static final ResourceLocation DEMON_SHEEP_TEX = new ResourceLocation(BetterAnimals.MODID, "textures/mobs/abyssalcraft/demon_sheep.png");
+    public static final ResourceLocation DEMON_SHEEP_LAYER_TEX = new ResourceLocation(BetterAnimals.MODID, "textures/mobs/abyssalcraft/demon_sheep_fur.png");
+    public static final ResourceLocation DEMON_CHICKEN_TEX = new ResourceLocation(BetterAnimals.MODID, "textures/mobs/abyssalcraft/demon_chicken.png");
+    
 	@Override
 	public boolean register() {
 		if(BetterAnimalsConfig.enableEvilPig)
-			CompatUtils.reg(EntityEvilpig.class, m -> new RenderNewEvilPig(new ResourceLocation(BetterAnimals.MODID, "textures/mobs/pig.png")));
+			CompatUtils.reg(EntityEvilpig.class, m -> new RenderNewEvilPig(m, PIG_TEX));
 		if(BetterAnimalsConfig.enableEvilCow)
-			CompatUtils.reg(EntityEvilCow.class, m -> new RenderNewEvilCow(new ResourceLocation(BetterAnimals.MODID, "textures/mobs/cow.png")));
+			CompatUtils.reg(EntityEvilCow.class, m -> new RenderNewEvilCow(m, COW_TEX));
 		if(BetterAnimalsConfig.enableEvilSheep)
-			CompatUtils.reg(EntityEvilSheep.class, m -> new RenderNewEvilSheep(new ResourceLocation(BetterAnimals.MODID, "textures/mobs/sheep.png"), new ResourceLocation(BetterAnimals.MODID, "textures/mobs/sheep_fur.png")));
+			CompatUtils.reg(EntityEvilSheep.class, m -> new RenderNewEvilSheep(m, SHEEP_TEX, SHEEP_LAYER_TEX));
 		if(BetterAnimalsConfig.enableEvilChicken)
-			CompatUtils.reg(EntityEvilChicken.class, m -> new RenderNewEvilChicken(new ResourceLocation(BetterAnimals.MODID, "textures/mobs/chicken.png")));
+			CompatUtils.reg(EntityEvilChicken.class, m -> new RenderNewEvilChicken(m, CHICKEN_TEX));
 
 		if(BetterAnimalsConfig.enableDemonPig)
-			CompatUtils.reg(EntityDemonPig.class, m -> new RenderNewEvilPig(new ResourceLocation(BetterAnimals.MODID, "textures/mobs/abyssalcraft/demon_pig.png")));
+			CompatUtils.reg(EntityDemonPig.class, m -> new RenderNewEvilPig(m, DEMON_PIG_TEX));
 		if(BetterAnimalsConfig.enableDemonCow)
-			CompatUtils.reg(EntityDemonCow.class, m -> new RenderNewEvilCow(new ResourceLocation(BetterAnimals.MODID, "textures/mobs/abyssalcraft/demon_cow.png")));
+			CompatUtils.reg(EntityDemonCow.class, m -> new RenderNewEvilCow(m, DEMON_COW_TEX));
 		if(BetterAnimalsConfig.enableDemonSheep)
-			CompatUtils.reg(EntityDemonSheep.class, m -> new RenderNewEvilSheep(new ResourceLocation(BetterAnimals.MODID, "textures/mobs/abyssalcraft/demon_sheep.png"), new ResourceLocation(BetterAnimals.MODID, "textures/mobs/abyssalcraft/demon_sheep_fur.png")));
+			CompatUtils.reg(EntityDemonSheep.class, m -> new RenderNewEvilSheep(m, DEMON_SHEEP_TEX, DEMON_SHEEP_LAYER_TEX));
 		if(BetterAnimalsConfig.enableDemonChicken)
-			CompatUtils.reg(EntityDemonChicken.class, m -> new RenderNewDemonChicken(new ResourceLocation(BetterAnimals.MODID, "textures/mobs/abyssalcraft/demon_chicken.png")));
+			CompatUtils.reg(EntityDemonChicken.class, m -> new RenderNewDemonChicken(m, DEMON_CHICKEN_TEX));
 
 		if(BetterAnimalsConfig.enableAntiPig)
 			CompatUtils.reg(EntityAntiPig.class, m -> new RenderNewAntiPig(new ResourceLocation(BetterAnimals.MODID, "textures/mobs/abyssalcraft/anti/antipig.png")));

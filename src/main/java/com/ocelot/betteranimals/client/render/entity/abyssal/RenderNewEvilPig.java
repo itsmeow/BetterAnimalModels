@@ -2,9 +2,9 @@ package com.ocelot.betteranimals.client.render.entity.abyssal;
 
 import com.ocelot.betteranimals.client.model.ModelNewPig;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.RenderLiving;
+import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.util.ResourceLocation;
 
@@ -12,8 +12,8 @@ public class RenderNewEvilPig extends RenderLiving<EntityMob>{
 
 	private ResourceLocation texture = null;
 	
-	public RenderNewEvilPig(ResourceLocation texture) {
-		super(Minecraft.getMinecraft().getRenderManager(), new ModelNewPig(), 0.4F);
+	public RenderNewEvilPig(RenderManager m, ResourceLocation texture) {
+		super(m, new ModelNewPig(), 0.4F);
 		this.texture = texture;
 	}
 	

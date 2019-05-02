@@ -4,9 +4,9 @@ import com.ocelot.betteranimals.BetterAnimals;
 import com.ocelot.betteranimals.client.model.ModelNewChicken;
 import com.shinoow.abyssalcraft.common.entity.demon.EntityEvilChicken;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.RenderLiving;
+import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 
@@ -14,8 +14,8 @@ public class RenderNewEvilChicken extends RenderLiving<EntityEvilChicken>{
 
 	private ResourceLocation texture = new ResourceLocation(BetterAnimals.MODID, "textures/mobs/chicken.png");
 
-	public RenderNewEvilChicken(ResourceLocation texture) {
-		super(Minecraft.getMinecraft().getRenderManager(), new ModelNewChicken(), 0.4F);
+	public RenderNewEvilChicken(RenderManager m, ResourceLocation texture) {
+		super(m, new ModelNewChicken(), 0.4F);
 		this.texture = texture;
 	}
 
