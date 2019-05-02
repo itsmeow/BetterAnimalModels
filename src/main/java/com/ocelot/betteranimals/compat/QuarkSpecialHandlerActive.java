@@ -9,11 +9,11 @@ public class QuarkSpecialHandlerActive implements QuarkSpecialHandler {
     
     @Override
     public void preQuark() {
-        MinecraftForge.EVENT_BUS.register(this);
+        MinecraftForge.EVENT_BUS.register(QuarkSpecialHandlerActive.class);
     }
     
     @SubscribeEvent
-    public void onFeatureLoad(FeatureEvent.Loaded event) {
+    public static void onFeatureLoad(FeatureEvent.Loaded event) {
         if(event.getFeature() instanceof RandomAnimalTextures) {
             event.setCanceled(true);
         }
