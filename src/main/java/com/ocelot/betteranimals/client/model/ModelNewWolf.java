@@ -261,10 +261,10 @@ public class ModelNewWolf extends Model {
 			limbSwing = limbSwing + Model.getSwingProgressPrev(living);
 			this.head.rotateAngleY = Model.getHeadYaw(living) * 0.01f;
 			this.head.rotateAngleX = (float) Math.toRadians(Model.getHeadPitch(living)) + 0.6f;
-			lHindLeg01.rotateAngleX = MathHelper.sin(limbSwing * 0.8665F + (float) Math.PI) * swingModifier * limbSwingAmount;
-			rHindLeg01.rotateAngleX = MathHelper.cos(limbSwing * 0.8665F) * swingModifier * limbSwingAmount;
-			lArm01.rotateAngleX = MathHelper.sin(limbSwing * 0.8665F) * swingModifier * limbSwingAmount;
-			rArm01.rotateAngleX = MathHelper.cos(limbSwing * 0.8665F + (float) Math.PI) * swingModifier * limbSwingAmount;
+			lHindLeg01.rotateAngleX = MathHelper.sin(limbSwing * 0.8665F + (float) Math.PI) * swingModifier * limbSwingAmount - 0.22759093446006054F;
+			rHindLeg01.rotateAngleX = MathHelper.cos(limbSwing * 0.8665F) * swingModifier * limbSwingAmount - 0.22759093446006054F;
+			lArm01.rotateAngleX = MathHelper.sin(limbSwing * 0.8665F) * swingModifier * limbSwingAmount + 0.22759093446006054F;
+			rArm01.rotateAngleX = MathHelper.cos(limbSwing * 0.8665F + (float) Math.PI) * swingModifier * limbSwingAmount + 0.22759093446006054F;
 			tail01.rotateAngleX = -0.6829473363053812F + tailRotation;
 			this.neck.rotateAngleX = -0.6F;
 		}

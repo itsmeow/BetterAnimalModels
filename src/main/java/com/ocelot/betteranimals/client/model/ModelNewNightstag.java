@@ -395,8 +395,10 @@ public class ModelNewNightstag extends ModelBase {
         this.head.rotateAngleX = (headPitch * 0.017453292f) + 0.17453292519943295f;
         this.head.rotateAngleY = netHeadYaw * 0.017453292f;
         this.body.rotateAngleX = 0f;
-        this.lForeleg01.rotateAngleX = this.rHindLeg01.rotateAngleX = MathHelper.cos(limbSwing * 0.6662f) * 1.4f * limbSwingAmount;
-        this.rForeleg01.rotateAngleX = this.lHindLeg01.rotateAngleX = MathHelper.cos(limbSwing * 0.6662f + (float)Math.PI) * 1.4f * limbSwingAmount;
+        this.lForeleg01.rotateAngleX = MathHelper.cos(limbSwing * 0.6662f) * 1.4f * limbSwingAmount + 0.136659280431156F;
+        this.rHindLeg01.rotateAngleX = MathHelper.cos(limbSwing * 0.6662f) * 1.4f * limbSwingAmount - 0.22759093446006054F;
+        this.rForeleg01.rotateAngleX = MathHelper.cos(limbSwing * 0.6662f + (float)Math.PI) * 1.4f * limbSwingAmount + 0.136659280431156F;
+        this.lHindLeg01.rotateAngleX = MathHelper.cos(limbSwing * 0.6662f + (float)Math.PI) * 1.4f * limbSwingAmount - 0.22759093446006054F;
         this.head.rotationPointX = 0f;
         this.lHindLeg01.rotateAngleZ = 0f;
 

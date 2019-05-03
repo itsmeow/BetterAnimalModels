@@ -323,9 +323,9 @@ public class ModelNewCow extends Model {
 			this.neck.rotateAngleX = Model.getHeadPitch(living) * 0.017453292F;
 			this.neck.rotateAngleY = Model.getHeadYaw(living) * 0.017453292F;
 			lLeg01.rotateAngleX = MathHelper.sin(limbSwing * 0.8665F + (float) Math.PI) * swingModifier * limbSwingAmount;
-			lArm01.rotateAngleX = MathHelper.cos(limbSwing * 0.8665F) * swingModifier * limbSwingAmount;
+			lArm01.rotateAngleX = MathHelper.cos(limbSwing * 0.8665F) * swingModifier * limbSwingAmount + 0.091106186954104F;
 			rLeg01.rotateAngleX = MathHelper.sin(limbSwing * 0.8665F) * swingModifier * limbSwingAmount;
-			rArm01.rotateAngleX = MathHelper.cos(limbSwing * 0.8665F + (float) Math.PI) * swingModifier * limbSwingAmount;
+			rArm01.rotateAngleX = MathHelper.cos(limbSwing * 0.8665F + (float) Math.PI) * swingModifier * limbSwingAmount + 0.091106186954104F;
 		}
 		this.neck.rotateAngleX = -0.6F;
 		this.head.rotateAngleX = -0.6F;

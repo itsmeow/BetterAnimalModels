@@ -359,10 +359,10 @@ public class ModelNewSheep extends Model {
 			this.head.rotateAngleY = Model.getHeadYaw(living) * 0.01f;
 			this.head.rotateAngleZ = this.head.rotateAngleY;
 			this.head.rotateAngleX = (float) Math.toRadians(Model.getHeadPitch(living));
-			lLeg01.rotateAngleX = MathHelper.sin(limbSwing * 0.8665F + (float) Math.PI) * swingModifier * limbSwingAmount;
-			lArm01.rotateAngleX = MathHelper.cos(limbSwing * 0.8665F) * swingModifier * limbSwingAmount;
-			rLeg01.rotateAngleX = MathHelper.sin(limbSwing * 0.8665F) * swingModifier * limbSwingAmount;
-			rArm01.rotateAngleX = MathHelper.cos(limbSwing * 0.8665F + (float) Math.PI) * swingModifier * limbSwingAmount;
+			lLeg01.rotateAngleX = MathHelper.sin(limbSwing * 0.8665F + (float) Math.PI) * swingModifier * limbSwingAmount - 0.18203784098300857F;
+			lArm01.rotateAngleX = MathHelper.cos(limbSwing * 0.8665F) * swingModifier * limbSwingAmount + 0.091106186954104F;
+			rLeg01.rotateAngleX = MathHelper.sin(limbSwing * 0.8665F) * swingModifier * limbSwingAmount - 0.18203784098300857F;
+			rArm01.rotateAngleX = MathHelper.cos(limbSwing * 0.8665F + (float) Math.PI) * swingModifier * limbSwingAmount + 0.091106186954104F;
 			this.neck.rotateAngleX = -0.6F;
 			this.head.rotateAngleX = -0.6F;
 		}

@@ -384,10 +384,10 @@ public class ModelNewBear extends Model {
 		float f = limbSwing;
 		float f1 = limbSwingAmount;
 
-		this.lArm01.rotateAngleX = MathHelper.cos(f * 0.6662F) * 1.4F * f1;
-		this.rArm01.rotateAngleX = MathHelper.cos(f * 0.6662F + (float)Math.PI) * 1.4F * f1;
-		this.rLeg01.rotateAngleX = MathHelper.cos(f * 0.6662F) * 1.4F * f1;
-		this.lLeg01.rotateAngleX = MathHelper.cos(f * 0.6662F + (float)Math.PI) * 1.4F * f1;
+		this.lArm01.rotateAngleX = MathHelper.cos(f * 0.6662F) * 1.4F * f1 + 0.18203784098300857F;
+		this.rArm01.rotateAngleX = MathHelper.cos(f * 0.6662F + (float)Math.PI) * 1.4F * f1 + 0.18203784098300857F;
+		this.rLeg01.rotateAngleX = MathHelper.cos(f * 0.6662F) * 1.4F * f1 - 0.136659280431156F;
+		this.lLeg01.rotateAngleX = MathHelper.cos(f * 0.6662F + (float)Math.PI) * 1.4F * f1 - 0.136659280431156F;
 
 		if(entityIn instanceof EntityLiving) {
 			this.neck.rotateAngleX = Model.getHeadPitch((EntityLiving)entityIn) * 0.017453292F;
