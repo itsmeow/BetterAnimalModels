@@ -27,9 +27,14 @@ import net.minecraft.entity.passive.EntityPig;
 import net.minecraft.entity.passive.EntitySheep;
 import net.minecraft.entity.passive.EntitySquid;
 import net.minecraft.entity.passive.EntityWolf;
+import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Loader;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.eventhandler.EventPriority;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
+@Mod.EventBusSubscriber
 public class RenderHandler {
 
     public static ModInteropProxy primalcore;
@@ -41,13 +46,24 @@ public class RenderHandler {
     public static ModInteropProxy midnight;
     
     private static boolean quarkLoaded = false;
-
+    
     public static void preinit() {
+        //Mod Compat
+
+        //Load proxy classes
+        primalcore = getInteropProxy(ModInteropProxy.class, "primal", "ActiveCompatPrimalCore", "InactiveCompatPrimalCore");
+        abyssalcraft = getInteropProxy(ModInteropProxy.class, "abyssalcraft", "ActiveCompatAbyssalCraft", "InactiveCompatAbyssalCraft");
+        brownmooshrooms = getInteropProxy(ModInteropProxy.class, "brownmooshrooms", "ActiveCompatBrownMooshrooms", "InactiveCompatBrownMooshrooms");
         quark = getInteropProxy(ModInteropProxy.class, "quark", "ActiveCompatQuark", "InactiveCompatQuark");
         quarkSpecial = getInteropProxy(QuarkSpecialHandler.class, "quark", "QuarkSpecialHandlerActive", "QuarkSpecialHandlerInactive");
         midnight = getInteropProxy(ModInteropProxy.class, "midnight", "ActiveCompatMidnight", "InactiveCompatMidnight");
+        sophisticatedwolves = getInteropProxy(ModInteropProxy.class, "sophisticatedwolves", "ActiveCompatSophisticatedWolves", "InactiveCompatSophisticatedWolves");
         BetterAnimals.logger().debug("Quark proxy: " + quark);
         BetterAnimals.logger().debug("Midnight proxy: " + midnight);
+        BetterAnimals.logger().debug("SophisticatedWolves proxy: " + sophisticatedwolves);
+        BetterAnimals.logger().debug("PrimalCore proxy: " + primalcore);
+        BetterAnimals.logger().debug("AbyssalCraft proxy: " + abyssalcraft);
+        BetterAnimals.logger().debug("BrownMooshrooms proxy: " + brownmooshrooms);
         if(quarkSpecial != null) {
             quarkSpecial.preQuark();
         }
@@ -57,9 +73,19 @@ public class RenderHandler {
         if(midnight != null) {
             midnight.register();
         }
+        if(sophisticatedwolves != null && BetterAnimalsConfig.enableSophisticatedWolf) {
+            sophisticatedwolves.register();
+        }
     }
-
+    
     public static void init() {
+        if(sophisticatedwolves != null && BetterAnimalsConfig.enableSophisticatedWolf) {
+            sophisticatedwolves.register();
+        }
+    }
+    
+    @SubscribeEvent(priority = EventPriority.LOWEST)
+    public static void mre(ModelRegistryEvent e) {
         if(BetterAnimalsConfig.enableCow && (!BetterAnimalsConfig.enableQuarkOverrideCow || quark == null || !quarkLoaded))
             RenderingRegistry.registerEntityRenderingHandler(EntityCow.class, RenderNewCow::new);
         if(BetterAnimalsConfig.enablePig && (!BetterAnimalsConfig.enableQuarkOverridePig || quark == null || !quarkLoaded))
@@ -85,19 +111,10 @@ public class RenderHandler {
         if(BetterAnimalsConfig.enablePolarBear)
             RenderingRegistry.registerEntityRenderingHandler(EntityPolarBear.class, RenderNewPolarBear::new);
 
-        //Mod Compat
 
-        //Load proxy classes
-        primalcore = getInteropProxy(ModInteropProxy.class, "primal", "ActiveCompatPrimalCore", "InactiveCompatPrimalCore");
-        sophisticatedwolves = getInteropProxy(ModInteropProxy.class, "sophisticatedwolves", "ActiveCompatSophisticatedWolves", "InactiveCompatSophisticatedWolves");
-        abyssalcraft = getInteropProxy(ModInteropProxy.class, "abyssalcraft", "ActiveCompatAbyssalCraft", "InactiveCompatAbyssalCraft");
-        brownmooshrooms = getInteropProxy(ModInteropProxy.class, "brownmooshrooms", "ActiveCompatBrownMooshrooms", "InactiveCompatBrownMooshrooms");
         
         //Register renderers for classes
         //Check for non null to prevent NullPointers if exceptions are thrown
-        BetterAnimals.logger().debug("PrimalCore proxy: " + primalcore);
-        BetterAnimals.logger().debug("AbyssalCraft proxy: " + abyssalcraft);
-        BetterAnimals.logger().debug("BrownMooshrooms proxy: " + brownmooshrooms);
         if(primalcore != null) {
             primalcore.register();
         }
@@ -107,11 +124,12 @@ public class RenderHandler {
         if(brownmooshrooms != null) {
             brownmooshrooms.register();
         }
+        if(sophisticatedwolves != null && BetterAnimalsConfig.enableSophisticatedWolf) {
+            sophisticatedwolves.register();
+        }
     }
-
-    // This must take place in postinit because sophisticatedwolves has placed it in init (fixed in later versions)
+    
     public static void postinit() {
-        BetterAnimals.logger().debug("SophisticatedWolves proxy: " + sophisticatedwolves);
         if(sophisticatedwolves != null && BetterAnimalsConfig.enableSophisticatedWolf) {
             sophisticatedwolves.register();
         }
