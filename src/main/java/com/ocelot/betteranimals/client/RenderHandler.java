@@ -86,11 +86,11 @@ public class RenderHandler {
     
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public static void mre(ModelRegistryEvent e) {
-        if(BetterAnimalsConfig.enableCow && (!BetterAnimalsConfig.enableQuarkOverrideCow || quark == null || !quarkLoaded))
+        if(BetterAnimalsConfig.enableCow && !quarkLoaded)
             RenderingRegistry.registerEntityRenderingHandler(EntityCow.class, RenderNewCow::new);
-        if(BetterAnimalsConfig.enablePig && (!BetterAnimalsConfig.enableQuarkOverridePig || quark == null || !quarkLoaded))
+        if(BetterAnimalsConfig.enablePig && !quarkLoaded)
             RenderingRegistry.registerEntityRenderingHandler(EntityPig.class, RenderNewPig::new);
-        if(BetterAnimalsConfig.enableChicken && (!BetterAnimalsConfig.enableQuarkOverrideChicken || quark == null || !quarkLoaded))
+        if(BetterAnimalsConfig.enableChicken && !quarkLoaded)
             RenderingRegistry.registerEntityRenderingHandler(EntityChicken.class, RenderNewChicken::new);
         if(BetterAnimalsConfig.enableSheep)
             RenderingRegistry.registerEntityRenderingHandler(EntitySheep.class, RenderNewSheep::new);
