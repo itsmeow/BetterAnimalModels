@@ -11,7 +11,7 @@ apply plugin: 'net.minecraftforge.gradle.forge'
 //Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
 
 
-version = "4.0"
+version = "5.0"
 group = "com.ocelot.betteranimals"
 archivesBaseName = "betteranimals"
 
@@ -23,7 +23,7 @@ compileJava {
 minecraft {
     version = "1.12.2-14.23.5.2836"
     runDir = "run"
-    
+    replace "@VERSION@", project.version
     mappings = "stable_39"
 }
 
