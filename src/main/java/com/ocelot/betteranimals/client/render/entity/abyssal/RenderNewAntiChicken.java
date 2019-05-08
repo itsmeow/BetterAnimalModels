@@ -2,46 +2,34 @@ package com.ocelot.betteranimals.client.render.entity.abyssal;
 
 import com.ocelot.betteranimals.BetterAnimals;
 import com.ocelot.betteranimals.client.model.ModelNewChicken;
-import com.shinoow.abyssalcraft.common.entity.anti.EntityAntiChicken;
+import com.shinoow.abyssalcraft.client.render.entity.RenderAntiChicken;
 
 import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.RenderManager;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.MathHelper;
 
-public class RenderNewAntiChicken extends RenderLiving<EntityAntiChicken>{
+public class RenderNewAntiChicken extends RenderAntiChicken {
 
 	private ResourceLocation texture = new ResourceLocation(BetterAnimals.MODID, "textures/mobs/chicken.png");
 
-	public RenderNewAntiChicken(RenderManager m, ResourceLocation texture) {
-		super(m, new ModelNewChicken(), 0.4F);
+	@SuppressWarnings("unchecked")
+    public RenderNewAntiChicken(RenderManager m, ResourceLocation texture) {
+		super(m);
+		this.mainModel = new ModelNewChicken();
 		this.texture = texture;
 	}
 
 	@Override
-	protected void preRenderCallback(EntityAntiChicken entitylivingbaseIn, float partialTickTime) {
+	protected void preRenderCallback(EntityLivingBase entitylivingbaseIn, float partialTickTime) {
 		if (!getMainModel().isChild) {
 			GlStateManager.scale(0.9D, 0.9D, 0.9D);
 		}
 	}
 
 	@Override
-	protected float handleRotationFloat(EntityAntiChicken chicken, float partialTicks) {
-		float f = 0;
-		float f1 = 0;
-		float wingRotation = chicken.wingRotation;
-		float destPos = chicken.destPos;
-		float oFlap = chicken.oFlap;
-		float oFlapSpeed = chicken.oFlapSpeed;
-		f = oFlap + (wingRotation - oFlap) * partialTicks;
-		f1 = oFlapSpeed + (destPos - oFlapSpeed) * partialTicks;
-
-		return (MathHelper.sin(f) + 1.0F) * f1;
-	}
-
-	@Override
-	protected ResourceLocation getEntityTexture(EntityAntiChicken entity) {
+	protected ResourceLocation getEntityTexture(Entity entity) {
 		return texture;
 	}
 

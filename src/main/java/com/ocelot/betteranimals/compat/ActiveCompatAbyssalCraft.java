@@ -50,7 +50,8 @@ public class ActiveCompatAbyssalCraft implements ModInteropProxy {
     
     public static final ResourceLocation CORALIUM_SQUID_TEX = new ResourceLocation(BetterAnimals.MODID, "textures/mobs/abyssalcraft/coraliumsquid.png");
     
-	@Override
+	@SuppressWarnings("unchecked")
+    @Override
 	public boolean register() {
 		if(BetterAnimalsConfig.enableEvilPig)
 			CompatUtils.reg(EntityEvilpig.class, m -> new RenderNewEvilPig(m, PIG_TEX));

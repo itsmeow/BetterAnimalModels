@@ -73,15 +73,10 @@ public class RenderHandler {
         if(midnight != null) {
             midnight.register();
         }
-        if(sophisticatedwolves != null && BetterAnimalsConfig.enableSophisticatedWolf) {
-            sophisticatedwolves.register();
-        }
     }
     
     public static void init() {
-        if(sophisticatedwolves != null && BetterAnimalsConfig.enableSophisticatedWolf) {
-            sophisticatedwolves.register();
-        }
+
     }
     
     @SubscribeEvent(priority = EventPriority.LOWEST)
@@ -123,9 +118,6 @@ public class RenderHandler {
         }
         if(brownmooshrooms != null) {
             brownmooshrooms.register();
-        }
-        if(sophisticatedwolves != null && BetterAnimalsConfig.enableSophisticatedWolf) {
-            sophisticatedwolves.register();
         }
     }
     
