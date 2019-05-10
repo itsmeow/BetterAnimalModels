@@ -4,7 +4,7 @@ import java.io.File;
 
 import org.apache.logging.log4j.Logger;
 
-import com.ocelot.betteranimals.client.RenderHandler;
+import com.ocelot.betteranimals.client.ReplacementHandler;
 import com.ocelot.betteranimals.config.BetterAnimalsConfig;
 
 import net.minecraftforge.common.config.Configuration;
@@ -16,7 +16,7 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.relauncher.Side;
 
-@Mod(modid = BetterAnimals.MODID, acceptedMinecraftVersions = "[1.12,1.12.2]", version = BetterAnimals.VERSION, clientSideOnly = true, dependencies = "before:quark|sophisticatedwolves;after:primal|abyssalcraft|brownmushrooms|quark|midnight")
+@Mod(modid = BetterAnimals.MODID, acceptedMinecraftVersions = "[1.12,1.12.2]", version = BetterAnimals.VERSION, clientSideOnly = true, dependencies = "before:quark@[r1.5-149,);after:sophisticatedwolves|primal|abyssalcraft|brownmooshrooms|midnight")
 public class BetterAnimals {
 
     public static final String MODID = "betteranimals";
@@ -39,17 +39,17 @@ public class BetterAnimals {
         config = new Configuration(new File(directory.getPath(), "betteranimals.cfg")); 
         BetterAnimalsConfig.readConfig();
         BetterAnimalsConfig.initConfig(config);
-        RenderHandler.preinit();
+        ReplacementHandler.preinit();
     }
 
     @EventHandler
     public void init(FMLInitializationEvent event) {
-        RenderHandler.init();
+        ReplacementHandler.init();
     }
 
     @EventHandler
     public void postInit(FMLPostInitializationEvent event) {
-        RenderHandler.postinit();
+        ReplacementHandler.postinit();
         if(config.hasChanged()){
             config.save();
         }

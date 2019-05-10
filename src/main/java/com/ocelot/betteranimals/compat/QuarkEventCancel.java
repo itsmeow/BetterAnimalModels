@@ -5,11 +5,10 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import vazkii.quark.api.module.FeatureEvent;
 import vazkii.quark.client.feature.RandomAnimalTextures;
 
-public class QuarkSpecialHandlerActive implements QuarkSpecialHandler {
+public class QuarkEventCancel {
     
-    @Override
-    public void preQuark() {
-        MinecraftForge.EVENT_BUS.register(QuarkSpecialHandlerActive.class);
+    public static void preQuark() {
+        MinecraftForge.EVENT_BUS.register(QuarkEventCancel.class);
     }
     
     @SubscribeEvent
