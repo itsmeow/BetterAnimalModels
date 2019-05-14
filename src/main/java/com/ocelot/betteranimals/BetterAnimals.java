@@ -7,6 +7,7 @@ import org.apache.logging.log4j.Logger;
 import com.ocelot.betteranimals.client.ReplacementHandler;
 import com.ocelot.betteranimals.config.BetterAnimalsConfig;
 
+import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
@@ -14,8 +15,11 @@ import net.minecraftforge.fml.common.Mod.Instance;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.eventhandler.EventPriority;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 
+@Mod.EventBusSubscriber(modid = BetterAnimals.MODID, value = Side.CLIENT)
 @Mod(modid = BetterAnimals.MODID, acceptedMinecraftVersions = "[1.12,1.12.2]", version = BetterAnimals.VERSION, clientSideOnly = true, dependencies = "before:quark@[r1.5-149,);after:sophisticatedwolves|primal|abyssalcraft|brownmooshrooms|midnight")
 public class BetterAnimals {
 
@@ -53,6 +57,11 @@ public class BetterAnimals {
         if(config.hasChanged()){
             config.save();
         }
+    }
+    
+    @SubscribeEvent(priority = EventPriority.LOWEST)
+    public static void mre(ModelRegistryEvent e) {
+        ReplacementHandler.mre();
     }
 
     public static Logger logger() {
