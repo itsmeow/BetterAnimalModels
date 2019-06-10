@@ -49,7 +49,7 @@ repositories {
 }
 
 dependencies {
-    deobfCompile "mezz.jei:jei_1.12.2:4.14.4.264"
+    deobfCompile "mezz.jei:jei_1.12.2:4.15.0.268"
     deobfCompile "mcp.mobius.waila:Hwyla:1.8.26-B41_1.12.2"
     deobfCompile "com.shinoow.abyssalcraft:AbyssalCraft:1.12.2-1.9.7"
     deobfCompile "sophisticated-wolves:SophisticatedWolves:1.12.2:3.13.7"
