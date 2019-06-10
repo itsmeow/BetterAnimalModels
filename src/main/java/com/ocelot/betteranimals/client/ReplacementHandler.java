@@ -82,13 +82,9 @@ import net.minecraft.entity.passive.EntitySheep;
 import net.minecraft.entity.passive.EntitySquid;
 import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Loader;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.eventhandler.EventPriority;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import nmd.primal.core.common.entities.living.EntityBlackBear;
 import nmd.primal.core.common.entities.living.EntityBrownBear;
 import nmd.primal.core.common.entities.living.EntityCanisCampestris;
@@ -97,7 +93,6 @@ import quaternary.brownmooshrooms.EntityBrownMooshroom;
 import sophisticated_wolves.entity.EntitySophisticatedWolf;
 
 @SuppressWarnings("unchecked")
-@Mod.EventBusSubscriber
 public class ReplacementHandler {
     
     public static final Logger LOG = LogManager.getLogger();
@@ -165,55 +160,70 @@ public class ReplacementHandler {
         addReplace(RegistrationTime.MODELREGISTRY, "minecraft", "polarbear", () -> () -> 
         new ReplaceDefinition(EntityPolarBear.class, RenderNewPolarBear::new, RenderType.NEW));
         
-        addReplace(RegistrationTime.MODELREGISTRY, "primal", "ovisatre", () -> () -> 
-        new ReplaceDefinition(EntityOvisAtre.class, RenderNewOvisAtre::new, RenderType.NEW));
-        addReplace(RegistrationTime.MODELREGISTRY, "primal", "steppewolf", () -> () -> 
-        new ReplaceDefinition(EntityCanisCampestris.class, RenderNewSteppeWolf::new, RenderType.NEW));
-        addReplace(RegistrationTime.MODELREGISTRY, "primal", "brownbear_primal", () -> () -> 
-        new ReplaceDefinition(EntityBrownBear.class, RenderNewBrownBear::new, RenderType.NEW));
-        addReplace(RegistrationTime.MODELREGISTRY, "primal", "blackbear_primal", () -> () -> 
-        new ReplaceDefinition(EntityBlackBear.class, RenderNewBlackBear::new, RenderType.NEW));
+        addReplace(RegistrationTime.MODELREGISTRY, "primal", "ovisatre", () -> () -> PrimalCoreReplaces.OVIS_ATRE);
+        addReplace(RegistrationTime.MODELREGISTRY, "primal", "steppewolf", () -> () -> PrimalCoreReplaces.STEPPE_WOLF);
+        addReplace(RegistrationTime.MODELREGISTRY, "primal", "brownbear_primal", () -> () -> PrimalCoreReplaces.BROWN_BEAR);
+        addReplace(RegistrationTime.MODELREGISTRY, "primal", "blackbear_primal", () -> () -> PrimalCoreReplaces.BLACK_BEAR);
         
-        addReplace(RegistrationTime.MODELREGISTRY, "midnight", "nightstag", () -> () -> 
-        new ReplaceDefinition(EntityNightStag.class, RenderNewNightStag::new, RenderType.NEW));
+        addReplace(RegistrationTime.MODELREGISTRY, "midnight", "nightstag", () -> () -> MidnightReplaces.NIGHTSTAG);
         
-        addReplace(RegistrationTime.MODELREGISTRY, "brownmooshrooms", "brownmooshroom", () -> () -> 
-        new ReplaceDefinition(EntityBrownMooshroom.class, RenderNewBrownMooshroom::new, RenderType.NEW));
+        addReplace(RegistrationTime.MODELREGISTRY, "brownmooshrooms", "brownmooshroom", () -> () -> BrownMooshroomReplaces.BROWN_MOOSHROOM);
         
-        addReplace(RegistrationTime.MODELREGISTRY, "abyssalcraft", "evilpig", () -> () -> 
-        new ReplaceDefinition(EntityEvilpig.class, m -> new RenderNewEvilPig(m, TextureContainer.PIG_TEX), RenderType.NEW));
-        addReplace(RegistrationTime.MODELREGISTRY, "abyssalcraft", "evilcow", () -> () -> 
-        new ReplaceDefinition(EntityEvilCow.class, m -> new RenderNewEvilCow(m, TextureContainer.COW_TEX), RenderType.NEW));
-        addReplace(RegistrationTime.MODELREGISTRY, "abyssalcraft", "evilsheep", () -> () -> 
-        new ReplaceDefinition(EntityEvilSheep.class, m -> new RenderNewEvilSheep(m, TextureContainer.SHEEP_TEX, TextureContainer.SHEEP_LAYER_TEX), RenderType.NEW));
-        addReplace(RegistrationTime.MODELREGISTRY, "abyssalcraft", "evilchicken", () -> () -> 
-        new ReplaceDefinition(EntityEvilChicken.class, m -> new RenderNewEvilChicken(m, TextureContainer.CHICKEN_TEX), RenderType.NEW));
+        addReplace(RegistrationTime.MODELREGISTRY, "abyssalcraft", "evilpig", () -> () -> AbyssalCraftReplaces.EVIL_PIG);
+        addReplace(RegistrationTime.MODELREGISTRY, "abyssalcraft", "evilcow", () -> () -> AbyssalCraftReplaces.EVIL_COW);
+        addReplace(RegistrationTime.MODELREGISTRY, "abyssalcraft", "evilsheep", () -> () -> AbyssalCraftReplaces.EVIL_SHEEP);
+        addReplace(RegistrationTime.MODELREGISTRY, "abyssalcraft", "evilchicken", () -> () -> AbyssalCraftReplaces.EVIL_CHICKEN);
 
-        addReplace(RegistrationTime.MODELREGISTRY, "abyssalcraft", "demonpig", () -> () -> 
-        new ReplaceDefinition(EntityDemonPig.class, m -> new RenderNewEvilPig(m, TextureContainer.DEMON_PIG_TEX), RenderType.NEW));
-        addReplace(RegistrationTime.MODELREGISTRY, "abyssalcraft", "demoncow", () -> () -> 
-        new ReplaceDefinition(EntityDemonCow.class, m -> new RenderNewEvilCow(m, TextureContainer.DEMON_COW_TEX), RenderType.NEW));
-        addReplace(RegistrationTime.MODELREGISTRY, "abyssalcraft", "demonsheep", () -> () -> 
-        new ReplaceDefinition(EntityDemonSheep.class, m -> new RenderNewEvilSheep(m, TextureContainer.DEMON_SHEEP_TEX, TextureContainer.DEMON_SHEEP_LAYER_TEX), RenderType.NEW));
-        addReplace(RegistrationTime.MODELREGISTRY, "abyssalcraft", "demonchicken", () -> () -> 
-        new ReplaceDefinition(EntityDemonChicken.class, m -> new RenderNewDemonChicken(m, TextureContainer.DEMON_CHICKEN_TEX), RenderType.NEW));
+        addReplace(RegistrationTime.MODELREGISTRY, "abyssalcraft", "demonpig", () -> () -> AbyssalCraftReplaces.DEMON_PIG);
+        addReplace(RegistrationTime.MODELREGISTRY, "abyssalcraft", "demoncow", () -> () -> AbyssalCraftReplaces.DEMON_COW);
+        addReplace(RegistrationTime.MODELREGISTRY, "abyssalcraft", "demonsheep", () -> () -> AbyssalCraftReplaces.DEMON_SHEEP);
+        addReplace(RegistrationTime.MODELREGISTRY, "abyssalcraft", "demonchicken", () -> () -> AbyssalCraftReplaces.DEMON_CHICKEN);
 
-        addReplace(RegistrationTime.MODELREGISTRY, "abyssalcraft", "antipig", () -> () -> 
-        new ReplaceDefinition(EntityAntiPig.class, m -> new RenderNewAntiPig(m, TextureContainer.ANTI_PIG_TEX), RenderType.NEW));
-        addReplace(RegistrationTime.MODELREGISTRY, "abyssalcraft", "anticow", () -> () -> 
-        new ReplaceDefinition(EntityAntiCow.class, m -> new RenderNewAntiCow(m, TextureContainer.ANTI_COW_TEX), RenderType.NEW));
-        addReplace(RegistrationTime.MODELREGISTRY, "abyssalcraft", "antichicken", () -> () -> 
-        new ReplaceDefinition(EntityAntiChicken.class, m -> new RenderNewAntiChicken(m, TextureContainer.ANTI_CHICKEN_TEX), RenderType.NEW));
-        addReplace(RegistrationTime.MODELREGISTRY, "abyssalcraft", "antispider", () -> () -> 
-        new ReplaceDefinition(EntityAntiSpider.class, m -> new RenderNewAntiSpider(m, TextureContainer.ANTI_SPIDER_TEX, TextureContainer.ANTI_SPIDER_LAYER_TEX), RenderType.NEW));
-        addReplace(RegistrationTime.MODELREGISTRY, "abyssalcraft", "coraliumsquid", () -> () -> 
-        new ReplaceDefinition(EntityCoraliumSquid.class, m -> new RenderNewSquid(m, TextureContainer.CORALIUM_SQUID_TEX), RenderType.NEW));
+        addReplace(RegistrationTime.MODELREGISTRY, "abyssalcraft", "antipig", () -> () -> AbyssalCraftReplaces.ANTI_PIG);
+        addReplace(RegistrationTime.MODELREGISTRY, "abyssalcraft", "anticow", () -> () -> AbyssalCraftReplaces.ANTI_COW);
+        addReplace(RegistrationTime.MODELREGISTRY, "abyssalcraft", "antichicken", () -> () -> AbyssalCraftReplaces.ANTI_CHICKEN);
+        addReplace(RegistrationTime.MODELREGISTRY, "abyssalcraft", "antispider", () -> () -> AbyssalCraftReplaces.ANTI_SPIDER);
+        addReplace(RegistrationTime.MODELREGISTRY, "abyssalcraft", "coraliumsquid", () -> () -> AbyssalCraftReplaces.CORALIUM_SQUID);
         
         // Init
         
         // Post
         addReplace(RegistrationTime.POSTINIT, "sophisticatedwolves", "sophisticatedwolf", () -> () -> 
         new ReplaceDefinition(EntitySophisticatedWolf.class, RenderNewSophisticatedWolf::new, RenderType.OLD));
+    }
+    
+    public static class AbyssalCraftReplaces {
+        public static final ReplaceDefinition EVIL_PIG = new ReplaceDefinition(EntityEvilpig.class, m -> new RenderNewEvilPig(m, TextureContainer.PIG_TEX), RenderType.NEW);
+        public static final ReplaceDefinition EVIL_COW = new ReplaceDefinition(EntityEvilCow.class, m -> new RenderNewEvilCow(m, TextureContainer.COW_TEX), RenderType.NEW);
+        public static final ReplaceDefinition EVIL_SHEEP = new ReplaceDefinition(EntityEvilSheep.class, m -> new RenderNewEvilSheep(m, TextureContainer.SHEEP_TEX, TextureContainer.SHEEP_LAYER_TEX), RenderType.NEW);
+        public static final ReplaceDefinition EVIL_CHICKEN = new ReplaceDefinition(EntityEvilChicken.class, m -> new RenderNewEvilChicken(m, TextureContainer.CHICKEN_TEX), RenderType.NEW);
+    
+        public static final ReplaceDefinition DEMON_PIG = new ReplaceDefinition(EntityDemonPig.class, m -> new RenderNewEvilPig(m, TextureContainer.DEMON_PIG_TEX), RenderType.NEW);
+        public static final ReplaceDefinition DEMON_COW = new ReplaceDefinition(EntityDemonCow.class, m -> new RenderNewEvilCow(m, TextureContainer.DEMON_COW_TEX), RenderType.NEW);
+        public static final ReplaceDefinition DEMON_SHEEP = new ReplaceDefinition(EntityDemonSheep.class, m -> new RenderNewEvilSheep(m, TextureContainer.DEMON_SHEEP_TEX, TextureContainer.DEMON_SHEEP_LAYER_TEX), RenderType.NEW);
+        public static final ReplaceDefinition DEMON_CHICKEN = new ReplaceDefinition(EntityDemonChicken.class, m -> new RenderNewDemonChicken(m, TextureContainer.DEMON_CHICKEN_TEX), RenderType.NEW);
+    
+        public static final ReplaceDefinition ANTI_PIG = new ReplaceDefinition(EntityAntiPig.class, m -> new RenderNewAntiPig(m, TextureContainer.ANTI_PIG_TEX), RenderType.NEW);
+        public static final ReplaceDefinition ANTI_COW = new ReplaceDefinition(EntityAntiCow.class, m -> new RenderNewAntiCow(m, TextureContainer.ANTI_COW_TEX), RenderType.NEW);
+        public static final ReplaceDefinition ANTI_CHICKEN = new ReplaceDefinition(EntityAntiChicken.class, m -> new RenderNewAntiChicken(m, TextureContainer.ANTI_CHICKEN_TEX), RenderType.NEW);
+        public static final ReplaceDefinition ANTI_SPIDER = new ReplaceDefinition(EntityAntiSpider.class, m -> new RenderNewAntiSpider(m, TextureContainer.ANTI_SPIDER_TEX, TextureContainer.ANTI_SPIDER_LAYER_TEX), RenderType.NEW);
+    
+        public static final ReplaceDefinition CORALIUM_SQUID = new ReplaceDefinition(EntityCoraliumSquid.class, m -> new RenderNewSquid(m, TextureContainer.CORALIUM_SQUID_TEX), RenderType.NEW);
+    }
+    
+    public static class PrimalCoreReplaces {
+        public static final ReplaceDefinition OVIS_ATRE = new ReplaceDefinition(EntityOvisAtre.class, RenderNewOvisAtre::new, RenderType.NEW);
+        public static final ReplaceDefinition STEPPE_WOLF = new ReplaceDefinition(EntityCanisCampestris.class, RenderNewSteppeWolf::new, RenderType.NEW);
+        public static final ReplaceDefinition BROWN_BEAR = new ReplaceDefinition(EntityBrownBear.class, RenderNewBrownBear::new, RenderType.NEW);
+        public static final ReplaceDefinition BLACK_BEAR = new ReplaceDefinition(EntityBlackBear.class, RenderNewBlackBear::new, RenderType.NEW);
+    }
+    
+    public static class MidnightReplaces {
+        public static final ReplaceDefinition NIGHTSTAG = new ReplaceDefinition(EntityNightStag.class, RenderNewNightStag::new, RenderType.NEW);
+    }
+    
+    public static class BrownMooshroomReplaces {
+        public static final ReplaceDefinition BROWN_MOOSHROOM = new ReplaceDefinition(EntityBrownMooshroom.class, RenderNewBrownMooshroom::new, RenderType.NEW);
     }
 
     public static void preinit() {
@@ -243,8 +253,7 @@ public class ReplacementHandler {
         overwriteRenders(RegistrationTime.INIT);
     }
 
-    @SubscribeEvent(priority = EventPriority.LOWEST)
-    public static void mre(ModelRegistryEvent e) {
+    public static void mre() {
         runActions(RegistrationTime.MODELREGISTRY);
         overwriteRenders(RegistrationTime.MODELREGISTRY);
     }
