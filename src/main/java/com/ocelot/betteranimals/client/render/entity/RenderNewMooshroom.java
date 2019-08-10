@@ -2,7 +2,7 @@ package com.ocelot.betteranimals.client.render.entity;
 
 import com.ocelot.betteranimals.BetterAnimals;
 import com.ocelot.betteranimals.client.model.ModelNewCow;
-import com.ocelot.betteranimals.client.render.layer.LayerNewMooshroomMushroom;
+import com.ocelot.betteranimals.client.render.entity.layer.LayerNewMooshroomMushroom;
 
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.RenderLiving;
@@ -23,9 +23,9 @@ public class RenderNewMooshroom extends RenderLiving<EntityMooshroom>
     @Override
 	protected void preRenderCallback(EntityMooshroom entitylivingbaseIn, float partialTickTime) {
 		if (!getMainModel().isChild) {
-			GlStateManager.scale(0.80D, 0.80, 0.80);
+			GlStateManager.scaled(0.80D, 0.80, 0.80);
 		} else {
-			GlStateManager.translate(0, 0.15D, 0);
+			GlStateManager.translated(0, 0.15D, 0);
 		}
 	}
     

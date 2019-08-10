@@ -1,7 +1,7 @@
 package com.ocelot.betteranimals.client.model;
 
-import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.entity.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.math.MathHelper;
@@ -305,8 +305,8 @@ public class ModelNewCow extends Model {
 		setRotationAngles(f, f1, f2, f3, f4, f5, entity);
 		if (this.isChild) {
 			GlStateManager.pushMatrix();
-			GlStateManager.scale(0.45F, 0.45F, 0.45F);
-			GlStateManager.translate(0.0F, 1.5F, 0.0F);
+			GlStateManager.scaled(0.45F, 0.45F, 0.45F);
+			GlStateManager.translatef(0.0F, 1.5F, 0.0F);
 			this.chest.render(f5);
 			GlStateManager.popMatrix();
 		} else {

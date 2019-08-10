@@ -1,4 +1,4 @@
-package com.ocelot.betteranimals.client.render.layer;
+package com.ocelot.betteranimals.client.render.entity.layer;
 
 import com.ocelot.betteranimals.BetterAnimals;
 import com.ocelot.betteranimals.client.render.entity.RenderNewWolf;
@@ -17,16 +17,18 @@ public class LayerNewWolfCollar implements LayerRenderer<EntityWolf> {
         this.wolfRenderer = wolfRendererIn;
     }
 
-    public void doRenderLayer(EntityWolf entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, float scale) {
+    @Override
+    public boolean shouldCombineTextures() {
+        return false;
+    }
+
+    @Override
+    public void render(EntityWolf entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, float scale) {
         if(entitylivingbaseIn.isTamed() && !entitylivingbaseIn.isInvisible()) {
             this.wolfRenderer.bindTexture(COLLAR_TEXTURE);
             float[] afloat = entitylivingbaseIn.getCollarColor().getColorComponentValues();
-            GlStateManager.color(afloat[0], afloat[1], afloat[2]);
+            GlStateManager.color3f(afloat[0], afloat[1], afloat[2]);
             this.wolfRenderer.getMainModel().render(entitylivingbaseIn, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale);
         }
-    }
-
-    public boolean shouldCombineTextures() {
-        return false;
     }
 }

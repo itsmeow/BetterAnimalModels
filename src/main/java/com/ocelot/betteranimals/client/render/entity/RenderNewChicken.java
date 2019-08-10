@@ -26,7 +26,7 @@ public class RenderNewChicken extends RenderLiving<EntityChicken> {
 	@Override
 	protected void preRenderCallback(EntityChicken entitylivingbaseIn, float partialTickTime) {
 		if (!this.mainModel.isChild) {
-			GlStateManager.scale(0.9D, 0.9D, 0.9D);
+			GlStateManager.scaled(0.9D, 0.9D, 0.9D);
 		}
 	}
 	

@@ -2,7 +2,7 @@ package com.ocelot.betteranimals.client.render.entity;
 
 import com.ocelot.betteranimals.BetterAnimals;
 import com.ocelot.betteranimals.client.model.ModelNewSheep;
-import com.ocelot.betteranimals.client.render.layer.LayerNewSheepWool;
+import com.ocelot.betteranimals.client.render.entity.layer.LayerNewSheepWool;
 
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.RenderLiving;
@@ -22,9 +22,9 @@ public class RenderNewSheep extends RenderLiving<EntitySheep> {
 	@Override
 	protected void preRenderCallback(EntitySheep entitylivingbaseIn, float partialTickTime) {
 		if (getMainModel().isChild) {
-			GlStateManager.scale(0.5D, 0.5D, 0.5D);
+			GlStateManager.scaled(0.5D, 0.5D, 0.5D);
 		} else {
-			GlStateManager.scale(1.0D, 1.0D, 1.0D);
+			GlStateManager.scaled(1.0D, 1.0D, 1.0D);
 		}
 	}
 

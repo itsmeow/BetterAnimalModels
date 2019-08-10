@@ -19,7 +19,7 @@ public class RenderNewSilverfish extends RenderLiving<EntitySilverfish> {
 	
 	@Override
 	protected void preRenderCallback(EntitySilverfish entity, float partialTickTime) {
-		GlStateManager.scale(0.5, 0.5, 0.5);
+		GlStateManager.scaled(0.5, 0.5, 0.5);
 	}
 
 	@Override

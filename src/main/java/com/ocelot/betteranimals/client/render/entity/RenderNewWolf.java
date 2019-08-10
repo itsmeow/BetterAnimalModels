@@ -2,7 +2,7 @@ package com.ocelot.betteranimals.client.render.entity;
 
 import com.ocelot.betteranimals.BetterAnimals;
 import com.ocelot.betteranimals.client.model.ModelNewWolf;
-import com.ocelot.betteranimals.client.render.layer.LayerNewWolfCollar;
+import com.ocelot.betteranimals.client.render.entity.layer.LayerNewWolfCollar;
 
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.RenderLiving;
@@ -29,9 +29,9 @@ public class RenderNewWolf extends RenderLiving<EntityWolf> {
     @Override
     protected void preRenderCallback(EntityWolf entitylivingbaseIn, float partialTickTime) {
         if (getMainModel().isChild) {
-            GlStateManager.scale(0.5D, 0.5D, 0.5D);
+            GlStateManager.scaled(0.5D, 0.5D, 0.5D);
         } else {
-            GlStateManager.scale(1.0D, 1.0D, 1.0D);
+            GlStateManager.scaled(1.0D, 1.0D, 1.0D);
         }
     }
 
@@ -39,7 +39,7 @@ public class RenderNewWolf extends RenderLiving<EntityWolf> {
     public void doRender(EntityWolf entity, double x, double y, double z, float entityYaw, float partialTicks) {
         if (entity.isWolfWet()) {
             float f = entity.getBrightness() * entity.getShadingWhileWet(partialTicks);
-            GlStateManager.color(f, f, f);
+            GlStateManager.color3f(f, f, f);
         }
 
         super.doRender(entity, x, y, z, entityYaw, partialTicks);

@@ -40,9 +40,9 @@ public class RenderNewPolarBear extends RenderLiving<EntityPolarBear> {
 	protected void preRenderCallback(EntityPolarBear entitylivingbaseIn, float partialTickTime)
 	{
 		if(!getMainModel().isChild) {
-			GlStateManager.scale(1.0F, 1.0F, 1.0F);
+			GlStateManager.scalef(1.0F, 1.0F, 1.0F);
 		} else {
-			GlStateManager.scale(0.7F, 0.7F, 0.7F);
+			GlStateManager.scalef(0.7F, 0.7F, 0.7F);
 		}
 		super.preRenderCallback(entitylivingbaseIn, partialTickTime);
 	}
