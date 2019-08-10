@@ -5,18 +5,19 @@ import com.ocelot.betteranimals.client.model.ModelNewSpider;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
-import net.minecraft.client.renderer.entity.RenderLiving;
-import net.minecraft.client.renderer.entity.RenderManager;
+import net.minecraft.client.renderer.entity.EntityRendererManager;
+import net.minecraft.client.renderer.entity.MobRenderer;
+import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.entity.layers.LayerRenderer;
 import net.minecraft.entity.monster.EntityCaveSpider;
 import net.minecraft.util.ResourceLocation;
 
-public class RenderNewCaveSpider extends RenderLiving<EntityCaveSpider> implements LayerRenderer<EntityCaveSpider> {
+public class RenderNewCaveSpider extends net.minecraft.client.renderer.entity.MobRenderer<EntityCaveSpider> implements LayerRenderer<EntityCaveSpider> {
 
 	private static final ResourceLocation BASE = new ResourceLocation("betteranimals", "textures/mobs/cave_spider.png");
 	private static final ResourceLocation GLOW = new ResourceLocation("betteranimals", "textures/mobs/spider_eyes.png");
 
-	public RenderNewCaveSpider(RenderManager m) {
+	public RenderNewCaveSpider(EntityRendererManager m) {
 		super(m, new ModelNewSpider(), 0.4f);
 		this.addLayer(this);
 	}

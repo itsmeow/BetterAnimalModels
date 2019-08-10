@@ -3,9 +3,11 @@ package com.ocelot.betteranimals.client.model;
 import com.ocelot.betteranimals.util.ModMathHelper;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.entity.model.ModelBase;
-import net.minecraft.client.renderer.entity.model.ModelRenderer;
-import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.client.renderer.entity.model.RendererModel;
+import net.minecraft.client.renderer.model.Model;
+import net.minecraft.client.renderer.entity.model.RendererModel;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.LivingEntity;
 
 /**
  * <em><b>Copyright (c) 2018 Ocelot5836.</b></em>
@@ -17,7 +19,7 @@ import net.minecraft.entity.EntityLivingBase;
  * 
  * @author Ocelot5836
  */
-public class Model extends ModelBase {
+public class Model extends net.minecraft.client.renderer.model.Model {
 
 	/**
 	 * Gets the number of ticks the entity has existed for, plus the time since the game last ticked. This allows for precise timing and smooth movement.
@@ -26,7 +28,7 @@ public class Model extends ModelBase {
 	 *            - The EntityLivingBase class for which to check the ticks existed.
 	 * @return TicksExisted + partialTicks of the entity.
 	 */
-	public static float getIdleProgress(EntityLivingBase base) {
+	public static float getIdleProgress(LivingEntity base) {
 		return base.ticksExisted + Minecraft.getInstance().getRenderPartialTicks();
 	}
 
@@ -37,7 +39,7 @@ public class Model extends ModelBase {
 	 *            - The EntityLivingBase class for which to get the limb swing progress from.
 	 * @return How far along the entity is from completing its swing.
 	 */
-	public static float getSwingProgress(EntityLivingBase base) {
+	public static float getSwingProgress(LivingEntity base) {
 		return base.limbSwing - base.limbSwingAmount * (1.0F - Minecraft.getInstance().getRenderPartialTicks());
 	}
 
@@ -48,7 +50,7 @@ public class Model extends ModelBase {
 	 *            - The EntityLivingBase class for which to get the previous limb swing progress from.
 	 * @return The time since the last limb swing of the entity was completed.
 	 */
-	public static float getSwingProgressPrev(EntityLivingBase base) {
+	public static float getSwingProgressPrev(LivingEntity base) {
 		return base.prevLimbSwingAmount + (base.limbSwingAmount - base.prevLimbSwingAmount) * Minecraft.getInstance().getRenderPartialTicks();
 	}
 
@@ -59,7 +61,7 @@ public class Model extends ModelBase {
 	 *            - The entity from which to get the head yaw rotation from.
 	 * @return The value of the yaw rotation the head is at.
 	 */
-	public static float getHeadYaw(EntityLivingBase base) {
+	public static float getHeadYaw(LivingEntity base) {
 		float yawOffset = ModMathHelper.interpolateRotation(base.prevRenderYawOffset, base.renderYawOffset, Minecraft.getInstance().getRenderPartialTicks());
 		float yawHead = ModMathHelper.interpolateRotation(base.prevRotationYawHead, base.rotationYawHead, Minecraft.getInstance().getRenderPartialTicks());
 		return yawHead - yawOffset;
@@ -72,7 +74,7 @@ public class Model extends ModelBase {
 	 *            - The entity from which to get the head pitch rotation from.
 	 * @return The value of the pitch rotation the head is at.
 	 */
-	public static float getHeadPitch(EntityLivingBase base) {
+	public static float getHeadPitch(LivingEntity base) {
 		return (base.prevRotationPitch + (base.rotationPitch - base.prevRotationPitch) * Minecraft.getInstance().getRenderPartialTicks());
 	}
 
@@ -84,8 +86,8 @@ public class Model extends ModelBase {
 	 * @return ticksExisted + partialTicks of the object.
 	 */
 	public static float idleProgress(Object o) {
-		if (o != null && o instanceof EntityLivingBase) {
-			return getIdleProgress((EntityLivingBase) o);
+		if (o != null && o instanceof LivingEntity) {
+			return getIdleProgress((LivingEntity) o);
 		}
 
 		return 0F;
@@ -99,8 +101,8 @@ public class Model extends ModelBase {
 	 * @return How far along the object is from completing its swing.
 	 */
 	public static float swingProgress(Object o) {
-		if (o != null && o instanceof EntityLivingBase) {
-			return getSwingProgress((EntityLivingBase) o);
+		if (o != null && o instanceof LivingEntity) {
+			return getSwingProgress((LivingEntity) o);
 		}
 
 		return 0F;
@@ -114,8 +116,8 @@ public class Model extends ModelBase {
 	 * @return The time since the object's last swing was completed.
 	 */
 	public static float swingProgressPrev(Object o) {
-		if (o != null && o instanceof EntityLivingBase) {
-			return getSwingProgressPrev((EntityLivingBase) o);
+		if (o != null && o instanceof LivingEntity) {
+			return getSwingProgressPrev((LivingEntity) o);
 		}
 
 		return 0F;
@@ -129,8 +131,8 @@ public class Model extends ModelBase {
 	 * @return The yaw rotation of the object.
 	 */
 	public static float headYaw(Object o) {
-		if (o != null && o instanceof EntityLivingBase) {
-			return getHeadYaw((EntityLivingBase) o);
+		if (o != null && o instanceof LivingEntity) {
+			return getHeadYaw((LivingEntity) o);
 		}
 
 		return 0F;
@@ -144,8 +146,8 @@ public class Model extends ModelBase {
 	 * @return The pitch rotation of the object.
 	 */
 	public static float headPitch(Object o) {
-		if (o != null && o instanceof EntityLivingBase) {
-			return getHeadPitch((EntityLivingBase) o);
+		if (o != null && o instanceof LivingEntity) {
+			return getHeadPitch((LivingEntity) o);
 		}
 
 		return 0F;
@@ -163,7 +165,7 @@ public class Model extends ModelBase {
 	 * @param z
 	 *            The z angle
 	 */
-	public void setRotateAngle(ModelRenderer modelRenderer, float x, float y, float z) {
+	public void setRotateAngle(RendererModel modelRenderer, float x, float y, float z) {
 		modelRenderer.rotateAngleX = x;
 		modelRenderer.rotateAngleY = y;
 		modelRenderer.rotateAngleZ = z;

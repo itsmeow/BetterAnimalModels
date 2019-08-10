@@ -5,16 +5,17 @@ import com.ocelot.betteranimals.client.model.ModelNewSheep;
 import com.ocelot.betteranimals.client.render.entity.layer.LayerNewSheepWool;
 
 import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.renderer.entity.RenderLiving;
-import net.minecraft.client.renderer.entity.RenderManager;
+import net.minecraft.client.renderer.entity.EntityRendererManager;
+import net.minecraft.client.renderer.entity.MobRenderer;
+import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.entity.passive.EntitySheep;
 import net.minecraft.util.ResourceLocation;
 
-public class RenderNewSheep extends RenderLiving<EntitySheep> {
+public class RenderNewSheep extends net.minecraft.client.renderer.entity.MobRenderer<EntitySheep> {
 
 	private static final ResourceLocation BASE = new ResourceLocation(BetterAnimals.MODID, "textures/mobs/sheep.png");
 
-	public RenderNewSheep(RenderManager m) {
+	public RenderNewSheep(EntityRendererManager m) {
 		super(m, new ModelNewSheep(), 0.4f);
 		this.addLayer(new LayerNewSheepWool(this));
 	}

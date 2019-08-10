@@ -53,7 +53,7 @@ repositories {
 
 dependencies {
 	minecraft "net.minecraftforge:forge:${project.mc_version}-${project.forge_version}"
-    //runtimeOnly fg.deobf("mezz.jei:jei-${mc_version}:${jei_version}")
+    runtimeOnly fg.deobf("mezz.jei:jei-${mc_version}:${jei_version}")
 }
 
 jar {

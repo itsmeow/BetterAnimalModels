@@ -4,16 +4,16 @@ import com.ocelot.betteranimals.BetterAnimals;
 import com.ocelot.betteranimals.client.model.ModelNewCow;
 
 import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.renderer.entity.RenderLiving;
-import net.minecraft.client.renderer.entity.RenderManager;
+import net.minecraft.client.renderer.entity.MobRenderer;
+import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.entity.passive.EntityCow;
 import net.minecraft.util.ResourceLocation;
 
-public class RenderNewCow extends RenderLiving<EntityCow> {
+public class RenderNewCow extends net.minecraft.client.renderer.entity.MobRenderer<EntityCow> {
 
 	private static final ResourceLocation BASE = new ResourceLocation(BetterAnimals.MODID, "textures/mobs/cow.png");
 
-	public RenderNewCow(RenderManager m) {
+	public RenderNewCow(EntityRendererManager m) {
 		super(m, new ModelNewCow(), 0.7F);
 	}
 

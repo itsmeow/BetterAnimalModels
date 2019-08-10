@@ -6,7 +6,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BlockRendererDispatcher;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.layers.LayerRenderer;
-import net.minecraft.client.renderer.texture.TextureMap;
+import net.minecraft.client.renderer.texture.AtlasTexture;
 import net.minecraft.entity.passive.EntityMooshroom;
 import net.minecraft.init.Blocks;
 
@@ -27,7 +27,7 @@ public class LayerNewMooshroomMushroom implements LayerRenderer<EntityMooshroom>
     public void render(EntityMooshroom entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, float scale) {
         if(!entitylivingbaseIn.isChild() && !entitylivingbaseIn.isInvisible()) {
             BlockRendererDispatcher blockrendererdispatcher = Minecraft.getInstance().getBlockRendererDispatcher();
-            this.mooshroomRenderer.bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
+            this.mooshroomRenderer.bindTexture(AtlasTexture.LOCATION_BLOCKS_TEXTURE);
             GlStateManager.enableCull();
             GlStateManager.cullFace(GlStateManager.CullFace.FRONT);
             GlStateManager.pushMatrix();

@@ -5,18 +5,19 @@ import com.ocelot.betteranimals.client.model.ModelNewWolf;
 import com.ocelot.betteranimals.client.render.entity.layer.LayerNewWolfCollar;
 
 import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.renderer.entity.RenderLiving;
-import net.minecraft.client.renderer.entity.RenderManager;
+import net.minecraft.client.renderer.entity.EntityRendererManager;
+import net.minecraft.client.renderer.entity.MobRenderer;
+import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.entity.passive.EntityWolf;
 import net.minecraft.util.ResourceLocation;
 
-public class RenderNewWolf extends RenderLiving<EntityWolf> {
+public class RenderNewWolf extends net.minecraft.client.renderer.entity.MobRenderer<EntityWolf> {
 
     private static final ResourceLocation WOLF_TEXTURES = new ResourceLocation(BetterAnimals.MODID, "textures/mobs/wolf/wolf.png");
     private static final ResourceLocation TAMED_WOLF_TEXTURES = new ResourceLocation(BetterAnimals.MODID, "textures/mobs/wolf/wolf_tame.png");
     private static final ResourceLocation ANRGY_WOLF_TEXTURES = new ResourceLocation(BetterAnimals.MODID, "textures/mobs/wolf/wolf_angry.png");
 
-    public RenderNewWolf(RenderManager m) {
+    public RenderNewWolf(EntityRendererManager m) {
         super(m, new ModelNewWolf(), 0.25f);
         this.addLayer(new LayerNewWolfCollar(this));
     }

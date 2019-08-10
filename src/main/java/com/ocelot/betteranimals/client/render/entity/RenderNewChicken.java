@@ -4,17 +4,17 @@ import com.ocelot.betteranimals.BetterAnimals;
 import com.ocelot.betteranimals.client.model.ModelNewChicken;
 
 import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.renderer.entity.RenderLiving;
-import net.minecraft.client.renderer.entity.RenderManager;
+import net.minecraft.client.renderer.entity.MobRenderer;
+import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.entity.passive.EntityChicken;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 
-public class RenderNewChicken extends RenderLiving<EntityChicken> {
+public class RenderNewChicken extends net.minecraft.client.renderer.entity.MobRenderer<EntityChicken> {
 
 	private static final ResourceLocation BASE = new ResourceLocation(BetterAnimals.MODID, "textures/mobs/chicken.png");
 
-	public RenderNewChicken(RenderManager m) {
+	public RenderNewChicken(EntityRendererManager m) {
 		super(m, new ModelNewChicken(), 0.4F);
 	}
 

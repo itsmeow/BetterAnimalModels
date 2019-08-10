@@ -7,6 +7,9 @@ import java.util.Map;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
+import net.minecraft.client.renderer.entity.EntityRenderer;
+import net.minecraft.client.renderer.entity.EntityRendererManager;
+import net.minecraft.entity.LivingEntity;
 import org.apache.commons.lang3.tuple.Pair;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -29,9 +32,9 @@ import com.ocelot.betteranimals.client.render.entity.RenderNewSpider;
 import com.ocelot.betteranimals.client.render.entity.RenderNewSquid;
 import com.ocelot.betteranimals.client.render.entity.RenderNewWolf;
 
-import net.minecraft.client.renderer.entity.Render;
-import net.minecraft.client.renderer.entity.RenderManager;
-import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.client.renderer.entity.EntityRenderer;
+import net.minecraft.client.renderer.entity.EntityRendererManager;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.monster.EntityCaveSpider;
 import net.minecraft.entity.monster.EntityPolarBear;
 import net.minecraft.entity.monster.EntitySilverfish;
@@ -143,10 +146,10 @@ public class ReplacementHandler {
             if(ModList.get().isLoaded(pair.getLeft()) || pair.getLeft().equals("minecraft")) {
                 ReplaceDefinition def = definitionSupplier.get().get();
                 if(doReplace) {
-                    IRenderFactory<EntityLivingBase> factory = new IRenderFactory<EntityLivingBase>() {
+                    IRenderFactory<LivingEntity> factory = new IRenderFactory<LivingEntity>() {
                         @Override
-                        public Render<? super EntityLivingBase> createRenderFor(RenderManager manager) {
-                            return (Render<? super EntityLivingBase>) def.factory.apply(manager);
+                        public EntityRenderer<? super LivingEntity> createRenderFor(EntityRendererManager manager) {
+                            return (EntityRenderer<? super LivingEntity>) def.factory.apply(manager);
                         }};
                         RenderingRegistry.registerEntityRenderingHandler(def.clazz, factory);
                         LOG.debug(String.format("Overriding %s / %s in %s", pair.getRight(), def.clazz.getSimpleName(), pair.getLeft()));
@@ -173,10 +176,10 @@ public class ReplacementHandler {
 
     public static class ReplaceDefinition {
 
-        public final Class<? extends EntityLivingBase> clazz;
-        public final Function<RenderManager, Render<? extends EntityLivingBase>> factory;
+        public final Class<? extends LivingEntity> clazz;
+        public final Function<EntityRendererManager, EntityRenderer<? extends LivingEntity>> factory;
 
-        public ReplaceDefinition(Class<? extends EntityLivingBase> clazz, Function<RenderManager, Render<? extends EntityLivingBase>> factory) {
+        public ReplaceDefinition(Class<? extends LivingEntity> clazz, Function<EntityRendererManager, EntityRenderer<? extends LivingEntity>> factory) {
             this.clazz = clazz;
             this.factory = factory;
         }

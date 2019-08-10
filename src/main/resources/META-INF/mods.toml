@@ -1,5 +1,5 @@
 modLoader="javafml" #mandatory
-loaderVersion="[25,)" #mandatory
+loaderVersion="[28,)" #mandatory
 issueTrackerURL="https://github.com/cybercat5555/BetterAnimals/issues" #optional
 displayURL="https://www.curseforge.com/minecraft/mc-mods/better-animal-models" #optional
 logoFile="logo.png" #optional

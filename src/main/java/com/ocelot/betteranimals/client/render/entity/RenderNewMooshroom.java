@@ -5,16 +5,16 @@ import com.ocelot.betteranimals.client.model.ModelNewCow;
 import com.ocelot.betteranimals.client.render.entity.layer.LayerNewMooshroomMushroom;
 
 import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.renderer.entity.RenderLiving;
-import net.minecraft.client.renderer.entity.RenderManager;
+import net.minecraft.client.renderer.entity.MobRenderer;
+import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.entity.passive.EntityMooshroom;
 import net.minecraft.util.ResourceLocation;
 
-public class RenderNewMooshroom extends RenderLiving<EntityMooshroom>
+public class RenderNewMooshroom extends net.minecraft.client.renderer.entity.MobRenderer<EntityMooshroom>
 {
     private static final ResourceLocation MOOSHROOM_TEXTURES = new ResourceLocation(BetterAnimals.MODID, "textures/mobs/mooshroom.png");
 
-    public RenderNewMooshroom(RenderManager m)
+    public RenderNewMooshroom(EntityRendererManager m)
     {
         super(m, new ModelNewCow(), 0.7F);
         this.addLayer(new LayerNewMooshroomMushroom(this));
