@@ -1,17 +1,15 @@
 package com.ocelot.betteranimals.client.model;
 
-import net.minecraft.client.renderer.GlStateManager;
+import com.mojang.blaze3d.platform.GlStateManager;
+
 import net.minecraft.client.renderer.entity.model.RendererModel;
-import net.minecraft.client.renderer.entity.model.RendererModel;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.util.math.MathHelper;
 
 /**
  * cow2 - cybercat5555 Created using Tabula 6.0.0
  */
-public class ModelNewCow extends Model {
+public class ModelNewCow<T extends LivingEntity> extends Model<T> {
 	
     public RendererModel chest;
     public RendererModel stomach;
@@ -302,9 +300,9 @@ public class ModelNewCow extends Model {
 	}
 
 	@Override
-	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
+	public void render(T entity, float f, float f1, float f2, float f3, float f4, float f5) {
 		super.render(entity, f, f1, f2, f3, f4, f5);
-		setRotationAngles(f, f1, f2, f3, f4, f5, entity);
+		this.setRotationAngles(entity, f, f1, f2, f3, f4, f5);
 		if (this.isChild) {
 			GlStateManager.pushMatrix();
 			GlStateManager.scaled(0.45F, 0.45F, 0.45F);
@@ -317,7 +315,7 @@ public class ModelNewCow extends Model {
 	}
 
 	@Override
-	public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entity) {
+	public void setRotationAngles(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor) {
 		float swingModifier = 0.9f;
 		if (entity instanceof LivingEntity) {
 			LivingEntity living = (LivingEntity) entity;

@@ -1,16 +1,13 @@
 package com.ocelot.betteranimals.client.model;
 
 import net.minecraft.client.renderer.entity.model.RendererModel;
-import net.minecraft.client.renderer.entity.model.RendererModel;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.util.math.MathHelper;
 
 /**
  * newspider - cybercat5555 Created using Tabula 6.0.0
  */
-public class ModelNewSpider extends Model {
+public class ModelNewSpider<T extends LivingEntity> extends Model<T> {
 
 	public RendererModel bodyBase;
 	public RendererModel abdomen;
@@ -260,14 +257,14 @@ public class ModelNewSpider extends Model {
 	}
 
 	@Override
-	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
+	public void render(T entity, float f, float f1, float f2, float f3, float f4, float f5) {
 		super.render(entity, f, f1, f2, f3, f4, f5);
-		this.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
+		this.setRotationAngles(entity, f, f1, f2, f3, f4, f5);
 		this.bodyBase.render(f5);
 	}
 
 	@Override
-	public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entity) {
+	public void setRotationAngles(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor) {
 		if (entity instanceof LivingEntity) {
 			LivingEntity living = (LivingEntity) entity;
 			limbSwing = limbSwing + Model.getSwingProgressPrev(living);

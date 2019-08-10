@@ -1,21 +1,23 @@
 package com.ocelot.betteranimals.client.render.entity.layer;
 
-import com.ocelot.betteranimals.client.render.entity.RenderNewMooshroom;
+import com.mojang.blaze3d.platform.GlStateManager;
 
+import net.minecraft.block.Blocks;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BlockRendererDispatcher;
-import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.entity.IEntityRenderer;
 import net.minecraft.client.renderer.entity.layers.LayerRenderer;
+import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.client.renderer.texture.AtlasTexture;
-import net.minecraft.entity.passive.EntityMooshroom;
-import net.minecraft.init.Blocks;
+import net.minecraft.entity.passive.MooshroomEntity;
 
-public class LayerNewMooshroomMushroom implements LayerRenderer<EntityMooshroom> {
+public class LayerNewMooshroomMushroom<T extends MooshroomEntity, A extends EntityModel<T>> extends LayerRenderer<T, A> {
 
-    private final RenderNewMooshroom mooshroomRenderer;
+    private IEntityRenderer<T, A> renderer;
 
-    public LayerNewMooshroomMushroom(RenderNewMooshroom renderNewMooshroom) {
-        this.mooshroomRenderer = renderNewMooshroom;
+    public LayerNewMooshroomMushroom(IEntityRenderer<T, A> renderer) {
+        super(renderer);
+        this.renderer = renderer;
     }
 
     @Override
@@ -24,10 +26,10 @@ public class LayerNewMooshroomMushroom implements LayerRenderer<EntityMooshroom>
     }
 
     @Override
-    public void render(EntityMooshroom entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, float scale) {
+    public void render(T entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, float scale) {
         if(!entitylivingbaseIn.isChild() && !entitylivingbaseIn.isInvisible()) {
             BlockRendererDispatcher blockrendererdispatcher = Minecraft.getInstance().getBlockRendererDispatcher();
-            this.mooshroomRenderer.bindTexture(AtlasTexture.LOCATION_BLOCKS_TEXTURE);
+            this.renderer.bindTexture(AtlasTexture.LOCATION_BLOCKS_TEXTURE);
             GlStateManager.enableCull();
             GlStateManager.cullFace(GlStateManager.CullFace.FRONT);
             GlStateManager.pushMatrix();

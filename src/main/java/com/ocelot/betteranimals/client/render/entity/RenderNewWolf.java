@@ -1,35 +1,34 @@
 package com.ocelot.betteranimals.client.render.entity;
 
+import com.mojang.blaze3d.platform.GlStateManager;
 import com.ocelot.betteranimals.BetterAnimals;
 import com.ocelot.betteranimals.client.model.ModelNewWolf;
 import com.ocelot.betteranimals.client.render.entity.layer.LayerNewWolfCollar;
 
-import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.entity.MobRenderer;
-import net.minecraft.client.renderer.entity.EntityRendererManager;
-import net.minecraft.entity.passive.EntityWolf;
+import net.minecraft.entity.passive.WolfEntity;
 import net.minecraft.util.ResourceLocation;
 
-public class RenderNewWolf extends net.minecraft.client.renderer.entity.MobRenderer<EntityWolf> {
+public class RenderNewWolf extends MobRenderer<WolfEntity, ModelNewWolf<WolfEntity>> {
 
     private static final ResourceLocation WOLF_TEXTURES = new ResourceLocation(BetterAnimals.MODID, "textures/mobs/wolf/wolf.png");
     private static final ResourceLocation TAMED_WOLF_TEXTURES = new ResourceLocation(BetterAnimals.MODID, "textures/mobs/wolf/wolf_tame.png");
     private static final ResourceLocation ANRGY_WOLF_TEXTURES = new ResourceLocation(BetterAnimals.MODID, "textures/mobs/wolf/wolf_angry.png");
 
     public RenderNewWolf(EntityRendererManager m) {
-        super(m, new ModelNewWolf(), 0.25f);
-        this.addLayer(new LayerNewWolfCollar(this));
+        super(m, new ModelNewWolf<WolfEntity>(), 0.25f);
+        this.addLayer(new LayerNewWolfCollar<WolfEntity, ModelNewWolf<WolfEntity>>(this));
     }
 
     @Override
-    protected float handleRotationFloat(EntityWolf livingBase, float partialTicks) {
+    protected float handleRotationFloat(WolfEntity livingBase, float partialTicks) {
         return livingBase.getTailRotation();
     }
 
     @Override
-    protected void preRenderCallback(EntityWolf entitylivingbaseIn, float partialTickTime) {
-        if (getMainModel().isChild) {
+    protected void preRenderCallback(WolfEntity entitylivingbaseIn, float partialTickTime) {
+        if(getEntityModel().isChild) {
             GlStateManager.scaled(0.5D, 0.5D, 0.5D);
         } else {
             GlStateManager.scaled(1.0D, 1.0D, 1.0D);
@@ -37,8 +36,8 @@ public class RenderNewWolf extends net.minecraft.client.renderer.entity.MobRende
     }
 
     @Override
-    public void doRender(EntityWolf entity, double x, double y, double z, float entityYaw, float partialTicks) {
-        if (entity.isWolfWet()) {
+    public void doRender(WolfEntity entity, double x, double y, double z, float entityYaw, float partialTicks) {
+        if(entity.isWolfWet()) {
             float f = entity.getBrightness() * entity.getShadingWhileWet(partialTicks);
             GlStateManager.color3f(f, f, f);
         }
@@ -47,8 +46,8 @@ public class RenderNewWolf extends net.minecraft.client.renderer.entity.MobRende
     }
 
     @Override
-    protected ResourceLocation getEntityTexture(EntityWolf entity) {
-        if (entity.isTamed()) {
+    protected ResourceLocation getEntityTexture(WolfEntity entity) {
+        if(entity.isTamed()) {
             return TAMED_WOLF_TEXTURES;
         } else {
             return entity.isAngry() ? ANRGY_WOLF_TEXTURES : WOLF_TEXTURES;

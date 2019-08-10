@@ -3,10 +3,8 @@ package com.ocelot.betteranimals.client.model;
 import com.ocelot.betteranimals.util.ModMathHelper;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.client.renderer.entity.model.RendererModel;
-import net.minecraft.client.renderer.model.Model;
-import net.minecraft.client.renderer.entity.model.RendererModel;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.LivingEntity;
 
 /**
@@ -19,7 +17,7 @@ import net.minecraft.entity.LivingEntity;
  * 
  * @author Ocelot5836
  */
-public class Model extends net.minecraft.client.renderer.model.Model {
+public class Model<T extends LivingEntity> extends EntityModel<T> {
 
 	/**
 	 * Gets the number of ticks the entity has existed for, plus the time since the game last ticked. This allows for precise timing and smooth movement.

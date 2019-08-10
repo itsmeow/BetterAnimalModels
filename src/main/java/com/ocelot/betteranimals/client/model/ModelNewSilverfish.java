@@ -1,15 +1,13 @@
 package com.ocelot.betteranimals.client.model;
 
 import net.minecraft.client.renderer.entity.model.RendererModel;
-import net.minecraft.client.renderer.entity.model.RendererModel;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.util.math.MathHelper;
 
 /**
  * newsilverfish - cybercat5555 Created using Tabula 5.1.0
  */
-public class ModelNewSilverfish extends Model {
+public class ModelNewSilverfish<T extends LivingEntity> extends Model<T> {
 
 	public RendererModel thorax01;
 	public RendererModel head;
@@ -165,15 +163,14 @@ public class ModelNewSilverfish extends Model {
 	}
 
 	@Override
-	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
+	public void render(T entity, float f, float f1, float f2, float f3, float f4, float f5) {
 		super.render(entity, f, f1, f2, f3, f4, f5);
-		this.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
+		this.setRotationAngles(entity, f, f1, f2, f3, f4, f5);
 		this.thorax01.render(f5);
 	}
 	
 	@Override
-	public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entity) {
-		super.setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scaleFactor, entity);
+	public void setRotationAngles(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor) {
 		float swingModifier = 0.9f;
 		if (entity instanceof LivingEntity) {
 			LivingEntity living = (LivingEntity) entity;

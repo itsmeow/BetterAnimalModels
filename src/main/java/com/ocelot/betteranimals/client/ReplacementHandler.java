@@ -7,9 +7,6 @@ import java.util.Map;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
-import net.minecraft.client.renderer.entity.EntityRenderer;
-import net.minecraft.client.renderer.entity.EntityRendererManager;
-import net.minecraft.entity.LivingEntity;
 import org.apache.commons.lang3.tuple.Pair;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -35,24 +32,29 @@ import com.ocelot.betteranimals.client.render.entity.RenderNewWolf;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.monster.EntityCaveSpider;
-import net.minecraft.entity.monster.EntityPolarBear;
-import net.minecraft.entity.monster.EntitySilverfish;
-import net.minecraft.entity.monster.EntitySpider;
-import net.minecraft.entity.passive.EntityChicken;
-import net.minecraft.entity.passive.EntityCow;
-import net.minecraft.entity.passive.EntityMooshroom;
-import net.minecraft.entity.passive.EntityPig;
-import net.minecraft.entity.passive.EntitySheep;
-import net.minecraft.entity.passive.EntitySquid;
-import net.minecraft.entity.passive.EntityWolf;
+import net.minecraft.entity.monster.CaveSpiderEntity;
+import net.minecraft.entity.monster.SilverfishEntity;
+import net.minecraft.entity.monster.SpiderEntity;
+import net.minecraft.entity.passive.ChickenEntity;
+import net.minecraft.entity.passive.CowEntity;
+import net.minecraft.entity.passive.MooshroomEntity;
+import net.minecraft.entity.passive.PigEntity;
+import net.minecraft.entity.passive.PolarBearEntity;
+import net.minecraft.entity.passive.SheepEntity;
+import net.minecraft.entity.passive.SquidEntity;
+import net.minecraft.entity.passive.WolfEntity;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.client.event.ModelRegistryEvent;
+import net.minecraftforge.eventbus.api.EventPriority;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.loading.FMLPaths;
 
-@SuppressWarnings("unchecked")
+@Mod.EventBusSubscriber(modid = BetterAnimals.MODID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ReplacementHandler {
 
     public static final Logger LOG = LogManager.getLogger();
@@ -67,27 +69,27 @@ public class ReplacementHandler {
     static {
         // MRE
         addReplace(RegistrationTime.MODELREGISTRY, "minecraft", "cow", () -> () -> 
-        new ReplaceDefinition(EntityCow.class, RenderNewCow::new));
+        new ReplaceDefinition(CowEntity.class, RenderNewCow::new));
         addReplace(RegistrationTime.MODELREGISTRY, "minecraft", "pig", () -> () -> 
-        new ReplaceDefinition(EntityPig.class, RenderNewPig::new));
+        new ReplaceDefinition(PigEntity.class, RenderNewPig::new));
         addReplace(RegistrationTime.MODELREGISTRY, "minecraft", "chicken", () -> () -> 
-        new ReplaceDefinition(EntityChicken.class, RenderNewChicken::new));
+        new ReplaceDefinition(ChickenEntity.class, RenderNewChicken::new));
         addReplace(RegistrationTime.MODELREGISTRY, "minecraft", "sheep", () -> () -> 
-        new ReplaceDefinition(EntitySheep.class, RenderNewSheep::new));
+        new ReplaceDefinition(SheepEntity.class, RenderNewSheep::new));
         addReplace(RegistrationTime.MODELREGISTRY, "minecraft", "wolf", () -> () -> 
-        new ReplaceDefinition(EntityWolf.class, RenderNewWolf::new));
+        new ReplaceDefinition(WolfEntity.class, RenderNewWolf::new));
         addReplace(RegistrationTime.MODELREGISTRY, "minecraft", "mooshroom", () -> () -> 
-        new ReplaceDefinition(EntityMooshroom.class, RenderNewMooshroom::new));
+        new ReplaceDefinition(MooshroomEntity.class, RenderNewMooshroom::new));
         addReplace(RegistrationTime.MODELREGISTRY, "minecraft", "squid", () -> () -> 
-        new ReplaceDefinition(EntitySquid.class, RenderNewSquid::new));
+        new ReplaceDefinition(SquidEntity.class, RenderNewSquid::new));
         addReplace(RegistrationTime.MODELREGISTRY, "minecraft", "spider", () -> () -> 
-        new ReplaceDefinition(EntitySpider.class, RenderNewSpider::new));
+        new ReplaceDefinition(SpiderEntity.class, RenderNewSpider::new));
         addReplace(RegistrationTime.MODELREGISTRY, "minecraft", "cavespider", () -> () -> 
-        new ReplaceDefinition(EntityCaveSpider.class, RenderNewCaveSpider::new));
+        new ReplaceDefinition(CaveSpiderEntity.class, RenderNewCaveSpider::new));
         addReplace(RegistrationTime.MODELREGISTRY, "minecraft", "silverfish", () -> () -> 
-        new ReplaceDefinition(EntitySilverfish.class, RenderNewSilverfish::new));
+        new ReplaceDefinition(SilverfishEntity.class, RenderNewSilverfish::new));
         addReplace(RegistrationTime.MODELREGISTRY, "minecraft", "polarbear", () -> () -> 
-        new ReplaceDefinition(EntityPolarBear.class, RenderNewPolarBear::new));
+        new ReplaceDefinition(PolarBearEntity.class, RenderNewPolarBear::new));
     }
     
     public static void construction() {
@@ -111,7 +113,8 @@ public class ReplacementHandler {
         config = BetterAnimalsConfig.load(CONFIG_LOCATION);
     }
 
-    public static void mre() {
+    @SubscribeEvent(priority = EventPriority.LOWEST)
+    public static void mre(ModelRegistryEvent event) {
         runActions(RegistrationTime.MODELREGISTRY);
         overwriteRenders(RegistrationTime.MODELREGISTRY);
     }
@@ -147,6 +150,7 @@ public class ReplacementHandler {
                 ReplaceDefinition def = definitionSupplier.get().get();
                 if(doReplace) {
                     IRenderFactory<LivingEntity> factory = new IRenderFactory<LivingEntity>() {
+                        @SuppressWarnings("unchecked")
                         @Override
                         public EntityRenderer<? super LivingEntity> createRenderFor(EntityRendererManager manager) {
                             return (EntityRenderer<? super LivingEntity>) def.factory.apply(manager);

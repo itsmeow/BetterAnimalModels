@@ -1,16 +1,13 @@
 package com.ocelot.betteranimals.client.model;
 
 import net.minecraft.client.renderer.entity.model.RendererModel;
-import net.minecraft.client.renderer.model.Model;
-import net.minecraft.client.renderer.entity.model.RendererModel;
-import net.minecraft.client.renderer.model.Model;
-import net.minecraft.entity.Entity;
+import net.minecraft.entity.LivingEntity;
 
 /**
  * newsquid - cybercat5555
  * Created using Tabula 5.1.0
  */
-public class ModelNewSquid extends Model {
+public class ModelNewSquid<T extends LivingEntity> extends Model<T> {
     public RendererModel head;
     public RendererModel mantle01;
     public RendererModel lEye;
@@ -255,12 +252,12 @@ public class ModelNewSquid extends Model {
     }
 
     @Override
-    public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) { 
+    public void render(T entity, float f, float f1, float f2, float f3, float f4, float f5) { 
         this.head.render(f5);
-		this.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
+		this.setRotationAngles(entity, f, f1, f2, f3, f4, f5);
     }
     @Override
-	public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entity) {
+	public void setRotationAngles(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor) {
     	for (RendererModel modelrenderer : this.squidTentacles)
         {
             modelrenderer.rotateAngleX = ageInTicks;

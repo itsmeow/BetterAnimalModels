@@ -1,17 +1,14 @@
 package com.ocelot.betteranimals.client.model;
 
 import net.minecraft.client.renderer.entity.model.RendererModel;
-import net.minecraft.client.renderer.entity.model.RendererModel;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.passive.EntityWolf;
+import net.minecraft.entity.passive.WolfEntity;
 import net.minecraft.util.math.MathHelper;
 
 /**
  * sheep3 - cybercat5555 Created using Tabula 6.0.0
  */
-public class ModelNewWolf extends Model {
+public class ModelNewWolf<T extends LivingEntity> extends Model<T> {
 
 	public RendererModel chest;
 	public RendererModel lArm01;
@@ -224,9 +221,9 @@ public class ModelNewWolf extends Model {
 	}
 
 	@Override
-	public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
+	public void render(T entity, float f, float f1, float f2, float f3, float f4, float f5) {
 		super.render(entity, f, f1, f2, f3, f4, f5);
-		this.setRotationAngles(f, f1, f2, f3, f4, f5, entity);
+		this.setRotationAngles(entity, f, f1, f2, f3, f4, f5);
 		this.chest.render(f5);
 	}
 
@@ -234,10 +231,10 @@ public class ModelNewWolf extends Model {
 	 * Used for easily adding entity-dependent animations. The second and third float params here are the same second
 	 * and third as in the setRotationAngles method.
 	 */
-	public void setLivingAnimations(LivingEntity entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTickTime)
+	public void setLivingAnimations(T entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTickTime)
 	{
-		if(entitylivingbaseIn instanceof EntityWolf) {
-			EntityWolf wolf = (EntityWolf)entitylivingbaseIn;
+		if(entitylivingbaseIn instanceof WolfEntity) {
+		    WolfEntity wolf = (WolfEntity)entitylivingbaseIn;
 
 			if (!wolf.isTamed())
 			{
@@ -256,7 +253,7 @@ public class ModelNewWolf extends Model {
 	}
 
 	@Override
-	public void setRotationAngles(float limbSwing, float limbSwingAmount, float tailRotation, float netHeadYaw, float headPitch, float scaleFactor, Entity entity) {
+	public void setRotationAngles(T entity, float limbSwing, float limbSwingAmount, float tailRotation, float netHeadYaw, float headPitch, float scaleFactor) {
 		float swingModifier = 0.9f;
 		if (entity instanceof LivingEntity) {
 			LivingEntity living = (LivingEntity) entity;
@@ -271,8 +268,8 @@ public class ModelNewWolf extends Model {
 			this.neck.rotateAngleX = -0.6F;
 		}
 
-		if(entity instanceof EntityWolf) {
-			EntityWolf wolf = (EntityWolf) entity;
+		if(entity instanceof WolfEntity) {
+		    WolfEntity wolf = (WolfEntity) entity;
 			if(wolf.isSitting()) {
 				this.setRotateAngle360(neck, 30, 0, 0);
 				this.setRotateAngle360(chest, -40, 0, 0);
