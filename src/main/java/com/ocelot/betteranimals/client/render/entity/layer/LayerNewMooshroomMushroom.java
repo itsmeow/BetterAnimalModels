@@ -2,6 +2,7 @@ package com.ocelot.betteranimals.client.render.entity.layer;
 
 import com.mojang.blaze3d.platform.GlStateManager;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BlockRendererDispatcher;
@@ -27,9 +28,10 @@ public class LayerNewMooshroomMushroom<T extends MooshroomEntity, A extends Enti
 
     @Override
     public void render(T entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch, float scale) {
-        if(!entitylivingbaseIn.isChild() && !entitylivingbaseIn.isInvisible()) {
+        if(entitylivingbaseIn instanceof MooshroomEntity && !entitylivingbaseIn.isChild() && !entitylivingbaseIn.isInvisible()) {
             BlockRendererDispatcher blockrendererdispatcher = Minecraft.getInstance().getBlockRendererDispatcher();
             this.renderer.bindTexture(AtlasTexture.LOCATION_BLOCKS_TEXTURE);
+            Block mushroom = ((MooshroomEntity) entitylivingbaseIn).getMooshroomType() == MooshroomEntity.Type.BROWN ? Blocks.BROWN_MUSHROOM : Blocks.RED_MUSHROOM;
             GlStateManager.enableCull();
             GlStateManager.cullFace(GlStateManager.CullFace.FRONT);
             GlStateManager.pushMatrix();
@@ -38,19 +40,19 @@ public class LayerNewMooshroomMushroom<T extends MooshroomEntity, A extends Enti
             GlStateManager.rotatef(42.0F, 0.0F, 1.0F, 0.0F);
             GlStateManager.pushMatrix();
             GlStateManager.translatef(-0.5F, -0.5F, 0.5F);
-            blockrendererdispatcher.renderBlockBrightness(Blocks.RED_MUSHROOM.getDefaultState(), 1.0F);
+            blockrendererdispatcher.renderBlockBrightness(mushroom.getDefaultState(), 1.0F);
             GlStateManager.popMatrix();
             GlStateManager.pushMatrix();
             GlStateManager.translatef(0.1F, 0.0F, -0.6F);
             GlStateManager.rotatef(42.0F, 0.0F, 1.0F, 0.0F);
             GlStateManager.translatef(-0.5F, -0.5F, 0.5F);
-            blockrendererdispatcher.renderBlockBrightness(Blocks.RED_MUSHROOM.getDefaultState(), 1.0F);
+            blockrendererdispatcher.renderBlockBrightness(mushroom.getDefaultState(), 1.0F);
             GlStateManager.popMatrix();
             GlStateManager.pushMatrix();
             GlStateManager.translatef(-0.2F, 0.0F, -0.6F);
             GlStateManager.rotatef(42.0F, 0.0F, 1.0F, 0.0F);
             GlStateManager.translatef(-0.5F, -0.5F, 0.5F);
-            blockrendererdispatcher.renderBlockBrightness(Blocks.RED_MUSHROOM.getDefaultState(), 1.0F);
+            blockrendererdispatcher.renderBlockBrightness(mushroom.getDefaultState(), 1.0F);
             GlStateManager.popMatrix();
             GlStateManager.popMatrix();
             GlStateManager.cullFace(GlStateManager.CullFace.BACK);

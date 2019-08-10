@@ -11,7 +11,8 @@ import net.minecraft.entity.passive.MooshroomEntity;
 import net.minecraft.util.ResourceLocation;
 
 public class RenderNewMooshroom extends MobRenderer<MooshroomEntity, ModelNewCow<MooshroomEntity>> {
-    private static final ResourceLocation MOOSHROOM_TEXTURES = new ResourceLocation(BetterAnimals.MODID, "textures/mobs/mooshroom.png");
+    private static final ResourceLocation RED = new ResourceLocation(BetterAnimals.MODID, "textures/mobs/mooshroom.png");
+    private static final ResourceLocation BROWN = new ResourceLocation(BetterAnimals.MODID, "textures/mobs/mooshroom_brown.png");
 
     public RenderNewMooshroom(EntityRendererManager m) {
         super(m, new ModelNewCow<MooshroomEntity>(), 0.7F);
@@ -28,6 +29,6 @@ public class RenderNewMooshroom extends MobRenderer<MooshroomEntity, ModelNewCow
     }
 
     protected ResourceLocation getEntityTexture(MooshroomEntity entity) {
-        return MOOSHROOM_TEXTURES;
+        return entity.getMooshroomType() == MooshroomEntity.Type.BROWN ? BROWN : RED;
     }
 }
