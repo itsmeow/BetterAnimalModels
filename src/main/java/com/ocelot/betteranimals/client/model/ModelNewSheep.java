@@ -1,5 +1,6 @@
 package com.ocelot.betteranimals.client.model;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -288,9 +289,6 @@ public class ModelNewSheep extends Model {
         this.flank.addChild(this.rLeg01);
         this.rLeg02.addChild(this.rLeg03);
         this.rArm01.addChild(this.rArmWool01);
-
-
-
 	}
 
 	@Override
@@ -363,8 +361,12 @@ public class ModelNewSheep extends Model {
 			lArm01.rotateAngleX = MathHelper.cos(limbSwing * 0.8665F) * swingModifier * limbSwingAmount + 0.091106186954104F;
 			rLeg01.rotateAngleX = MathHelper.sin(limbSwing * 0.8665F) * swingModifier * limbSwingAmount - 0.18203784098300857F;
 			rArm01.rotateAngleX = MathHelper.cos(limbSwing * 0.8665F + (float) Math.PI) * swingModifier * limbSwingAmount + 0.091106186954104F;
-			this.neck.rotateAngleX = -0.6F;
-			this.head.rotateAngleX = -0.6F;
+			this.neck.rotateAngleX = -0.5918411493512771F;
+			this.head.rotateAngleX = -0.5918411493512771F;
+			if(living instanceof EntitySheep) {
+			    this.head.rotationPointY = -1.4F;// - ((EntitySheep)entity).getHeadRotationPointY(Minecraft.getMinecraft().getRenderPartialTicks()) * 9.0F;
+			    this.neck.rotateAngleX = ((EntitySheep)entity).getHeadRotationAngleX(Minecraft.getMinecraft().getRenderPartialTicks()) - 0.5918411493512771F;
+			}
 		}
 	}
 }
