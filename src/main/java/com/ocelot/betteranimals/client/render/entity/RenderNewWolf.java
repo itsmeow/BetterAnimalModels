@@ -1,7 +1,7 @@
 package com.ocelot.betteranimals.client.render.entity;
 
 import com.ocelot.betteranimals.BetterAnimals;
-import com.ocelot.betteranimals.client.model.ModelNewWolf;
+import com.ocelot.betteranimals.client.model.ModelNewWolf2;
 import com.ocelot.betteranimals.client.render.layer.LayerNewWolfCollar;
 
 import net.minecraft.client.renderer.GlStateManager;
@@ -17,7 +17,7 @@ public class RenderNewWolf extends RenderLiving<EntityWolf> {
     private static final ResourceLocation ANRGY_WOLF_TEXTURES = new ResourceLocation(BetterAnimals.MODID, "textures/mobs/wolf/wolf_angry.png");
 
     public RenderNewWolf(RenderManager m) {
-        super(m, new ModelNewWolf(), 0.25f);
+        super(m, new ModelNewWolf2(), 0.25f);
         this.addLayer(new LayerNewWolfCollar(this));
     }
 
@@ -29,9 +29,9 @@ public class RenderNewWolf extends RenderLiving<EntityWolf> {
     @Override
     protected void preRenderCallback(EntityWolf entitylivingbaseIn, float partialTickTime) {
         if (getMainModel().isChild) {
-            GlStateManager.scale(0.5D, 0.5D, 0.5D);
+            GlStateManager.scale(0.3D, 0.3D, 0.3D);
         } else {
-            GlStateManager.scale(1.0D, 1.0D, 1.0D);
+            GlStateManager.scale(0.8D, 0.8D, 0.8D);
         }
     }
 
