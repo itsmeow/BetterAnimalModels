@@ -1,7 +1,5 @@
 package com.ocelot.betteranimals.client;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
@@ -16,7 +14,6 @@ import com.google.common.collect.Multimap;
 import com.google.common.collect.MultimapBuilder;
 import com.ocelot.betteranimals.BetterAnimals;
 import com.ocelot.betteranimals.BetterAnimalsConfig;
-import com.ocelot.betteranimals.BetterAnimalsConfig.OverridesConfiguration;
 import com.ocelot.betteranimals.client.render.entity.RenderNewCaveSpider;
 import com.ocelot.betteranimals.client.render.entity.RenderNewChicken;
 import com.ocelot.betteranimals.client.render.entity.RenderNewCow;
@@ -45,6 +42,7 @@ import net.minecraft.entity.passive.SquidEntity;
 import net.minecraft.entity.passive.WolfEntity;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.ModelRegistryEvent;
+import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ModList;
@@ -52,7 +50,6 @@ import net.minecraftforge.fml.client.registry.IRenderFactory;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
-import net.minecraftforge.fml.loading.FMLPaths;
 
 @Mod.EventBusSubscriber(modid = BetterAnimals.MODID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ReplacementHandler {
@@ -61,10 +58,6 @@ public class ReplacementHandler {
 
     public static Map<RegistrationTime, Multimap<Pair<String, String>, Supplier<Supplier<ReplaceDefinition>>>> replaceDefs = new HashMap<RegistrationTime, Multimap<Pair<String, String>, Supplier<Supplier<ReplaceDefinition>>>>();
     public static Map<RegistrationTime, Multimap<String, Supplier<Runnable>>> modActions = new HashMap<RegistrationTime, Multimap<String, Supplier<Runnable>>>();
-    public static OverridesConfiguration config;
-    public static int CONFIG_VERSION = 1;
-    public static String CONFIG_DIR = FMLPaths.CONFIGDIR.get() + "/" + BetterAnimals.MODID + "/";
-    public static File CONFIG_LOCATION = new File(CONFIG_DIR + BetterAnimals.MODID + "-cfver" + CONFIG_VERSION + ".json");
 
     static {
         // MRE
@@ -93,24 +86,7 @@ public class ReplacementHandler {
     }
     
     public static void construction() {
-        File configdir = new File(CONFIG_DIR);
-        configdir.mkdirs();
-        for(File file : configdir.listFiles()) {
-            // Rename invalid files
-            if(file.getName().startsWith(BetterAnimals.MODID + "-cfver") && !file.getName().contains("-cfver" + CONFIG_VERSION) && !file.getName().endsWith(".obsolete")) {
-                file.renameTo(new File(file.getAbsolutePath() + ".obsolete"));
-                LOG.info("Obsolete configs found. Renaming them. Reconfiguration required if configs have been modified from defaults.");
-            }
-        }
-        if(!CONFIG_LOCATION.exists()) {
-            try {
-                CONFIG_LOCATION.createNewFile();
-            } catch(IOException e) {
-                e.printStackTrace();
-            }
-            BetterAnimalsConfig.genDefault(CONFIG_LOCATION);
-        }
-        config = BetterAnimalsConfig.load(CONFIG_LOCATION);
+
     }
 
     @SubscribeEvent(priority = EventPriority.LOWEST)
@@ -137,9 +113,9 @@ public class ReplacementHandler {
     }
 
     private static boolean getEnabledAndLoaded(String mod, String override) {
-        Map<String, Boolean> overrides = config.mods.get(mod);
+        Map<String, ForgeConfigSpec.BooleanValue> overrides = BetterAnimalsConfig.replace_config.mods.get(mod);
         if(overrides == null) return false;
-        return overrides.getOrDefault(override, false);
+        return override.contains(override) ? overrides.get(override).get() : false;
     }
 
     private static void overwriteRenders(RegistrationTime phase) {

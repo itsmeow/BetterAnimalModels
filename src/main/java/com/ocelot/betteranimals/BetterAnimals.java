@@ -6,7 +6,9 @@ import com.ocelot.betteranimals.client.ReplacementHandler;
 
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.fml.DistExecutor;
+import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 
@@ -16,6 +18,8 @@ public class BetterAnimals {
     public static final String MODID = "betteranimals";
 
     public BetterAnimals() {
+        BetterAnimalsConfig.setupConfig();
+        ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, BetterAnimalsConfig.CLIENT_CONFIG_SPEC);
         DistExecutor.runWhenOn(Dist.CLIENT, () -> () -> {
             ReplacementHandler.construction();
             FMLJavaModLoadingContext.get().getModEventBus().addListener(ReplacementHandler::clientSetup);

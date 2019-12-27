@@ -1,66 +1,46 @@
 package com.ocelot.betteranimals;
 
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.Writer;
-import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.apache.commons.lang3.tuple.Pair;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonSyntaxException;
-import com.google.gson.reflect.TypeToken;
-import com.google.gson.stream.JsonReader;
 import com.ocelot.betteranimals.client.ReplacementHandler;
+
+import net.minecraftforge.common.ForgeConfigSpec;
 
 public class BetterAnimalsConfig {
 
     public static final Logger LOG = LogManager.getLogger();
 
-    private static final Type TYPE = new TypeToken<Map<String, Map<String, Boolean>>>() {
-    }.getType();
+    public static ForgeConfigSpec CLIENT_CONFIG_SPEC = null;
 
-    @SuppressWarnings("resource") // this should not be needed
-    public static OverridesConfiguration load(File location) {
-        try {
-            Gson gson = new GsonBuilder().setPrettyPrinting().create();
-            JsonReader reader = new JsonReader(new FileReader(location));
-            OverridesConfiguration cfg = new OverridesConfiguration(gson.fromJson(reader, TYPE));
-            reader.close(); // for some reason this doesn't stop the stupid warning
-            return cfg;
-        } catch(IOException e) {
-            e.printStackTrace();
-        } catch(JsonSyntaxException e) {
-            System.out.println("Misconfigured configuration in file: " + location.getAbsolutePath());
-            throw e;
-        }
-        return null;
+    public static void setupConfig() {
+        final Pair<BetterAnimalsConfig, ForgeConfigSpec> specPair = new ForgeConfigSpec.Builder().configure(BetterAnimalsConfig::new);
+        CLIENT_CONFIG_SPEC = specPair.getRight();
     }
+    
+    public static OverridesConfiguration replace_config;
 
-    public static void genDefault(File location) {
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        Map<String, Map<String, Boolean>> configMap = new HashMap<String, Map<String, Boolean>>();
+    private BetterAnimalsConfig(ForgeConfigSpec.Builder builder) {
+        Map<String, Map<String, ForgeConfigSpec.BooleanValue>> map = new HashMap<String, Map<String, ForgeConfigSpec.BooleanValue>>();
         ReplacementHandler.replaceDefs.values().forEach(m -> m.keySet().forEach(pair -> {
-            configMap.putIfAbsent(pair.getLeft(), new HashMap<String, Boolean>());
-            configMap.get(pair.getLeft()).put(pair.getRight(), true);
+            map.putIfAbsent(pair.getLeft(), new HashMap<String, ForgeConfigSpec.BooleanValue>());
+            builder.push(pair.getLeft());
+            ForgeConfigSpec.BooleanValue value = builder.define("replace_" + pair.getRight(), true);
+            map.get(pair.getLeft()).put(pair.getRight(), value);
+            builder.pop();
         }));
-        try (Writer writer = new FileWriter(location)) {
-            gson.toJson(configMap, writer);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        replace_config = new OverridesConfiguration(map);
+        builder.build();
     }
 
     public static class OverridesConfiguration {
-        public final Map<String, Map<String, Boolean>> mods;
+        public final Map<String, Map<String, ForgeConfigSpec.BooleanValue>> mods;
 
-        public OverridesConfiguration(Map<String, Map<String, Boolean>> mods) {
+        public OverridesConfiguration(Map<String, Map<String, ForgeConfigSpec.BooleanValue>> mods) {
             this.mods = mods;
         }
     }
