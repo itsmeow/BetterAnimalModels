@@ -31,9 +31,9 @@ public class RenderNewSophisticatedWolf extends RenderLiving<EntitySophisticated
     private static final ResourceLocation FOREST_WOLF_TAME = new ResourceLocation(BetterAnimals.MODID, "textures/mobs/wolf/sophisticatedwolves/forest/wolf_forest_tame.png");
     private static final ResourceLocation FOREST_WOLF_ANGRY = new ResourceLocation(BetterAnimals.MODID, "textures/mobs/wolf/sophisticatedwolves/forest/wolf_forest_angry.png");
 
-    private static final ResourceLocation WOLF = new ResourceLocation(BetterAnimals.MODID, "textures/mobs/wolf/wolf.png");
-    private static final ResourceLocation WOLF_TAME = new ResourceLocation(BetterAnimals.MODID, "textures/mobs/wolf/wolf_tame.png");
-    private static final ResourceLocation WOLF_ANGRY = new ResourceLocation(BetterAnimals.MODID, "textures/mobs/wolf/wolf_angry.png");
+    private static final ResourceLocation WOLF = new ResourceLocation(BetterAnimals.MODID, "textures/mobs/wolf/sophisticatedwolves/vanilla/wolf.png");
+    private static final ResourceLocation WOLF_TAME = new ResourceLocation(BetterAnimals.MODID, "textures/mobs/wolf/sophisticatedwolves/vanilla/wolf_tame.png");
+    private static final ResourceLocation WOLF_ANGRY = new ResourceLocation(BetterAnimals.MODID, "textures/mobs/wolf/sophisticatedwolves/vanilla/wolf_angry.png");
 
     public RenderNewSophisticatedWolf(RenderManager m) {
         super(m, new ModelNewWolf(), 0.4F);
@@ -199,7 +199,7 @@ public class RenderNewSophisticatedWolf extends RenderLiving<EntitySophisticated
 
     public static class LayerNewSophisticatedWolfCollar implements LayerRenderer<EntitySophisticatedWolf> {
 
-        private static final ResourceLocation COLLAR_TEXTURE = new ResourceLocation(BetterAnimals.MODID, "textures/mobs/wolf/wolf_tame_collar.png");
+        private static final ResourceLocation COLLAR_TEXTURE = new ResourceLocation(BetterAnimals.MODID, "textures/mobs/wolf/sophisticatedwolves/vanilla/wolf_tame_collar.png");
         private final RenderNewSophisticatedWolf wolfRenderer;
 
         public LayerNewSophisticatedWolfCollar(RenderNewSophisticatedWolf wolfRendererIn) {

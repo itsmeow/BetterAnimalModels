@@ -1,7 +1,7 @@
 package com.ocelot.betteranimals.client.render.entity.primal;
 
 import com.ocelot.betteranimals.BetterAnimals;
-import com.ocelot.betteranimals.client.model.ModelNewWolf;
+import com.ocelot.betteranimals.client.model.ModelNewWolf2;
 
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.RenderLiving;
@@ -14,7 +14,7 @@ public class RenderNewSteppeWolf extends RenderLiving<EntityCanisCampestris> {
 	private static final ResourceLocation BASE = new ResourceLocation(BetterAnimals.MODID, "textures/mobs/primal/primal_wolf_steppe.png");
 
 	public RenderNewSteppeWolf(RenderManager m) {
-		super(m, new ModelNewWolf(), 0.4f);
+		super(m, new ModelNewWolf2(), 0.4f);
 	}
 
 	@Override
@@ -25,9 +25,9 @@ public class RenderNewSteppeWolf extends RenderLiving<EntityCanisCampestris> {
 	@Override
 	protected void preRenderCallback(EntityCanisCampestris entitylivingbaseIn, float partialTickTime) {
 		if (mainModel.isChild) {
-			GlStateManager.scale(0.5D, 0.5D, 0.5D);
+			GlStateManager.scale(0.3D, 0.3D, 0.3D);
 		} else {
-			GlStateManager.scale(1.0D, 1.0D, 1.0D);
+			GlStateManager.scale(0.8D, 0.8D, 0.8D);
 		}
 	}
 

@@ -309,13 +309,21 @@ public class ModelNewWolf2 extends ModelBase {
     @Override
     public void setRotationAngles(float limbSwing, float limbSwingAmount, float tailRotation, float netHeadYaw, float headPitch, float scaleFactor, Entity entity) {
         float swingModifier = 0.9f;
-        if(entity instanceof EntityWolf) {
-            EntityWolf wolf = (EntityWolf) entity;
+        if(entity instanceof EntityLivingBase) {
+            EntityLivingBase wolf = (EntityLivingBase) entity;
             limbSwing = limbSwing + Model.getSwingProgressPrev(wolf);
             this.head.rotateAngleY = Model.getHeadYaw(wolf) * 0.01f;
             this.head.rotateAngleX = (float) Math.toRadians(Model.getHeadPitch(wolf)) + 2.1816615649929116F;
-            tail01.rotateAngleX = 0.6981317007977318F + tailRotation - ((wolf.isTamed()) ? 0.4F : 0F);
+            tail01.rotateAngleX = 0.6981317007977318F + tailRotation;
             this.neck.rotateAngleX = -0.6F;
+            lHindLeg01.rotateAngleX = MathHelper.sin(limbSwing * 0.8665F + (float) Math.PI) * swingModifier * limbSwingAmount - 0.22759093446006054F;
+            rHindLeg01.rotateAngleX = MathHelper.cos(limbSwing * 0.8665F) * swingModifier * limbSwingAmount - 0.22759093446006054F;
+            lForeleg01.rotateAngleX = MathHelper.sin(limbSwing * 0.8665F) * swingModifier * limbSwingAmount + 0.22759093446006054F;
+            rForeleg01.rotateAngleX = MathHelper.cos(limbSwing * 0.8665F + (float) Math.PI) * swingModifier * limbSwingAmount + 0.22759093446006054F;
+        }
+        if(entity instanceof EntityWolf) {
+            EntityWolf wolf = (EntityWolf) entity;
+            tail01.rotateAngleX = 0.6981317007977318F + tailRotation - ((wolf.isTamed()) ? 0.4F : 0F);
             if(wolf.isSitting()) {
                 this.setRotateAngle(rHindPaw, 1.3089969389957472F, 0.20943951023931953F, 0.0F);
                 this.setRotateAngle(lForePaw, 0.03490658503988659F, 0.0F, 0.0F);
