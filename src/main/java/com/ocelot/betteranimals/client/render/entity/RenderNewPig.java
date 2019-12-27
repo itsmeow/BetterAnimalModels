@@ -2,6 +2,7 @@ package com.ocelot.betteranimals.client.render.entity;
 
 import com.ocelot.betteranimals.BetterAnimals;
 import com.ocelot.betteranimals.client.model.ModelNewPig;
+import com.ocelot.betteranimals.client.render.entity.layer.LayerNewPigSaddle;
 
 import net.minecraft.client.renderer.entity.EntityRendererManager;
 import net.minecraft.client.renderer.entity.MobRenderer;
@@ -14,6 +15,7 @@ public class RenderNewPig extends MobRenderer<PigEntity, ModelNewPig<PigEntity>>
 
 	public RenderNewPig(EntityRendererManager m) {
 		super(m, new ModelNewPig<PigEntity>(), 0.7F);
+		this.addLayer(new LayerNewPigSaddle<PigEntity, ModelNewPig<PigEntity>>(this));
 	}
 
 	@Override
