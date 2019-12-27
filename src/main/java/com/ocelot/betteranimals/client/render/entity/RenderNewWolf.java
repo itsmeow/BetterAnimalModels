@@ -2,7 +2,7 @@ package com.ocelot.betteranimals.client.render.entity;
 
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.ocelot.betteranimals.BetterAnimals;
-import com.ocelot.betteranimals.client.model.ModelNewWolf;
+import com.ocelot.betteranimals.client.model.ModelNewWolf2;
 import com.ocelot.betteranimals.client.render.entity.layer.LayerNewWolfCollar;
 
 import net.minecraft.client.renderer.entity.EntityRendererManager;
@@ -10,15 +10,15 @@ import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.entity.passive.WolfEntity;
 import net.minecraft.util.ResourceLocation;
 
-public class RenderNewWolf extends MobRenderer<WolfEntity, ModelNewWolf<WolfEntity>> {
+public class RenderNewWolf extends MobRenderer<WolfEntity, ModelNewWolf2<WolfEntity>> {
 
     private static final ResourceLocation WOLF_TEXTURES = new ResourceLocation(BetterAnimals.MODID, "textures/mobs/wolf/wolf.png");
     private static final ResourceLocation TAMED_WOLF_TEXTURES = new ResourceLocation(BetterAnimals.MODID, "textures/mobs/wolf/wolf_tame.png");
     private static final ResourceLocation ANRGY_WOLF_TEXTURES = new ResourceLocation(BetterAnimals.MODID, "textures/mobs/wolf/wolf_angry.png");
 
     public RenderNewWolf(EntityRendererManager m) {
-        super(m, new ModelNewWolf<WolfEntity>(), 0.25f);
-        this.addLayer(new LayerNewWolfCollar<WolfEntity, ModelNewWolf<WolfEntity>>(this));
+        super(m, new ModelNewWolf2<WolfEntity>(), 0.25f);
+        this.addLayer(new LayerNewWolfCollar<WolfEntity, ModelNewWolf2<WolfEntity>>(this));
     }
 
     @Override
