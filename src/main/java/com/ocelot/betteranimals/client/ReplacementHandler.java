@@ -18,6 +18,7 @@ import com.ocelot.betteranimals.client.render.entity.RenderNewCat;
 import com.ocelot.betteranimals.client.render.entity.RenderNewCaveSpider;
 import com.ocelot.betteranimals.client.render.entity.RenderNewChicken;
 import com.ocelot.betteranimals.client.render.entity.RenderNewCow;
+import com.ocelot.betteranimals.client.render.entity.RenderNewFox;
 import com.ocelot.betteranimals.client.render.entity.RenderNewMooshroom;
 import com.ocelot.betteranimals.client.render.entity.RenderNewOcelot;
 import com.ocelot.betteranimals.client.render.entity.RenderNewPig;
@@ -37,6 +38,7 @@ import net.minecraft.entity.monster.SpiderEntity;
 import net.minecraft.entity.passive.CatEntity;
 import net.minecraft.entity.passive.ChickenEntity;
 import net.minecraft.entity.passive.CowEntity;
+import net.minecraft.entity.passive.FoxEntity;
 import net.minecraft.entity.passive.MooshroomEntity;
 import net.minecraft.entity.passive.OcelotEntity;
 import net.minecraft.entity.passive.PigEntity;
@@ -91,6 +93,8 @@ public class ReplacementHandler {
         new ReplaceDefinition(OcelotEntity.class, RenderNewOcelot::new));
         addReplace(RegistrationTime.MODELREGISTRY, "minecraft", "cat", () -> () -> 
         new ReplaceDefinition(CatEntity.class, RenderNewCat::new));
+        addReplace(RegistrationTime.MODELREGISTRY, "minecraft", "fox", () -> () -> 
+        new ReplaceDefinition(FoxEntity.class, RenderNewFox::new));
     }
 
     public static void construction() {
