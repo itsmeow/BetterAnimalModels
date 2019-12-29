@@ -24,7 +24,6 @@ public class LayerNewSheepWool<T extends SheepEntity, A extends EntityModel<T>> 
         if(!entity.getSheared() && !entity.isInvisible()) {
             this.renderer.bindTexture(TEXTURE);
             if(entity.hasCustomName() && "jeb_".equals(entity.getName().getUnformattedComponentText())) {
-                int i1 = 25;
                 int i = entity.ticksExisted / 25 + entity.getEntityId();
                 int j = DyeColor.values().length;
                 int k = i % j;
