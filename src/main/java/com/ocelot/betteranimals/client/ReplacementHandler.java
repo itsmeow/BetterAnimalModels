@@ -14,10 +14,12 @@ import com.google.common.collect.Multimap;
 import com.google.common.collect.MultimapBuilder;
 import com.ocelot.betteranimals.BetterAnimals;
 import com.ocelot.betteranimals.BetterAnimalsConfig;
+import com.ocelot.betteranimals.client.render.entity.RenderNewCat;
 import com.ocelot.betteranimals.client.render.entity.RenderNewCaveSpider;
 import com.ocelot.betteranimals.client.render.entity.RenderNewChicken;
 import com.ocelot.betteranimals.client.render.entity.RenderNewCow;
 import com.ocelot.betteranimals.client.render.entity.RenderNewMooshroom;
+import com.ocelot.betteranimals.client.render.entity.RenderNewOcelot;
 import com.ocelot.betteranimals.client.render.entity.RenderNewPig;
 import com.ocelot.betteranimals.client.render.entity.RenderNewPolarBear;
 import com.ocelot.betteranimals.client.render.entity.RenderNewSheep;
@@ -32,9 +34,11 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.monster.CaveSpiderEntity;
 import net.minecraft.entity.monster.SilverfishEntity;
 import net.minecraft.entity.monster.SpiderEntity;
+import net.minecraft.entity.passive.CatEntity;
 import net.minecraft.entity.passive.ChickenEntity;
 import net.minecraft.entity.passive.CowEntity;
 import net.minecraft.entity.passive.MooshroomEntity;
+import net.minecraft.entity.passive.OcelotEntity;
 import net.minecraft.entity.passive.PigEntity;
 import net.minecraft.entity.passive.PolarBearEntity;
 import net.minecraft.entity.passive.SheepEntity;
@@ -83,8 +87,12 @@ public class ReplacementHandler {
         new ReplaceDefinition(SilverfishEntity.class, RenderNewSilverfish::new));
         addReplace(RegistrationTime.MODELREGISTRY, "minecraft", "polarbear", () -> () -> 
         new ReplaceDefinition(PolarBearEntity.class, RenderNewPolarBear::new));
+        addReplace(RegistrationTime.MODELREGISTRY, "minecraft", "ocelot", () -> () -> 
+        new ReplaceDefinition(OcelotEntity.class, RenderNewOcelot::new));
+        addReplace(RegistrationTime.MODELREGISTRY, "minecraft", "cat", () -> () -> 
+        new ReplaceDefinition(CatEntity.class, RenderNewCat::new));
     }
-    
+
     public static void construction() {
 
     }
