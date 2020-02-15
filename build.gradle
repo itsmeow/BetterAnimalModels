@@ -49,11 +49,20 @@ repositories {
         name = "JEI"
         url = "http://dvs1.progwml6.com/files/maven"
     }
+    flatDir {
+        dirs "libs"
+    }
+    maven {
+        url = "https://minecraft.curseforge.com/api/maven/"
+    }
 }
 
 dependencies {
 	minecraft "net.minecraftforge:forge:${project.mc_version}-${project.forge_version}"
     runtimeOnly fg.deobf("mezz.jei:jei-${mc_version}:${jei_version}")
+    compile fg.deobf("vazkii.arl:AutoRegLib:1.4-35")
+    compile fg.deobf("vazkii.quark:Quark:r2.0-209")
+    compile fg.deobf("the-midnight:themidnight:0.4.6")
 }
 
 jar {

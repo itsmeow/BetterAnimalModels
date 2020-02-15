@@ -12,6 +12,7 @@ import org.jline.utils.Log;
 
 import com.google.common.collect.Multimap;
 import com.google.common.collect.MultimapBuilder;
+import com.mushroom.midnight.common.entity.creature.NightStagEntity;
 import com.ocelot.betteranimals.BetterAnimals;
 import com.ocelot.betteranimals.BetterAnimalsConfig;
 import com.ocelot.betteranimals.client.render.entity.RenderNewCat;
@@ -28,6 +29,11 @@ import com.ocelot.betteranimals.client.render.entity.RenderNewSilverfish;
 import com.ocelot.betteranimals.client.render.entity.RenderNewSpider;
 import com.ocelot.betteranimals.client.render.entity.RenderNewSquid;
 import com.ocelot.betteranimals.client.render.entity.RenderNewWolf;
+import com.ocelot.betteranimals.client.render.entity.midnight.RenderNewNightstag;
+import com.ocelot.betteranimals.client.render.entity.quark.RenderNewQuarkChicken;
+import com.ocelot.betteranimals.client.render.entity.quark.RenderNewQuarkCow;
+import com.ocelot.betteranimals.client.render.entity.quark.RenderNewQuarkPig;
+import com.ocelot.betteranimals.compat.QuarkEventCancel;
 
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
@@ -66,13 +72,34 @@ public class ReplacementHandler {
     public static Map<RegistrationTime, Multimap<String, Supplier<Runnable>>> modActions = new HashMap<RegistrationTime, Multimap<String, Supplier<Runnable>>>();
 
     static {
-        // MRE
-        addReplace(RegistrationTime.MODELREGISTRY, "minecraft", "cow", () -> () -> 
-        new ReplaceDefinition(CowEntity.class, RenderNewCow::new));
-        addReplace(RegistrationTime.MODELREGISTRY, "minecraft", "pig", () -> () -> 
-        new ReplaceDefinition(PigEntity.class, RenderNewPig::new));
-        addReplace(RegistrationTime.MODELREGISTRY, "minecraft", "chicken", () -> () -> 
-        new ReplaceDefinition(ChickenEntity.class, RenderNewChicken::new));
+        addAction(RegistrationTime.CLIENTSETUP, "minecraft", () -> () -> {
+            boolean quarkLoaded = ModList.get().isLoaded("quark");
+            if(!quarkLoaded || !BetterAnimalsConfig.enableQuarkOverrideCow.get()) {
+                addReplace(RegistrationTime.MODELREGISTRY, "minecraft", "cow", () -> () -> 
+                new ReplaceDefinition(CowEntity.class, RenderNewCow::new));
+            }
+            if(!quarkLoaded || !BetterAnimalsConfig.enableQuarkOverridePig.get()) {
+                addReplace(RegistrationTime.MODELREGISTRY, "minecraft", "pig", () -> () -> 
+                new ReplaceDefinition(PigEntity.class, RenderNewPig::new));
+            }
+            if(!quarkLoaded || !BetterAnimalsConfig.enableQuarkOverrideChicken.get()) {
+                addReplace(RegistrationTime.MODELREGISTRY, "minecraft", "chicken", () -> () -> 
+                new ReplaceDefinition(ChickenEntity.class, RenderNewChicken::new));
+            }
+            
+        });
+        addAction(RegistrationTime.CLIENTSETUP, "quark", () -> () -> {
+            if(BetterAnimalsConfig.enableQuarkOverrideCow.get())
+                addReplace(RegistrationTime.CLIENTSETUP, "minecraft", "cow", () -> () -> 
+                new ReplaceDefinition(CowEntity.class, RenderNewQuarkCow::new));
+            if(BetterAnimalsConfig.enableQuarkOverridePig.get())
+                addReplace(RegistrationTime.CLIENTSETUP, "minecraft", "pig", () -> () -> 
+                new ReplaceDefinition(PigEntity.class, RenderNewQuarkPig::new));
+            if(BetterAnimalsConfig.enableQuarkOverrideChicken.get())
+                addReplace(RegistrationTime.CLIENTSETUP, "minecraft", "chicken", () -> () -> 
+                new ReplaceDefinition(ChickenEntity.class, RenderNewQuarkChicken::new));
+        });
+
         addReplace(RegistrationTime.MODELREGISTRY, "minecraft", "sheep", () -> () -> 
         new ReplaceDefinition(SheepEntity.class, RenderNewSheep::new));
         addReplace(RegistrationTime.MODELREGISTRY, "minecraft", "wolf", () -> () -> 
@@ -95,6 +122,12 @@ public class ReplacementHandler {
         new ReplaceDefinition(CatEntity.class, RenderNewCat::new));
         addReplace(RegistrationTime.MODELREGISTRY, "minecraft", "fox", () -> () -> 
         new ReplaceDefinition(FoxEntity.class, RenderNewFox::new));
+
+        addReplace(RegistrationTime.MODELREGISTRY, "midnight", "nightstag", () -> () -> MidnightReplaces.NIGHTSTAG);
+    }
+
+    public static class MidnightReplaces {
+        public static final ReplaceDefinition NIGHTSTAG = new ReplaceDefinition(NightStagEntity.class, RenderNewNightstag::new);
     }
 
     public static void construction() {
@@ -108,6 +141,12 @@ public class ReplacementHandler {
     }
 
     public static void clientSetup(FMLClientSetupEvent event) {
+        if(ModList.get().isLoaded("quark")) {
+            Supplier<Runnable> run = () -> () -> {
+                QuarkEventCancel.preQuark();
+            };
+            run.get().run();
+        }
         runActions(RegistrationTime.CLIENTSETUP);
         overwriteRenders(RegistrationTime.CLIENTSETUP);
     }
@@ -127,7 +166,7 @@ public class ReplacementHandler {
     private static boolean getEnabledAndLoaded(String mod, String override) {
         Map<String, ForgeConfigSpec.BooleanValue> overrides = BetterAnimalsConfig.replace_config.mods.get(mod);
         if(overrides == null) return false;
-        return override.contains(override) ? overrides.get(override).get() : false;
+        return overrides.containsKey(override) ? overrides.get(override).get() : false;
     }
 
     private static void overwriteRenders(RegistrationTime phase) {
