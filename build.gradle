@@ -1,54 +1,7 @@
-buildscript {
-    repositories {
-        jcenter()
-        maven { url = "http://files.minecraftforge.net/maven" }
-		mavenCentral()
-    }
-    dependencies {
-        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '3.+', changing: true
-    }
-}
-apply plugin: 'net.minecraftforge.gradle'
-//Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
-apply plugin: 'eclipse'
-
-version = "${project.mc_version}-${project.mod_version}"
-group = "${project.maven_group}"
-archivesBaseName = "${project.mod_id}"
-
-sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8'
-
-minecraft {
-    mappings channel: project.mappings_channel, version: "${project.mappings_version}-${project.mappings_mc_version}"
-	
-	runs {
-        client {
-            workingDirectory project.file('run')
-            property 'forge.logging.console.level', 'info'
-            mods {
-                betteranimals {
-                    source sourceSets.main
-                }
-            }
-        }
-
-        server {
-            workingDirectory project.file('run')
-            property 'forge.logging.console.level', 'info'
-            mods {
-                betteranimals {
-                    source sourceSets.main
-                }
-            }
-        }
-    }
-}
+apply from: 'https://maven.itsmeow.dev/scripts/fg3.gradle'
+apply from: 'https://maven.itsmeow.dev/scripts/imdlib.gradle' // include imdlib
 
 repositories {
-    maven {
-        name = "JEI"
-        url = "http://dvs1.progwml6.com/files/maven"
-    }
     flatDir {
         dirs "libs"
     }
@@ -58,21 +11,7 @@ repositories {
 }
 
 dependencies {
-	minecraft "net.minecraftforge:forge:${project.mc_version}-${project.forge_version}"
-    runtimeOnly fg.deobf("mezz.jei:jei-${mc_version}:${jei_version}")
     compile fg.deobf("vazkii.arl:AutoRegLib:1.4-35")
     compile fg.deobf("vazkii.quark:Quark:r2.0-209")
     compile fg.deobf("the-midnight:themidnight:0.4.6")
-}
-
-jar {
-    manifest {
-        attributes(["Specification-Title": archivesBaseName,
-                    "Specification-Vendor": "its_meow",
-                    "Specification-Version": "${project.mod_version}",
-                    "Implementation-Title": archivesBaseName,
-                    "Implementation-Version": "${project.mod_version}",
-                    "Implementation-Vendor" :"its_meow",
-                    "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")],)
-    }
 }
