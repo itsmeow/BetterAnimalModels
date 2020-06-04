@@ -1,6 +1,6 @@
 package dev.itsmeow.betteranimals.compat;
 
-import dev.itsmeow.betteranimals.BetterAnimalsConfig;
+import dev.itsmeow.betteranimals.client.BetterAnimalsConfig;
 import vazkii.quark.client.module.VariantAnimalTexturesModule;
 
 public class QuarkEventCancel {
@@ -13,6 +13,5 @@ public class QuarkEventCancel {
         if(BetterAnimalsConfig.enableQuarkOverridePig.get())
             VariantAnimalTexturesModule.enablePig = false;
     }
-
 
 }

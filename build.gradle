@@ -2,9 +2,6 @@ apply from: 'https://maven.itsmeow.dev/scripts/fg3.gradle'
 apply from: 'https://maven.itsmeow.dev/scripts/imdlib.gradle' // include imdlib
 
 repositories {
-    flatDir {
-        dirs "libs"
-    }
     maven {
         url = "https://minecraft.curseforge.com/api/maven/"
     }

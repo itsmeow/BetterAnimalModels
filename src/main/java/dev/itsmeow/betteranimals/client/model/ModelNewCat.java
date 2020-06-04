@@ -7,8 +7,7 @@ import net.minecraft.entity.passive.OcelotEntity;
 import net.minecraft.util.math.MathHelper;
 
 /**
- * catBA - cybercat5555
- * Created using Tabula 7.0.1
+ * catBA - cybercat5555 Created using Tabula 7.0.1
  */
 public class ModelNewCat<T extends LivingEntity> extends Model<T> {
     public RendererModel chest;
@@ -243,7 +242,7 @@ public class ModelNewCat<T extends LivingEntity> extends Model<T> {
     }
 
     @Override
-    public void render(T entity, float f, float f1, float f2, float f3, float f4, float f5) { 
+    public void render(T entity, float f, float f1, float f2, float f3, float f4, float f5) {
         this.chest.render(f5);
     }
 
@@ -280,8 +279,8 @@ public class ModelNewCat<T extends LivingEntity> extends Model<T> {
         this.setRotateAngle(rLeg03, 0.6283185307179586F, 0.0F, 0.0F);
         this.setRotateAngle(chest, 0F, 0F, 0F);
         this.setRotateAngle(stomach, 0F, 0F, 0F);
-        this.head.rotateAngleX = headPitch * 0.017453292F;
-        this.head.rotateAngleY = netHeadYaw * 0.017453292F;
+        this.head.rotateAngleX = rad(headPitch);
+        this.head.rotateAngleY = rad(netHeadYaw);
         this.tail01.rotateAngleX = 0.47123894F * MathHelper.cos(limbSwing) * limbSwingAmount - 0.593411945678072F;
         this.lLeg01.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * limbSwingAmount - 0.3141592653589793F;
         this.rLeg01.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float) Math.PI) * limbSwingAmount - 0.3141592653589793F;
@@ -374,12 +373,4 @@ public class ModelNewCat<T extends LivingEntity> extends Model<T> {
         }
     }
 
-    /**
-     * This is a helper function from Tabula to set the rotation of model parts
-     */
-    public void setRotateAngle(RendererModel RendererModel, float x, float y, float z) {
-        RendererModel.rotateAngleX = x;
-        RendererModel.rotateAngleY = y;
-        RendererModel.rotateAngleZ = z;
-    }
 }

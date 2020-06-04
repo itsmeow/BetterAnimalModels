@@ -320,8 +320,8 @@ public class ModelNewFox<T extends LivingEntity> extends Model<T> {
         if(entity instanceof FoxEntity) {
             FoxEntity fox = (FoxEntity) entity;
             if(!fox.isSleeping() && !fox.isStuck() && !fox.isCrouching()) {
-                this.head.rotateAngleX = headPitch * ((float) Math.PI / 180F);
-                this.head.rotateAngleY = netHeadYaw * ((float) Math.PI / 180F);
+                this.head.rotateAngleX = rad(headPitch);
+                this.head.rotateAngleY = rad(netHeadYaw);
             }
 
             if(fox.isSleeping()) {
@@ -365,8 +365,8 @@ public class ModelNewFox<T extends LivingEntity> extends Model<T> {
                 this.head.rotateAngleX = 0.0F;
                 this.head.rotateAngleZ = MathHelper.cos(ageInTicks * 0.027F) / 22.0F;
             }
-            
-            if (fox.isSitting()) {
+
+            if(fox.isSitting()) {
                 this.setRotateAngle360(this.neck, 50, 0, 0);
                 this.setRotateAngle360(this.body, -50, 0, 0);
                 this.setRotateAngle360(this.rear, -40, 0, 0);
@@ -407,18 +407,4 @@ public class ModelNewFox<T extends LivingEntity> extends Model<T> {
         }
     }
 
-    /**
-     * This is a helper function from Tabula to set the rotation of model parts
-     */
-    public void setRotateAngle(RendererModel RendererModel, float x, float y, float z) {
-        RendererModel.rotateAngleX = x;
-        RendererModel.rotateAngleY = y;
-        RendererModel.rotateAngleZ = z;
-    }
-    
-    public void setRotateAngle360(RendererModel RendererModel, float x, float y, float z) {
-        RendererModel.rotateAngleX = (float) Math.toRadians(x);
-        RendererModel.rotateAngleY = (float) Math.toRadians(y);
-        RendererModel.rotateAngleZ = (float) Math.toRadians(z);
-    }
 }

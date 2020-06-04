@@ -1,4 +1,4 @@
-package dev.itsmeow.betteranimals.client.render.entity.midnight;
+package dev.itsmeow.betteranimals.client.render.entity.compat;
 
 import javax.annotation.Nullable;
 
@@ -15,8 +15,8 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 
 public class RenderNewNightstag extends MobRenderer<NightStagEntity, ModelNewNightstag> {
-    private static final ResourceLocation TEXTURE = new ResourceLocation(BetterAnimals.MODID, "textures/mobs/midnight/nightstag.png");
-    private static final ResourceLocation EMISSIVE_TEXTURE = new ResourceLocation(BetterAnimals.MODID, "textures/mobs/midnight/nightstag_glow.png");
+    private static final ResourceLocation TEXTURE = new ResourceLocation(BetterAnimals.MODID, "textures/entity/midnight/nightstag.png");
+    private static final ResourceLocation EMISSIVE_TEXTURE = new ResourceLocation(BetterAnimals.MODID, "textures/entity/midnight/nightstag_glow.png");
 
     private static final int FLICK_BRIGHT_LOW = 50;
     private static final int FLICK_BRIGHT_UP = 200;
@@ -30,25 +30,26 @@ public class RenderNewNightstag extends MobRenderer<NightStagEntity, ModelNewNig
     }
 
     private static int computeColor(NightStagEntity entity, float partialTicks) {
-        switch (entity.getAntlerType()) {
-            case 1:
-                return 0xff6666; // red
-            case 2:
-                return 0xbbff99; // green
-            case 3:
-                return 0x99ffff; // blue
-            case 4:
-                return 0xffaa80; // orange
-            case 5:
-                return 0xe39cdc; // pink
-            case 6:
-                return 0xD77CD0; // light pink
-            case 7:
-                return 0xf2f2f2; // white
-            case 8:
-                return 0x6699ff; // dark blue
-            case 0: default:
-                return 0x8051B6; // purple
+        switch(entity.getAntlerType()) {
+        case 1:
+            return 0xff6666; // red
+        case 2:
+            return 0xbbff99; // green
+        case 3:
+            return 0x99ffff; // blue
+        case 4:
+            return 0xffaa80; // orange
+        case 5:
+            return 0xe39cdc; // pink
+        case 6:
+            return 0xD77CD0; // light pink
+        case 7:
+            return 0xf2f2f2; // white
+        case 8:
+            return 0x6699ff; // dark blue
+        case 0:
+        default:
+            return 0x8051B6; // purple
         }
     }
 
@@ -81,7 +82,7 @@ public class RenderNewNightstag extends MobRenderer<NightStagEntity, ModelNewNig
     @Override
     protected void preRenderCallback(NightStagEntity entity, float partialTicks) {
         super.preRenderCallback(entity, partialTicks);
-        if (entity.isChild()) {
+        if(entity.isChild()) {
             GlStateManager.scalef(0.5F, 0.5F, 0.5F);
         }
     }

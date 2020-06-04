@@ -11,7 +11,7 @@ import net.minecraft.util.ResourceLocation;
 
 public class LayerNewSheepWool<T extends SheepEntity, A extends EntityModel<T>> extends LayerRenderer<T, A> {
 
-    private static final ResourceLocation TEXTURE = new ResourceLocation("betteranimals", "textures/mobs/sheep_fur.png");
+    private static final ResourceLocation TEXTURE = new ResourceLocation("betteranimals", "textures/entity/sheep_fur.png");
     private IEntityRenderer<T, A> renderer;
 
     public LayerNewSheepWool(IEntityRenderer<T, A> renderer) {

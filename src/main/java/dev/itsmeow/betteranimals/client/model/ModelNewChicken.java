@@ -1,7 +1,5 @@
 package dev.itsmeow.betteranimals.client.model;
 
-import com.mojang.blaze3d.platform.GlStateManager;
-
 import net.minecraft.client.renderer.entity.model.RendererModel;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.util.math.MathHelper;
@@ -11,7 +9,7 @@ import net.minecraft.util.math.MathHelper;
  */
 public class ModelNewChicken<T extends LivingEntity> extends Model<T> {
 
-	public RendererModel body;
+    public RendererModel body;
     public RendererModel tail01;
     public RendererModel buttFeathers01;
     public RendererModel buttFeathers02;
@@ -244,36 +242,21 @@ public class ModelNewChicken<T extends LivingEntity> extends Model<T> {
         this.body.addChild(this.tail01);
         this.head.addChild(this.beak);
 
-	}
+    }
 
-	@Override
-	public void render(T entity, float f, float f1, float f2, float f3, float f4, float f5) {
-		super.render(entity, f, f1, f2, f3, f4, f5);
-		setRotationAngles(entity, f, f1, f2, f3, f4, f5);
-		if (this.isChild) {
-			GlStateManager.pushMatrix();
-			GlStateManager.scalef(0.5F, 0.5F, 0.5F);
-			GlStateManager.translatef(0.0F, 1.5F, 0.0F);
-			this.body.render(f5);
-			GlStateManager.popMatrix();
-		} else {
-			this.body.render(f5);
-		}
-	}
+    @Override
+    public void render(T entity, float f, float f1, float f2, float f3, float f4, float f5) {
+        this.body.render(f5);
+    }
 
-	@Override
-	public void setRotationAngles(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor) {
-		float swingModifier = 1.5f;
-		if (entity instanceof LivingEntity) {
-			LivingEntity living = (LivingEntity) entity;
-			limbSwing = limbSwing + Model.getSwingProgressPrev(living);
-			this.head.rotateAngleX = (float) Math.toRadians(Model.getHeadPitch(living));
-			this.head.rotateAngleZ = Model.getHeadYaw(living) * 0.017453292F * 0.25f;
-			this.neck01.rotateAngleZ = Model.getHeadYaw(living) * 0.017453292F * 0.5f;
-			this.lLeg.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float) Math.PI) * swingModifier * limbSwingAmount;
-			this.rLeg.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * swingModifier * limbSwingAmount;
-			this.lWing.rotateAngleZ = -ageInTicks;
-			this.rWing.rotateAngleZ = ageInTicks;
-		}
-	}
+    @Override
+    public void setRotationAngles(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor) {
+        this.head.rotateAngleX = rad(headPitch);
+        this.head.rotateAngleZ = rad(netHeadYaw) * 0.25F;
+        this.neck01.rotateAngleZ = rad(netHeadYaw) * 0.5F;
+        this.lLeg.rotateAngleX = MathHelper.sin(limbSwing * 0.6662F) * 1.5F * limbSwingAmount;
+        this.rLeg.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * 1.5F * limbSwingAmount;
+        this.lWing.rotateAngleZ = -ageInTicks;
+        this.rWing.rotateAngleZ = ageInTicks;
+    }
 }

@@ -1,17 +1,12 @@
-package dev.itsmeow.betteranimals;
+package dev.itsmeow.betteranimals.client;
 
 import org.apache.commons.lang3.tuple.Pair;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
-import dev.itsmeow.betteranimals.client.Replacements;
 import dev.itsmeow.imdlib.client.util.ModelReplacementHandler.ReplacementConfig;
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.fml.ModList;
 
 public class BetterAnimalsConfig {
-
-    public static final Logger LOG = LogManager.getLogger();
 
     public static ForgeConfigSpec CLIENT_CONFIG_SPEC = null;
 
@@ -26,7 +21,7 @@ public class BetterAnimalsConfig {
     public static ForgeConfigSpec.BooleanValue enableQuarkOverrideChicken;
 
     private BetterAnimalsConfig(ForgeConfigSpec.Builder builder) {
-        replace = Replacements.HANDLER.getConfig(builder, (builder2, map) -> {
+        replace = Replacements.H.getConfig(builder, (builder2, map) -> {
             ReplacementConfig.addConfig(builder2, map, "minecraft", "cow");
             ReplacementConfig.addConfig(builder2, map, "minecraft", "pig");
             ReplacementConfig.addConfig(builder2, map, "minecraft", "chicken");

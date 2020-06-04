@@ -4,8 +4,7 @@ import net.minecraft.client.renderer.entity.model.RendererModel;
 import net.minecraft.entity.LivingEntity;
 
 /**
- * newsquid - cybercat5555
- * Created using Tabula 5.1.0
+ * newsquid - cybercat5555 Created using Tabula 5.1.0
  */
 public class ModelNewSquid<T extends LivingEntity> extends Model<T> {
     public RendererModel head;
@@ -52,7 +51,7 @@ public class ModelNewSquid<T extends LivingEntity> extends Model<T> {
     public RendererModel longTentacle02b;
     public RendererModel longTentacle02c;
     public RendererModel longTentacle02d;
-    
+
     public RendererModel[] squidTentacles;
 
     public ModelNewSquid() {
@@ -247,29 +246,19 @@ public class ModelNewSquid<T extends LivingEntity> extends Model<T> {
         this.tentacle05b.addChild(this.tentacle05c);
         this.tentacle06b.addChild(this.tentacle06c);
         this.mantle03.addChild(this.mantle04);
-        
-        this.squidTentacles = new RendererModel[] {this.tentacle01a, this.tentacle02a, this.tentacle03a, this.tentacle04a, this.tentacle05a, this.tentacle06a, this.tentacle07a, this.tentacle08a};
+
+        this.squidTentacles = new RendererModel[] { this.tentacle01a, this.tentacle02a, this.tentacle03a, this.tentacle04a, this.tentacle05a, this.tentacle06a, this.tentacle07a, this.tentacle08a };
     }
 
     @Override
-    public void render(T entity, float f, float f1, float f2, float f3, float f4, float f5) { 
+    public void render(T entity, float f, float f1, float f2, float f3, float f4, float f5) {
         this.head.render(f5);
-		this.setRotationAngles(entity, f, f1, f2, f3, f4, f5);
     }
+
     @Override
-	public void setRotationAngles(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor) {
-    	for (RendererModel modelrenderer : this.squidTentacles)
-        {
+    public void setRotationAngles(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor) {
+        for(RendererModel modelrenderer : this.squidTentacles) {
             modelrenderer.rotateAngleX = ageInTicks;
         }
-    }
-
-    /**
-     * This is a helper function from Tabula to set the rotation of model parts
-     */
-    public void setRotateAngle(RendererModel modelRenderer, float x, float y, float z) {
-        modelRenderer.rotateAngleX = x;
-        modelRenderer.rotateAngleY = y;
-        modelRenderer.rotateAngleZ = z;
     }
 }

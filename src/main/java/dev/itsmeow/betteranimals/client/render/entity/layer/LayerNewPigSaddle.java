@@ -9,9 +9,9 @@ import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.entity.passive.PigEntity;
 import net.minecraft.util.ResourceLocation;
 
-public class LayerNewPigSaddle<T extends PigEntity, A extends EntityModel<T>> extends LayerRenderer<T, A>  {
+public class LayerNewPigSaddle<T extends PigEntity, A extends EntityModel<T>> extends LayerRenderer<T, A> {
 
-    private static final ResourceLocation SADDLE = new ResourceLocation(BetterAnimals.MODID, "textures/mobs/pig_saddle.png");
+    private static final ResourceLocation SADDLE = new ResourceLocation(BetterAnimals.MODID, "textures/entity/pig_saddle.png");
     private IEntityRenderer<T, A> renderer;
 
     public LayerNewPigSaddle(IEntityRenderer<T, A> renderer) {

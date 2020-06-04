@@ -11,9 +11,9 @@ import net.minecraft.util.ResourceLocation;
 
 public class LayerNewWolfCollar<T extends WolfEntity, A extends EntityModel<T>> extends LayerRenderer<T, A> {
 
-    private static final ResourceLocation COLLAR_TEXTURE = new ResourceLocation(BetterAnimals.MODID, "textures/mobs/wolf/wolf_tame_collar.png");
+    private static final ResourceLocation COLLAR_TEXTURE = new ResourceLocation(BetterAnimals.MODID, "textures/entity/wolf/wolf_tame_collar.png");
     private IEntityRenderer<T, A> renderer;
-    
+
     public LayerNewWolfCollar(IEntityRenderer<T, A> renderer) {
         super(renderer);
         this.renderer = renderer;

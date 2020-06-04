@@ -289,85 +289,76 @@ public class ModelNewSheep<T extends LivingEntity> extends Model<T> {
         this.rLeg02.addChild(this.rLeg03);
         this.rArm01.addChild(this.rArmWool01);
 
+    }
 
+    @Override
+    public void render(T entity, float f, float f1, float f2, float f3, float f4, float f5) {
+        this.body.render(f5);
 
-	}
-
-	@Override
-	public void render(T entity, float f, float f1, float f2, float f3, float f4, float f5) {
-		super.render(entity, f, f1, f2, f3, f4, f5);
-		this.setRotationAngles(entity, f, f1, f2, f3, f4, f5);
-		this.body.render(f5);
-
-		if (entity instanceof SheepEntity) {
-			if (((SheepEntity) entity).getSheared()) {
-				this.lLegWool03.isHidden = true;
-				this.lLegWool02.isHidden = true;
-				this.lLegWool01.isHidden = true;
-				this.rLegWool03.isHidden = true;
-				this.rLegWool02.isHidden = true;
-				this.rLegWool01.isHidden = true;
-				this.wool07.isHidden = true;
-				this.wool02.isHidden = true;
-				this.wool05.isHidden = true;
-				this.wool08.isHidden = true;
-				this.wool06.isHidden = true;
-				this.wool04.isHidden = true;
-				this.woolFur02.isHidden = true;
-				this.wool03.isHidden = true;
-				this.woolFur01.isHidden = true;
-				this.woolFur03.isHidden = true;
-				this.lArmWool02.isHidden = true;
-				this.lArmWool01.isHidden = true;
-				this.rArmWool02.isHidden = true;
-				this.rArmWool01.isHidden = true;
-				this.wool01.isHidden = true;
-				this.woolFur04.isHidden = true;
-			} else {
-				this.lLegWool03.isHidden = false;
-				this.lLegWool02.isHidden = false;
-				this.lLegWool01.isHidden = false;
-				this.rLegWool03.isHidden = false;
-				this.rLegWool02.isHidden = false;
-				this.rLegWool01.isHidden = false;
-				this.wool07.isHidden = false;
-				this.wool02.isHidden = false;
-				this.wool05.isHidden = false;
-				this.wool08.isHidden = false;
-				this.wool06.isHidden = false;
-				this.wool04.isHidden = false;
-				this.woolFur02.isHidden = false;
-				this.wool03.isHidden = false;
-				this.woolFur01.isHidden = false;
-				this.woolFur03.isHidden = false;
-				this.lArmWool02.isHidden = false;
-				this.lArmWool01.isHidden = false;
-				this.rArmWool02.isHidden = false;
-				this.rArmWool01.isHidden = false;
-				this.wool01.isHidden = false;
-				this.woolFur04.isHidden = false;
-			}
-		}
-	}
-
-	@Override
-	public void setRotationAngles(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor) {		
-		float swingModifier = 0.9f;
-		if (entity instanceof LivingEntity) {
-			LivingEntity living = (LivingEntity) entity;
-			limbSwing = limbSwing + Model.getSwingProgressPrev(living);
-			this.head.rotateAngleY = Model.getHeadYaw(living) * 0.01f;
-			this.head.rotateAngleZ = this.head.rotateAngleY;
-			this.head.rotateAngleX = (float) Math.toRadians(Model.getHeadPitch(living));
-			lLeg01.rotateAngleX = MathHelper.sin(limbSwing * 0.8665F + (float) Math.PI) * swingModifier * limbSwingAmount - 0.18203784098300857F;
-			lArm01.rotateAngleX = MathHelper.cos(limbSwing * 0.8665F) * swingModifier * limbSwingAmount + 0.091106186954104F;
-			rLeg01.rotateAngleX = MathHelper.sin(limbSwing * 0.8665F) * swingModifier * limbSwingAmount - 0.18203784098300857F;
-			rArm01.rotateAngleX = MathHelper.cos(limbSwing * 0.8665F + (float) Math.PI) * swingModifier * limbSwingAmount + 0.091106186954104F;
-			this.neck.rotateAngleX = -0.5918411493512771F;
-            this.head.rotateAngleX = -0.5918411493512771F;
-            if(living instanceof SheepEntity) {
-                this.neck.rotateAngleX = ((SheepEntity)entity).getHeadRotationAngleX(Minecraft.getInstance().getRenderPartialTicks()) - 0.5918411493512771F;
+        if(entity instanceof SheepEntity) {
+            if(((SheepEntity) entity).getSheared()) {
+                this.lLegWool03.isHidden = true;
+                this.lLegWool02.isHidden = true;
+                this.lLegWool01.isHidden = true;
+                this.rLegWool03.isHidden = true;
+                this.rLegWool02.isHidden = true;
+                this.rLegWool01.isHidden = true;
+                this.wool07.isHidden = true;
+                this.wool02.isHidden = true;
+                this.wool05.isHidden = true;
+                this.wool08.isHidden = true;
+                this.wool06.isHidden = true;
+                this.wool04.isHidden = true;
+                this.woolFur02.isHidden = true;
+                this.wool03.isHidden = true;
+                this.woolFur01.isHidden = true;
+                this.woolFur03.isHidden = true;
+                this.lArmWool02.isHidden = true;
+                this.lArmWool01.isHidden = true;
+                this.rArmWool02.isHidden = true;
+                this.rArmWool01.isHidden = true;
+                this.wool01.isHidden = true;
+                this.woolFur04.isHidden = true;
+            } else {
+                this.lLegWool03.isHidden = false;
+                this.lLegWool02.isHidden = false;
+                this.lLegWool01.isHidden = false;
+                this.rLegWool03.isHidden = false;
+                this.rLegWool02.isHidden = false;
+                this.rLegWool01.isHidden = false;
+                this.wool07.isHidden = false;
+                this.wool02.isHidden = false;
+                this.wool05.isHidden = false;
+                this.wool08.isHidden = false;
+                this.wool06.isHidden = false;
+                this.wool04.isHidden = false;
+                this.woolFur02.isHidden = false;
+                this.wool03.isHidden = false;
+                this.woolFur01.isHidden = false;
+                this.woolFur03.isHidden = false;
+                this.lArmWool02.isHidden = false;
+                this.lArmWool01.isHidden = false;
+                this.rArmWool02.isHidden = false;
+                this.rArmWool01.isHidden = false;
+                this.wool01.isHidden = false;
+                this.woolFur04.isHidden = false;
             }
-		}
-	}
+        }
+    }
+
+    @Override
+    public void setRotationAngles(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor) {
+        this.head.rotateAngleY = rad(netHeadYaw);
+        this.head.rotateAngleZ = this.head.rotateAngleY;
+        this.head.rotateAngleX = rad(headPitch);
+        lLeg01.rotateAngleX = MathHelper.cos(limbSwing * 0.8665F) * 0.9F * limbSwingAmount - 0.18203784098300857F;
+        lArm01.rotateAngleX = MathHelper.cos(limbSwing * 0.8665F) * 0.9F * limbSwingAmount + 0.091106186954104F;
+        rLeg01.rotateAngleX = MathHelper.sin(limbSwing * 0.8665F) * 0.9F * limbSwingAmount - 0.18203784098300857F;
+        rArm01.rotateAngleX = MathHelper.sin(limbSwing * 0.8665F) * 0.9F * limbSwingAmount + 0.091106186954104F;
+        this.neck.rotateAngleX = -0.5918411493512771F;
+        this.head.rotateAngleX = -0.5918411493512771F;
+        if(entity instanceof SheepEntity) {
+            this.neck.rotateAngleX = ((SheepEntity) entity).getHeadRotationAngleX(Minecraft.getInstance().getRenderPartialTicks()) - 0.5918411493512771F;
+        }
+    }
 }

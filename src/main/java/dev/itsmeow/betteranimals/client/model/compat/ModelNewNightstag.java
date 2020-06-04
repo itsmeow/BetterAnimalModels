@@ -3,16 +3,15 @@ package dev.itsmeow.betteranimals.client.model.compat;
 import com.mushroom.midnight.Midnight;
 import com.mushroom.midnight.common.entity.creature.NightStagEntity;
 
+import dev.itsmeow.betteranimals.client.model.Model;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.client.renderer.entity.model.RendererModel;
 import net.minecraft.util.math.MathHelper;
 
 /**
- * nightstagBA - cybercat5555
- * Created using Tabula 5.1.0
+ * nightstagBA - cybercat5555 Created using Tabula 5.1.0
  */
-public class ModelNewNightstag extends EntityModel<NightStagEntity> {
+public class ModelNewNightstag extends Model<NightStagEntity> {
     public RendererModel body;
     public RendererModel ass;
     public RendererModel chest;
@@ -375,63 +374,53 @@ public class ModelNewNightstag extends EntityModel<NightStagEntity> {
     }
 
     @Override
-    public void render(NightStagEntity entity, float f, float f1, float f2, float f3, float f4, float f5) { 
+    public void render(NightStagEntity entity, float f, float f1, float f2, float f3, float f4, float f5) {
         this.body.render(f5);
     }
 
-    /**
-     * This is a helper function from Tabula to set the rotation of model parts
-     */
-    public void setRotateAngle(RendererModel RendererModel, float x, float y, float z) {
-        RendererModel.rotateAngleX = x;
-        RendererModel.rotateAngleY = y;
-        RendererModel.rotateAngleZ = z;
-    }
-
-
     @Override
     public void setRotationAngles(NightStagEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor) {
-        this.neck.rotateAngleX = (headPitch * 0.017453292f) + 0.17453292519943295f;
-        this.neck.rotateAngleY = netHeadYaw * 0.017453292f;
+        this.neck.rotateAngleX = rad(headPitch) + 0.17453292519943295f;
+        this.neck.rotateAngleY = rad(netHeadYaw);
         this.body.rotateAngleX = 0f;
         this.lForeleg01.rotateAngleX = MathHelper.cos(limbSwing * 0.6662f) * 1.4f * limbSwingAmount + 0.136659280431156F;
         this.rHindLeg01.rotateAngleX = MathHelper.cos(limbSwing * 0.6662f) * 1.4f * limbSwingAmount - 0.22759093446006054F;
-        this.rForeleg01.rotateAngleX = MathHelper.cos(limbSwing * 0.6662f + (float)Math.PI) * 1.4f * limbSwingAmount + 0.136659280431156F;
-        this.lHindLeg01.rotateAngleX = MathHelper.cos(limbSwing * 0.6662f + (float)Math.PI) * 1.4f * limbSwingAmount - 0.22759093446006054F;
+        this.rForeleg01.rotateAngleX = MathHelper.cos(limbSwing * 0.6662f + (float) Math.PI) * 1.4f * limbSwingAmount + 0.136659280431156F;
+        this.lHindLeg01.rotateAngleX = MathHelper.cos(limbSwing * 0.6662f + (float) Math.PI) * 1.4f * limbSwingAmount - 0.22759093446006054F;
         this.neck.rotationPointX = 0f;
         this.lHindLeg01.rotateAngleZ = 0f;
-        
+
         this.lForeleg01.rotateAngleY = 0F;
         this.rHindLeg01.rotateAngleY = 0F;
         this.rForeleg01.rotateAngleY = 0F;
         this.lHindLeg01.rotateAngleY = 0F;
-        
+
         this.lForeleg01.rotateAngleZ = -0.091106186954104F;
         this.rHindLeg01.rotateAngleZ = 0F;
         this.rForeleg01.rotateAngleZ = 0.091106186954104F;
         this.lHindLeg01.rotateAngleZ = 0F;
 
         entity.getCapability(Midnight.ANIMATION_CAP, null).ifPresent(animationCap -> {
-            if (animationCap.isAnimate()) {
+            if(animationCap.isAnimate()) {
                 float partialTicks = Minecraft.getInstance().getRenderPartialTicks();
                 float progress = animationCap.getProgress(partialTicks);
                 float fctAnimation;
-                switch (animationCap.getAnimationType()) {
+                switch(animationCap.getAnimationType()) {
                 case ATTACK:
                     fctAnimation = MathHelper.sin((float) (progress * Math.PI));
-                    //this.body.rotateAngleX = fctAnimation * 0.2f;
+                    // this.body.rotateAngleX = fctAnimation * 0.2f;
                     this.neck.rotateAngleX = 0.17453292519943295f + (fctAnimation * 1.5f);
                     break;
                 case CURTSEY:
                     fctAnimation = MathHelper.sin((float) (progress * Math.PI));
                     this.neck.rotateAngleX = 0.17453292519943295f + fctAnimation;
-                    /*this.body.rotateAngleX = */this.rHindLeg01.rotateAngleX = this.rHindLeg01.rotateAngleZ = fctAnimation * 0.2f;
+                    /* this.body.rotateAngleX = */this.rHindLeg01.rotateAngleX = this.rHindLeg01.rotateAngleZ = fctAnimation * 0.2f;
                     this.rForeleg01.rotateAngleX = -this.rForeleg01.rotateAngleZ;
                     break;
                 case EAT:
-                    //this.body.rotateAngleX = MathHelper.sin((float) (progress * Math.PI)) * 0.2f;
+                    // this.body.rotateAngleX = MathHelper.sin((float) (progress * Math.PI)) * 0.2f;
                     this.neck.rotateAngleX = 0.17453292519943295f + (progress <= 0.1f ? progress * 15f : progress >= 0.9f ? (1f - progress) * 15f : 1.5f);
-                    if (progress > 0.1f && progress < 0.9f) {
+                    if(progress > 0.1f && progress < 0.9f) {
                         this.neck.rotationPointX = -partialTicks;
                     }
                     break;
@@ -439,8 +428,8 @@ public class ModelNewNightstag extends EntityModel<NightStagEntity> {
                     fctAnimation = MathHelper.sin((float) ((progress % 1) * 10f * Math.PI));
                     this.neck.rotateAngleX = 0.17453292519943295f + (progress <= 0.05f ? progress * 28f : progress >= 0.9f ? (1f - progress) * 14f : 1.4f + fctAnimation * 0.02f);
                     this.neck.rotateAngleY = 0f;
-                    //this.body.rotateAngleX = fctAnimation * 0.05f;
-                    if (progress <= 0.1f) {
+                    // this.body.rotateAngleX = fctAnimation * 0.05f;
+                    if(progress <= 0.1f) {
                         this.rHindLeg01.rotateAngleX = this.rHindLeg01.rotateAngleY = fctAnimation * 0.3f;
                     }
                     break;
