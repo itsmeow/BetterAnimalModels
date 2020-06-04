@@ -1,8 +1,9 @@
 package dev.itsmeow.betteranimals.client.render.entity.layer;
 
-import com.mojang.blaze3d.platform.GlStateManager;
+import com.mojang.blaze3d.matrix.MatrixStack;
 
 import dev.itsmeow.betteranimals.BetterAnimals;
+import net.minecraft.client.renderer.IRenderTypeBuffer;
 import net.minecraft.client.renderer.entity.IEntityRenderer;
 import net.minecraft.client.renderer.entity.layers.LayerRenderer;
 import net.minecraft.client.renderer.entity.model.EntityModel;
@@ -16,16 +17,11 @@ public class LayerNewCatCollar extends LayerRenderer<CatEntity, EntityModel<CatE
         super(renderer);
     }
 
-    public void render(CatEntity entity, float p_212842_2_, float p_212842_3_, float p_212842_4_, float p_212842_5_, float p_212842_6_, float p_212842_7_, float p_212842_8_) {
-        if(entity.isTamed() && !entity.isInvisible()) {
-            this.bindTexture(CAT_COLLAR);
-            float[] afloat = entity.getCollarColor().getColorComponentValues();
-            GlStateManager.color3f(afloat[0], afloat[1], afloat[2]);
-            this.getEntityModel().render(entity, p_212842_2_, p_212842_3_, p_212842_5_, p_212842_6_, p_212842_7_, p_212842_8_);
+    public void render(MatrixStack matrixStackIn, IRenderTypeBuffer bufferIn, int packedLightIn, CatEntity entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
+        if(entitylivingbaseIn.isTamed()) {
+            float[] afloat = entitylivingbaseIn.getCollarColor().getColorComponentValues();
+            renderCutoutModel(this.getEntityModel(), CAT_COLLAR, matrixStackIn, bufferIn, packedLightIn, entitylivingbaseIn, afloat[0], afloat[1], afloat[2]);
         }
     }
 
-    public boolean shouldCombineTextures() {
-        return false;
-    }
 }

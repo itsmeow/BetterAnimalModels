@@ -2,7 +2,7 @@ package dev.itsmeow.betteranimals.client.render.entity.compat;
 
 import javax.annotation.Nullable;
 
-import com.mojang.blaze3d.platform.GlStateManager;
+import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mushroom.midnight.client.ClientEventHandler;
 import com.mushroom.midnight.client.render.entity.EmissiveLayerRenderer;
 import com.mushroom.midnight.common.entity.creature.NightStagEntity;
@@ -75,15 +75,14 @@ public class RenderNewNightstag extends MobRenderer<NightStagEntity, ModelNewNig
 
     @Nullable
     @Override
-    protected ResourceLocation getEntityTexture(NightStagEntity entity) {
+    public ResourceLocation getEntityTexture(NightStagEntity entity) {
         return TEXTURE;
     }
 
     @Override
-    protected void preRenderCallback(NightStagEntity entity, float partialTicks) {
-        super.preRenderCallback(entity, partialTicks);
+    protected void preRenderCallback(NightStagEntity entity, MatrixStack stack, float partialTicks) {
         if(entity.isChild()) {
-            GlStateManager.scalef(0.5F, 0.5F, 0.5F);
+            stack.scale(0.5F, 0.5F, 0.5F);
         }
     }
 }

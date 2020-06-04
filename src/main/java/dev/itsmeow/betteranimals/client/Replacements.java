@@ -3,8 +3,8 @@ package dev.itsmeow.betteranimals.client;
 import java.util.Map;
 
 import com.google.common.collect.Maps;
-import com.mojang.blaze3d.platform.GlStateManager;
 import com.mushroom.midnight.common.entity.creature.NightStagEntity;
+import com.mushroom.midnight.common.registry.MidnightEntities;
 
 import dev.itsmeow.betteranimals.BetterAnimals;
 import dev.itsmeow.betteranimals.client.model.ModelNewBear;
@@ -34,22 +34,15 @@ import dev.itsmeow.imdlib.client.render.ImplRenderer.SuperCallApplyRotations;
 import dev.itsmeow.imdlib.client.util.ModelReplacementHandler;
 import dev.itsmeow.imdlib.client.util.ModelReplacementHandler.RegistrationTime;
 import dev.itsmeow.imdlib.client.util.ModelReplacementHandler.ReplaceDefinition;
+import net.minecraft.client.renderer.Vector3f;
 import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.entity.AgeableEntity;
-import net.minecraft.entity.monster.CaveSpiderEntity;
-import net.minecraft.entity.monster.SilverfishEntity;
-import net.minecraft.entity.monster.SpiderEntity;
-import net.minecraft.entity.passive.CatEntity;
+import net.minecraft.entity.EntityType;
 import net.minecraft.entity.passive.ChickenEntity;
 import net.minecraft.entity.passive.CowEntity;
 import net.minecraft.entity.passive.FoxEntity;
 import net.minecraft.entity.passive.MooshroomEntity;
-import net.minecraft.entity.passive.OcelotEntity;
 import net.minecraft.entity.passive.PigEntity;
-import net.minecraft.entity.passive.PolarBearEntity;
-import net.minecraft.entity.passive.SheepEntity;
-import net.minecraft.entity.passive.SquidEntity;
-import net.minecraft.entity.passive.WolfEntity;
 import net.minecraft.util.Util;
 import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.fml.ModList;
@@ -83,39 +76,35 @@ public class Replacements {
         H.addAction(RegistrationTime.CLIENTSETUP, "minecraft", () -> () -> {
             boolean quarkLoaded = ModList.get().isLoaded("quark");
             if(!quarkLoaded || !BetterAnimalsConfig.enableQuarkOverrideCow.get()) {
-                H.addReplace(RegistrationTime.MODELREGISTRY, "minecraft", "cow", () -> () -> H.lambdaReplace(CowEntity.class, 0.7F, cow));
+                H.addReplace(RegistrationTime.MODELREGISTRY, "minecraft", "cow", () -> () -> H.lambdaReplace(EntityType.COW, 0.7F, cow));
             }
             if(!quarkLoaded || !BetterAnimalsConfig.enableQuarkOverridePig.get()) {
-                H.addReplace(RegistrationTime.MODELREGISTRY, "minecraft", "pig", () -> () -> H.lambdaReplace(PigEntity.class, 0.7F, pig));
+                H.addReplace(RegistrationTime.MODELREGISTRY, "minecraft", "pig", () -> () -> H.lambdaReplace(EntityType.PIG, 0.7F, pig));
             }
             if(!quarkLoaded || !BetterAnimalsConfig.enableQuarkOverrideChicken.get()) {
-                H.addReplace(RegistrationTime.MODELREGISTRY, "minecraft", "chicken", () -> () -> H.lambdaReplace(ChickenEntity.class, 0.4F, chicken));
+                H.addReplace(RegistrationTime.MODELREGISTRY, "minecraft", "chicken", () -> () -> H.lambdaReplace(EntityType.CHICKEN, 0.4F, chicken));
             }
 
         });
         H.addAction(RegistrationTime.CLIENTSETUP, "quark", () -> () -> {
             if(BetterAnimalsConfig.enableQuarkOverrideCow.get())
-                H.addReplace(RegistrationTime.CLIENTSETUP, "minecraft", "cow", () -> () -> H.lambdaReplace(CowEntity.class, 0.7F, r -> cow.apply(r).tMapped(e -> QuarkUtil.getTextureOrShiny(e, VariantTextureType.COW))));
+                H.addReplace(RegistrationTime.CLIENTSETUP, "minecraft", "cow", () -> () -> H.lambdaReplace(EntityType.COW, 0.7F, r -> cow.apply(r).tMapped(e -> QuarkUtil.getTextureOrShiny(e, VariantTextureType.COW))));
             if(BetterAnimalsConfig.enableQuarkOverridePig.get())
-                H.addReplace(RegistrationTime.CLIENTSETUP, "minecraft", "pig", () -> () -> H.lambdaReplace(PigEntity.class, 0.7F, r -> pig.apply(r).tMapped(e -> QuarkUtil.getTextureOrShiny(e, VariantTextureType.PIG))));
+                H.addReplace(RegistrationTime.CLIENTSETUP, "minecraft", "pig", () -> () -> H.lambdaReplace(EntityType.PIG, 0.7F, r -> pig.apply(r).tMapped(e -> QuarkUtil.getTextureOrShiny(e, VariantTextureType.PIG))));
             if(BetterAnimalsConfig.enableQuarkOverrideChicken.get())
-                H.addReplace(RegistrationTime.CLIENTSETUP, "minecraft", "chicken", () -> () -> H.lambdaReplace(ChickenEntity.class, 0.4F, r -> chicken.apply(r).tMapped(e -> QuarkUtil.getTextureOrShiny(e, VariantTextureType.CHICKEN))));
+                H.addReplace(RegistrationTime.CLIENTSETUP, "minecraft", "chicken", () -> () -> H.lambdaReplace(EntityType.CHICKEN, 0.4F, r -> chicken.apply(r).tMapped(e -> QuarkUtil.getTextureOrShiny(e, VariantTextureType.CHICKEN))));
         });
 
-        H.addReplace(RegistrationTime.MODELREGISTRY, "minecraft", "sheep", () -> () -> H.lambdaReplace(SheepEntity.class, 0.4F, r -> r
+        H.addReplace(RegistrationTime.MODELREGISTRY, "minecraft", "sheep", () -> () -> H.lambdaReplace(EntityType.SHEEP, 0.4F, r -> r
         .childScale(AgeableEntity::isChild, 0.5F)
         .layer(LayerNewSheepWool::new)
         .tSingle("sheep").mSingle(new ModelNewSheep<>())));
 
-        H.addReplace(RegistrationTime.MODELREGISTRY, "minecraft", "wolf", () -> () -> H.lambdaReplace(WolfEntity.class, 0.25F, r -> r
-        .preRender((e, p) -> {
-            GlStateManager.scaled(0.8D, 0.8D, 0.8D);
+        H.addReplace(RegistrationTime.MODELREGISTRY, "minecraft", "wolf", () -> () -> H.lambdaReplace(EntityType.WOLF, 0.25F, r -> r
+        .preRender((e, s, p) -> {
+            s.scale(0.8F, 0.8F, 0.8F);
             if(e.isChild()) {
-                GlStateManager.scaled(0.5D, 0.5D, 0.5D);
-            }
-            if(e.isWolfWet()) {
-                float f = e.getBrightness() * e.getShadingWhileWet(p);
-                GlStateManager.color3f(f, f, f);
+                s.scale(0.5F, 0.5F, 0.5F);
             }
         })
         .handleRotation((e, p) -> e.getTailRotation())
@@ -123,65 +112,63 @@ public class Replacements {
         .tMapped(e -> e.isTamed() ? "wolf/wolf_tame" : (e.isAngry() ? "wolf/wolf_angry" : "wolf/wolf"))
         .mSingle(new ModelNewWolf<>())));
 
-        H.addReplace(RegistrationTime.MODELREGISTRY, "minecraft", "mooshroom", () -> () -> H.lambdaReplace(MooshroomEntity.class, 0.7F, r -> r
-        .preRender((e, p) -> {
+        H.addReplace(RegistrationTime.MODELREGISTRY, "minecraft", "mooshroom", () -> () -> H.lambdaReplace(EntityType.MOOSHROOM, 0.7F, r -> r
+        .preRender((e, s, p) -> {
             if(e.isChild()) {
-                GlStateManager.scalef(0.36F, 0.36F, 0.36F);
-            } else {
-                GlStateManager.translatef(0F, 0.15F, 0F);
+                s.scale(0.36F, 0.36F, 0.36F);
             }
         })
         .layer(LayerNewMooshroomMushroom::new)
         .tCondition(e -> e.getMooshroomType() == MooshroomEntity.Type.RED, "mooshroom", "mooshroom_brown")
         .mSingle(new ModelNewCow<>())));
 
-        H.addReplace(RegistrationTime.MODELREGISTRY, "minecraft", "squid", () -> () -> H.lambdaReplace(SquidEntity.class, 0.7F, r -> r
-        .applyRotations((e, a, rot, p) -> {
+        H.addReplace(RegistrationTime.MODELREGISTRY, "minecraft", "squid", () -> () -> H.lambdaReplace(EntityType.SQUID, 0.7F, r -> r
+        .applyRotations((e, s, a, rot, p) -> {
             float f = e.prevSquidPitch + (e.squidPitch - e.prevSquidPitch) * p;
             float f1 = e.prevSquidYaw + (e.squidYaw - e.prevSquidYaw) * p;
-            GlStateManager.translatef(0.0F, 0.5F, 0.0F);
-            GlStateManager.rotatef(180.0F - rot, 0.0F, 1.0F, 0.0F);
-            GlStateManager.rotatef(f, 1.0F, 0.0F, 0.0F);
-            GlStateManager.rotatef(f1, 0.0F, 1.0F, 0.0F);
-            GlStateManager.translatef(0.0F, -1.2F, 0.0F);
+            s.translate(0.0F, 0.5F, 0.0F);
+            s.rotate(Vector3f.YP.rotationDegrees(180.0F - rot));
+            s.rotate(Vector3f.XP.rotationDegrees(f));
+            s.rotate(Vector3f.YP.rotationDegrees(f1));
+            s.translate(0.0F, -1.2F, 0.0F);
         })
         .handleRotation((e, p) -> -(e.lastTentacleAngle + (e.tentacleAngle - e.lastTentacleAngle) * p))
         .tSingle("squid").mSingle(new ModelNewSquid<>())));
 
-        H.addReplace(RegistrationTime.MODELREGISTRY, "minecraft", "spider", () -> () -> H.lambdaReplace(SpiderEntity.class, 1F, r -> r
-        .preRender((e, p) -> {
+        H.addReplace(RegistrationTime.MODELREGISTRY, "minecraft", "spider", () -> () -> H.lambdaReplace(EntityType.SPIDER, 1F, r -> r
+        .preRender((e, s, p) -> {
             if(e.isBesideClimbableBlock()) {
-                GlStateManager.rotatef(-90, 1, 0, 0);
-                GlStateManager.translatef(0.0F, 0.75F, -0.5F);
+                s.rotate(Vector3f.XP.rotationDegrees(-90F));
+                s.translate(0.0F, 0.75F, -0.5F);
             }
         })
         .layer(LayerNewSpiderEyes::new)
         .tSingle("spider").mSingle(new ModelNewSpider<>())));
 
-        H.addReplace(RegistrationTime.MODELREGISTRY, "minecraft", "cavespider", () -> () -> H.lambdaReplace(CaveSpiderEntity.class, 0.4F, r -> r
-        .preRender((e, p) -> {
+        H.addReplace(RegistrationTime.MODELREGISTRY, "minecraft", "cavespider", () -> () -> H.lambdaReplace(EntityType.CAVE_SPIDER, 0.4F, r -> r
+        .preRender((e, s, p) -> {
             if(e.isBesideClimbableBlock()) {
-                GlStateManager.rotatef(-90, 1, 0, 0);
-                GlStateManager.translatef(0.0F, 0.75F, -0.5F);
+                s.rotate(Vector3f.XP.rotationDegrees(-90F));
+                s.translate(0.0F, 0.75F, -0.5F);
             }
-            GlStateManager.scalef(0.5F, 0.5F, 0.5F);
+            s.scale(0.5F, 0.5F, 0.5F);
         })
         .layer(LayerNewSpiderEyes::new)
         .tSingle("cave_spider").mSingle(new ModelNewSpider<>())));
 
-        H.addReplace(RegistrationTime.MODELREGISTRY, "minecraft", "silverfish", () -> () -> H.lambdaReplace(SilverfishEntity.class, 0.25F, r -> r
-        .preRender((e, p) -> GlStateManager.scalef(0.5F, 0.5F, 0.5F))
+        H.addReplace(RegistrationTime.MODELREGISTRY, "minecraft", "silverfish", () -> () -> H.lambdaReplace(EntityType.SILVERFISH, 0.25F, r -> r
+        .preRender((e, s, p) -> s.scale(0.5F, 0.5F, 0.5F))
         .tSingle("silverfish").mSingle(new ModelNewSilverfish<>())));
 
-        H.addReplace(RegistrationTime.MODELREGISTRY, "minecraft", "polarbear", () -> () -> H.lambdaReplace(PolarBearEntity.class, 0.7F, r -> r
+        H.addReplace(RegistrationTime.MODELREGISTRY, "minecraft", "polarbear", () -> () -> H.lambdaReplace(EntityType.POLAR_BEAR, 0.7F, r -> r
         .childScale(AgeableEntity::isChild, 0.7F)
         .tSingle("polarbear").mSingle(new ModelNewBear<>())));
 
-        H.addReplace(RegistrationTime.MODELREGISTRY, "minecraft", "ocelot", () -> () -> H.lambdaReplace(OcelotEntity.class, 0.5F, r -> r
-        .preRender((e, p) -> {
-            GlStateManager.scaled(0.8D, 0.8D, 0.8D);
+        H.addReplace(RegistrationTime.MODELREGISTRY, "minecraft", "ocelot", () -> () -> H.lambdaReplace(EntityType.OCELOT, 0.5F, r -> r
+        .preRender((e, s, p) -> {
+            s.scale(0.8F, 0.8F, 0.8F);
             if(e.isChild()) {
-                GlStateManager.scaled(0.5D, 0.5D, 0.5D);
+                s.scale(0.5F, 0.5F, 0.5F);
             }
         })
         .tSingle("cat/ocelot").mSingle(new ModelNewCat<>())));
@@ -199,34 +186,34 @@ public class Replacements {
             map.put(9, "cat/jellie");
             map.put(10, "cat/all_black");
         });
-        H.addReplace(RegistrationTime.MODELREGISTRY, "minecraft", "cat", () -> () -> H.lambdaReplace(CatEntity.class, 0.5F, r -> r
-        .preRender((e, p) -> {
-            GlStateManager.scaled(0.8D, 0.8D, 0.8D);
+        H.addReplace(RegistrationTime.MODELREGISTRY, "minecraft", "cat", () -> () -> H.lambdaReplace(EntityType.CAT, 0.5F, r -> r
+        .preRender((e, s, p) -> {
+            s.scale(0.8F, 0.8F, 0.8F);
             if(e.isTamed()) {
-                GlStateManager.scaled(0.9D, 0.9D, 0.9D);
+                s.scale(0.9F, 0.9F, 0.9F);
             }
             if(e.isChild()) {
-                GlStateManager.scaled(0.5D, 0.5D, 0.5D);
+                s.scale(0.5F, 0.5F, 0.5F);
             }
         })
         .layer(LayerNewCatCollar::new)
         .tMapped(e -> catTextures.get(e.getCatType())).mSingle(new ModelNewCat<>())));
 
-        H.addReplace(RegistrationTime.MODELREGISTRY, "minecraft", "fox", () -> () -> H.<FoxEntity, ModelNewFox<FoxEntity>>lambdaReplace(FoxEntity.class, 0.4F, r -> r
-        .preRender((e, p) -> {
+        H.addReplace(RegistrationTime.MODELREGISTRY, "minecraft", "fox", () -> () -> H.<FoxEntity, ModelNewFox<FoxEntity>>lambdaReplace(EntityType.FOX, 0.4F, r -> r
+        .preRender((e, s, p) -> {
             if(e.isChild()) {
-                GlStateManager.scaled(0.5D, 0.5D, 0.5D);
+                s.scale(0.5F, 0.5F, 0.5F);
             }
             if(e.isSleeping()) {
-                GlStateManager.translatef(0F, 0.5F, 0F);
+                s.translate(0F, 0.5F, 0F);
             }
             if(e.isSitting()) {
-                GlStateManager.translatef(0F, 0.2F, 0F);
+                s.translate(0F, 0.2F, 0F);
             }
         })
-        .applyRotations((e, a, rot, p) -> {
+        .applyRotations((e, s, a, rot, p) -> {
             if(e.func_213480_dY() || e.isStuck()) {
-                GlStateManager.rotatef(-MathHelper.lerp(p, e.prevRotationPitch, e.rotationPitch), 1.0F, 0.0F, 0.0F);
+                s.rotate(Vector3f.XP.rotationDegrees(-MathHelper.lerp(p, e.prevRotationPitch, e.rotationPitch)));
             }
         }, SuperCallApplyRotations.PRE)
         .layer(LayerNewFoxItem::new)
@@ -237,7 +224,7 @@ public class Replacements {
     }
 
     public static class MidnightReplaces {
-        public static final ReplaceDefinition<NightStagEntity> NIGHTSTAG = new ReplaceDefinition<NightStagEntity>(NightStagEntity.class, RenderNewNightstag::new);
+        public static final ReplaceDefinition<NightStagEntity> NIGHTSTAG = new ReplaceDefinition<NightStagEntity>(MidnightEntities.NIGHTSTAG, RenderNewNightstag::new);
     }
 
 }

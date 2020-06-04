@@ -1,9 +1,11 @@
 package dev.itsmeow.betteranimals.client.render.entity.layer;
 
-import com.mojang.blaze3d.platform.GlStateManager;
+import com.mojang.blaze3d.matrix.MatrixStack;
 
 import dev.itsmeow.betteranimals.client.model.ModelNewFox;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.IRenderTypeBuffer;
+import net.minecraft.client.renderer.Vector3f;
 import net.minecraft.client.renderer.entity.IEntityRenderer;
 import net.minecraft.client.renderer.entity.layers.LayerRenderer;
 import net.minecraft.client.renderer.model.ItemCameraTransforms;
@@ -13,7 +15,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-@SuppressWarnings("deprecation")
 @OnlyIn(Dist.CLIENT)
 public class LayerNewFoxItem extends LayerRenderer<FoxEntity, ModelNewFox<FoxEntity>> {
 
@@ -21,33 +22,31 @@ public class LayerNewFoxItem extends LayerRenderer<FoxEntity, ModelNewFox<FoxEnt
         super(renderer);
     }
 
-    public void render(FoxEntity entity, float p_212842_2_, float p_212842_3_, float p_212842_4_, float p_212842_5_, float p_212842_6_, float p_212842_7_, float p_212842_8_) {
+    @Override
+    public void render(MatrixStack stack, IRenderTypeBuffer bufferIn, int packedLightIn, FoxEntity entity, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
         ItemStack itemstack = entity.getItemStackFromSlot(EquipmentSlotType.MAINHAND);
         if(!itemstack.isEmpty()) {
             boolean sleeping = entity.isSleeping();
-            GlStateManager.pushMatrix();
+            stack.push();
             {
-                GlStateManager.translatef(((this.getEntityModel()).head.rotationPointX + (this.getEntityModel()).neck.rotationPointX + (this.getEntityModel()).body.rotationPointX) / 16.0F, ((this.getEntityModel()).head.rotationPointY + (this.getEntityModel()).neck.rotationPointY + (this.getEntityModel()).body.rotationPointY) / 16.0F, ((this.getEntityModel()).head.rotationPointZ + (this.getEntityModel()).neck.rotationPointZ + (this.getEntityModel()).body.rotationPointZ) / 16.0F);
-                GlStateManager.rotatef(entity.func_213475_v(p_212842_4_) * (180F / (float) Math.PI), 0.0F, 0.0F, 2.0F);
-                GlStateManager.rotatef((float) Math.toDegrees(this.getEntityModel().head.rotateAngleY), 0.0F, 1.0F, 0.0F);
-                GlStateManager.rotatef((float) Math.toDegrees(this.getEntityModel().head.rotateAngleX), 1.0F, 0.0F, 0.0F);
+                stack.translate(((this.getEntityModel()).head.rotationPointX + (this.getEntityModel()).neck.rotationPointX + (this.getEntityModel()).body.rotationPointX) / 16.0F, ((this.getEntityModel()).head.rotationPointY + (this.getEntityModel()).neck.rotationPointY + (this.getEntityModel()).body.rotationPointY) / 16.0F, ((this.getEntityModel()).head.rotationPointZ + (this.getEntityModel()).neck.rotationPointZ + (this.getEntityModel()).body.rotationPointZ) / 16.0F);
+                stack.rotate(Vector3f.ZP.rotation(this.getEntityModel().head.rotateAngleZ));
+                stack.rotate(Vector3f.YP.rotation(this.getEntityModel().head.rotateAngleY));
+                stack.rotate(Vector3f.XP.rotation(this.getEntityModel().head.rotateAngleX));
                 if(sleeping) {
-                    GlStateManager.translatef(0.6F, 0.1F, -0.3F);
+                    stack.translate(0.6F, 0.1F, -0.3F);
                 } else {
-                    GlStateManager.translatef(0F, -0.1F, -0.5F);
+                    stack.translate(0F, -0.1F, -0.5F);
                 }
-                GlStateManager.rotatef(90.0F, 1.0F, 0.0F, 0.0F);
+                stack.rotate(Vector3f.XP.rotationDegrees(90F));
                 if(sleeping) {
-                    GlStateManager.rotatef(90.0F, 0.0F, 0.0F, 1.0F);
+                    stack.rotate(Vector3f.ZP.rotationDegrees(90F));
                 }
 
-                Minecraft.getInstance().getItemRenderer().renderItem(itemstack, entity, ItemCameraTransforms.TransformType.GROUND, false);
+                Minecraft.getInstance().getFirstPersonRenderer().renderItemSide(entity, itemstack, ItemCameraTransforms.TransformType.GROUND, false, stack, bufferIn, packedLightIn);
             }
-            GlStateManager.popMatrix();
+            stack.pop();
         }
     }
 
-    public boolean shouldCombineTextures() {
-        return false;
-    }
 }
