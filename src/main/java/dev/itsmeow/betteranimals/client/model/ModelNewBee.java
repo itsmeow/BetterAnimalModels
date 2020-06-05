@@ -277,25 +277,19 @@ public class ModelNewBee<T extends BeeEntity> extends Model<T> {
         this.lWing.rotateAngleX = 0.08726646259971647F;
         this.thorax.rotateAngleX = 0.0F;
         this.thorax.rotationPointY = 12.0F;
-        boolean flag = entityIn.onGround && entityIn.getMotion().lengthSquared() < 1.0E-7D;
-        if(flag) {
+        boolean landed = entityIn.onGround && entityIn.getMotion().lengthSquared() < 1.0E-7D;
+        if(landed) {
             // not move
             this.rWing.rotateAngleX = 0.08726646259971647F;
             this.lWing.rotateAngleX = 0.08726646259971647F;
             this.rWing.rotateAngleY = -0.12217304763960307F;
             this.lWing.rotateAngleY = 0.12217304763960307F;
-            //this.frontLegs.rotateAngleX = 0.0F;
-            //this.middleLegs.rotateAngleX = 0.0F;
-            //this.backLegs.rotateAngleX = 0.0F;
         } else {
             // move
             this.rWing.rotateAngleY = -0.12217304763960307F - rad(15F);
             this.lWing.rotateAngleY = 0.12217304763960307F + rad(15F);
             this.rWing.rotateAngleX = MathHelper.cos(ageInTicks * 2.1F) * (float) Math.PI * 0.15F + 0.08726646259971647F;
             this.lWing.rotateAngleX = MathHelper.cos(ageInTicks * 2.1F) * (float) Math.PI * 0.15F + 0.08726646259971647F;
-            //this.frontLegs.rotateAngleX = ((float) Math.PI / 4F);
-            //this.middleLegs.rotateAngleX = ((float) Math.PI / 4F);
-            //this.backLegs.rotateAngleX = ((float) Math.PI / 4F);
             this.thorax.rotateAngleX = 0.0F;
             this.thorax.rotateAngleY = 0.0F;
             this.thorax.rotateAngleZ = 0.0F;
@@ -306,12 +300,10 @@ public class ModelNewBee<T extends BeeEntity> extends Model<T> {
             this.thorax.rotateAngleX = 0.0F;
             this.thorax.rotateAngleY = 0.0F;
             this.thorax.rotateAngleZ = 0.0F;
-            if(!flag) {
+            if(!landed) {
                 // not moving angy bee
                 float f1 = MathHelper.cos(ageInTicks * 0.18F);
                 this.thorax.rotateAngleX = 0.1F + f1 * (float) Math.PI * 0.025F;
-                //this.frontLegs.rotateAngleX = -f1 * (float) Math.PI * 0.1F + ((float) Math.PI / 8F);
-                //this.backLegs.rotateAngleX = -f1 * (float) Math.PI * 0.05F + ((float) Math.PI / 4F);
                 this.thorax.rotationPointY = 19.0F - MathHelper.cos(ageInTicks * 0.18F) * 0.9F;
             }
         }
