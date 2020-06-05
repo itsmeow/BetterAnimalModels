@@ -8,6 +8,7 @@ import com.mushroom.midnight.common.registry.MidnightEntities;
 
 import dev.itsmeow.betteranimals.BetterAnimals;
 import dev.itsmeow.betteranimals.client.model.ModelNewBear;
+import dev.itsmeow.betteranimals.client.model.ModelNewBee;
 import dev.itsmeow.betteranimals.client.model.ModelNewCat;
 import dev.itsmeow.betteranimals.client.model.ModelNewChicken;
 import dev.itsmeow.betteranimals.client.model.ModelNewCow;
@@ -219,6 +220,11 @@ public class Replacements {
         .layer(LayerNewFoxItem::new)
         .tMapped(e -> e.getVariantType() == FoxEntity.Type.RED ? (e.isSleeping() ? "fox/fox_sleep" : "fox/fox") : (e.isSleeping() ? "fox/snow_fox_sleep" : "fox/snow_fox"))
         .mSingle(new ModelNewFox<>())));
+
+        H.addReplace(RegistrationTime.MODELREGISTRY, "minecraft", "bee", () -> () -> H.lambdaReplace(EntityType.BEE, 0.4F, r -> r
+        .childScale(AgeableEntity::isChild, 0.5F)
+        .tMapped(e -> e.isAngry() ? (e.hasNectar() ? "bee/bee_angry_nectar" : "bee/bee_angry") : (e.hasNectar() ? "bee/bee_nectar" : "bee/bee"))
+        .mSingle(new ModelNewBee<>())));
 
         H.addReplace(RegistrationTime.MODELREGISTRY, "midnight", "nightstag", () -> () -> MidnightReplaces.NIGHTSTAG);
     }
