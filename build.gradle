@@ -8,7 +8,7 @@ repositories {
 }
 
 dependencies {
-    compile fg.deobf("vazkii.arl:AutoRegLib:1.5-40")
-    compile fg.deobf("vazkii.quark:Quark:r2.1-240")
-    compile fg.deobf("the-midnight:themidnight:0.5.8")
+    compileOnly fg.deobf("vazkii.arl:AutoRegLib:1.5-40")
+    compileOnly fg.deobf("vazkii.quark:Quark:r2.1-240")
+    compileOnly fg.deobf("the-midnight:themidnight:0.5.8")
 }
