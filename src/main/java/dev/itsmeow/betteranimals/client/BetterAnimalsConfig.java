@@ -10,9 +10,12 @@ public class BetterAnimalsConfig {
 
     public static ForgeConfigSpec CLIENT_CONFIG_SPEC = null;
 
-    public static void setupConfig() {
-        final Pair<BetterAnimalsConfig, ForgeConfigSpec> specPair = new ForgeConfigSpec.Builder().configure(BetterAnimalsConfig::new);
-        CLIENT_CONFIG_SPEC = specPair.getRight();
+    public static ForgeConfigSpec getClientConfigSpec() {
+        if(CLIENT_CONFIG_SPEC == null) {
+            final Pair<BetterAnimalsConfig, ForgeConfigSpec> specPair = new ForgeConfigSpec.Builder().configure(BetterAnimalsConfig::new);
+            CLIENT_CONFIG_SPEC = specPair.getRight();
+        }
+        return CLIENT_CONFIG_SPEC;
     }
 
     public static ReplacementConfig replace;

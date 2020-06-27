@@ -35,7 +35,6 @@ import dev.itsmeow.imdlib.client.util.ModelReplacementHandler;
 import dev.itsmeow.imdlib.client.util.ModelReplacementHandler.RegistrationTime;
 import dev.itsmeow.imdlib.client.util.ModelReplacementHandler.ReplaceDefinition;
 import net.minecraft.client.renderer.entity.model.EntityModel;
-import net.minecraft.entity.AgeableEntity;
 import net.minecraft.entity.monster.CaveSpiderEntity;
 import net.minecraft.entity.monster.SilverfishEntity;
 import net.minecraft.entity.monster.SpiderEntity;
@@ -61,18 +60,18 @@ public class Replacements {
     public static void addReplaces() {
         // cow
         RenderDef<CowEntity, EntityModel<CowEntity>> cow = r -> r
-        .childScale(AgeableEntity::isChild, 0.5F)
+        .childScale(0.5F)
         .tSingle("cow").mSingle(new ModelNewCow<>());
 
         // pig
         RenderDef<PigEntity, EntityModel<PigEntity>> pig = r -> r
-        .childScale(AgeableEntity::isChild, 0.5F)
+        .childScale(0.5F)
         .layer(LayerNewPigSaddle::new)
         .tSingle("pig").mSingle(new ModelNewPig<>());
 
         // chicken
         RenderDef<ChickenEntity, EntityModel<ChickenEntity>> chicken = r -> r
-        .childScale(AgeableEntity::isChild, 0.45F)
+        .childScale(0.45F)
         .handleRotation((e, p) -> {
             float f = e.oFlap + (e.wingRotation - e.oFlap) * p;
             float f1 = e.oFlapSpeed + (e.destPos - e.oFlapSpeed) * p;
@@ -83,27 +82,27 @@ public class Replacements {
         H.addAction(RegistrationTime.CLIENTSETUP, "minecraft", () -> () -> {
             boolean quarkLoaded = ModList.get().isLoaded("quark");
             if(!quarkLoaded || !BetterAnimalsConfig.enableQuarkOverrideCow.get()) {
-                H.addReplace(RegistrationTime.MODELREGISTRY, "minecraft", "cow", () -> () -> H.lambdaReplace(CowEntity.class, 0.7F, cow));
+                H.addReplace(RegistrationTime.CLIENTSETUP, "minecraft", "cow", () -> () -> H.lambdaReplace(CowEntity.class, 0.7F, cow));
             }
             if(!quarkLoaded || !BetterAnimalsConfig.enableQuarkOverridePig.get()) {
-                H.addReplace(RegistrationTime.MODELREGISTRY, "minecraft", "pig", () -> () -> H.lambdaReplace(PigEntity.class, 0.7F, pig));
+                H.addReplace(RegistrationTime.CLIENTSETUP, "minecraft", "pig", () -> () -> H.lambdaReplace(PigEntity.class, 0.7F, pig));
             }
             if(!quarkLoaded || !BetterAnimalsConfig.enableQuarkOverrideChicken.get()) {
-                H.addReplace(RegistrationTime.MODELREGISTRY, "minecraft", "chicken", () -> () -> H.lambdaReplace(ChickenEntity.class, 0.4F, chicken));
+                H.addReplace(RegistrationTime.CLIENTSETUP, "minecraft", "chicken", () -> () -> H.lambdaReplace(ChickenEntity.class, 0.4F, chicken));
             }
 
         });
         H.addAction(RegistrationTime.CLIENTSETUP, "quark", () -> () -> {
             if(BetterAnimalsConfig.enableQuarkOverrideCow.get())
-                H.addReplace(RegistrationTime.CLIENTSETUP, "minecraft", "cow", () -> () -> H.lambdaReplace(CowEntity.class, 0.7F, r -> cow.apply(r).tMapped(e -> QuarkUtil.getTextureOrShiny(e, VariantTextureType.COW))));
+                H.addReplace(RegistrationTime.CLIENTSETUP, "minecraft", "cow", () -> () -> H.lambdaReplace(CowEntity.class, 0.7F, r -> cow.apply(r).tMappedRaw(e -> QuarkUtil.getTextureOrShiny(e, VariantTextureType.COW))));
             if(BetterAnimalsConfig.enableQuarkOverridePig.get())
-                H.addReplace(RegistrationTime.CLIENTSETUP, "minecraft", "pig", () -> () -> H.lambdaReplace(PigEntity.class, 0.7F, r -> pig.apply(r).tMapped(e -> QuarkUtil.getTextureOrShiny(e, VariantTextureType.PIG))));
+                H.addReplace(RegistrationTime.CLIENTSETUP, "minecraft", "pig", () -> () -> H.lambdaReplace(PigEntity.class, 0.7F, r -> pig.apply(r).tMappedRaw(e -> QuarkUtil.getTextureOrShiny(e, VariantTextureType.PIG))));
             if(BetterAnimalsConfig.enableQuarkOverrideChicken.get())
-                H.addReplace(RegistrationTime.CLIENTSETUP, "minecraft", "chicken", () -> () -> H.lambdaReplace(ChickenEntity.class, 0.4F, r -> chicken.apply(r).tMapped(e -> QuarkUtil.getTextureOrShiny(e, VariantTextureType.CHICKEN))));
+                H.addReplace(RegistrationTime.CLIENTSETUP, "minecraft", "chicken", () -> () -> H.lambdaReplace(ChickenEntity.class, 0.4F, r -> chicken.apply(r).tMappedRaw(e -> QuarkUtil.getTextureOrShiny(e, VariantTextureType.CHICKEN))));
         });
 
         H.addReplace(RegistrationTime.MODELREGISTRY, "minecraft", "sheep", () -> () -> H.lambdaReplace(SheepEntity.class, 0.4F, r -> r
-        .childScale(AgeableEntity::isChild, 0.5F)
+        .childScale(0.5F)
         .layer(LayerNewSheepWool::new)
         .tSingle("sheep").mSingle(new ModelNewSheep<>())));
 
@@ -174,7 +173,7 @@ public class Replacements {
         .tSingle("silverfish").mSingle(new ModelNewSilverfish<>())));
 
         H.addReplace(RegistrationTime.MODELREGISTRY, "minecraft", "polarbear", () -> () -> H.lambdaReplace(PolarBearEntity.class, 0.7F, r -> r
-        .childScale(AgeableEntity::isChild, 0.7F)
+        .childScale(0.7F)
         .tSingle("polarbear").mSingle(new ModelNewBear<>())));
 
         H.addReplace(RegistrationTime.MODELREGISTRY, "minecraft", "ocelot", () -> () -> H.lambdaReplace(OcelotEntity.class, 0.5F, r -> r
