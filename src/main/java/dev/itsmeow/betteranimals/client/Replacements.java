@@ -7,25 +7,9 @@ import com.mojang.blaze3d.platform.GlStateManager;
 import com.mushroom.midnight.common.entity.creature.NightStagEntity;
 
 import dev.itsmeow.betteranimals.BetterAnimals;
-import dev.itsmeow.betteranimals.client.model.ModelNewBear;
-import dev.itsmeow.betteranimals.client.model.ModelNewCat;
-import dev.itsmeow.betteranimals.client.model.ModelNewChicken;
-import dev.itsmeow.betteranimals.client.model.ModelNewCow;
-import dev.itsmeow.betteranimals.client.model.ModelNewFox;
-import dev.itsmeow.betteranimals.client.model.ModelNewPig;
-import dev.itsmeow.betteranimals.client.model.ModelNewSheep;
-import dev.itsmeow.betteranimals.client.model.ModelNewSilverfish;
-import dev.itsmeow.betteranimals.client.model.ModelNewSpider;
-import dev.itsmeow.betteranimals.client.model.ModelNewSquid;
-import dev.itsmeow.betteranimals.client.model.ModelNewWolf;
+import dev.itsmeow.betteranimals.client.model.*;
 import dev.itsmeow.betteranimals.client.render.entity.compat.RenderNewNightstag;
-import dev.itsmeow.betteranimals.client.render.entity.layer.LayerNewCatCollar;
-import dev.itsmeow.betteranimals.client.render.entity.layer.LayerNewFoxItem;
-import dev.itsmeow.betteranimals.client.render.entity.layer.LayerNewMooshroomMushroom;
-import dev.itsmeow.betteranimals.client.render.entity.layer.LayerNewPigSaddle;
-import dev.itsmeow.betteranimals.client.render.entity.layer.LayerNewSheepWool;
-import dev.itsmeow.betteranimals.client.render.entity.layer.LayerNewSpiderEyes;
-import dev.itsmeow.betteranimals.client.render.entity.layer.LayerNewWolfCollar;
+import dev.itsmeow.betteranimals.client.render.entity.layer.*;
 import dev.itsmeow.betteranimals.compat.QuarkUtil;
 import dev.itsmeow.betteranimals.compat.QuarkUtil.VariantTextureType;
 import dev.itsmeow.imdlib.client.IMDLibClient;
@@ -38,17 +22,7 @@ import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.entity.monster.CaveSpiderEntity;
 import net.minecraft.entity.monster.SilverfishEntity;
 import net.minecraft.entity.monster.SpiderEntity;
-import net.minecraft.entity.passive.CatEntity;
-import net.minecraft.entity.passive.ChickenEntity;
-import net.minecraft.entity.passive.CowEntity;
-import net.minecraft.entity.passive.FoxEntity;
-import net.minecraft.entity.passive.MooshroomEntity;
-import net.minecraft.entity.passive.OcelotEntity;
-import net.minecraft.entity.passive.PigEntity;
-import net.minecraft.entity.passive.PolarBearEntity;
-import net.minecraft.entity.passive.SheepEntity;
-import net.minecraft.entity.passive.SquidEntity;
-import net.minecraft.entity.passive.WolfEntity;
+import net.minecraft.entity.passive.*;
 import net.minecraft.util.Util;
 import net.minecraft.util.math.MathHelper;
 import net.minecraftforge.fml.ModList;
@@ -231,6 +205,11 @@ public class Replacements {
         .layer(LayerNewFoxItem::new)
         .tMapped(e -> e.getVariantType() == FoxEntity.Type.RED ? (e.isSleeping() ? "fox/fox_sleep" : "fox/fox") : (e.isSleeping() ? "fox/snow_fox_sleep" : "fox/snow_fox"))
         .mSingle(new ModelNewFox<>())));
+
+        H.addReplace(RegistrationTime.MODELREGISTRY, "minecraft", "dolphin", () -> () -> H.lambdaReplace(DolphinEntity.class, 0.7F, r -> r
+        .layer(LayerNewDolphinItem::new)
+        .tSingle("dolphin")
+        .mSingle(new ModelNewDolphin<>())));
 
         H.addReplace(RegistrationTime.MODELREGISTRY, "midnight", "nightstag", () -> () -> MidnightReplaces.NIGHTSTAG);
     }

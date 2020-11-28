@@ -3,12 +3,16 @@ apply from: 'https://maven.itsmeow.dev/scripts/imdlib.gradle' // include imdlib
 
 repositories {
     maven {
-        url = "https://minecraft.curseforge.com/api/maven/"
+        url = "https://www.cursemaven.com"
+    }
+    maven {
+        url = "https://dvs1.progwml6.com/files/maven/"
     }
 }
 
 dependencies {
-    compileOnly fg.deobf("vazkii.arl:AutoRegLib:1.4-35")
-    compileOnly fg.deobf("vazkii.quark:Quark:r2.0-209")
-    compileOnly fg.deobf("the-midnight:themidnight:0.4.6")
+    runtimeOnly fg.deobf("mezz.jei:jei-${project.mc_version}:${jei_version}")
+    implementation fg.deobf("curse.maven:autoreglib:${arl_version}")
+    implementation fg.deobf("curse.maven:quark:${quark_version}")
+    implementation fg.deobf("curse.maven:the-midnight:${midnight_version}")
 }
