@@ -6,12 +6,14 @@ import vazkii.quark.client.module.VariantAnimalTexturesModule;
 public class QuarkEventCancel {
 
     public static void preQuark() {
-        if(BetterAnimalsConfig.enableQuarkOverrideChicken.get())
+        if (BetterAnimalsConfig.enableQuarkOverrideChicken.get())
             VariantAnimalTexturesModule.enableChicken = false;
-        if(BetterAnimalsConfig.enableQuarkOverrideCow.get())
+        if (BetterAnimalsConfig.enableQuarkOverrideCow.get())
             VariantAnimalTexturesModule.enableCow = false;
-        if(BetterAnimalsConfig.enableQuarkOverridePig.get())
+        if (BetterAnimalsConfig.enableQuarkOverridePig.get())
             VariantAnimalTexturesModule.enablePig = false;
+        if (BetterAnimalsConfig.enableQuarkOverrideBee.get())
+            VariantAnimalTexturesModule.enableLGBTBees = false;
     }
 
 }

@@ -22,6 +22,7 @@ public class BetterAnimalsConfig {
     public static ForgeConfigSpec.BooleanValue enableQuarkOverrideCow;
     public static ForgeConfigSpec.BooleanValue enableQuarkOverridePig;
     public static ForgeConfigSpec.BooleanValue enableQuarkOverrideChicken;
+    public static ForgeConfigSpec.BooleanValue enableQuarkOverrideBee;
 
     private BetterAnimalsConfig(ForgeConfigSpec.Builder builder) {
         replace = Replacements.H.getConfig(builder, (builder2, map) -> {
@@ -35,6 +36,7 @@ public class BetterAnimalsConfig {
             enableQuarkOverrideCow = builder.comment("enable overriding quark's override. Cow must be enabled as well.").define("enablequarkoverridecow", true);
             enableQuarkOverridePig = builder.comment("enable overriding quark's override. Pig must be enabled as well.").define("enablequarkoverridepig", true);
             enableQuarkOverrideChicken = builder.comment("enable overriding quark's override. Chicken must be enabled as well.").define("enablequarkoverridechicken", true);
+            enableQuarkOverrideBee = builder.comment("enable overriding quark's override. Bee must be enabled as well. This will not have the LGBT bee textures, as there are too many for us to make right now.").define("enablequarkoverridebee", true);
             builder.pop();
         }
 
