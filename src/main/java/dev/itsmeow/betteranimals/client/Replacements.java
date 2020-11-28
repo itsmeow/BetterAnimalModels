@@ -1,11 +1,8 @@
 package dev.itsmeow.betteranimals.client;
 
 import com.google.common.collect.Maps;
-import com.mushroom.midnight.common.entity.creature.NightStagEntity;
-import com.mushroom.midnight.common.registry.MidnightEntities;
 import dev.itsmeow.betteranimals.BetterAnimals;
 import dev.itsmeow.betteranimals.client.model.*;
-import dev.itsmeow.betteranimals.client.render.entity.compat.RenderNewNightstag;
 import dev.itsmeow.betteranimals.client.render.entity.layer.*;
 import dev.itsmeow.betteranimals.compat.QuarkUtil;
 import dev.itsmeow.betteranimals.compat.QuarkUtil.VariantTextureType;
@@ -14,13 +11,12 @@ import dev.itsmeow.imdlib.client.render.ImplRenderer.RenderDef;
 import dev.itsmeow.imdlib.client.render.ImplRenderer.SuperCallApplyRotations;
 import dev.itsmeow.imdlib.client.util.ModelReplacementHandler;
 import dev.itsmeow.imdlib.client.util.ModelReplacementHandler.RegistrationTime;
-import dev.itsmeow.imdlib.client.util.ModelReplacementHandler.ReplaceDefinition;
-import net.minecraft.client.renderer.Vector3f;
 import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.passive.*;
 import net.minecraft.util.Util;
 import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.vector.Vector3f;
 import net.minecraftforge.fml.ModList;
 
 import java.util.Map;
@@ -86,7 +82,7 @@ public class Replacements {
         })
         .handleRotation((e, p) -> e.getTailRotation())
         .layer(LayerNewWolfCollar::new)
-        .tMapped(e -> e.isTamed() ? "wolf/wolf_tame" : (e.isAngry() ? "wolf/wolf_angry" : "wolf/wolf"))
+        .tMapped(e -> e.isTamed() ? "wolf/wolf_tame" : (e.func_233678_J__() ? "wolf/wolf_angry" : "wolf/wolf"))
         .mSingle(new ModelNewWolf<>())));
 
         H.addReplace(RegistrationTime.MODELREGISTRY, "minecraft", "mooshroom", () -> () -> H.lambdaReplace(EntityType.MOOSHROOM, 0.7F, r -> r
@@ -199,19 +195,13 @@ public class Replacements {
 
         H.addReplace(RegistrationTime.MODELREGISTRY, "minecraft", "bee", () -> () -> H.lambdaReplace(EntityType.BEE, 0.4F, r -> r
         .childScale(0.5F)
-        .tMapped(e -> e.isAngry() ? (e.hasNectar() ? "bee/bee_angry_nectar" : "bee/bee_angry") : (e.hasNectar() ? "bee/bee_nectar" : "bee/bee"))
+        .tMapped(e -> e.func_233678_J__() ? (e.hasNectar() ? "bee/bee_angry_nectar" : "bee/bee_angry") : (e.hasNectar() ? "bee/bee_nectar" : "bee/bee"))
         .mSingle(new ModelNewBee<>())));
 
         H.addReplace(RegistrationTime.MODELREGISTRY, "minecraft", "dolphin", () -> () -> H.lambdaReplace(EntityType.DOLPHIN, 0.7F, r -> r
         .layer(LayerNewDolphinItem::new)
         .tSingle("dolphin")
         .mSingle(new ModelNewDolphin<>())));
-
-        H.addReplace(RegistrationTime.MODELREGISTRY, "midnight", "nightstag", () -> () -> MidnightReplaces.NIGHTSTAG);
-    }
-
-    public static class MidnightReplaces {
-        public static final ReplaceDefinition<NightStagEntity> NIGHTSTAG = new ReplaceDefinition<>(MidnightEntities.NIGHTSTAG, RenderNewNightstag::new);
     }
 
 }

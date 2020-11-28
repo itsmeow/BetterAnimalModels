@@ -277,7 +277,7 @@ public class ModelNewBee<T extends BeeEntity> extends Model<T> {
         this.lWing.rotateAngleX = 0.08726646259971647F;
         this.thorax.rotateAngleX = 0.0F;
         this.thorax.rotationPointY = 12.0F;
-        boolean landed = entityIn.onGround && entityIn.getMotion().lengthSquared() < 1.0E-7D;
+        boolean landed = entityIn.isOnGround() && entityIn.getMotion().lengthSquared() < 1.0E-7D;
         if(landed) {
             // not move
             this.rWing.rotateAngleX = 0.08726646259971647F;
@@ -295,7 +295,7 @@ public class ModelNewBee<T extends BeeEntity> extends Model<T> {
             this.thorax.rotateAngleZ = 0.0F;
         }
 
-        if(!entityIn.isAngry()) {
+        if(!entityIn.func_233678_J__()) {
             // angy bee
             this.thorax.rotateAngleX = 0.0F;
             this.thorax.rotateAngleY = 0.0F;

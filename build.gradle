@@ -14,5 +14,4 @@ dependencies {
     runtimeOnly fg.deobf("mezz.jei:jei-${project.mc_version}:${jei_version}")
     implementation fg.deobf("curse.maven:autoreglib:${arl_version}")
     implementation fg.deobf("curse.maven:quark:${quark_version}")
-    implementation fg.deobf("curse.maven:the-midnight:${midnight_version}")
 }

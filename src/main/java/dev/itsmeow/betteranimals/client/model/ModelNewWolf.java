@@ -344,7 +344,7 @@ public class ModelNewWolf<T extends LivingEntity> extends Model<T> {
             this.isWet = wolf.isWolfWet();
             this.nextTint = wolf.getBrightness() * wolf.getShadingWhileWet(Minecraft.getInstance().getRenderPartialTicks());
             tail01.rotateAngleX = 0.6981317007977318F + tailRotation - ((wolf.isTamed()) ? 0.4F : 0F);
-            if(wolf.isSitting()) {
+            if(wolf.isEntitySleeping()) { // it's not actually sleeping, MCP is just on crack, it's sitting
                 this.setRotateAngle(rHindPaw, 1.3089969389957472F, 0.20943951023931953F, 0.0F);
                 this.setRotateAngle(lForePaw, 0.03490658503988659F, 0.0F, 0.0F);
                 this.setRotateAngle(rForeleg02, -0.10471975511965977F, 0.0F, 0.0F);

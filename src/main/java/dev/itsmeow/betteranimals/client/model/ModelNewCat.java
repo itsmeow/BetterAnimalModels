@@ -335,7 +335,7 @@ public class ModelNewCat<T extends LivingEntity> extends Model<T> {
                     this.lArm01.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float) Math.PI + 0.3F) * limbSwingAmount + 0.12217304763960307F;
                     this.rArm01.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float) Math.PI) * limbSwingAmount + 0.12217304763960307F;
                     this.tail01.rotateAngleX = ((float) Math.PI / 10F) * MathHelper.cos(limbSwing) * limbSwingAmount - 0.593411945678072F;
-                } else if(cat.isSitting()) {
+                } else if(cat.isEntitySleeping()) { // not actually sleeping, MCP is on crack. it's sitting
                     this.setRotateAngle(tail02, 0.0F, 0.6981317007977318F, 0.0F);
                     this.setRotateAngle(nose, 0.20943951023931953F, 0.0F, 0.0F);
                     this.setRotateAngle(lEar01, 0.0F, -0.6108652381980153F, 0.3490658503988659F);

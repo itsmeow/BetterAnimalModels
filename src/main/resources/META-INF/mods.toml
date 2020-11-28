@@ -1,10 +1,11 @@
 modLoader="javafml"
-loaderVersion="[28,)"
+loaderVersion="[33,)"
 issueTrackerURL="https://github.com/itsmeow/BetterAnimals/issues"
 displayURL="https://www.curseforge.com/minecraft/mc-mods/better-animal-models"
 logoFile="logo.png"
 credits="cybercat555: art, its_meow: programming"
 authors="Ocelot5836, cybercat5555, its_meow"
+license="All Rights Reserved"
 
 [[mods]]
 	modId="betteranimals"

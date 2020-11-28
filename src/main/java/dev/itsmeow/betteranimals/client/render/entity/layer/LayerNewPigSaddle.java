@@ -23,7 +23,7 @@ public class LayerNewPigSaddle<T extends PigEntity, A extends EntityModel<T>> ex
 
     @Override
     public void render(MatrixStack stack, IRenderTypeBuffer bufferIn, int packedLightIn, T entity, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
-        if(entity.getSaddled()) {
+        if(entity.isHorseSaddled()) {
             stack.push();
             {
                 stack.scale(1.05F, 1.05F, 1.05F);

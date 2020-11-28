@@ -6,12 +6,12 @@ import net.minecraft.block.BlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BlockRendererDispatcher;
 import net.minecraft.client.renderer.IRenderTypeBuffer;
-import net.minecraft.client.renderer.Vector3f;
 import net.minecraft.client.renderer.entity.IEntityRenderer;
 import net.minecraft.client.renderer.entity.LivingRenderer;
 import net.minecraft.client.renderer.entity.layers.LayerRenderer;
 import net.minecraft.client.renderer.entity.model.EntityModel;
 import net.minecraft.entity.passive.MooshroomEntity;
+import net.minecraft.util.math.vector.Vector3f;
 
 public class LayerNewMooshroomMushroom<T extends MooshroomEntity, A extends EntityModel<T>> extends LayerRenderer<T, A> {
 
