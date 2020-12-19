@@ -1,7 +1,7 @@
 package dev.itsmeow.betteranimals.compat;
 
 import dev.itsmeow.betteranimals.client.BetterAnimalsConfig;
-import vazkii.quark.client.module.VariantAnimalTexturesModule;
+import vazkii.quark.content.client.module.VariantAnimalTexturesModule;
 
 public class QuarkEventCancel {
 

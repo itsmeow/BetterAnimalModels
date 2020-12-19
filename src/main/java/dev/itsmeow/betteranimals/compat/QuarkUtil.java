@@ -1,20 +1,14 @@
 package dev.itsmeow.betteranimals.compat;
 
-import java.util.ArrayList;
-import java.util.EnumMap;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
-
 import com.google.common.base.Supplier;
 import com.google.common.collect.ListMultimap;
 import com.google.common.collect.Multimaps;
-
 import dev.itsmeow.betteranimals.BetterAnimals;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
-import vazkii.quark.client.module.VariantAnimalTexturesModule;
+import vazkii.quark.content.client.module.VariantAnimalTexturesModule;
+
+import java.util.*;
 
 public class QuarkUtil {
 

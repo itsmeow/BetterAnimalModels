@@ -19,6 +19,7 @@ license="All Rights Reserved"
 	    mandatory=false
 	    ordering="BEFORE"
 	    side="CLIENT"
+		versionRange="[r2.4-280,)"
 	[[dependencies.midnight]]
 	    modId="midnight"
 	    mandatory=false
