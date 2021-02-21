@@ -3,14 +3,16 @@ package dev.itsmeow.betteranimals.client.model;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.vertex.IVertexBuilder;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.model.ModelRenderer;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.passive.PolarBearEntity;
 import net.minecraft.util.math.MathHelper;
 
 /**
  * bear - cybercat5555 Created using Tabula 5.1.0
  */
-public class ModelNewBear<T extends LivingEntity> extends Model<T> {
+public class ModelNewBear<T extends PolarBearEntity> extends Model<T> {
     public ModelRenderer hind;
     public ModelRenderer lLeg01;
     public ModelRenderer rLeg01;
@@ -387,6 +389,24 @@ public class ModelNewBear<T extends LivingEntity> extends Model<T> {
         this.lLeg01.rotateAngleX = MathHelper.sin(limbSwing * 0.6662F + (float) Math.PI) * limbSwingAmount - 0.136659280431156F;
         this.neck.rotateAngleX = rad(headPitch);
         this.neck.rotateAngleY = rad(netHeadYaw);
+
+        float f = ageInTicks - (float)entityIn.ticksExisted;
+        float f1 = entityIn.getStandingAnimationScale(f);
+        if(f1 != 0) {
+            float off = (float) Math.PI / 3F;
+            this.hind.rotateAngleX = -off;
+            this.hind.rotationPointY = 3F;
+            this.lLeg01.rotateAngleX = off - 0.136659280431156F;
+            this.rLeg01.rotateAngleX = off - 0.136659280431156F;
+            this.lArm01.rotateAngleX = MathHelper.sin(ageInTicks * 0.5F) * 0.9F + 0.18203784098300857F;
+            this.rArm01.rotateAngleX = -MathHelper.sin(ageInTicks * 0.5F) * 0.9F + 0.18203784098300857F;
+            if(!Minecraft.getInstance().isGamePaused()) {
+                this.neck.rotateAngleX += off;
+            }
+        } else {
+            this.hind.rotateAngleX = 0F;
+            this.hind.rotationPointY = 7.7F;
+        }
     }
 
 }
