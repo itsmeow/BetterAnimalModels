@@ -1,8 +1,9 @@
 package dev.itsmeow.betteranimals.client.model;
 
+import dev.itsmeow.betteranimals.client.ReplacementHandler;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLiving;
 import net.minecraft.util.math.MathHelper;
 
 /**
@@ -379,22 +380,31 @@ public class ModelNewBear extends Model {
 	}
 
 	@Override
-	public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw,
-			float headPitch, float scaleFactor, Entity entityIn) {
-		float f = limbSwing;
-		float f1 = limbSwingAmount;
+	public void setRotationAngles(float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor, Entity entityIn) {
+        this.lArm01.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F) * limbSwingAmount + 0.18203784098300857F;
+        this.rArm01.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float) Math.PI) * limbSwingAmount + 0.18203784098300857F;
+        this.rLeg01.rotateAngleX = MathHelper.sin(limbSwing * 0.6662F) * limbSwingAmount - 0.136659280431156F;
+        this.lLeg01.rotateAngleX = MathHelper.sin(limbSwing * 0.6662F + (float) Math.PI) * limbSwingAmount - 0.136659280431156F;
+        this.neck.rotateAngleX = (float) Math.toRadians(headPitch);
+        this.neck.rotateAngleY = (float) Math.toRadians(netHeadYaw);
 
-		this.lArm01.rotateAngleX = MathHelper.cos(f * 0.6662F) * 1.4F * f1 + 0.18203784098300857F;
-		this.rArm01.rotateAngleX = MathHelper.cos(f * 0.6662F + (float)Math.PI) * 1.4F * f1 + 0.18203784098300857F;
-		this.rLeg01.rotateAngleX = MathHelper.cos(f * 0.6662F) * 1.4F * f1 - 0.136659280431156F;
-		this.lLeg01.rotateAngleX = MathHelper.cos(f * 0.6662F + (float)Math.PI) * 1.4F * f1 - 0.136659280431156F;
-
-		if(entityIn instanceof EntityLiving) {
-			this.neck.rotateAngleX = getHeadPitch((EntityLiving)entityIn) * 0.017453292F;
-			this.neck.rotateAngleY = getHeadYaw((EntityLiving) entityIn) * 0.017453292F;
-		}
-
-		super.setRotationAngles(limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scaleFactor, entityIn);
+        float f = ageInTicks - (float)entityIn.ticksExisted;
+        float f1 = ReplacementHandler.PRIMAL_IFACE.getAnimationScale(entityIn, f);
+        if(f1 != 0) {
+            float off = (float) Math.PI / 3F;
+            this.hind.rotateAngleX = -off;
+            this.hind.rotationPointY = 3F;
+            this.lLeg01.rotateAngleX = off - 0.136659280431156F;
+            this.rLeg01.rotateAngleX = off - 0.136659280431156F;
+            this.lArm01.rotateAngleX = MathHelper.sin(ageInTicks * 0.5F) * 0.9F + 0.18203784098300857F;
+            this.rArm01.rotateAngleX = -MathHelper.sin(ageInTicks * 0.5F) * 0.9F + 0.18203784098300857F;
+            if(!Minecraft.getMinecraft().isGamePaused()) {
+                this.neck.rotateAngleX += off;
+            }
+        } else {
+            this.hind.rotateAngleX = 0F;
+            this.hind.rotationPointY = 7.7F;
+        }
 	}
 
 

@@ -24,12 +24,15 @@ import dev.itsmeow.betteranimals.client.render.entity.quark.RenderNewQuarkChicke
 import dev.itsmeow.betteranimals.client.render.entity.quark.RenderNewQuarkCow;
 import dev.itsmeow.betteranimals.client.render.entity.quark.RenderNewQuarkPig;
 import dev.itsmeow.betteranimals.client.render.entity.sophisticatedwolves.RenderNewSophisticatedWolf;
+import dev.itsmeow.betteranimals.compat.PrimalCompatActiveInterface;
+import dev.itsmeow.betteranimals.compat.PrimalCompatInterface;
 import dev.itsmeow.betteranimals.compat.QuarkEventCancel;
 import dev.itsmeow.betteranimals.compat.QuarkUtil;
 import dev.itsmeow.betteranimals.config.BetterAnimalsConfig;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.monster.EntityCaveSpider;
 import net.minecraft.entity.monster.EntityPolarBear;
@@ -66,6 +69,16 @@ public class ReplacementHandler {
     public static Map<RegistrationTime, Multimap<String, Supplier<Runnable>>> modActions = new HashMap<RegistrationTime, Multimap<String, Supplier<Runnable>>>();
     public static Map<String, Boolean> config = new HashMap<String, Boolean>();
 
+    public static PrimalCompatInterface PRIMAL_IFACE = new PrimalCompatInterface() {
+        @Override
+        public float getAnimationScale(Entity entity, float ticks) {
+            if(entity instanceof EntityPolarBear) {
+                return ((EntityPolarBear) entity).getStandingAnimationScale(ticks);
+            }
+            return 0;
+        }
+    };
+
     static {
         // Pre
         addAction(RegistrationTime.PREINIT, "quark", () -> () -> QuarkEventCancel.preQuark());
@@ -88,8 +101,10 @@ public class ReplacementHandler {
             if(BetterAnimalsConfig.enableQuarkOverrideChicken && getEnabledAndLoaded("chicken"))
                 RenderingRegistry.registerEntityRenderingHandler(EntityChicken.class, RenderNewQuarkChicken::new);
         });
-        
-        
+        addAction(RegistrationTime.PREINIT, "primal", () -> () -> {
+            PRIMAL_IFACE = new PrimalCompatActiveInterface();
+        });
+
         // MRE
         
         addAction(RegistrationTime.PREINIT, "minecraft", () -> () -> {
