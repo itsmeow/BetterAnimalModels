@@ -2,7 +2,6 @@ package dev.itsmeow.betteranimals.client.render.layer;
 
 import dev.itsmeow.betteranimals.client.render.entity.RenderNewSheep;
 import dev.itsmeow.betteranimals.enums.EnumNewSheepWoolColors;
-
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.layers.LayerRenderer;
 import net.minecraft.entity.passive.EntitySheep;
