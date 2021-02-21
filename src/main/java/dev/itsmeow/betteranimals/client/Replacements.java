@@ -78,7 +78,7 @@ public class Replacements {
         H.addReplace(RegistrationTime.MODELREGISTRY, "minecraft", "sheep", () -> () -> H.lambdaReplace(SheepEntity.class, 0.4F, r -> r
         .childScale(0.5F)
         .layer(LayerNewSheepWool::new)
-        .tSingle("sheep").mSingle(new ModelNewSheep<>())));
+        .tMapped(e -> e.isChild() ? "lamb" : "sheep").mSingle(new ModelNewSheep<>())));
 
         H.addReplace(RegistrationTime.MODELREGISTRY, "minecraft", "wolf", () -> () -> H.lambdaReplace(WolfEntity.class, 0.25F, r -> r
         .preRender((e, p) -> {

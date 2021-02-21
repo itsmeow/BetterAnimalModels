@@ -2,363 +2,368 @@ package dev.itsmeow.betteranimals.client.model;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.entity.model.RendererModel;
-import net.minecraft.entity.LivingEntity;
+import net.minecraft.client.renderer.model.ModelBox;
 import net.minecraft.entity.passive.SheepEntity;
 import net.minecraft.util.math.MathHelper;
 
 /**
  * sheep3 - cybercat5555 Created using Tabula 6.0.0
  */
-public class ModelNewSheep<T extends LivingEntity> extends Model<T> {
+public class ModelNewSheep<T extends SheepEntity> extends Model<T> {
 
-    public RendererModel body;
-    public RendererModel flank;
-    public RendererModel neck;
-    public RendererModel lArm01;
-    public RendererModel rArm01;
-    public RendererModel wool01;
-    public RendererModel lLeg01;
-    public RendererModel rLeg01;
-    public RendererModel tail;
-    public RendererModel wool02;
-    public RendererModel lLeg02;
-    public RendererModel lLegWool01;
-    public RendererModel lLeg03;
-    public RendererModel lLegWool02;
-    public RendererModel lHindHoof;
-    public RendererModel lLegWool03;
-    public RendererModel rLeg02;
-    public RendererModel rLegWool01;
-    public RendererModel rLeg03;
-    public RendererModel rLegWool02;
-    public RendererModel rHindHoof;
-    public RendererModel rLegWool03;
-    public RendererModel wool07;
-    public RendererModel neck02;
-    public RendererModel wool03;
-    public RendererModel head;
-    public RendererModel wool04;
-    public RendererModel lEar;
-    public RendererModel rEar;
-    public RendererModel lowerJaw;
-    public RendererModel upperJaw01;
-    public RendererModel snoot;
-    public RendererModel wool05;
-    public RendererModel wool06;
-    public RendererModel upperJaw02;
-    public RendererModel wool08;
-    public RendererModel woolFur02;
-    public RendererModel woolFur01;
-    public RendererModel woolFur03;
-    public RendererModel lArm02;
-    public RendererModel lArmWool01;
-    public RendererModel lForeHoof;
-    public RendererModel lArmWool02;
-    public RendererModel rArm02;
-    public RendererModel rArmWool01;
-    public RendererModel rForeHoof;
-    public RendererModel rArmWool02;
-    public RendererModel woolFur04;
+    private final RendererModel body;
+    private final RendererModel rear;
+    private final RendererModel lHindLeg01;
+    private final RendererModel lHindlegWool;
+    private final RendererModel lHindLeg02;
+    private final RendererModel lhHoofClaw01a;
+    private final RendererModel lhHoofClaw01b;
+    private final RendererModel lhHoofClaw02a;
+    private final RendererModel Box_r1;
+    private final RendererModel lhHoofClaw02b;
+    private final RendererModel rHindLeg01;
+    private final RendererModel rHindlegWool;
+    private final RendererModel rHindLeg02;
+    private final RendererModel rhHoofClaw01a;
+    private final RendererModel rhHoofClaw01b;
+    private final RendererModel rhHoofClaw02a;
+    private final RendererModel Box_r2;
+    private final RendererModel rhHoofClaw02b;
+    private final RendererModel tail;
+    private final RendererModel lForeleg01;
+    private final RendererModel lForeleg02;
+    private final RendererModel lfHoofClaw01a;
+    private final RendererModel lfHoofClaw01b;
+    private final RendererModel lfHoofClaw02a;
+    private final RendererModel lfHoofClaw02b;
+    private final RendererModel lForelegWool01;
+    private final RendererModel lForelegWool02;
+    private final RendererModel rForeleg01;
+    private final RendererModel rForeleg02;
+    private final RendererModel rfHoofClaw01a;
+    private final RendererModel rfHoofClaw01b;
+    private final RendererModel rfHoofClaw02a;
+    private final RendererModel rfHoofClaw02b;
+    private final RendererModel lForelegWool2;
+    private final RendererModel lForelegWool3;
+    private final RendererModel neck;
+    private final RendererModel head;
+    private final RendererModel jawUpper;
+    private final RendererModel jawLower;
+    private final RendererModel snout;
+    private final RendererModel lEar;
+    private final RendererModel rEar2;
+    private final RendererModel woolHead01;
+    private final RendererModel woolNeck;
+    private final RendererModel woolBody;
+    private final RendererModel woolRear;
+    private final RendererModel woolFront;
 
     public ModelNewSheep() {
-        this.textureWidth = 128;
-        this.textureHeight = 64;
-        this.rArm01 = new RendererModel(this, 48, 0);
-        this.rArm01.mirror = true;
-        this.rArm01.setRotationPoint(-2.1F, -0.8F, -3.6F);
-        this.rArm01.addBox(-3.0F, -1.5F, -2.0F, 3, 9, 4, 0.0F);
-        this.setRotateAngle(rArm01, 0.091106186954104F, 0.0F, -0.06981317007977318F);
-        this.rArmWool02 = new RendererModel(this, 64, 47);
-        this.rArmWool02.mirror = true;
-        this.rArmWool02.setRotationPoint(0.0F, 1.3F, 0.0F);
-        this.rArmWool02.addBox(-1.5F, -2.0F, -1.5F, 3, 5, 3, 0.0F);
-        this.lLeg02 = new RendererModel(this, 28, 15);
-        this.lLeg02.setRotationPoint(1.4F, 6.1F, -0.4F);
-        this.lLeg02.addBox(-1.5F, 0.0F, -1.5F, 3, 5, 3, 0.0F);
-        this.setRotateAngle(lLeg02, 0.6373942428283291F, 0.0F, 0.0F);
-        this.wool07 = new RendererModel(this, 29, 54);
-        this.wool07.setRotationPoint(0.0F, 0.0F, 0.0F);
-        this.wool07.addBox(-2.0F, 0.0F, -1.5F, 4, 5, 3, 0.0F);
-        this.rArm02 = new RendererModel(this, 51, 16);
-        this.rArm02.mirror = true;
-        this.rArm02.setRotationPoint(-1.5F, 7.4F, 0.0F);
-        this.rArm02.addBox(-1.0F, -0.3F, -1.0F, 2, 7, 2, 0.0F);
-        this.setRotateAngle(rArm02, -0.091106186954104F, 0.0F, 0.06981317007977318F);
-        this.lLegWool02 = new RendererModel(this, 105, 24);
-        this.lLegWool02.setRotationPoint(0.0F, 3.2F, 0.0F);
-        this.lLegWool02.addBox(-1.9F, -3.0F, -2.0F, 4, 5, 4, 0.0F);
-        this.rForeHoof = new RendererModel(this, 51, 29);
-        this.rForeHoof.mirror = true;
-        this.rForeHoof.setRotationPoint(-0.1F, 6.5F, 0.0F);
-        this.rForeHoof.addBox(-1.5F, 0.0F, -1.5F, 3, 2, 2, 0.0F);
-        this.neck = new RendererModel(this, 0, 12);
-        this.neck.setRotationPoint(0.0F, -0.6F, -4.5F);
-        this.neck.addBox(-3.0F, -3.0F, -5.0F, 6, 6, 5, 0.0F);
-        this.setRotateAngle(neck, -0.5918411493512771F, 0.0F, 0.0F);
-        this.body = new RendererModel(this, 0, 24);
-        this.body.setRotationPoint(0.0F, 9.0F, -2.6F);
-        this.body.addBox(-3.5F, -4.5F, -7.0F, 7, 9, 12, 0.0F);
-        this.rLegWool03 = new RendererModel(this, 105, 35);
-        this.rLegWool03.mirror = true;
-        this.rLegWool03.setRotationPoint(0.0F, 1.4F, 0.5F);
-        this.rLegWool03.addBox(-1.5F, -1.5F, -2.0F, 3, 3, 3, 0.0F);
-        this.upperJaw01 = new RendererModel(this, 68, 10);
-        this.upperJaw01.setRotationPoint(0.0F, 3.6F, 0.6F);
-        this.upperJaw01.addBox(-1.4F, -0.2F, -0.5F, 3, 3, 1, 0.0F);
-        this.lLegWool03 = new RendererModel(this, 105, 35);
-        this.lLegWool03.setRotationPoint(0.0F, 1.4F, 0.5F);
-        this.lLegWool03.addBox(-1.5F, -1.5F, -2.0F, 3, 3, 3, 0.0F);
-        this.rLegWool02 = new RendererModel(this, 105, 24);
-        this.rLegWool02.mirror = true;
-        this.rLegWool02.setRotationPoint(0.0F, 3.2F, 0.0F);
-        this.rLegWool02.addBox(-1.9F, -3.0F, -2.0F, 4, 5, 4, 0.0F);
-        this.wool03 = new RendererModel(this, 79, 43);
-        this.wool03.setRotationPoint(0.0F, -0.1F, -2.8F);
-        this.wool03.addBox(-3.5F, -3.5F, -2.4F, 7, 7, 4, 0.0F);
-        this.upperJaw02 = new RendererModel(this, 77, 10);
-        this.upperJaw02.setRotationPoint(0.0F, 0.0F, 0.0F);
-        this.upperJaw02.addBox(-1.6F, -0.2F, -0.5F, 1, 3, 1, 0.0F);
-        this.rLegWool01 = new RendererModel(this, 84, 24);
-        this.rLegWool01.mirror = true;
-        this.rLegWool01.setRotationPoint(-1.6F, 3.1F, 0.0F);
-        this.rLegWool01.addBox(-2.0F, -4.5F, -3.0F, 4, 9, 6, 0.0F);
-        this.wool08 = new RendererModel(this, 76, 57);
-        this.wool08.setRotationPoint(0.0F, 1.8F, -1.9F);
-        this.wool08.addBox(-2.0F, -1.0F, -0.8F, 4, 2, 1, 0.0F);
-        this.tail = new RendererModel(this, 29, 47);
-        this.tail.setRotationPoint(0.0F, -3.3F, 5.9F);
-        this.tail.addBox(-1.5F, 0.0F, -1.0F, 3, 4, 2, 0.0F);
-        this.setRotateAngle(tail, 0.5918411493512771F, 0.0F, 0.0F);
-        this.neck02 = new RendererModel(this, 0, 0);
-        this.neck02.setRotationPoint(0.0F, 0.3F, -3.7F);
-        this.neck02.addBox(-2.0F, -2.5F, -5.0F, 4, 5, 5, 0.0F);
-        this.setRotateAngle(neck02, -0.31869712141416456F, 0.0F, 0.0F);
-        this.wool05 = new RendererModel(this, 72, 55);
-        this.wool05.setRotationPoint(0.0F, 0.2F, 0.4F);
-        this.wool05.addBox(-3.0F, -1.6F, -2.7F, 6, 3, 4, 0.0F);
-        this.lLeg01 = new RendererModel(this, 28, 0);
-        this.lLeg01.setRotationPoint(2.3F, -2.3F, 4.5F);
-        this.lLeg01.addBox(0.0F, -1.0F, -2.5F, 3, 8, 5, 0.0F);
-        this.setRotateAngle(lLeg01, -0.18203784098300857F, 0.0F, 0.0F);
-        this.lHindHoof = new RendererModel(this, 51, 29);
-        this.lHindHoof.setRotationPoint(0.1F, 5.1F, 0.0F);
-        this.lHindHoof.addBox(-1.5F, 0.0F, -1.5F, 3, 2, 2, 0.0F);
-        this.woolFur01 = new RendererModel(this, 46, 56);
-        this.woolFur01.setRotationPoint(0.0F, 2.0F, -0.6F);
-        this.woolFur01.addBox(-3.0F, 0.0F, 0.0F, 6, 2, 5, 0.0F);
-        this.setRotateAngle(woolFur01, -0.8651597102135892F, 0.0F, 0.0F);
-        this.flank = new RendererModel(this, 0, 47);
-        this.flank.setRotationPoint(0.0F, -0.2F, 5.2F);
-        this.flank.addBox(-3.0F, -4.2F, -1.3F, 6, 8, 8, 0.0F);
-        this.setRotateAngle(flank, -0.136659280431156F, 0.0F, 0.0F);
-        this.lLegWool01 = new RendererModel(this, 84, 24);
-        this.lLegWool01.setRotationPoint(1.6F, 3.1F, 0.0F);
-        this.lLegWool01.addBox(-2.0F, -4.5F, -3.0F, 4, 9, 6, 0.0F);
-        this.woolFur04 = new RendererModel(this, 93, 51);
-        this.woolFur04.setRotationPoint(0.0F, 4.9F, -2.8F);
-        this.woolFur04.addBox(-4.0F, 0.0F, -3.5F, 8, 3, 9, 0.0F);
-        this.lowerJaw = new RendererModel(this, 68, 16);
-        this.lowerJaw.setRotationPoint(0.0F, 3.5F, 1.4F);
-        this.lowerJaw.addBox(-1.5F, -0.3F, -0.5F, 3, 3, 1, 0.0F);
-        this.head = new RendererModel(this, 66, 0);
-        this.head.setRotationPoint(0.0F, -1.4F, -3.7F);
-        this.head.addBox(-2.5F, 0.0F, -2.0F, 5, 4, 4, 0.0F);
-        this.setRotateAngle(head, -0.5918411493512771F, 0.0F, 0.0F);
-        this.lEar = new RendererModel(this, 87, 0);
-        this.lEar.setRotationPoint(2.0F, 1.4F, -0.8F);
-        this.lEar.addBox(0.0F, -0.5F, -1.0F, 3, 1, 2, 0.0F);
-        this.setRotateAngle(lEar, 0.4553564018453205F, 0.091106186954104F, 0.0F);
-        this.lLeg03 = new RendererModel(this, 33, 26);
-        this.lLeg03.setRotationPoint(0.1F, 4.7F, 0.0F);
-        this.lLeg03.addBox(-1.0F, 0.0F, -1.0F, 2, 6, 2, 0.0F);
-        this.setRotateAngle(lLeg03, -0.31869712141416456F, 0.0F, 0.0F);
-        this.woolFur02 = new RendererModel(this, 43, 48);
-        this.woolFur02.setRotationPoint(0.0F, 0.9F, -0.1F);
-        this.woolFur02.addBox(-2.5F, 0.0F, 0.0F, 5, 2, 5, 0.0F);
-        this.setRotateAngle(woolFur02, -0.5918411493512771F, 0.0F, 0.0F);
-        this.rLeg02 = new RendererModel(this, 28, 15);
-        this.rLeg02.mirror = true;
-        this.rLeg02.setRotationPoint(-1.4F, 6.1F, -0.4F);
-        this.rLeg02.addBox(-1.5F, 0.0F, -1.5F, 3, 5, 3, 0.0F);
-        this.setRotateAngle(rLeg02, 0.6373942428283291F, 0.0F, 0.0F);
-        this.wool06 = new RendererModel(this, 74, 57);
-        this.wool06.setRotationPoint(0.0F, 3.1F, 1.4F);
-        this.wool06.addBox(-3.0F, -1.5F, -1.0F, 6, 2, 2, 0.0F);
-        this.lArmWool01 = new RendererModel(this, 64, 31);
-        this.lArmWool01.setRotationPoint(1.5F, 2.7F, -0.2F);
-        this.lArmWool01.addBox(-2.0F, -5.0F, -2.5F, 4, 10, 5, 0.0F);
-        this.lArm01 = new RendererModel(this, 48, 0);
-        this.lArm01.setRotationPoint(2.1F, -0.8F, -3.6F);
-        this.lArm01.addBox(0.0F, -1.5F, -2.0F, 3, 9, 4, 0.0F);
-        this.setRotateAngle(lArm01, 0.091106186954104F, 0.0F, 0.06981317007977318F);
-        this.snoot = new RendererModel(this, 68, 21);
-        this.snoot.setRotationPoint(0.0F, 3.7F, -0.9F);
-        this.snoot.addBox(-1.5F, 0.0F, -0.8F, 3, 3, 2, 0.0F);
-        this.setRotateAngle(snoot, 0.27314402793711257F, 0.0F, 0.0F);
-        this.lArmWool02 = new RendererModel(this, 64, 47);
-        this.lArmWool02.setRotationPoint(0.0F, 1.3F, 0.0F);
-        this.lArmWool02.addBox(-1.5F, -2.0F, -1.5F, 3, 5, 3, 0.0F);
-        this.rEar = new RendererModel(this, 87, 0);
-        this.rEar.mirror = true;
-        this.rEar.setRotationPoint(-2.0F, 1.4F, -0.8F);
-        this.rEar.addBox(-3.0F, -0.5F, -1.0F, 3, 1, 2, 0.0F);
-        this.setRotateAngle(rEar, 0.4553564018453205F, -0.091106186954104F, 0.0F);
-        this.woolFur03 = new RendererModel(this, 40, 39);
-        this.woolFur03.setRotationPoint(0.0F, 1.9F, 1.3F);
-        this.woolFur03.addBox(-3.5F, 0.0F, 0.0F, 7, 2, 5, 0.0F);
-        this.setRotateAngle(woolFur03, -0.9560913642424937F, 0.0F, 0.0F);
-        this.wool02 = new RendererModel(this, 90, 4);
-        this.wool02.setRotationPoint(0.0F, -0.1F, 2.9F);
-        this.wool02.addBox(-4.0F, -4.5F, -4.5F, 8, 9, 9, 0.0F);
-        this.wool01 = new RendererModel(this, 84, 0);
-        this.wool01.setRotationPoint(0.0F, 0.0F, -1.0F);
-        this.wool01.addBox(-4.5F, -5.0F, -6.5F, 9, 10, 13, 0.0F);
-        this.lArm02 = new RendererModel(this, 51, 16);
-        this.lArm02.setRotationPoint(1.5F, 7.4F, 0.0F);
-        this.lArm02.addBox(-1.0F, -0.3F, -1.0F, 2, 7, 2, 0.0F);
-        this.setRotateAngle(lArm02, -0.091106186954104F, 0.0F, -0.06981317007977318F);
-        this.rHindHoof = new RendererModel(this, 51, 29);
-        this.rHindHoof.mirror = true;
-        this.rHindHoof.setRotationPoint(-0.1F, 5.1F, 0.0F);
-        this.rHindHoof.addBox(-1.5F, 0.0F, -1.5F, 3, 2, 2, 0.0F);
-        this.wool04 = new RendererModel(this, 109, 42);
-        this.wool04.setRotationPoint(0.0F, -0.2F, -2.2F);
-        this.wool04.addBox(-3.0F, -3.0F, -1.3F, 6, 6, 3, 0.0F);
-        this.lForeHoof = new RendererModel(this, 51, 29);
-        this.lForeHoof.setRotationPoint(0.1F, 6.5F, 0.0F);
-        this.lForeHoof.addBox(-1.5F, 0.0F, -1.5F, 3, 2, 2, 0.0F);
-        this.rLeg01 = new RendererModel(this, 28, 0);
-        this.rLeg01.mirror = true;
-        this.rLeg01.setRotationPoint(-2.3F, -2.3F, 4.5F);
-        this.rLeg01.addBox(-3.0F, -1.0F, -2.5F, 3, 8, 5, 0.0F);
-        this.setRotateAngle(rLeg01, -0.18203784098300857F, 0.0F, 0.0F);
-        this.rLeg03 = new RendererModel(this, 33, 26);
-        this.rLeg03.mirror = true;
-        this.rLeg03.setRotationPoint(-0.1F, 4.7F, 0.0F);
-        this.rLeg03.addBox(-1.0F, 0.0F, -1.0F, 2, 6, 2, 0.0F);
-        this.setRotateAngle(rLeg03, -0.31869712141416456F, 0.0F, 0.0F);
-        this.rArmWool01 = new RendererModel(this, 64, 31);
-        this.rArmWool01.mirror = true;
-        this.rArmWool01.setRotationPoint(-1.5F, 2.7F, -0.2F);
-        this.rArmWool01.addBox(-2.0F, -5.0F, -2.5F, 4, 10, 5, 0.0F);
-        this.body.addChild(this.rArm01);
-        this.rArm02.addChild(this.rArmWool02);
-        this.lLeg01.addChild(this.lLeg02);
-        this.tail.addChild(this.wool07);
-        this.rArm01.addChild(this.rArm02);
-        this.lLeg02.addChild(this.lLegWool02);
-        this.rArm02.addChild(this.rForeHoof);
-        this.body.addChild(this.neck);
-        this.rLeg03.addChild(this.rLegWool03);
-        this.head.addChild(this.upperJaw01);
-        this.lLeg03.addChild(this.lLegWool03);
-        this.rLeg02.addChild(this.rLegWool02);
-        this.neck.addChild(this.wool03);
-        this.upperJaw01.addChild(this.upperJaw02);
-        this.rLeg01.addChild(this.rLegWool01);
-        this.wool05.addChild(this.wool08);
-        this.flank.addChild(this.tail);
-        this.neck.addChild(this.neck02);
-        this.head.addChild(this.wool05);
-        this.flank.addChild(this.lLeg01);
-        this.lLeg03.addChild(this.lHindHoof);
-        this.wool03.addChild(this.woolFur01);
-        this.body.addChild(this.flank);
-        this.lLeg01.addChild(this.lLegWool01);
-        this.wool01.addChild(this.woolFur04);
-        this.head.addChild(this.lowerJaw);
-        this.neck02.addChild(this.head);
-        this.head.addChild(this.lEar);
-        this.lLeg02.addChild(this.lLeg03);
-        this.wool04.addChild(this.woolFur02);
-        this.rLeg01.addChild(this.rLeg02);
-        this.head.addChild(this.wool06);
-        this.lArm01.addChild(this.lArmWool01);
-        this.body.addChild(this.lArm01);
-        this.head.addChild(this.snoot);
-        this.lArm02.addChild(this.lArmWool02);
-        this.head.addChild(this.rEar);
-        this.wool03.addChild(this.woolFur03);
-        this.flank.addChild(this.wool02);
-        this.body.addChild(this.wool01);
-        this.lArm01.addChild(this.lArm02);
-        this.rLeg03.addChild(this.rHindHoof);
-        this.neck02.addChild(this.wool04);
-        this.lArm02.addChild(this.lForeHoof);
-        this.flank.addChild(this.rLeg01);
-        this.rLeg02.addChild(this.rLeg03);
-        this.rArm01.addChild(this.rArmWool01);
+        textureWidth = 64;
+        textureHeight = 64;
 
+        body = new RendererModel(this);
+        body.setRotationPoint(0.0F, 9.0F, -1.0F);
+        body.cubeList.add(new ModelBox(body, 2, 1, -4.0F, -3.0F, -6.9F, 8, 7, 14, 0.0F, false));
+
+        rear = new RendererModel(this);
+        rear.setRotationPoint(0.0F, 0.0F, 6.9F);
+        body.addChild(rear);
+        setRotationAngle(rear, -0.384F, 0.0F, 0.0F);
+        rear.cubeList.add(new ModelBox(rear, 0, 22, -3.5F, -3.0F, -1.0F, 7, 6, 5, 0.0F, false));
+
+        lHindLeg01 = new RendererModel(this);
+        lHindLeg01.setRotationPoint(1.6F, -0.4F, 1.9F);
+        rear.addChild(lHindLeg01);
+        setRotationAngle(lHindLeg01, 0.2618F, 0.0F, 0.0698F);
+        lHindLeg01.cubeList.add(new ModelBox(lHindLeg01, 0, 0, -0.1F, -0.4F, -2.0F, 4, 9, 4, 0.0F, false));
+
+        lHindlegWool = new RendererModel(this);
+        lHindlegWool.setRotationPoint(1.8F, -0.2F, 0.0F);
+        lHindLeg01.addChild(lHindlegWool);
+        lHindlegWool.cubeList.add(new ModelBox(lHindlegWool, 13, 49, -2.5F, -1.0F, -2.8F, 5, 10, 5, 0.0F, false));
+
+        lHindLeg02 = new RendererModel(this);
+        lHindLeg02.setRotationPoint(2.4F, 7.4F, 1.7F);
+        lHindLeg01.addChild(lHindLeg02);
+        setRotationAngle(lHindLeg02, -0.1309F, 0.0F, -0.0873F);
+        lHindLeg02.cubeList.add(new ModelBox(lHindLeg02, 0, 44, -1.3F, -1.5F, -0.8F, 2, 9, 2, 0.0F, false));
+
+        lhHoofClaw01a = new RendererModel(this);
+        lhHoofClaw01a.setRotationPoint(-1.0F, 7.0F, -0.5F);
+        lHindLeg02.addChild(lhHoofClaw01a);
+        setRotationAngle(lhHoofClaw01a, 0.3054F, 0.192F, 0.0349F);
+        lhHoofClaw01a.cubeList.add(new ModelBox(lhHoofClaw01a, 9, 44, -0.4F, -0.3F, -1.3F, 1, 1, 2, 0.0F, true));
+
+        lhHoofClaw01b = new RendererModel(this);
+        lhHoofClaw01b.setRotationPoint(0.0F, 0.0F, -1.0F);
+        lhHoofClaw01a.addChild(lhHoofClaw01b);
+        setRotationAngle(lhHoofClaw01b, 0.3491F, 0.0F, 0.0F);
+        lhHoofClaw01b.cubeList.add(new ModelBox(lhHoofClaw01b, 9, 48, -0.5F, -0.7F, -0.4F, 1, 1, 2, 0.0F, true));
+
+        lhHoofClaw02a = new RendererModel(this);
+        lhHoofClaw02a.setRotationPoint(-0.0005F, 7.0147F, -0.4714F);
+        lHindLeg02.addChild(lhHoofClaw02a);
+        setRotationAngle(lhHoofClaw02a, 0.3054F, 0.0175F, 0.0349F);
+
+
+        Box_r1 = new RendererModel(this);
+        Box_r1.setRotationPoint(0.0005F, -0.0147F, -0.0286F);
+        lhHoofClaw02a.addChild(Box_r1);
+        setRotationAngle(Box_r1, 0.0F, -0.0873F, 0.0F);
+        Box_r1.cubeList.add(new ModelBox(Box_r1, 9, 44, -0.4F, -0.3F, -1.3F, 1, 1, 2, 0.0F, true));
+
+        lhHoofClaw02b = new RendererModel(this);
+        lhHoofClaw02b.setRotationPoint(0.0005F, -0.0147F, -1.0286F);
+        lhHoofClaw02a.addChild(lhHoofClaw02b);
+        setRotationAngle(lhHoofClaw02b, 0.3491F, 0.0F, 0.0F);
+        lhHoofClaw02b.cubeList.add(new ModelBox(lhHoofClaw02b, 9, 48, -0.3F, -0.7F, -0.4F, 1, 1, 2, 0.0F, true));
+
+        rHindLeg01 = new RendererModel(this);
+        rHindLeg01.setRotationPoint(-1.6F, -0.4F, 1.9F);
+        rear.addChild(rHindLeg01);
+        setRotationAngle(rHindLeg01, 0.2618F, 0.0F, -0.0698F);
+        rHindLeg01.cubeList.add(new ModelBox(rHindLeg01, 0, 0, -3.9F, -0.4F, -2.0F, 4, 9, 4, 0.0F, true));
+
+        rHindlegWool = new RendererModel(this);
+        rHindlegWool.setRotationPoint(-1.8F, -0.2F, 0.0F);
+        rHindLeg01.addChild(rHindlegWool);
+        rHindlegWool.cubeList.add(new ModelBox(rHindlegWool, 13, 49, -2.5F, -1.0F, -2.8F, 5, 10, 5, 0.0F, true));
+
+        rHindLeg02 = new RendererModel(this);
+        rHindLeg02.setRotationPoint(-2.4F, 7.4F, 1.7F);
+        rHindLeg01.addChild(rHindLeg02);
+        setRotationAngle(rHindLeg02, -0.1309F, 0.0F, 0.0873F);
+        rHindLeg02.cubeList.add(new ModelBox(rHindLeg02, 0, 44, -0.7F, -1.5F, -0.8F, 2, 9, 2, 0.0F, true));
+
+        rhHoofClaw01a = new RendererModel(this);
+        rhHoofClaw01a.setRotationPoint(1.0F, 7.0F, -0.5F);
+        rHindLeg02.addChild(rhHoofClaw01a);
+        setRotationAngle(rhHoofClaw01a, 0.3054F, -0.192F, -0.0349F);
+        rhHoofClaw01a.cubeList.add(new ModelBox(rhHoofClaw01a, 9, 44, -0.6F, -0.3F, -1.3F, 1, 1, 2, 0.0F, false));
+
+        rhHoofClaw01b = new RendererModel(this);
+        rhHoofClaw01b.setRotationPoint(0.0F, 0.0F, -1.0F);
+        rhHoofClaw01a.addChild(rhHoofClaw01b);
+        setRotationAngle(rhHoofClaw01b, 0.3491F, 0.0F, 0.0F);
+        rhHoofClaw01b.cubeList.add(new ModelBox(rhHoofClaw01b, 9, 48, -0.5F, -0.7F, -0.4F, 1, 1, 2, 0.0F, false));
+
+        rhHoofClaw02a = new RendererModel(this);
+        rhHoofClaw02a.setRotationPoint(0.0005F, 7.0147F, -0.4714F);
+        rHindLeg02.addChild(rhHoofClaw02a);
+        setRotationAngle(rhHoofClaw02a, 0.3054F, -0.0175F, -0.0349F);
+
+
+        Box_r2 = new RendererModel(this);
+        Box_r2.setRotationPoint(-0.0005F, -0.0147F, -0.0286F);
+        rhHoofClaw02a.addChild(Box_r2);
+        setRotationAngle(Box_r2, 0.0F, 0.0873F, 0.0F);
+        Box_r2.cubeList.add(new ModelBox(Box_r2, 9, 44, -0.6F, -0.3F, -1.3F, 1, 1, 2, 0.0F, false));
+
+        rhHoofClaw02b = new RendererModel(this);
+        rhHoofClaw02b.setRotationPoint(-0.0005F, -0.0147F, -1.0286F);
+        rhHoofClaw02a.addChild(rhHoofClaw02b);
+        setRotationAngle(rhHoofClaw02b, 0.3491F, 0.0F, 0.0F);
+        rhHoofClaw02b.cubeList.add(new ModelBox(rhHoofClaw02b, 9, 48, -0.7F, -0.7F, -0.4F, 1, 1, 2, 0.0F, false));
+
+        tail = new RendererModel(this);
+        tail.setRotationPoint(0.0F, -1.1F, 2.8F);
+        rear.addChild(tail);
+        setRotationAngle(tail, 0.5236F, 0.0F, 0.0F);
+        tail.cubeList.add(new ModelBox(tail, 48, 11, -1.5F, -0.6F, 0.0F, 3, 4, 2, 0.0F, false));
+
+        lForeleg01 = new RendererModel(this);
+        lForeleg01.setRotationPoint(2.5F, 0.5F, -4.0F);
+        body.addChild(lForeleg01);
+        setRotationAngle(lForeleg01, 0.0873F, 0.0F, 0.0698F);
+        lForeleg01.cubeList.add(new ModelBox(lForeleg01, 0, 33, 0.0F, -1.4F, -1.5F, 3, 8, 3, 0.0F, false));
+
+        lForeleg02 = new RendererModel(this);
+        lForeleg02.setRotationPoint(1.5F, 6.5F, 0.1F);
+        lForeleg01.addChild(lForeleg02);
+        setRotationAngle(lForeleg02, -0.0873F, 0.0F, -0.0698F);
+        lForeleg02.cubeList.add(new ModelBox(lForeleg02, 0, 44, -1.0F, 0.0F, -1.0F, 2, 8, 2, 0.0F, false));
+
+        lfHoofClaw01a = new RendererModel(this);
+        lfHoofClaw01a.setRotationPoint(0.5F, 7.5F, -0.3F);
+        lForeleg02.addChild(lfHoofClaw01a);
+        setRotationAngle(lfHoofClaw01a, 0.0F, -0.1047F, -0.0349F);
+        lfHoofClaw01a.cubeList.add(new ModelBox(lfHoofClaw01a, 9, 44, -0.5F, -0.5F, -1.5F, 1, 1, 2, 0.0F, false));
+
+        lfHoofClaw01b = new RendererModel(this);
+        lfHoofClaw01b.setRotationPoint(0.0F, 0.5F, -1.0F);
+        lfHoofClaw01a.addChild(lfHoofClaw01b);
+        setRotationAngle(lfHoofClaw01b, 0.3491F, 0.0F, 0.0F);
+        lfHoofClaw01b.cubeList.add(new ModelBox(lfHoofClaw01b, 9, 48, -0.49F, -1.1F, -0.3F, 1, 1, 2, 0.0F, false));
+
+        lfHoofClaw02a = new RendererModel(this);
+        lfHoofClaw02a.setRotationPoint(-0.5F, 7.5F, -0.3F);
+        lForeleg02.addChild(lfHoofClaw02a);
+        setRotationAngle(lfHoofClaw02a, 0.0F, 0.0698F, -0.0349F);
+        lfHoofClaw02a.cubeList.add(new ModelBox(lfHoofClaw02a, 9, 44, -0.5F, -0.5F, -1.5F, 1, 1, 2, 0.0F, false));
+
+        lfHoofClaw02b = new RendererModel(this);
+        lfHoofClaw02b.setRotationPoint(0.0F, 0.5F, -1.0F);
+        lfHoofClaw02a.addChild(lfHoofClaw02b);
+        setRotationAngle(lfHoofClaw02b, 0.3491F, 0.0F, 0.0F);
+        lfHoofClaw02b.cubeList.add(new ModelBox(lfHoofClaw02b, 9, 48, -0.49F, -1.1F, -0.3F, 1, 1, 2, 0.0F, false));
+
+        lForelegWool01 = new RendererModel(this);
+        lForelegWool01.setRotationPoint(0.0F, 0.0F, 0.0F);
+        lForeleg01.addChild(lForelegWool01);
+        lForelegWool01.cubeList.add(new ModelBox(lForelegWool01, 16, 51, -0.6F, -2.3F, -2.1F, 4, 9, 4, 0.0F, false));
+
+        lForelegWool02 = new RendererModel(this);
+        lForelegWool02.setRotationPoint(1.9F, 6.8F, 0.6F);
+        lForelegWool01.addChild(lForelegWool02);
+        setRotationAngle(lForelegWool02, -0.0873F, 0.0F, -0.0698F);
+        lForelegWool02.cubeList.add(new ModelBox(lForelegWool02, 16, 58, -2.01F, -0.1F, -2.1F, 3, 2, 3, 0.0F, false));
+
+        rForeleg01 = new RendererModel(this);
+        rForeleg01.setRotationPoint(-2.5F, 0.5F, -4.0F);
+        body.addChild(rForeleg01);
+        setRotationAngle(rForeleg01, 0.0873F, 0.0F, -0.0698F);
+        rForeleg01.cubeList.add(new ModelBox(rForeleg01, 0, 33, -3.0F, -1.4F, -1.5F, 3, 8, 3, 0.0F, true));
+
+        rForeleg02 = new RendererModel(this);
+        rForeleg02.setRotationPoint(-1.5F, 6.5F, 0.1F);
+        rForeleg01.addChild(rForeleg02);
+        setRotationAngle(rForeleg02, -0.0873F, 0.0F, 0.0698F);
+        rForeleg02.cubeList.add(new ModelBox(rForeleg02, 0, 44, -1.0F, 0.0F, -1.0F, 2, 8, 2, 0.0F, true));
+
+        rfHoofClaw01a = new RendererModel(this);
+        rfHoofClaw01a.setRotationPoint(-0.5F, 7.5F, -0.3F);
+        rForeleg02.addChild(rfHoofClaw01a);
+        setRotationAngle(rfHoofClaw01a, 0.0F, 0.1047F, 0.0349F);
+        rfHoofClaw01a.cubeList.add(new ModelBox(rfHoofClaw01a, 9, 44, -0.5F, -0.5F, -1.5F, 1, 1, 2, 0.0F, true));
+
+        rfHoofClaw01b = new RendererModel(this);
+        rfHoofClaw01b.setRotationPoint(0.0F, 0.5F, -1.0F);
+        rfHoofClaw01a.addChild(rfHoofClaw01b);
+        setRotationAngle(rfHoofClaw01b, 0.3491F, 0.0F, 0.0F);
+        rfHoofClaw01b.cubeList.add(new ModelBox(rfHoofClaw01b, 9, 48, -0.51F, -1.1F, -0.3F, 1, 1, 2, 0.0F, true));
+
+        rfHoofClaw02a = new RendererModel(this);
+        rfHoofClaw02a.setRotationPoint(0.5F, 7.5F, -0.3F);
+        rForeleg02.addChild(rfHoofClaw02a);
+        setRotationAngle(rfHoofClaw02a, 0.0F, -0.0698F, 0.0349F);
+        rfHoofClaw02a.cubeList.add(new ModelBox(rfHoofClaw02a, 9, 44, -0.5F, -0.5F, -1.5F, 1, 1, 2, 0.0F, true));
+
+        rfHoofClaw02b = new RendererModel(this);
+        rfHoofClaw02b.setRotationPoint(0.0F, 0.5F, -1.0F);
+        rfHoofClaw02a.addChild(rfHoofClaw02b);
+        setRotationAngle(rfHoofClaw02b, 0.3491F, 0.0F, 0.0F);
+        rfHoofClaw02b.cubeList.add(new ModelBox(rfHoofClaw02b, 9, 48, -0.51F, -1.1F, -0.3F, 1, 1, 2, 0.0F, true));
+
+        lForelegWool2 = new RendererModel(this);
+        lForelegWool2.setRotationPoint(0.0F, 0.0F, 0.0F);
+        rForeleg01.addChild(lForelegWool2);
+        lForelegWool2.cubeList.add(new ModelBox(lForelegWool2, 16, 51, -3.4F, -2.3F, -2.1F, 4, 9, 4, 0.0F, true));
+
+        lForelegWool3 = new RendererModel(this);
+        lForelegWool3.setRotationPoint(-1.9F, 6.8F, 0.6F);
+        lForelegWool2.addChild(lForelegWool3);
+        setRotationAngle(lForelegWool3, -0.0873F, 0.0F, 0.0698F);
+        lForelegWool3.cubeList.add(new ModelBox(lForelegWool3, 16, 58, -0.99F, -0.1F, -2.1F, 3, 2, 3, 0.0F, true));
+
+        neck = new RendererModel(this);
+        neck.setRotationPoint(0.0F, -0.3F, -5.6F);
+        body.addChild(neck);
+        setRotationAngle(neck, -0.9599F, 0.0F, 0.0F);
+        neck.cubeList.add(new ModelBox(neck, 24, 22, -2.5F, -2.5F, -4.6F, 5, 5, 5, -0.15F, false));
+
+        head = new RendererModel(this);
+        head.setRotationPoint(0.0F, -0.5F, -4.6F);
+        neck.addChild(head);
+        setRotationAngle(head, 0.9599F, 0.0F, 0.0F);
+        head.cubeList.add(new ModelBox(head, 44, 22, -2.5F, -3.0F, -3.0F, 5, 5, 5, -0.1F, false));
+
+        jawUpper = new RendererModel(this);
+        jawUpper.setRotationPoint(0.0F, 0.0F, -2.7F);
+        head.addChild(jawUpper);
+        jawUpper.cubeList.add(new ModelBox(jawUpper, 48, 0, -2.0F, 0.1F, -2.7F, 4, 1, 3, 0.0F, false));
+
+        jawLower = new RendererModel(this);
+        jawLower.setRotationPoint(0.0F, 1.5F, -2.6F);
+        head.addChild(jawLower);
+        jawLower.cubeList.add(new ModelBox(jawLower, 46, 5, -2.0F, -0.6F, -2.8F, 4, 1, 3, -0.1F, false));
+
+        snout = new RendererModel(this);
+        snout.setRotationPoint(0.0F, -1.1F, -2.0F);
+        head.addChild(snout);
+        setRotationAngle(snout, 0.6109F, 0.0F, 0.0F);
+        snout.cubeList.add(new ModelBox(snout, 32, 0, -2.0F, -2.1F, -3.6F, 4, 3, 4, -0.2F, false));
+
+        lEar = new RendererModel(this);
+        lEar.setRotationPoint(2.0F, -2.1F, 0.7F);
+        head.addChild(lEar);
+        setRotationAngle(lEar, -0.5236F, 0.0F, 0.4363F);
+        lEar.cubeList.add(new ModelBox(lEar, 32, 8, -0.3F, -0.5F, -1.0F, 3, 1, 2, 0.0F, true));
+
+        rEar2 = new RendererModel(this);
+        rEar2.setRotationPoint(-2.0F, -2.1F, 0.7F);
+        head.addChild(rEar2);
+        setRotationAngle(rEar2, -0.5236F, 0.0F, -0.4363F);
+        rEar2.cubeList.add(new ModelBox(rEar2, 32, 8, -2.7F, -0.5F, -1.0F, 3, 1, 2, 0.0F, false));
+
+        woolHead01 = new RendererModel(this);
+        woolHead01.setRotationPoint(0.0F, -0.3F, -0.1F);
+        head.addChild(woolHead01);
+        woolHead01.cubeList.add(new ModelBox(woolHead01, 14, 52, -3.0F, -3.0F, -1.5F, 6, 6, 4, 0.0F, false));
+
+        woolNeck = new RendererModel(this);
+        woolNeck.setRotationPoint(0.0F, 0.5F, -1.9F);
+        neck.addChild(woolNeck);
+        woolNeck.cubeList.add(new ModelBox(woolNeck, 13, 50, -2.4F, -3.5F, -3.0F, 5, 6, 6, 0.0F, false));
+
+        woolBody = new RendererModel(this);
+        woolBody.setRotationPoint(0.0F, 0.9F, 3.5F);
+        body.addChild(woolBody);
+        woolBody.cubeList.add(new ModelBox(woolBody, 1, 41, -4.5F, -4.5F, -9.1F, 9, 9, 14, 0.0F, false));
+
+        woolRear = new RendererModel(this);
+        woolRear.setRotationPoint(0.0F, 0.3F, 2.3F);
+        woolBody.addChild(woolRear);
+        setRotationAngle(woolRear, -0.384F, 0.0F, 0.0F);
+        woolRear.cubeList.add(new ModelBox(woolRear, 34, 41, -4.0F, -5.3F, 0.4F, 8, 8, 5, 0.0F, false));
+
+        woolFront = new RendererModel(this);
+        woolFront.setRotationPoint(0.0F, -0.4F, -10.9F);
+        woolBody.addChild(woolFront);
+        woolFront.cubeList.add(new ModelBox(woolFront, 11, 52, -4.45F, -3.9F, -0.3F, 9, 8, 4, -0.3F, false));
     }
 
     @Override
     public void render(T entity, float f, float f1, float f2, float f3, float f4, float f5) {
+        boolean sheared = entity.getSheared();
+        this.tail.showModel = !sheared && !isChild;
+        this.woolHead01.showModel = !sheared;
+        this.woolBody.showModel = !sheared;
+        this.woolNeck.showModel = !sheared;
+        this.lHindlegWool.showModel = !sheared;
+        this.rHindlegWool.showModel = !sheared;
+        this.lForelegWool01.showModel = !sheared;
+        this.lForelegWool2.showModel = !sheared;
         this.body.render(f5);
-
-        if(entity instanceof SheepEntity) {
-            if(((SheepEntity) entity).getSheared()) {
-                this.lLegWool03.isHidden = true;
-                this.lLegWool02.isHidden = true;
-                this.lLegWool01.isHidden = true;
-                this.rLegWool03.isHidden = true;
-                this.rLegWool02.isHidden = true;
-                this.rLegWool01.isHidden = true;
-                this.wool07.isHidden = true;
-                this.wool02.isHidden = true;
-                this.wool05.isHidden = true;
-                this.wool08.isHidden = true;
-                this.wool06.isHidden = true;
-                this.wool04.isHidden = true;
-                this.woolFur02.isHidden = true;
-                this.wool03.isHidden = true;
-                this.woolFur01.isHidden = true;
-                this.woolFur03.isHidden = true;
-                this.lArmWool02.isHidden = true;
-                this.lArmWool01.isHidden = true;
-                this.rArmWool02.isHidden = true;
-                this.rArmWool01.isHidden = true;
-                this.wool01.isHidden = true;
-                this.woolFur04.isHidden = true;
-            } else {
-                this.lLegWool03.isHidden = false;
-                this.lLegWool02.isHidden = false;
-                this.lLegWool01.isHidden = false;
-                this.rLegWool03.isHidden = false;
-                this.rLegWool02.isHidden = false;
-                this.rLegWool01.isHidden = false;
-                this.wool07.isHidden = false;
-                this.wool02.isHidden = false;
-                this.wool05.isHidden = false;
-                this.wool08.isHidden = false;
-                this.wool06.isHidden = false;
-                this.wool04.isHidden = false;
-                this.woolFur02.isHidden = false;
-                this.wool03.isHidden = false;
-                this.woolFur01.isHidden = false;
-                this.woolFur03.isHidden = false;
-                this.lArmWool02.isHidden = false;
-                this.lArmWool01.isHidden = false;
-                this.rArmWool02.isHidden = false;
-                this.rArmWool01.isHidden = false;
-                this.wool01.isHidden = false;
-                this.woolFur04.isHidden = false;
-            }
-        }
     }
 
     @Override
     public void setRotationAngles(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor) {
-        this.head.rotateAngleY = rad(netHeadYaw);
-        this.head.rotateAngleZ = this.head.rotateAngleY;
-        this.head.rotateAngleX = rad(headPitch);
-        lLeg01.rotateAngleX = MathHelper.cos(limbSwing * 0.8665F) * 0.9F * limbSwingAmount - 0.18203784098300857F;
-        lArm01.rotateAngleX = MathHelper.cos(limbSwing * 0.8665F) * 0.9F * limbSwingAmount + 0.091106186954104F;
-        rLeg01.rotateAngleX = MathHelper.sin(limbSwing * 0.8665F) * 0.9F * limbSwingAmount - 0.18203784098300857F;
-        rArm01.rotateAngleX = MathHelper.sin(limbSwing * 0.8665F) * 0.9F * limbSwingAmount + 0.091106186954104F;
-        this.neck.rotateAngleX = -0.5918411493512771F;
-        this.head.rotateAngleX = -0.5918411493512771F;
-        if(entity instanceof SheepEntity) {
-            this.neck.rotateAngleX = ((SheepEntity) entity).getHeadRotationAngleX(Minecraft.getInstance().getRenderPartialTicks()) - 0.5918411493512771F;
+        this.head.rotateAngleY = rad(netHeadYaw) * 0.01F;
+        this.head.rotateAngleX = rad(headPitch) * 0.01F + 0.9599F;
+        this.lHindLeg01.rotateAngleX = MathHelper.sin(limbSwing * 0.8665F + (float) Math.PI) * 0.9F * limbSwingAmount + 0.2618F;
+        this.rHindLeg01.rotateAngleX = MathHelper.sin(limbSwing * 0.8665F) * 0.9F * limbSwingAmount + 0.2618F;
+        this.lForeleg01.rotateAngleX = MathHelper.cos(limbSwing * 0.8665F) * 0.9F * limbSwingAmount + 0.0873F;
+        this.rForeleg01.rotateAngleX = MathHelper.cos(limbSwing * 0.8665F + (float) Math.PI) * 0.9F * limbSwingAmount + 0.0873F;
+        if(!Minecraft.getInstance().isGamePaused()) {
+            this.neck.rotateAngleX = entity.getHeadRotationAngleX(Minecraft.getInstance().getRenderPartialTicks()) - 0.9599F;
         }
+    }
+
+    public void setRotationAngle(RendererModel modelRenderer, float x, float y, float z) {
+        modelRenderer.rotateAngleX = x;
+        modelRenderer.rotateAngleY = y;
+        modelRenderer.rotateAngleZ = z;
     }
 }
