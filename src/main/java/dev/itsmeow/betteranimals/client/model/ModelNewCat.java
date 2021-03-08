@@ -335,6 +335,24 @@ public class ModelNewCat<T extends LivingEntity> extends Model<T> {
                     this.lArm01.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float) Math.PI + 0.3F) * limbSwingAmount + 0.12217304763960307F;
                     this.rArm01.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float) Math.PI) * limbSwingAmount + 0.12217304763960307F;
                     this.tail01.rotateAngleX = ((float) Math.PI / 10F) * MathHelper.cos(limbSwing) * limbSwingAmount - 0.593411945678072F;
+                } else if(cat.func_213416_eg()) { // laying down
+                    this.setRotateAngle(head, 0.7853981633974483F, 0.0F, 0.0F);
+                    this.setRotateAngle(lArm01, -0.9599310885968813F, -0.20943951023931953F, 0.0F);
+                    this.setRotateAngle(lArm02, -0.6457718232379019F, 0.0F, 0.0F);
+                    this.setRotateAngle(lForePaw, 1.6231562043547265F, 0.0F, 0.0F);
+                    this.setRotateAngle(lLeg01, -0.3141592653589793F, 0.0F, 0.6981317007977318F);
+                    this.setRotateAngle(lLeg03, 0.6283185307179586F, 0.0F, -0.5235987755982988F);
+                    this.setRotateAngle(neck, -0.7853981633974483F, 0.0F, 0.0F);
+                    this.setRotateAngle(rArm01, -0.9599310885968813F, 0.20943951023931953F, 0.0F);
+                    this.setRotateAngle(rArm02, -0.6457718232379019F, 0.0F, 0.0F);
+                    this.setRotateAngle(rForePaw, 1.5707963267948966F, 0.0F, 0.0F);
+                    this.setRotateAngle(rLeg01, -0.6981317007977318F, 0.0F, 0.03490658503988659F);
+                    this.setRotateAngle(stomach, 0.0F, 0.0F, -1.5707963267948966F);
+                    this.setRotateAngle(tail01, -0.593411945678072F, -0.4886921905584123F, 0.0F);
+                    this.setRotateAngle(tail02, -0.08726646259971647F, 0.0F, 0.0F);
+                    this.setRotateAngle(tail03, -0.17453292519943295F, 0.22689280275926282F, 0.0F);
+                    this.setRotateAngle(tail04a, -0.3490658503988659F, 0.12217304763960307F, 0.3141592653589793F);
+                    this.setRotateAngle(tail05a, -0.3490658503988659F, 0.0F, 0.0F);
                 } else if(cat.isSitting()) {
                     this.setRotateAngle(tail02, 0.0F, 0.6981317007977318F, 0.0F);
                     this.setRotateAngle(nose, 0.20943951023931953F, 0.0F, 0.0F);
