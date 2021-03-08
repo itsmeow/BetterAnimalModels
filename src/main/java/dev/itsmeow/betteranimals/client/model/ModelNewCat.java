@@ -332,7 +332,6 @@ public class ModelNewCat<T extends LivingEntity> extends Model<T> {
                     this.rArm01.rotateAngleX = MathHelper.cos(limbSwing * 0.6662F + (float) Math.PI) * limbSwingAmount + 0.12217304763960307F;
                     this.tail01.rotateAngleX = ((float) Math.PI / 10F) * MathHelper.cos(limbSwing) * limbSwingAmount - 0.593411945678072F;
                 } else if(cat.func_213416_eg()) { // laying down
-                    System.out.println("test");
                     this.setRotateAngle(head, 0.7853981633974483F, 0.0F, 0.0F);
                     this.setRotateAngle(lArm01, -0.9599310885968813F, -0.20943951023931953F, 0.0F);
                     this.setRotateAngle(lArm02, -0.6457718232379019F, 0.0F, 0.0F);
