@@ -4,11 +4,11 @@ import com.google.common.base.Supplier;
 import com.google.common.collect.ListMultimap;
 import com.google.common.collect.Multimaps;
 import dev.itsmeow.betteranimals.BetterAnimals;
-import net.minecraft.entity.Entity;
-import net.minecraft.util.ResourceLocation;
 import vazkii.quark.content.client.module.VariantAnimalTexturesModule;
 
 import java.util.*;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.Entity;
 
 public class QuarkUtil {
 
@@ -33,7 +33,7 @@ public class QuarkUtil {
     }
 
     public static ResourceLocation getTextureOrShiny(Entity e, VariantTextureType type, Supplier<ResourceLocation> nonShiny) {
-        UUID id = e.getUniqueID();
+        UUID id = e.getUUID();
         long most = id.getMostSignificantBits();
         if(VariantAnimalTexturesModule.shinyAnimalChance > 0 && (most % VariantAnimalTexturesModule.shinyAnimalChance) == 0)
             return shinyTextures.get(type);
@@ -44,7 +44,7 @@ public class QuarkUtil {
     private static ResourceLocation getRandomTexture(Entity e, VariantTextureType type) {
         List<ResourceLocation> styles = textures.get(type);
 
-        UUID id = e.getUniqueID();
+        UUID id = e.getUUID();
         long most = id.getMostSignificantBits();
         int choice = Math.abs((int) (most % styles.size()));
         return styles.get(choice);

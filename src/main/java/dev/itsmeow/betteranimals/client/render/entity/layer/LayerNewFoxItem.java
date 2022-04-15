@@ -1,51 +1,50 @@
 package dev.itsmeow.betteranimals.client.render.entity.layer;
 
-import com.mojang.blaze3d.matrix.MatrixStack;
-
+import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.math.Vector3f;
 import dev.itsmeow.betteranimals.client.model.ModelNewFox;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.IRenderTypeBuffer;
-import net.minecraft.client.renderer.entity.IEntityRenderer;
-import net.minecraft.client.renderer.entity.layers.LayerRenderer;
-import net.minecraft.client.renderer.model.ItemCameraTransforms;
-import net.minecraft.entity.passive.FoxEntity;
-import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.math.vector.Vector3f;
+import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.block.model.ItemTransforms;
+import net.minecraft.client.renderer.entity.RenderLayerParent;
+import net.minecraft.client.renderer.entity.layers.RenderLayer;
+import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.entity.animal.Fox;
+import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
-public class LayerNewFoxItem extends LayerRenderer<FoxEntity, ModelNewFox<FoxEntity>> {
+public class LayerNewFoxItem extends RenderLayer<Fox, ModelNewFox<Fox>> {
 
-    public LayerNewFoxItem(IEntityRenderer<FoxEntity, ModelNewFox<FoxEntity>> renderer) {
+    public LayerNewFoxItem(RenderLayerParent<Fox, ModelNewFox<Fox>> renderer) {
         super(renderer);
     }
 
     @Override
-    public void render(MatrixStack stack, IRenderTypeBuffer bufferIn, int packedLightIn, FoxEntity entity, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
-        ItemStack itemstack = entity.getItemStackFromSlot(EquipmentSlotType.MAINHAND);
+    public void render(PoseStack stack, MultiBufferSource bufferIn, int packedLightIn, Fox entity, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
+        ItemStack itemstack = entity.getItemBySlot(EquipmentSlot.MAINHAND);
         if(!itemstack.isEmpty()) {
             boolean sleeping = entity.isSleeping();
-            stack.push();
+            stack.pushPose();
             {
-                stack.translate(((this.getEntityModel()).head.rotationPointX + (this.getEntityModel()).neck.rotationPointX + (this.getEntityModel()).body.rotationPointX) / 16.0F, ((this.getEntityModel()).head.rotationPointY + (this.getEntityModel()).neck.rotationPointY + (this.getEntityModel()).body.rotationPointY) / 16.0F, ((this.getEntityModel()).head.rotationPointZ + (this.getEntityModel()).neck.rotationPointZ + (this.getEntityModel()).body.rotationPointZ) / 16.0F);
-                stack.rotate(Vector3f.ZP.rotation(this.getEntityModel().head.rotateAngleZ));
-                stack.rotate(Vector3f.YP.rotation(this.getEntityModel().head.rotateAngleY));
-                stack.rotate(Vector3f.XP.rotation(this.getEntityModel().head.rotateAngleX));
+                stack.translate(((this.getParentModel()).head.x + (this.getParentModel()).neck.x + (this.getParentModel()).body.x) / 16.0F, ((this.getParentModel()).head.y + (this.getParentModel()).neck.y + (this.getParentModel()).body.y) / 16.0F, ((this.getParentModel()).head.z + (this.getParentModel()).neck.z + (this.getParentModel()).body.z) / 16.0F);
+                stack.mulPose(Vector3f.ZP.rotation(this.getParentModel().head.zRot));
+                stack.mulPose(Vector3f.YP.rotation(this.getParentModel().head.yRot));
+                stack.mulPose(Vector3f.XP.rotation(this.getParentModel().head.xRot));
                 if(sleeping) {
                     stack.translate(0.6F, 0.1F, -0.3F);
                 } else {
                     stack.translate(0F, -0.1F, -0.5F);
                 }
-                stack.rotate(Vector3f.XP.rotationDegrees(90F));
+                stack.mulPose(Vector3f.XP.rotationDegrees(90F));
                 if(sleeping) {
-                    stack.rotate(Vector3f.ZP.rotationDegrees(90F));
+                    stack.mulPose(Vector3f.ZP.rotationDegrees(90F));
                 }
 
-                Minecraft.getInstance().getFirstPersonRenderer().renderItemSide(entity, itemstack, ItemCameraTransforms.TransformType.GROUND, false, stack, bufferIn, packedLightIn);
+                Minecraft.getInstance().getItemInHandRenderer().renderItem(entity, itemstack, ItemTransforms.TransformType.GROUND, false, stack, bufferIn, packedLightIn);
             }
-            stack.pop();
+            stack.popPose();
         }
     }
 

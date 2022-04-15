@@ -1,9 +1,42 @@
-apply from: 'https://maven.itsmeow.dev/scripts/fg3.gradle'
-apply from: 'https://maven.itsmeow.dev/scripts/imdlib.gradle' // include imdlib
+plugins {
+    id "dev.architectury.loom" version "0.11.0-SNAPSHOT"
+    id "maven-publish"
+}
+
+sourceCompatibility = targetCompatibility = JavaVersion.VERSION_1_8
+
+archivesBaseName = project.mod_id
+version = project.mod_version
+group = project.maven_group
+
+loom {
+    silentMojangMappingsLicense()
+
+
+    forge {
+        dataGen {
+            mod project.mod_id
+        }
+    }
+
+    launches {
+        data {
+            arg "--existing", file("src/main/resources").absolutePath
+        }
+    }
+}
+
+
+tasks.withType(JavaCompile) {
+    options.encoding = "UTF-8"
+}
 
 repositories {
     maven {
-        url = "https://www.cursemaven.com"
+        url = "https://maven.itsmeow.dev/"
+    }
+    maven {
+        url = "https://www.cursemaven.com/"
     }
     maven {
         url = "https://dvs1.progwml6.com/files/maven/"
@@ -11,7 +44,13 @@ repositories {
 }
 
 dependencies {
-    runtimeOnly fg.deobf("mezz.jei:jei-${project.mc_version}:${jei_version}")
-    implementation fg.deobf("curse.maven:autoreglib-250363:${arl_version}")
-    implementation fg.deobf("curse.maven:quark-243121:${quark_version}")
+    minecraft "com.mojang:minecraft:${project.mc_version}"
+    mappings loom.officialMojangMappings()
+    forge "net.minecraftforge:forge:${project.mc_version}-${project.forge_version}"
+    modRuntimeOnly "mezz.jei:jei-${project.mc_version}:${jei_version}"
+    modImplementation "curse.maven:autoreglib-250363:${arl_version}"
+    modImplementation "curse.maven:quark-243121:${quark_version}"
+    modImplementation("dev.itsmeow.imdlib:imdlib:${imdlib_version}") {
+        transitive = false
+    }
 }

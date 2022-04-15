@@ -1,6 +1,7 @@
 package dev.itsmeow.betteranimals.client;
 
 import com.google.common.collect.Maps;
+import com.mojang.math.Vector3f;
 import dev.itsmeow.betteranimals.BetterAnimals;
 import dev.itsmeow.betteranimals.client.model.*;
 import dev.itsmeow.betteranimals.client.render.entity.layer.*;
@@ -11,12 +12,11 @@ import dev.itsmeow.imdlib.client.render.ImplRenderer.RenderDef;
 import dev.itsmeow.imdlib.client.render.ImplRenderer.SuperCallApplyRotations;
 import dev.itsmeow.imdlib.client.util.ModelReplacementHandler;
 import dev.itsmeow.imdlib.client.util.ModelReplacementHandler.RegistrationTime;
-import net.minecraft.client.renderer.entity.model.EntityModel;
-import net.minecraft.entity.EntityType;
-import net.minecraft.entity.passive.*;
-import net.minecraft.util.Util;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.vector.Vector3f;
+import net.minecraft.Util;
+import net.minecraft.client.model.EntityModel;
+import net.minecraft.util.Mth;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.animal.*;
 import net.minecraftforge.fml.ModList;
 
 import java.util.Map;
@@ -27,23 +27,23 @@ public class Replacements {
 
     public static void addReplaces() {
         // cow
-        RenderDef<CowEntity, EntityModel<CowEntity>> cow = r -> r
+        RenderDef<Cow, EntityModel<Cow>> cow = r -> r
         .childScale(0.5F)
         .tSingle("cow").mSingle(new ModelNewCow<>());
 
         // pig
-        RenderDef<PigEntity, EntityModel<PigEntity>> pig = r -> r
+        RenderDef<Pig, EntityModel<Pig>> pig = r -> r
         .childScale(0.5F)
         .layer(LayerNewPigSaddle::new)
         .tSingle("pig").mSingle(new ModelNewPig<>());
 
         // chicken
-        RenderDef<ChickenEntity, EntityModel<ChickenEntity>> chicken = r -> r
+        RenderDef<Chicken, EntityModel<Chicken>> chicken = r -> r
         .childScale(0.45F)
         .handleRotation((e, p) -> {
-            float f = e.oFlap + (e.wingRotation - e.oFlap) * p;
-            float f1 = e.oFlapSpeed + (e.destPos - e.oFlapSpeed) * p;
-            return (MathHelper.sin(f) + 1.0F) * f1;
+            float f = e.oFlap + (e.flap - e.oFlap) * p;
+            float f1 = e.oFlapSpeed + (e.flapSpeed - e.oFlapSpeed) * p;
+            return (Mth.sin(f) + 1.0F) * f1;
         })
         .tSingle("chicken").mSingle(new ModelNewChicken<>());
 
@@ -71,47 +71,47 @@ public class Replacements {
         H.addReplace(RegistrationTime.MODELREGISTRY, "minecraft", "sheep", () -> () -> H.lambdaReplace(EntityType.SHEEP, 0.4F, r -> r
         .childScale(0.5F)
         .layer(LayerNewSheepWool::new)
-        .tMapped(e -> e.isChild() ? "lamb" : "sheep").mSingle(new ModelNewSheep<>())));
+        .tMapped(e -> e.isBaby() ? "lamb" : "sheep").mSingle(new ModelNewSheep<>())));
 
         H.addReplace(RegistrationTime.MODELREGISTRY, "minecraft", "wolf", () -> () -> H.lambdaReplace(EntityType.WOLF, 0.25F, r -> r
         .preRender((e, s, p) -> {
             s.scale(0.8F, 0.8F, 0.8F);
-            if(e.isChild()) {
+            if(e.isBaby()) {
                 s.scale(0.5F, 0.5F, 0.5F);
             }
         })
-        .handleRotation((e, p) -> e.getTailRotation())
+        .handleRotation((e, p) -> e.getTailAngle())
         .layer(LayerNewWolfCollar::new)
-        .tMapped(e -> e.isTamed() ? "wolf/wolf_tame" : (e.func_233678_J__() ? "wolf/wolf_angry" : "wolf/wolf"))
+        .tMapped(e -> e.isTame() ? "wolf/wolf_tame" : (e.isAngry() ? "wolf/wolf_angry" : "wolf/wolf"))
         .mSingle(new ModelNewWolf<>())));
 
         H.addReplace(RegistrationTime.MODELREGISTRY, "minecraft", "mooshroom", () -> () -> H.lambdaReplace(EntityType.MOOSHROOM, 0.7F, r -> r
         .preRender((e, s, p) -> {
-            if(e.isChild()) {
+            if(e.isBaby()) {
                 s.scale(0.36F, 0.36F, 0.36F);
             }
         })
         .layer(LayerNewMooshroomMushroom::new)
-        .tCondition(e -> e.getMooshroomType() == MooshroomEntity.Type.RED, "mooshroom", "mooshroom_brown")
+        .tCondition(e -> e.getMushroomType() == MushroomCow.MushroomType.RED, "mooshroom", "mooshroom_brown")
         .mSingle(new ModelNewCow<>())));
 
         H.addReplace(RegistrationTime.MODELREGISTRY, "minecraft", "squid", () -> () -> H.lambdaReplace(EntityType.SQUID, 0.7F, r -> r
         .applyRotations((e, s, a, rot, p) -> {
-            float f = e.prevSquidPitch + (e.squidPitch - e.prevSquidPitch) * p;
-            float f1 = e.prevSquidYaw + (e.squidYaw - e.prevSquidYaw) * p;
+            float f = e.xBodyRotO + (e.xBodyRot - e.xBodyRotO) * p;
+            float f1 = e.zBodyRotO + (e.zBodyRot - e.zBodyRotO) * p;
             s.translate(0.0F, 0.5F, 0.0F);
-            s.rotate(Vector3f.YP.rotationDegrees(180.0F - rot));
-            s.rotate(Vector3f.XP.rotationDegrees(f));
-            s.rotate(Vector3f.YP.rotationDegrees(f1));
+            s.mulPose(Vector3f.YP.rotationDegrees(180.0F - rot));
+            s.mulPose(Vector3f.XP.rotationDegrees(f));
+            s.mulPose(Vector3f.YP.rotationDegrees(f1));
             s.translate(0.0F, -1.2F, 0.0F);
         })
-        .handleRotation((e, p) -> -(e.lastTentacleAngle + (e.tentacleAngle - e.lastTentacleAngle) * p))
+        .handleRotation((e, p) -> -(e.oldTentacleAngle + (e.tentacleAngle - e.oldTentacleAngle) * p))
         .tSingle("squid").mSingle(new ModelNewSquid<>())));
 
         H.addReplace(RegistrationTime.MODELREGISTRY, "minecraft", "spider", () -> () -> H.lambdaReplace(EntityType.SPIDER, 1F, r -> r
         .preRender((e, s, p) -> {
-            if(e.isBesideClimbableBlock()) {
-                s.rotate(Vector3f.XP.rotationDegrees(-90F));
+            if(e.isClimbing()) {
+                s.mulPose(Vector3f.XP.rotationDegrees(-90F));
                 s.translate(0.0F, 0.75F, -0.5F);
             }
         })
@@ -120,8 +120,8 @@ public class Replacements {
 
         H.addReplace(RegistrationTime.MODELREGISTRY, "minecraft", "cavespider", () -> () -> H.lambdaReplace(EntityType.CAVE_SPIDER, 0.4F, r -> r
         .preRender((e, s, p) -> {
-            if(e.isBesideClimbableBlock()) {
-                s.rotate(Vector3f.XP.rotationDegrees(-90F));
+            if(e.isClimbing()) {
+                s.mulPose(Vector3f.XP.rotationDegrees(-90F));
                 s.translate(0.0F, 0.75F, -0.5F);
             }
             s.scale(0.5F, 0.5F, 0.5F);
@@ -140,7 +140,7 @@ public class Replacements {
         H.addReplace(RegistrationTime.MODELREGISTRY, "minecraft", "ocelot", () -> () -> H.lambdaReplace(EntityType.OCELOT, 0.5F, r -> r
         .preRender((e, s, p) -> {
             s.scale(0.8F, 0.8F, 0.8F);
-            if(e.isChild()) {
+            if(e.isBaby()) {
                 s.scale(0.5F, 0.5F, 0.5F);
             }
         })
@@ -162,19 +162,19 @@ public class Replacements {
         H.addReplace(RegistrationTime.MODELREGISTRY, "minecraft", "cat", () -> () -> H.lambdaReplace(EntityType.CAT, 0.5F, r -> r
         .preRender((e, s, p) -> {
             s.scale(0.8F, 0.8F, 0.8F);
-            if(e.isTamed()) {
+            if(e.isTame()) {
                 s.scale(0.9F, 0.9F, 0.9F);
             }
-            if(e.isChild()) {
+            if(e.isBaby()) {
                 s.scale(0.5F, 0.5F, 0.5F);
             }
         })
         .layer(LayerNewCatCollar::new)
         .tMapped(e -> catTextures.get(e.getCatType())).mSingle(new ModelNewCat<>())));
 
-        H.addReplace(RegistrationTime.MODELREGISTRY, "minecraft", "fox", () -> () -> H.<FoxEntity, ModelNewFox<FoxEntity>>lambdaReplace(EntityType.FOX, 0.4F, r -> r
+        H.addReplace(RegistrationTime.MODELREGISTRY, "minecraft", "fox", () -> () -> H.<Fox, ModelNewFox<Fox>>lambdaReplace(EntityType.FOX, 0.4F, r -> r
         .preRender((e, s, p) -> {
-            if(e.isChild()) {
+            if(e.isBaby()) {
                 s.scale(0.5F, 0.5F, 0.5F);
             }
             if(e.isSleeping()) {
@@ -185,17 +185,17 @@ public class Replacements {
             }
         })
         .applyRotations((e, s, a, rot, p) -> {
-            if(e.func_213480_dY() || e.isStuck()) {
-                s.rotate(Vector3f.XP.rotationDegrees(-MathHelper.lerp(p, e.prevRotationPitch, e.rotationPitch)));
+            if(e.isPouncing() || e.isFaceplanted()) {
+                s.mulPose(Vector3f.XP.rotationDegrees(-Mth.lerp(p, e.xRotO, e.xRot)));
             }
         }, SuperCallApplyRotations.PRE)
         .layer(LayerNewFoxItem::new)
-        .tMapped(e -> e.getVariantType() == FoxEntity.Type.RED ? (e.isSleeping() ? "fox/fox_sleep" : "fox/fox") : (e.isSleeping() ? "fox/snow_fox_sleep" : "fox/snow_fox"))
+        .tMapped(e -> e.getFoxType() == Fox.Type.RED ? (e.isSleeping() ? "fox/fox_sleep" : "fox/fox") : (e.isSleeping() ? "fox/snow_fox_sleep" : "fox/snow_fox"))
         .mSingle(new ModelNewFox<>())));
 
         H.addReplace(RegistrationTime.MODELREGISTRY, "minecraft", "bee", () -> () -> H.lambdaReplace(EntityType.BEE, 0.4F, r -> r
         .childScale(0.5F)
-        .tMapped(e -> e.func_233678_J__() ? (e.hasNectar() ? "bee/bee_angry_nectar" : "bee/bee_angry") : (e.hasNectar() ? "bee/bee_nectar" : "bee/bee"))
+        .tMapped(e -> e.isAngry() ? (e.hasNectar() ? "bee/bee_angry_nectar" : "bee/bee_angry") : (e.hasNectar() ? "bee/bee_nectar" : "bee/bee"))
         .mSingle(new ModelNewBee<>())));
 
         H.addReplace(RegistrationTime.MODELREGISTRY, "minecraft", "dolphin", () -> () -> H.lambdaReplace(EntityType.DOLPHIN, 0.7F, r -> r
