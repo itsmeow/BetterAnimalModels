@@ -1,0 +1,42 @@
+{
+    "schemaVersion": 1,
+    "id": "betteranimalmodels",
+    "version": "${version}",
+    "name": "Cyber's Better Animal Models",
+    "description": "A mod to improve the vanilla animals' appearance in Minecraft.",
+    "authors": [
+        "cybercat5555",
+        "itsmeowdev"
+    ],
+    "contact": {
+        "homepage": "https://www.curseforge.com/minecraft/mc-mods/better-animal-models",
+        "sources": "https://github.com/itsmeow/BetterAnimalModels",
+        "issues": "https://github.com/itsmeow/BetterAnimalModels/issues"
+    },
+    "license": "All Rights Reserved",
+    "icon": "logo.png",
+    "environment": "*",
+    "entrypoints": {
+        "main": [
+            "dev.itsmeow.betteranimalmodels.BetterAnimalModelsFabric"
+        ],
+        "client": [
+            "dev.itsmeow.betteranimalmodels.client.BetterAnimalModelsClientFabric"
+        ]
+    },
+    "depends": {
+        "minecraft": "1.16.5",
+        "fabricloader": ">=0.12.0",
+        "fabric": ">=0.32.0"
+    },
+    "mixins": [
+        "mixin.imdlib.json"
+    ],
+    "custom": {
+        "modmenu": {
+            "links": {
+                "modmenu.discord": "https://discord.betteranimalsplus.com/"
+            }
+        }
+    }
+}

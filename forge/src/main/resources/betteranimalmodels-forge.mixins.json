@@ -1,0 +1,14 @@
+{
+    "required": true,
+    "package": "dev.itsmeow.betteranimalmodels.mixin.forge",
+    "compatibilityLevel": "JAVA_8",
+    "minVersion": "0.8",
+    "mixins": [],
+    "client": [
+        "ModContainerAccessor",
+        "ModConfigInvoker"
+    ],
+    "injectors": {
+        "defaultRequire": 1
+    }
+}

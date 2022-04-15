@@ -1,0 +1,14 @@
+apply from: "https://maven.itsmeow.dev/scripts/architectury-common.gradle"
+/*loom {
+    accessWidenerPath = file("src/main/resources/whisperwoods.accesswidener")
+}
+afterEvaluate {
+    remapJar {
+        remapAccessWidener = false
+    }
+}*/
+dependencies {
+    modImplementation("dev.itsmeow.imdlib:imdlib-common:${rootProject.imdlib_version}") {
+        transitive = false
+    }
+}
