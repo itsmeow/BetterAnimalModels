@@ -12,7 +12,7 @@ version="${version}"
 displayName="Cyber's Better Animal Models"
 description='''
 A mod to improve the vanilla animals' appearance in Minecraft.'''
-[[dependencies.forge]]
+[[dependencies.betteranimalmodels]]
 	modId="forge"
 	mandatory=true
 	versionRange="[36.2.0,)"
@@ -24,8 +24,3 @@ A mod to improve the vanilla animals' appearance in Minecraft.'''
 	ordering="BEFORE"
 	side="CLIENT"
 	versionRange="[r2.4-280,)"
-[[dependencies.betteranimalmodels]]
-	modId="midnight"
-	mandatory=false
-	ordering="AFTER"
-	side="CLIENT"
