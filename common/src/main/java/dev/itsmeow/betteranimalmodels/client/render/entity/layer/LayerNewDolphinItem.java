@@ -22,8 +22,8 @@ public class LayerNewDolphinItem extends RenderLayer<Dolphin, EntityModel<Dolphi
     public void render(PoseStack matrixStackIn, MultiBufferSource bufferIn, int packedLightIn, Dolphin entitylivingbaseIn, float limbSwing, float limbSwingAmount, float partialTicks, float ageInTicks, float netHeadYaw, float headPitch) {
         boolean flag = entitylivingbaseIn.getMainArm() == HumanoidArm.RIGHT;
         matrixStackIn.pushPose();
-        float f2 = Mth.abs(entitylivingbaseIn.xRot) / 60.0F;
-        if (entitylivingbaseIn.xRot < 0.0F) {
+        float f2 = Mth.abs(entitylivingbaseIn.getXRot()) / 60.0F;
+        if (entitylivingbaseIn.getXRot() < 0.0F) {
             matrixStackIn.translate(0.0D, (double) (1.0F - f2 * 0.5F), (double) (-1.0F + f2 * 0.5F));
         } else {
             matrixStackIn.translate(0.0D, (double) (1.0F + f2 * 0.8F), (double) (-1.0F + f2 * 0.2F));

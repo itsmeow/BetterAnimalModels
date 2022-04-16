@@ -23,14 +23,9 @@ repositories {
     maven {
         url = "https://cursemaven.com"
     }
-    maven {
-        url = "https://maven.theillusivec4.top/"
-    }
 }
 
 dependencies {
-    modCompileOnlyApi("curse.maven:arl-250363:${rootProject.arl_version}")
-    modCompileOnlyApi("curse.maven:quark-243121:${rootProject.quark_version}")
     shadowModImplementation("dev.itsmeow.imdlib:imdlib-forge:${rootProject.imdlib_version}") {
         transitive = false
     }

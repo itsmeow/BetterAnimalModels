@@ -26,13 +26,13 @@ public class Replacements {
     // cow
     public static final RenderDef<Cow, EntityModel<Cow>> cow_f = r -> r
             .childScale(0.5F)
-            .tSingle("cow").mSingle(new ModelNewCow<>());
+            .tSingle("cow").mSingle(ModelNewCow::new, "cow");
 
     // pig
     public static final RenderDef<Pig, EntityModel<Pig>> pig_f = r -> r
             .childScale(0.5F)
             .layer(LayerNewPigSaddle::new)
-            .tSingle("pig").mSingle(new ModelNewPig<>());
+            .tSingle("pig").mSingle(ModelNewPig::new, "pig");
 
     // chicken
     public static final RenderDef<Chicken, EntityModel<Chicken>> chicken_f = r -> r
@@ -42,7 +42,7 @@ public class Replacements {
                 float f1 = e.oFlapSpeed + (e.flapSpeed - e.oFlapSpeed) * p;
                 return (Mth.sin(f) + 1.0F) * f1;
             })
-            .tSingle("chicken").mSingle(new ModelNewChicken<>());
+            .tSingle("chicken").mSingle(ModelNewChicken::new, "chicken");
 
     public static RenderDef<Cow, EntityModel<Cow>> cow = cow_f;
     public static RenderDef<Pig, EntityModel<Pig>> pig = pig_f;
@@ -61,7 +61,7 @@ public class Replacements {
         H.addReplace("minecraft", "sheep", () -> () -> H.lambdaReplace(EntityType.SHEEP, 0.4F, r -> r
         .childScale(0.5F)
         .layer(LayerNewSheepWool::new)
-        .tMapped(e -> e.isBaby() ? "lamb" : "sheep").mSingle(new ModelNewSheep<>())));
+        .tMapped(e -> e.isBaby() ? "lamb" : "sheep").mSingle(ModelNewSheep::new, "sheep")));
 
         H.addReplace("minecraft", "wolf", () -> () -> H.lambdaReplace(EntityType.WOLF, 0.25F, r -> r
         .preRender((e, s, p) -> {
@@ -73,7 +73,7 @@ public class Replacements {
         .handleRotation((e, p) -> e.getTailAngle())
         .layer(LayerNewWolfCollar::new)
         .tMapped(e -> e.isTame() ? "wolf/wolf_tame" : (e.isAngry() ? "wolf/wolf_angry" : "wolf/wolf"))
-        .mSingle(new ModelNewWolf<>())));
+        .mSingle(ModelNewWolf::new, "wolf")));
 
         H.addReplace("minecraft", "mooshroom", () -> () -> H.lambdaReplace(EntityType.MOOSHROOM, 0.7F, r -> r
         .preRender((e, s, p) -> {
@@ -83,7 +83,7 @@ public class Replacements {
         })
         .layer(LayerNewMooshroomMushroom::new)
         .tCondition(e -> e.getMushroomType() == MushroomCow.MushroomType.RED, "mooshroom", "mooshroom_brown")
-        .mSingle(new ModelNewCow<>())));
+        .mSingle(ModelNewCow::new, "cow")));
 
         H.addReplace("minecraft", "squid", () -> () -> H.lambdaReplace(EntityType.SQUID, 0.7F, r -> r
         .applyRotations((e, s, a, rot, p) -> {
@@ -96,7 +96,7 @@ public class Replacements {
             s.translate(0.0F, -1.2F, 0.0F);
         })
         .handleRotation((e, p) -> -(e.oldTentacleAngle + (e.tentacleAngle - e.oldTentacleAngle) * p))
-        .tSingle("squid").mSingle(new ModelNewSquid<>())));
+        .tSingle("squid").mSingle(ModelNewSquid::new, "squid")));
 
         H.addReplace("minecraft", "spider", () -> () -> H.lambdaReplace(EntityType.SPIDER, 1F, r -> r
         .preRender((e, s, p) -> {
@@ -106,7 +106,7 @@ public class Replacements {
             }
         })
         .layer(LayerNewSpiderEyes::new)
-        .tSingle("spider").mSingle(new ModelNewSpider<>())));
+        .tSingle("spider").mSingle(ModelNewSpider::new, "spider")));
 
         H.addReplace("minecraft", "cavespider", () -> () -> H.lambdaReplace(EntityType.CAVE_SPIDER, 0.4F, r -> r
         .preRender((e, s, p) -> {
@@ -117,15 +117,15 @@ public class Replacements {
             s.scale(0.5F, 0.5F, 0.5F);
         })
         .layer(LayerNewSpiderEyes::new)
-        .tSingle("cave_spider").mSingle(new ModelNewSpider<>())));
+        .tSingle("cave_spider").mSingle(ModelNewSpider::new, "spider")));
 
         H.addReplace("minecraft", "silverfish", () -> () -> H.lambdaReplace(EntityType.SILVERFISH, 0.25F, r -> r
         .preRender((e, s, p) -> s.scale(0.5F, 0.5F, 0.5F))
-        .tSingle("silverfish").mSingle(new ModelNewSilverfish<>())));
+        .tSingle("silverfish").mSingle(ModelNewSilverfish::new, "silverfish")));
 
         H.addReplace("minecraft", "polarbear", () -> () -> H.lambdaReplace(EntityType.POLAR_BEAR, 0.7F, r -> r
         .childScale(0.7F)
-        .tSingle("polarbear").mSingle(new ModelNewBear<>())));
+        .tSingle("polarbear").mSingle(ModelNewBear::new, "bear")));
 
         H.addReplace("minecraft", "ocelot", () -> () -> H.lambdaReplace(EntityType.OCELOT, 0.5F, r -> r
         .preRender((e, s, p) -> {
@@ -134,7 +134,7 @@ public class Replacements {
                 s.scale(0.5F, 0.5F, 0.5F);
             }
         })
-        .tSingle("cat/ocelot").mSingle(new ModelNewCat<>())));
+        .tSingle("cat/ocelot").mSingle(ModelNewCat::new, "cat")));
 
         Map<Integer, String> catTextures = Util.make(Maps.newHashMap(), (map) -> {
             map.put(0, "cat/tabby");
@@ -160,7 +160,7 @@ public class Replacements {
             }
         })
         .layer(LayerNewCatCollar::new)
-        .tMapped(e -> catTextures.get(e.getCatType())).mSingle(new ModelNewCat<>())));
+        .tMapped(e -> catTextures.get(e.getCatType())).mSingle(ModelNewCat::new, "cat")));
 
         H.addReplace("minecraft", "fox", () -> () -> H.<Fox, ModelNewFox<Fox>>lambdaReplace(EntityType.FOX, 0.4F, r -> r
         .preRender((e, s, p) -> {
@@ -176,22 +176,22 @@ public class Replacements {
         })
         .applyRotations((e, s, a, rot, p) -> {
             if(e.isPouncing() || e.isFaceplanted()) {
-                s.mulPose(Vector3f.XP.rotationDegrees(-Mth.lerp(p, e.xRotO, e.xRot)));
+                s.mulPose(Vector3f.XP.rotationDegrees(-Mth.lerp(p, e.xRotO, e.getXRot())));
             }
         }, SuperCallApplyRotations.PRE)
         .layer(LayerNewFoxItem::new)
         .tMapped(e -> e.getFoxType() == Fox.Type.RED ? (e.isSleeping() ? "fox/fox_sleep" : "fox/fox") : (e.isSleeping() ? "fox/snow_fox_sleep" : "fox/snow_fox"))
-        .mSingle(new ModelNewFox<>())));
+        .mSingle(ModelNewFox::new, "fox")));
 
         H.addReplace("minecraft", "bee", () -> () -> H.lambdaReplace(EntityType.BEE, 0.4F, r -> r
         .childScale(0.5F)
         .tMapped(e -> e.isAngry() ? (e.hasNectar() ? "bee/bee_angry_nectar" : "bee/bee_angry") : (e.hasNectar() ? "bee/bee_nectar" : "bee/bee"))
-        .mSingle(new ModelNewBee<>())));
+        .mSingle(ModelNewBee::new, "bee")));
 
         H.addReplace("minecraft", "dolphin", () -> () -> H.lambdaReplace(EntityType.DOLPHIN, 0.7F, r -> r
         .layer(LayerNewDolphinItem::new)
         .tSingle("dolphin")
-        .mSingle(new ModelNewDolphin<>())));
+        .mSingle(ModelNewDolphin::new, "dolphin")));
 
         Replacements.platformInit();
     }
