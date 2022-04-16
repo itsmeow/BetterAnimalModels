@@ -1,5 +1,5 @@
 modLoader="javafml"
-loaderVersion="[37,)"
+loaderVersion="[40,)"
 issueTrackerURL="https://github.com/itsmeow/BetterAnimalModels/issues"
 displayURL="https://www.curseforge.com/minecraft/mc-mods/better-animal-models"
 logoFile="logo.png"
@@ -12,9 +12,15 @@ version="${version}"
 displayName="Cyber's Better Animal Models"
 description='''
 A mod to improve the vanilla animals' appearance in Minecraft.'''
-[[dependencies.forge]]
+[[dependencies.betteranimalmodels]]
 	modId="forge"
 	mandatory=true
-	versionRange="[37.1.0,)"
+	versionRange="[40.0.0,)"
 	ordering="NONE"
 	side="CLIENT"
+[[dependencies.betteranimalmodels]]
+	modId="quark"
+	mandatory=false
+	ordering="BEFORE"
+	side="CLIENT"
+	versionRange="[r2.4-280,)"

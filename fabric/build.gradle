@@ -27,7 +27,7 @@ repositories {
 }
 
 dependencies {
-    modRuntimeOnly ("curse.maven:cloth-config-319057:3559636") {
+    modRuntimeOnly ("curse.maven:cloth-config-319057:3641132") {
         transitive = false
     }
     runtimeOnly("me.shedaniel.cloth:basic-math:0.6.0") {
@@ -36,7 +36,7 @@ dependencies {
     shadowModImplementation("dev.itsmeow.imdlib:imdlib-fabric:${rootProject.imdlib_version}") {
         transitive = false
     }
-    modRuntimeOnly("com.terraformersmc:modmenu:2.0.14") {
+    modRuntimeOnly("com.terraformersmc:modmenu:3.1.1") {
         transitive = false
     }
 }

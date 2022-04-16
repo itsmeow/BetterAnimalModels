@@ -1,6 +1,5 @@
 package dev.itsmeow.betteranimalmodels.forge.compat;
 
-/*
 import com.google.common.base.Supplier;
 import com.google.common.collect.ListMultimap;
 import com.google.common.collect.Multimaps;
@@ -10,9 +9,9 @@ import net.minecraft.world.entity.Entity;
 import vazkii.quark.content.client.module.VariantAnimalTexturesModule;
 
 import java.util.*;
-*/
+
 public class QuarkUtil {
-/*
+
     private static ListMultimap<VariantTextureType, ResourceLocation> textures;
     private static Map<VariantTextureType, ResourceLocation> shinyTextures;
 
@@ -68,5 +67,5 @@ public class QuarkUtil {
     private static ResourceLocation tex(String name) {
         return new ResourceLocation(BetterAnimalModels.MODID, "textures/entity/" + name + ".png");
     }
-*/
+
 }
