@@ -56,7 +56,7 @@ public class Replacements {
     public static RenderDef<Dolphin, EntityModel<Dolphin>> dolphin = dolphin_f;
 
     public static void initQuarkReplaces() {
-        H.addReplace("minecraft", "cow", () -> () -> H.lambdaReplace(EntityType.COW, 0.7F, cow));
+        H.addReplace("minecraft", "cow", () -> () -> H.lambdaReplace(EntityType.COW, 1.2F, cow));
         H.addReplace("minecraft", "pig", () -> () -> H.lambdaReplace(EntityType.PIG, 0.7F, pig));
         H.addReplace("minecraft", "chicken", () -> () -> H.lambdaReplace(EntityType.CHICKEN, 0.4F, chicken));
         H.addReplace("minecraft", "dolphin", () -> () -> H.lambdaReplace(EntityType.DOLPHIN, 0.7F, dolphin));
@@ -66,12 +66,12 @@ public class Replacements {
         if(!SafePlatform.isModLoaded("quark")) {
             initQuarkReplaces();
         }
-        H.addReplace("minecraft", "sheep", () -> () -> H.lambdaReplace(EntityType.SHEEP, 0.4F, r -> r
+        H.addReplace("minecraft", "sheep", () -> () -> H.lambdaReplace(EntityType.SHEEP, 0.7F, r -> r
         .childScale(0.5F)
         .layer(LayerNewSheepWool::new)
         .tMapped(e -> e.isBaby() ? "lamb" : "sheep").mSingle(new ModelNewSheep<>())));
 
-        H.addReplace("minecraft", "wolf", () -> () -> H.lambdaReplace(EntityType.WOLF, 0.25F, r -> r
+        H.addReplace("minecraft", "wolf", () -> () -> H.lambdaReplace(EntityType.WOLF, 0.7F, r -> r
         .preRender((e, s, p) -> {
             s.scale(0.8F, 0.8F, 0.8F);
             if(e.isBaby()) {
@@ -83,7 +83,7 @@ public class Replacements {
         .tMapped(e -> e.isTame() ? "wolf/wolf_tame" : (e.isAngry() ? "wolf/wolf_angry" : "wolf/wolf"))
         .mSingle(new ModelNewWolf<>())));
 
-        H.addReplace("minecraft", "mooshroom", () -> () -> H.lambdaReplace(EntityType.MOOSHROOM, 0.7F, r -> r
+        H.addReplace("minecraft", "mooshroom", () -> () -> H.lambdaReplace(EntityType.MOOSHROOM, 1.2F, r -> r
         .preRender((e, s, p) -> {
             if(e.isBaby()) {
                 s.scale(0.36F, 0.36F, 0.36F);
@@ -131,7 +131,7 @@ public class Replacements {
         .preRender((e, s, p) -> s.scale(0.5F, 0.5F, 0.5F))
         .tSingle("silverfish").mSingle(new ModelNewSilverfish<>())));
 
-        H.addReplace("minecraft", "polarbear", () -> () -> H.lambdaReplace(EntityType.POLAR_BEAR, 0.7F, r -> r
+        H.addReplace("minecraft", "polarbear", () -> () -> H.lambdaReplace(EntityType.POLAR_BEAR, 1F, r -> r
         .childScale(0.7F)
         .tSingle("polarbear").mSingle(new ModelNewBear<>())));
 
@@ -170,7 +170,7 @@ public class Replacements {
         .layer(LayerNewCatCollar::new)
         .tMapped(e -> catTextures.get(e.getCatType())).mSingle(new ModelNewCat<>())));
 
-        H.addReplace("minecraft", "fox", () -> () -> H.<Fox, ModelNewFox<Fox>>lambdaReplace(EntityType.FOX, 0.4F, r -> r
+        H.addReplace("minecraft", "fox", () -> () -> H.<Fox, ModelNewFox<Fox>>lambdaReplace(EntityType.FOX, 0.55F, r -> r
         .preRender((e, s, p) -> {
             if(e.isBaby()) {
                 s.scale(0.5F, 0.5F, 0.5F);
