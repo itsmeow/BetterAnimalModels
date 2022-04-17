@@ -23,4 +23,4 @@ A mod to improve the vanilla animals' appearance in Minecraft.'''
 	mandatory=false
 	ordering="BEFORE"
 	side="CLIENT"
-	versionRange="[r2.4-280,)"
+	versionRange="[3.2-349,)"

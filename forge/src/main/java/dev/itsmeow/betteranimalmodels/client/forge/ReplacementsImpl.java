@@ -42,6 +42,10 @@ public class ReplacementsImpl {
             }
         }, () -> {});
         forceForgeLoadConfig();
+        Supplier<Runnable> target = () -> () -> QuarkHooks.configLoad();
+        if(ModList.get().isLoaded("quark")) {
+            target.get().run();
+        }
     }
 
     private static void forceForgeLoadConfig() {
