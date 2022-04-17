@@ -2,16 +2,17 @@ package dev.itsmeow.betteranimalmodels.client.model;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
 
 /**
  * dolphin - CyberCat5555
  * Created using Tabula 8.0.0
  */
-public class ModelNewDolphin<T extends Entity> extends EntityModel<T> {
+public class ModelNewDolphin<T extends LivingEntity> extends Model<T> {
+
     public ModelPart body;
     public ModelPart tail01;
     public ModelPart head;
@@ -161,8 +162,8 @@ public class ModelNewDolphin<T extends Entity> extends EntityModel<T> {
 
     @Override
     public void setupAnim(T entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-        this.body.xRot = headPitch * ((float) Math.PI / 180F);
-        this.body.yRot = netHeadYaw * ((float) Math.PI / 180F);
+        this.headPitch(body, headPitch);
+        this.headYaw(body, netHeadYaw);
         if (Entity.getHorizontalDistanceSqr(entityIn.getDeltaMovement()) > 1.0E-7D) {
             this.body.xRot += -0.05F + -0.05F * Mth.cos(ageInTicks * 0.3F);
             this.tail01.xRot = -0.1F * Mth.cos(ageInTicks * 0.3F);
@@ -179,12 +180,4 @@ public class ModelNewDolphin<T extends Entity> extends EntityModel<T> {
         }
     }
 
-    /**
-     * This is a helper function from Tabula to set the rotation of model parts
-     */
-    public void setRotateAngle(ModelPart modelRenderer, float x, float y, float z) {
-        modelRenderer.xRot = x;
-        modelRenderer.yRot = y;
-        modelRenderer.zRot = z;
-    }
 }

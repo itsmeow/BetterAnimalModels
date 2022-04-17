@@ -4,7 +4,6 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.geom.ModelPart;
-import net.minecraft.util.Mth;
 import net.minecraft.world.entity.animal.Sheep;
 
 /**
@@ -352,21 +351,13 @@ public class ModelNewSheep<T extends Sheep> extends Model<T> {
 
     @Override
     public void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-        this.head.yRot = rad(netHeadYaw) * 0.01F;
-        this.head.xRot = rad(headPitch) * 0.01F + 0.9599F;
-        this.lHindLeg01.xRot = Mth.sin(limbSwing * 0.8665F + (float) Math.PI) * 0.9F * limbSwingAmount + 0.2618F;
-        this.rHindLeg01.xRot = Mth.sin(limbSwing * 0.8665F) * 0.9F * limbSwingAmount + 0.2618F;
-        this.lForeleg01.xRot = Mth.cos(limbSwing * 0.8665F) * 0.9F * limbSwingAmount + 0.0873F;
-        this.rForeleg01.xRot = Mth.cos(limbSwing * 0.8665F + (float) Math.PI) * 0.9F * limbSwingAmount + 0.0873F;
+        this.headPitch(head, headPitch);
+        this.headYaw(head, netHeadYaw);
+        this.quadriped(lHindLeg01, lForeleg01, rHindLeg01, rForeleg01, limbSwing * 0.8665F, limbSwingAmount * 0.9F);
         this.sheared = entity.isSheared();
         if(!Minecraft.getInstance().isPaused()) {
             this.neck.xRot = entity.getHeadEatAngleScale(Minecraft.getInstance().getFrameTime()) - 0.9599F;
         }
     }
 
-    public void setRotationAngle(ModelPart modelRenderer, float x, float y, float z) {
-        modelRenderer.xRot = x;
-        modelRenderer.yRot = y;
-        modelRenderer.zRot = z;
-    }
 }

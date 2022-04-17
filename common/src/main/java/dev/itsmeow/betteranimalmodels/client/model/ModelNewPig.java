@@ -281,12 +281,9 @@ public class ModelNewPig<T extends LivingEntity> extends Model<T> {
 
     @Override
     public void setupAnim(T entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-        this.head.xRot = rad(headPitch);
-        this.head.yRot = rad(netHeadYaw);
-        lLeg01.xRot = Mth.sin(limbSwing * 0.8665F + (float) Math.PI) * 0.9F * limbSwingAmount - 0.091106186954104F;
-        lArm01.xRot = Mth.cos(limbSwing * 0.8665F) * 0.9F * limbSwingAmount + 0.091106186954104F;
-        rLeg01.xRot = Mth.sin(limbSwing * 0.8665F) * 0.9F * limbSwingAmount - 0.091106186954104F;
-        rArm01.xRot = Mth.cos(limbSwing * 0.8665F + (float) Math.PI) * 0.9F * limbSwingAmount + 0.091106186954104F;
+        this.headPitch(head, headPitch);
+        this.headYaw(head, netHeadYaw);
+        this.quadriped(lLeg01, lArm01, rLeg01, rArm01, limbSwing * 0.8665F, limbSwingAmount * 0.9F);
     }
 
 }

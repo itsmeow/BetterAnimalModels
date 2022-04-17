@@ -255,8 +255,7 @@ public class ModelNewChicken<T extends LivingEntity> extends Model<T> {
         this.head.xRot = rad(headPitch);
         this.head.zRot = rad(netHeadYaw) * 0.25F;
         this.neck01.zRot = rad(netHeadYaw) * 0.5F;
-        this.lLeg.xRot = Mth.sin(limbSwing * 0.6662F) * 1.5F * limbSwingAmount;
-        this.rLeg.xRot = Mth.cos(limbSwing * 0.6662F) * 1.5F * limbSwingAmount;
+        this.biped(lLeg, rLeg, limbSwing * 0.6662F, limbSwingAmount * 1.5F);
         this.lWing.zRot = -ageInTicks;
         this.rWing.zRot = ageInTicks;
     }

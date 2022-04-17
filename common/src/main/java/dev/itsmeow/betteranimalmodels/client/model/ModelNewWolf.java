@@ -329,21 +329,18 @@ public class ModelNewWolf<T extends LivingEntity> extends Model<T> {
 
     @Override
     public void setupAnim(T entity, float limbSwing, float limbSwingAmount, float tailRotation, float netHeadYaw, float headPitch) {
-        float swingModifier = 0.9f;
-        this.head.yRot = rad(netHeadYaw);
-        this.head.xRot = rad(headPitch) + 2.1816615649929116F;
+        this.headPitch(head, headPitch);
+        this.headYaw(head, netHeadYaw);
         tail01.xRot = 0.6981317007977318F + tailRotation;
-        this.neck.xRot = -0.6F;
-        lHindLeg01.xRot = Mth.sin(limbSwing * 0.8665F + (float) Math.PI) * swingModifier * limbSwingAmount - 0.22759093446006054F;
-        rHindLeg01.xRot = Mth.cos(limbSwing * 0.8665F) * swingModifier * limbSwingAmount - 0.22759093446006054F;
-        lForeleg01.xRot = Mth.sin(limbSwing * 0.8665F) * swingModifier * limbSwingAmount + 0.22759093446006054F;
-        rForeleg01.xRot = Mth.cos(limbSwing * 0.8665F + (float) Math.PI) * swingModifier * limbSwingAmount + 0.22759093446006054F;
+        boolean sit = false;
+
         if(entity instanceof Wolf) {
             Wolf wolf = (Wolf) entity;
             this.isWet = wolf.isWet();
             this.nextTint = wolf.getBrightness() * wolf.getWetShade(Minecraft.getInstance().getFrameTime());
-            tail01.xRot = 0.6981317007977318F + tailRotation - ((wolf.isTame()) ? 0.4F : 0F);
-            if(wolf.isInSittingPose()) { // it's not actually sleeping, MCP is just on crack, it's sitting
+            tail01.xRot -= ((wolf.isTame()) ? 0.4F : 0F);
+            if(wolf.isInSittingPose()) {
+                sit = true;
                 this.setRotateAngle(rHindPaw, 1.3089969389957472F, 0.20943951023931953F, 0.0F);
                 this.setRotateAngle(lForePaw, 0.03490658503988659F, 0.0F, 0.0F);
                 this.setRotateAngle(rForeleg02, -0.10471975511965977F, 0.0F, 0.0F);
@@ -385,13 +382,10 @@ public class ModelNewWolf<T extends LivingEntity> extends Model<T> {
                 this.setRotateAngle(rForePaw, 0.03490658503988659F, 0.0F, 0.0F);
                 this.setRotateAngle(lForeleg02, -0.10471975511965977F, 0.0F, 0.0F);
                 this.setRotateAngle(rHindPaw, 0.12217304763960307F, 0.0F, 0.0F);
-                lHindLeg01.xRot = Mth.sin(limbSwing * 0.8665F + (float) Math.PI) * swingModifier * limbSwingAmount - 0.22759093446006054F;
-                rHindLeg01.xRot = Mth.cos(limbSwing * 0.8665F) * swingModifier * limbSwingAmount - 0.22759093446006054F;
-                lForeleg01.xRot = Mth.sin(limbSwing * 0.8665F) * swingModifier * limbSwingAmount + 0.22759093446006054F;
-                rForeleg01.xRot = Mth.cos(limbSwing * 0.8665F + (float) Math.PI) * swingModifier * limbSwingAmount + 0.22759093446006054F;
             }
         }
-
+        if (!sit)
+            this.quadriped(lHindLeg01, lForeleg01, rHindLeg01, rForeleg01, limbSwing * 0.8665F, limbSwingAmount * 0.9F);
     }
 
 }

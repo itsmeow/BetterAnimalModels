@@ -282,13 +282,10 @@ public class ModelNewCat<T extends LivingEntity> extends Model<T> {
         this.setRotateAngle(rLeg03, 0.6283185307179586F, 0.0F, 0.0F);
         this.setRotateAngle(chest, 0F, 0F, 0F);
         this.setRotateAngle(stomach, 0F, 0F, 0F);
-        this.head.xRot = rad(headPitch);
-        this.head.yRot = rad(netHeadYaw);
+        this.headPitch(head, headPitch);
+        this.headYaw(head, netHeadYaw);
         this.tail01.xRot = 0.47123894F * Mth.cos(limbSwing) * limbSwingAmount - 0.593411945678072F;
-        this.lLeg01.xRot = Mth.cos(limbSwing * 0.6662F) * limbSwingAmount - 0.3141592653589793F;
-        this.rLeg01.xRot = Mth.cos(limbSwing * 0.6662F + (float) Math.PI) * limbSwingAmount - 0.3141592653589793F;
-        this.lArm01.xRot = Mth.cos(limbSwing * 0.6662F + (float) Math.PI) * limbSwingAmount + 0.12217304763960307F;
-        this.rArm01.xRot = Mth.cos(limbSwing * 0.6662F) * limbSwingAmount + 0.12217304763960307F;
+        this.quadriped(lLeg01, lArm01, rLeg01, rArm01, limbSwing * 0.6662F, limbSwingAmount);
         if(entity instanceof Ocelot) {
             Ocelot ocelot = (Ocelot) entity;
             if(ocelot.isShiftKeyDown()) {
@@ -352,7 +349,7 @@ public class ModelNewCat<T extends LivingEntity> extends Model<T> {
                     this.setRotateAngle(tail03, -0.17453292519943295F, 0.22689280275926282F, 0.0F);
                     this.setRotateAngle(tail04a, -0.3490658503988659F, 0.12217304763960307F, 0.3141592653589793F);
                     this.setRotateAngle(tail05a, -0.3490658503988659F, 0.0F, 0.0F);
-                } else if(cat.isInSittingPose()) { // not actually sleeping, MCP is on crack. it's sitting
+                } else if(cat.isInSittingPose()) {
                     this.setRotateAngle(tail02, 0.0F, 0.6981317007977318F, 0.0F);
                     this.setRotateAngle(nose, 0.20943951023931953F, 0.0F, 0.0F);
                     this.setRotateAngle(lEar01, 0.0F, -0.6108652381980153F, 0.3490658503988659F);
