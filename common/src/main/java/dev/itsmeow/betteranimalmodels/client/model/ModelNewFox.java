@@ -11,6 +11,7 @@ import net.minecraft.world.entity.animal.Fox;
  * fox2 - cybercat5555 Created using Tabula 7.0.1
  */
 public class ModelNewFox<T extends LivingEntity> extends Model<T> {
+
     public ModelPart body;
     public ModelPart rear;
     public ModelPart lArm01;

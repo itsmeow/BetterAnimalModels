@@ -9,6 +9,7 @@ import net.minecraft.world.entity.LivingEntity;
  * newsquid - cybercat5555 Created using Tabula 5.1.0
  */
 public class ModelNewSquid<T extends LivingEntity> extends Model<T> {
+
     public ModelPart head;
     public ModelPart mantle01;
     public ModelPart lEye;
@@ -263,4 +264,5 @@ public class ModelNewSquid<T extends LivingEntity> extends Model<T> {
             modelrenderer.xRot = ageInTicks;
         }
     }
+
 }

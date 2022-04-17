@@ -323,4 +323,5 @@ public class ModelNewSpider<T extends LivingEntity> extends Model<T> {
         this.rLeg04a.zRot += f10;
         this.lLeg04a.zRot += -f10;
     }
+
 }

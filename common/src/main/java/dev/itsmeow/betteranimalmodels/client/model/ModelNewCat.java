@@ -12,6 +12,7 @@ import net.minecraft.world.entity.animal.Ocelot;
  * catBA - cybercat5555 Created using Tabula 7.0.1
  */
 public class ModelNewCat<T extends LivingEntity> extends Model<T> {
+
     public ModelPart chest;
     public ModelPart stomach;
     public ModelPart neck;

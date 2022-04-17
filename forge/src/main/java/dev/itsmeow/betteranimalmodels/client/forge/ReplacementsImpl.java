@@ -51,4 +51,5 @@ public class ReplacementsImpl {
     public static void clientSetup(FMLClientSetupEvent event) {
         Replacements.H.initComplete();
     }
+
 }

@@ -192,4 +192,5 @@ public class ModelNewSilverfish<T extends LivingEntity> extends Model<T> {
         this.tail04.yRot = this.tail01.yRot;
         this.tail05.yRot = this.tail01.yRot;
     }
+
 }

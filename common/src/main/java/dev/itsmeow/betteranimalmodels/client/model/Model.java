@@ -126,4 +126,5 @@ public abstract class Model<T extends LivingEntity> extends EntityModel<T> {
     public void setRotationAngleDeg(ModelPart modelRenderer, float x, float y, float z) {
         setRotateAngleDeg(modelRenderer, x, y, z);
     }
+
 }

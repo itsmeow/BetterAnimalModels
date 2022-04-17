@@ -11,6 +11,7 @@ import net.minecraft.world.entity.animal.PolarBear;
  * bear - cybercat5555 Created using Tabula 5.1.0
  */
 public class ModelNewBear<T extends PolarBear> extends Model<T> {
+
     public ModelPart hind;
     public ModelPart lLeg01;
     public ModelPart rLeg01;

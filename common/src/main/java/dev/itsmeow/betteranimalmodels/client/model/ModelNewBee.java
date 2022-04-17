@@ -11,6 +11,7 @@ import net.minecraft.world.entity.animal.Bee;
  * bee - cybercat5555 Created using Tabula 7.1.0
  */
 public class ModelNewBee<T extends Bee> extends Model<T> {
+
     public ModelPart thorax;
     public ModelPart thoraxBack;
     public ModelPart head;

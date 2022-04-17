@@ -12,6 +12,7 @@ import net.minecraft.world.entity.animal.Wolf;
  * wolf_v2 - cybercat5555 Created using Tabula 7.0.1
  */
 public class ModelNewWolf<T extends LivingEntity> extends Model<T> {
+
     public ModelPart chest;
     public ModelPart torso;
     public ModelPart neck;
