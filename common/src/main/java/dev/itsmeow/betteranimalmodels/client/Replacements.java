@@ -44,19 +44,27 @@ public class Replacements {
             })
             .tSingle("chicken").mSingle(ModelNewChicken::new, "chicken");
 
+    // dolphin
+    public static final RenderDef<Dolphin, EntityModel<Dolphin>> dolphin_f = r -> r
+            .layer(LayerNewDolphinItem::new)
+            .tSingle("dolphin")
+            .mSingle(new ModelNewDolphin<>());
+
     public static RenderDef<Cow, EntityModel<Cow>> cow = cow_f;
     public static RenderDef<Pig, EntityModel<Pig>> pig = pig_f;
     public static RenderDef<Chicken, EntityModel<Chicken>> chicken = chicken_f;
+    public static RenderDef<Dolphin, EntityModel<Dolphin>> dolphin = dolphin_f;
 
-    public static void initCowPigChicken() {
+    public static void initQuarkReplaces() {
         H.addReplace("minecraft", "cow", () -> () -> H.lambdaReplace(EntityType.COW, 0.7F, cow));
         H.addReplace("minecraft", "pig", () -> () -> H.lambdaReplace(EntityType.PIG, 0.7F, pig));
         H.addReplace("minecraft", "chicken", () -> () -> H.lambdaReplace(EntityType.CHICKEN, 0.4F, chicken));
+        H.addReplace("minecraft", "dolphin", () -> () -> H.lambdaReplace(EntityType.DOLPHIN, 0.7F, dolphin));
     }
 
     public static void init() {
         if(!SafePlatform.isModLoaded("quark")) {
-            initCowPigChicken();
+            initQuarkReplaces();
         }
         H.addReplace("minecraft", "sheep", () -> () -> H.lambdaReplace(EntityType.SHEEP, 0.4F, r -> r
         .childScale(0.5F)
@@ -187,11 +195,6 @@ public class Replacements {
         .childScale(0.5F)
         .tMapped(e -> e.isAngry() ? (e.hasNectar() ? "bee/bee_angry_nectar" : "bee/bee_angry") : (e.hasNectar() ? "bee/bee_nectar" : "bee/bee"))
         .mSingle(ModelNewBee::new, "bee")));
-
-        H.addReplace("minecraft", "dolphin", () -> () -> H.lambdaReplace(EntityType.DOLPHIN, 0.7F, r -> r
-        .layer(LayerNewDolphinItem::new)
-        .tSingle("dolphin")
-        .mSingle(ModelNewDolphin::new, "dolphin")));
 
         Replacements.platformInit();
     }
