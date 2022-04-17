@@ -27,7 +27,7 @@ public class Replacements {
     public static final ModelReplacementHandler H = IMDLibClient.getReplacementHandler(BetterAnimalModels.MODID);
 
     public static void init() {
-        H.addReplace("minecraft", "cow", () -> () -> H.lambdaReplace(EntityType.COW, 0.7F, r -> r
+        H.addReplace("minecraft", "cow", () -> () -> H.lambdaReplace(EntityType.COW, 1.2F, r -> r
         .childScale(0.5F)
         .tSingle("cow").mSingle(ModelNewCow::new, "cow")));
 
@@ -45,12 +45,13 @@ public class Replacements {
         })
         .tSingle("chicken").mSingle(ModelNewChicken::new, "chicken")));
 
-        H.addReplace("minecraft", "sheep", () -> () -> H.lambdaReplace(EntityType.SHEEP, 0.4F, r -> r
+
+        H.addReplace("minecraft", "sheep", () -> () -> H.lambdaReplace(EntityType.SHEEP, 0.7F, r -> r
         .childScale(0.5F)
         .layer(LayerNewSheepWool::new)
         .tMapped(e -> e.isBaby() ? "lamb" : "sheep").mSingle(ModelNewSheep::new, "sheep")));
 
-        H.addReplace("minecraft", "wolf", () -> () -> H.lambdaReplace(EntityType.WOLF, 0.25F, r -> r
+        H.addReplace("minecraft", "wolf", () -> () -> H.lambdaReplace(EntityType.WOLF, 0.7F, r -> r
         .preRender((e, s, p) -> {
             s.scale(0.8F, 0.8F, 0.8F);
             if(e.isBaby()) {
@@ -62,7 +63,7 @@ public class Replacements {
         .tMapped(e -> e.isTame() ? "wolf/wolf_tame" : (e.isAngry() ? "wolf/wolf_angry" : "wolf/wolf"))
         .mSingle(ModelNewWolf::new, "wolf")));
 
-        H.addReplace("minecraft", "mooshroom", () -> () -> H.lambdaReplace(EntityType.MOOSHROOM, 0.7F, r -> r
+        H.addReplace("minecraft", "mooshroom", () -> () -> H.lambdaReplace(EntityType.MOOSHROOM, 1.2F, r -> r
         .preRender((e, s, p) -> {
             if(e.isBaby()) {
                 s.scale(0.36F, 0.36F, 0.36F);
@@ -111,7 +112,7 @@ public class Replacements {
         .tSingle("silverfish").mSingle(ModelNewSilverfish::new, "silverfish")));
 
         /*
-        H.addReplace("minecraft", "polarbear", () -> () -> H.lambdaReplace(EntityType.POLAR_BEAR, 0.7F, r -> r
+        H.addReplace("minecraft", "polarbear", () -> () -> H.lambdaReplace(EntityType.POLAR_BEAR, 1F, r -> r
         .childScale(0.7F)
         .tSingle("polarbear").mSingle(ModelNewBear::new, "bear")));
          */
@@ -151,7 +152,7 @@ public class Replacements {
         .layer(LayerNewCatCollar::new)
         .tMapped(e -> catTextures.get(e.getCatType())).mSingle(ModelNewCat::new, "cat")));
 
-        H.addReplace("minecraft", "fox", () -> () -> H.<Fox, ModelNewFox<Fox>>lambdaReplace(EntityType.FOX, 0.4F, r -> r
+        H.addReplace("minecraft", "fox", () -> () -> H.<Fox, ModelNewFox<Fox>>lambdaReplace(EntityType.FOX, 0.55F, r -> r
         .preRender((e, s, p) -> {
             if(e.isBaby()) {
                 s.scale(0.5F, 0.5F, 0.5F);
