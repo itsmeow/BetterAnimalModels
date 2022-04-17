@@ -15,7 +15,6 @@ loom {
     }
     forge {
         mixinConfig "mixin.imdlib-betteranimalmodels.json", "betteranimalmodels-forge.mixins.json"
-        //accessTransformer file("src/main/resources/META-INF/accesstransformer.cfg")
     }
 }
 

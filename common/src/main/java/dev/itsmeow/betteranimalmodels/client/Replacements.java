@@ -7,15 +7,13 @@ import dev.itsmeow.betteranimalmodels.BetterAnimalModels;
 import dev.itsmeow.betteranimalmodels.client.model.*;
 import dev.itsmeow.betteranimalmodels.client.render.entity.layer.*;
 import dev.itsmeow.imdlib.client.IMDLibClient;
-import dev.itsmeow.imdlib.client.render.ImplRenderer.RenderDef;
 import dev.itsmeow.imdlib.client.render.ImplRenderer.SuperCallApplyRotations;
 import dev.itsmeow.imdlib.client.util.ModelReplacementHandler;
-import dev.itsmeow.imdlib.util.SafePlatform;
 import net.minecraft.Util;
-import net.minecraft.client.model.EntityModel;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.animal.*;
+import net.minecraft.world.entity.animal.Fox;
+import net.minecraft.world.entity.animal.MushroomCow;
 
 import java.util.Map;
 
@@ -23,41 +21,25 @@ public class Replacements {
 
     public static final ModelReplacementHandler H = IMDLibClient.getReplacementHandler(BetterAnimalModels.MODID);
 
-    // cow
-    public static final RenderDef<Cow, EntityModel<Cow>> cow_f = r -> r
-            .childScale(0.5F)
-            .tSingle("cow").mSingle(ModelNewCow::new, "cow");
+    public static void init() {
+        H.addReplace("minecraft", "cow", () -> () -> H.lambdaReplace(EntityType.COW, 0.7F, r -> r
+        .childScale(0.5F)
+        .tSingle("cow").mSingle(ModelNewCow::new, "cow")));
 
-    // pig
-    public static final RenderDef<Pig, EntityModel<Pig>> pig_f = r -> r
-            .childScale(0.5F)
-            .layer(LayerNewPigSaddle::new)
-            .tSingle("pig").mSingle(ModelNewPig::new, "pig");
+        H.addReplace("minecraft", "pig", () -> () -> H.lambdaReplace(EntityType.PIG, 0.7F, r -> r
+        .childScale(0.5F)
+        .layer(LayerNewPigSaddle::new)
+        .tSingle("pig").mSingle(ModelNewPig::new, "pig")));
 
-    // chicken
-    public static final RenderDef<Chicken, EntityModel<Chicken>> chicken_f = r -> r
-            .childScale(0.45F)
-            .handleRotation((e, p) -> {
+        H.addReplace("minecraft", "chicken", () -> () -> H.lambdaReplace(EntityType.CHICKEN, 0.4F, r -> r
+        .childScale(0.45F)
+        .handleRotation((e, p) -> {
                 float f = e.oFlap + (e.flap - e.oFlap) * p;
                 float f1 = e.oFlapSpeed + (e.flapSpeed - e.oFlapSpeed) * p;
                 return (Mth.sin(f) + 1.0F) * f1;
-            })
-            .tSingle("chicken").mSingle(ModelNewChicken::new, "chicken");
+        })
+        .tSingle("chicken").mSingle(ModelNewChicken::new, "chicken")));
 
-    public static RenderDef<Cow, EntityModel<Cow>> cow = cow_f;
-    public static RenderDef<Pig, EntityModel<Pig>> pig = pig_f;
-    public static RenderDef<Chicken, EntityModel<Chicken>> chicken = chicken_f;
-
-    public static void initCowPigChicken() {
-        H.addReplace("minecraft", "cow", () -> () -> H.lambdaReplace(EntityType.COW, 0.7F, cow));
-        H.addReplace("minecraft", "pig", () -> () -> H.lambdaReplace(EntityType.PIG, 0.7F, pig));
-        H.addReplace("minecraft", "chicken", () -> () -> H.lambdaReplace(EntityType.CHICKEN, 0.4F, chicken));
-    }
-
-    public static void init() {
-        if(!SafePlatform.isModLoaded("quark")) {
-            initCowPigChicken();
-        }
         H.addReplace("minecraft", "sheep", () -> () -> H.lambdaReplace(EntityType.SHEEP, 0.4F, r -> r
         .childScale(0.5F)
         .layer(LayerNewSheepWool::new)
