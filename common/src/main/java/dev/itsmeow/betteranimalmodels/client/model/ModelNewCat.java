@@ -11,6 +11,7 @@ import net.minecraft.world.entity.animal.Cat;
 import net.minecraft.world.entity.animal.Ocelot;
 
 public class ModelNewCat<T extends LivingEntity> extends Model<T> {
+
     public ModelPart chest;
     public ModelPart stomach;
     public ModelPart tail01;
