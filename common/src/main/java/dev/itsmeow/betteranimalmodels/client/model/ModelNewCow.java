@@ -150,12 +150,9 @@ public class ModelNewCow<T extends LivingEntity> extends Model<T> {
 
     @Override
     public void setupAnim(T entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-        this.neck.xRot = rad(headPitch) - 0.27314402793711257F;
-        this.neck.yRot = rad(netHeadYaw);
-        lLeg01.xRot = Mth.sin(limbSwing * 0.8665F + (float) Math.PI) * 0.7F * limbSwingAmount;
-        lArm01.xRot = Mth.cos(limbSwing * 0.8665F) * 0.7F * limbSwingAmount + 0.091106186954104F;
-        rLeg01.xRot = Mth.sin(limbSwing * 0.8665F) * 0.7F * limbSwingAmount;
-        rArm01.xRot = Mth.cos(limbSwing * 0.8665F + (float) Math.PI) * 0.7F * limbSwingAmount + 0.091106186954104F;
+        this.headPitch(head, headPitch);
+        this.headYaw(head, netHeadYaw);
+        this.quadriped(lLeg01, lArm01, rLeg01, rArm01, limbSwing * 0.8665F, limbSwingAmount * 0.7F);
     }
 
 }
