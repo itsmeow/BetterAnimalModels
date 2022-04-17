@@ -28,22 +28,23 @@ public class ReplacementsImpl {
                     map.put("cow", builder.define("replace_cow", true));
                     map.put("pig", builder.define("replace_pig", true));
                     map.put("chicken", builder.define("replace_chicken", true));
+                    map.put("bee", builder.define("replace_bee", true));
+                    map.put("dolphin", builder.define("replace_dolphin", true));
                 }
             });
             Supplier<Runnable> target = () -> () -> QuarkHooks.initConfig(builder);
             if(ModList.get().isLoaded("quark")) {
                 target.get().run();
             }
-        }, () -> {
-            Supplier<Runnable> target = () -> () -> QuarkHooks.configLoad();
-            if(ModList.get().isLoaded("quark")) {
-                target.get().run();
-            }
-        });
+        }, () -> {});
         ModConfig config = ((ModContainerAccessor) ModLoadingContext.get().getActiveContainer()).getConfigs().get(ModConfig.Type.CLIENT);
         CommentedFileConfig configData = config.getHandler().reader(FMLPaths.CONFIGDIR.get()).apply(config);
         ((ModConfigInvoker) config).invokeSetConfigData(configData);
         config.save();
+        Supplier<Runnable> target = () -> () -> QuarkHooks.configLoad();
+        if(ModList.get().isLoaded("quark")) {
+            target.get().run();
+        }
     }
 
     @SubscribeEvent(priority = EventPriority.LOW)

@@ -27,6 +27,7 @@ public class QuarkUtil {
         registerTextures(VariantTextureType.COW, COW_COUNT, "cow");
         registerTextures(VariantTextureType.PIG, PIG_COUNT, "pig");
         registerTextures(VariantTextureType.CHICKEN, CHICKEN_COUNT, "quark/chicken");
+        shinyTextures.put(VariantTextureType.DOLPHIN, tex("quark/dolphin_shiny"));
     }
 
     public static ResourceLocation getTextureOrShiny(Entity e, VariantTextureType type) {
@@ -62,7 +63,7 @@ public class QuarkUtil {
     }
 
     public enum VariantTextureType {
-        COW, PIG, CHICKEN
+        COW, PIG, CHICKEN, DOLPHIN;
     }
 
     private static ResourceLocation tex(String name) {
