@@ -193,8 +193,7 @@ public class ModelNewFox<T extends LivingEntity> extends Model<T> {
         this.rHindLeg01.xRot = Mth.cos(limbSwing * 0.6662F + (float) Math.PI + 0.3F) * limbSwingAmount - 0.17453292519943295F;
         this.rArm01.xRot = Mth.cos(limbSwing * 0.6662F + (float) Math.PI) * limbSwingAmount + 0.22689280275926282F;
         this.body.xRot = 0;
-        if(entity instanceof Fox) {
-            Fox fox = (Fox) entity;
+        if(entity instanceof Fox fox) {
             if(!fox.isSleeping() && !fox.isFaceplanted() && !fox.isCrouching()) {
                 this.head.xRot = rad(headPitch);
                 this.head.yRot = rad(netHeadYaw);
@@ -243,22 +242,22 @@ public class ModelNewFox<T extends LivingEntity> extends Model<T> {
             }
 
             if(fox.isSitting()) {
-                this.setRotateAngle360(this.neck, 50, 0, 0);
-                this.setRotateAngle360(this.body, -50, 0, 0);
-                this.setRotateAngle360(this.rear, -40, 0, 0);
-                this.setRotateAngle360(this.tail01, 90, 0, 0);
-                this.setRotateAngle360(this.lArm01, 36, 0, -5);
-                this.setRotateAngle360(this.lArm02, -26, 0, 5);
-                this.setRotateAngle360(this.lForepaw, 28, 0, 0);
-                this.setRotateAngle360(this.rArm01, 36, 0, 5);
-                this.setRotateAngle360(this.rArm02, -26, 0, -5);
-                this.setRotateAngle360(this.rForepaw, 28, 0, 0);
-                this.setRotateAngle360(this.lHindLeg01, -13, 0, -16);
+                this.setRotateAngleDeg(this.neck, 50, 0, 0);
+                this.setRotateAngleDeg(this.body, -50, 0, 0);
+                this.setRotateAngleDeg(this.rear, -40, 0, 0);
+                this.setRotateAngleDeg(this.tail01, 90, 0, 0);
+                this.setRotateAngleDeg(this.lArm01, 36, 0, -5);
+                this.setRotateAngleDeg(this.lArm02, -26, 0, 5);
+                this.setRotateAngleDeg(this.lForepaw, 28, 0, 0);
+                this.setRotateAngleDeg(this.rArm01, 36, 0, 5);
+                this.setRotateAngleDeg(this.rArm02, -26, 0, -5);
+                this.setRotateAngleDeg(this.rForepaw, 28, 0, 0);
+                this.setRotateAngleDeg(this.lHindLeg01, -13, 0, -16);
                 this.setRotateAngle(this.lHindLeg02, 0.8996066167365371F, 0.0F, 0.0F);
-                this.setRotateAngle360(this.lHindpaw, 90, 0, 0);
-                this.setRotateAngle360(this.rHindLeg01, -13, 0, 16);
+                this.setRotateAngleDeg(this.lHindpaw, 90, 0, 0);
+                this.setRotateAngleDeg(this.rHindLeg01, -13, 0, 16);
                 this.setRotateAngle(this.rHindLeg02, 0.8996066167365371F, 0.0F, 0.0F);
-                this.setRotateAngle360(this.rHindpaw, 90, 0, 0);
+                this.setRotateAngleDeg(this.rHindpaw, 90, 0, 0);
                 this.head.xRot -= Math.toRadians(20);
             }
             if(fox.isCrouching()) {

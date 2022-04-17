@@ -96,8 +96,8 @@ public class ModelNewDolphin<T extends LivingEntity> extends Model<T> {
 
     @Override
     public void setupAnim(T entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-        this.body.xRot = headPitch * ((float) Math.PI / 180F);
-        this.body.yRot = netHeadYaw * ((float) Math.PI / 180F);
+        this.headPitch(body, headPitch);
+        this.headYaw(body, netHeadYaw);
         if (entityIn.getDeltaMovement().horizontalDistanceSqr() > 1.0E-7D) {
             this.body.xRot += -0.05F + -0.05F * Mth.cos(ageInTicks * 0.3F);
             this.tail01.xRot = -0.1F * Mth.cos(ageInTicks * 0.3F);
