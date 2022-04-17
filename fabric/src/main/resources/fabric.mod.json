@@ -30,7 +30,8 @@
         "fabric": ">=0.32.0"
     },
     "mixins": [
-        "mixin.imdlib.json"
+        "mixin.imdlib.json",
+        "betteranimalmodels.mixins.json"
     ],
     "custom": {
         "modmenu": {

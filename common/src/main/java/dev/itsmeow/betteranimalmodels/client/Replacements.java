@@ -1,5 +1,6 @@
 package dev.itsmeow.betteranimalmodels.client;
 
+import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
 import com.mojang.math.Vector3f;
 import dev.architectury.injectables.annotations.ExpectPlatform;
@@ -13,11 +14,15 @@ import dev.itsmeow.imdlib.client.util.ModelReplacementHandler;
 import dev.itsmeow.imdlib.util.SafePlatform;
 import net.minecraft.Util;
 import net.minecraft.client.model.EntityModel;
+import net.minecraft.client.model.geom.ModelLayerLocation;
+import net.minecraft.client.model.geom.builders.LayerDefinition;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.animal.*;
 
 import java.util.Map;
+import java.util.function.BiConsumer;
 
 public class Replacements {
 
@@ -48,7 +53,7 @@ public class Replacements {
     public static final RenderDef<Dolphin, EntityModel<Dolphin>> dolphin_f = r -> r
             .layer(LayerNewDolphinItem::new)
             .tSingle("dolphin")
-            .mSingle(new ModelNewDolphin<>());
+            .mSingle(ModelNewDolphin::new, "dolphin");
 
     public static RenderDef<Cow, EntityModel<Cow>> cow = cow_f;
     public static RenderDef<Pig, EntityModel<Pig>> pig = pig_f;
@@ -131,9 +136,11 @@ public class Replacements {
         .preRender((e, s, p) -> s.scale(0.5F, 0.5F, 0.5F))
         .tSingle("silverfish").mSingle(ModelNewSilverfish::new, "silverfish")));
 
+        /*
         H.addReplace("minecraft", "polarbear", () -> () -> H.lambdaReplace(EntityType.POLAR_BEAR, 0.7F, r -> r
         .childScale(0.7F)
         .tSingle("polarbear").mSingle(ModelNewBear::new, "bear")));
+         */
 
         H.addReplace("minecraft", "ocelot", () -> () -> H.lambdaReplace(EntityType.OCELOT, 0.5F, r -> r
         .preRender((e, s, p) -> {
@@ -202,6 +209,22 @@ public class Replacements {
     @ExpectPlatform
     public static void platformInit() {
         throw new RuntimeException("Platform expected");
+    }
+
+    public static void layerDefinitions(ImmutableMap.Builder<ModelLayerLocation, LayerDefinition> b) {
+        BiConsumer<String, LayerDefinition> r = (k, l) -> b.put(new ModelLayerLocation(new ResourceLocation(BetterAnimalModels.MODID, k), "main"), l);
+        r.accept("bee", ModelNewBee.createBodyLayer());
+        r.accept("cat", ModelNewCat.createBodyLayer());
+        r.accept("chicken", ModelNewChicken.createBodyLayer());
+        r.accept("cow", ModelNewCow.createBodyLayer());
+        r.accept("dolphin", ModelNewDolphin.createBodyLayer());
+        r.accept("fox", ModelNewFox.createBodyLayer());
+        r.accept("pig", ModelNewPig.createBodyLayer());
+        r.accept("sheep", ModelNewSheep.createBodyLayer());
+        r.accept("silverfish", ModelNewSilverfish.createBodyLayer());
+        r.accept("spider", ModelNewSpider.createBodyLayer());
+        r.accept("squid", ModelNewSquid.createBodyLayer());
+        r.accept("wolf", ModelNewWolf.createBodyLayer());
     }
 
 }

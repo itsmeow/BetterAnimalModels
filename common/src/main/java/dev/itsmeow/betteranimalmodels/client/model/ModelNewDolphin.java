@@ -2,156 +2,91 @@ package dev.itsmeow.betteranimalmodels.client.model;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.geom.ModelPart;
+import net.minecraft.client.model.geom.PartPose;
+import net.minecraft.client.model.geom.builders.*;
 import net.minecraft.util.Mth;
-import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
 
-/**
- * dolphin - CyberCat5555
- * Created using Tabula 8.0.0
- */
-public class ModelNewDolphin<T extends Entity> extends EntityModel<T> {
+public class ModelNewDolphin<T extends LivingEntity> extends Model<T> {
+
     public ModelPart body;
     public ModelPart tail01;
-    public ModelPart head;
-    public ModelPart lFin00;
-    public ModelPart rFin00;
-    public ModelPart dorsalFin00;
     public ModelPart tail02;
     public ModelPart tail03;
     public ModelPart tail04;
     public ModelPart tail05;
     public ModelPart lFluke00;
-    public ModelPart rFluke00;
     public ModelPart lFluke01;
+    public ModelPart rFluke00;
     public ModelPart rFluke01;
+    public ModelPart head;
     public ModelPart topJaw;
-    public ModelPart lowerJaw;
-    public ModelPart melon;
     public ModelPart snout;
     public ModelPart teethUpper;
+    public ModelPart lowerJaw;
     public ModelPart lowerTeeth;
+    public ModelPart melon;
+    public ModelPart lFin00;
     public ModelPart lFin01;
+    public ModelPart rFin00;
     public ModelPart rFin01;
+    public ModelPart dorsalFin00;
     public ModelPart dorsalFin01;
 
-    public ModelNewDolphin() {
-        this.texWidth = 128;
-        this.texHeight = 64;
-        this.head = new ModelPart(this, 45, 0);
-        this.head.setPos(0.0F, -3.4F, -6.2F);
-        this.head.addBox(-3.5F, -1.0F, -6.0F, 7.0F, 8.0F, 6.0F, 0.0F, 0.0F, 0.0F);
-        this.setRotateAngle(head, 0.03490658503988659F, 0.0F, 0.0F);
-        this.tail02 = new ModelPart(this, 0, 39);
-        this.tail02.setPos(0.0F, 1.0F, 7.5F);
-        this.tail02.addBox(-2.5F, -4.0F, 0.0F, 5.0F, 7.0F, 7.0F, 0.0F, 0.0F, 0.0F);
-        this.setRotateAngle(tail02, -0.08726646259971647F, 0.0F, 0.0F);
-        this.melon = new ModelPart(this, 47, 14);
-        this.melon.setPos(0.0F, -1.0F, -5.9F);
-        this.melon.addBox(-3.0F, 0.0F, -5.0F, 6.0F, 6.0F, 5.0F, 0.0F, 0.0F, 0.0F);
-        this.setRotateAngle(melon, 0.4363323129985824F, 0.0F, 0.0F);
-        this.rFin01 = new ModelPart(this, 79, 10);
-        this.rFin01.mirror = true;
-        this.rFin01.setPos(-0.49F, 4.5F, 0.0F);
-        this.rFin01.addBox(0.0F, 0.0F, 0.0F, 1.0F, 5.0F, 3.0F, 0.0F, 0.0F, 0.0F);
-        this.setRotateAngle(rFin01, 0.3490658503988659F, 0.0F, 0.0F);
-        this.lFluke00 = new ModelPart(this, 91, 0);
-        this.lFluke00.setPos(1.3F, 0.1F, -0.5F);
-        this.lFluke00.addBox(-0.5F, 0.0F, 0.0F, 1.0F, 4.0F, 4.0F, 0.0F, 0.0F, 0.0F);
-        this.setRotateAngle(lFluke00, 0.4886921905584123F, 0.0F, -1.3089969389957472F);
-        this.lFluke01 = new ModelPart(this, 90, 9);
-        this.lFluke01.setPos(-0.01F, 4.0F, 0.0F);
-        this.lFluke01.addBox(-0.5F, 0.0F, 0.0F, 1.0F, 6.0F, 3.0F, 0.0F, 0.0F, 0.0F);
-        this.setRotateAngle(lFluke01, 0.2617993877991494F, 0.0F, 0.0F);
-        this.lFin00 = new ModelPart(this, 79, 0);
-        this.lFin00.setPos(3.8F, 4.0F, -5.0F);
-        this.lFin00.addBox(-0.5F, 0.0F, 0.0F, 1.0F, 5.0F, 4.0F, 0.0F, 0.0F, 0.0F);
-        this.setRotateAngle(lFin00, 0.5235987755982988F, 0.0F, -0.8726646259971648F);
-        this.snout = new ModelPart(this, 52, 25);
-        this.snout.setPos(0.0F, -1.6F, -4.1F);
-        this.snout.addBox(-2.0F, -0.5F, -3.0F, 4.0F, 2.0F, 3.0F, 0.0F, 0.0F, 0.0F);
-        this.setRotateAngle(snout, 0.6981317007977318F, 0.0F, 0.0F);
-        this.dorsalFin00 = new ModelPart(this, 104, 0);
-        this.dorsalFin00.setPos(0.0F, -2.5F, 4.0F);
-        this.dorsalFin00.addBox(-0.5F, -4.9F, -2.5F, 1.0F, 5.0F, 4.0F, 0.0F, 0.0F, 0.0F);
-        this.setRotateAngle(dorsalFin00, -0.7853981633974483F, 0.0F, 0.0F);
-        this.rFluke01 = new ModelPart(this, 90, 9);
-        this.rFluke01.mirror = true;
-        this.rFluke01.setPos(0.01F, 4.0F, 0.0F);
-        this.rFluke01.addBox(-0.5F, 0.0F, 0.0F, 1.0F, 6.0F, 3.0F, 0.0F, 0.0F, 0.0F);
-        this.setRotateAngle(rFluke01, 0.2617993877991494F, 0.0F, 0.0F);
-        this.tail03 = new ModelPart(this, 0, 54);
-        this.tail03.setPos(0.0F, -2.0F, 6.8F);
-        this.tail03.addBox(-2.0F, -1.0F, 0.0F, 4.0F, 5.0F, 5.0F, 0.0F, 0.0F, 0.0F);
-        this.setRotateAngle(tail03, -0.08726646259971647F, 0.0F, 0.0F);
-        this.lFin01 = new ModelPart(this, 79, 10);
-        this.lFin01.setPos(-0.51F, 4.5F, 0.0F);
-        this.lFin01.addBox(0.0F, 0.0F, 0.0F, 1.0F, 5.0F, 3.0F, 0.0F, 0.0F, 0.0F);
-        this.setRotateAngle(lFin01, 0.3490658503988659F, 0.0F, 0.0F);
-        this.tail04 = new ModelPart(this, 20, 55);
-        this.tail04.setPos(0.0F, 0.4F, 4.9F);
-        this.tail04.addBox(-1.5F, -0.5F, 0.0F, 3.0F, 4.0F, 4.0F, 0.0F, 0.0F, 0.0F);
-        this.setRotateAngle(tail04, -0.2275909337942703F, 0.0F, 0.0F);
-        this.tail05 = new ModelPart(this, 35, 57);
-        this.tail05.setPos(0.0F, 1.0F, 3.7F);
-        this.tail05.addBox(-1.5F, -1.0F, 0.0F, 3.0F, 2.0F, 4.0F, 0.0F, 0.0F, 0.0F);
-        this.body = new ModelPart(this, 0, 0);
-        this.body.setPos(0.0F, 17.5F, 0.0F);
-        this.body.addBox(-4.0F, -4.5F, -6.5F, 8.0F, 9.0F, 13.0F, 0.0F, 0.0F, 0.0F);
-        this.lowerJaw = new ModelPart(this, 48, 45);
-        this.lowerJaw.setPos(0.0F, 5.0F, -5.9F);
-        this.lowerJaw.addBox(-1.7F, 0.0F, -9.0F, 3.5F, 2.0F, 9.0F, 0.0F, 0.0F, 0.0F);
-        this.rFin00 = new ModelPart(this, 79, 0);
-        this.rFin00.mirror = true;
-        this.rFin00.setPos(-3.8F, 4.0F, -5.0F);
-        this.rFin00.addBox(-0.5F, 0.0F, 0.0F, 1.0F, 5.0F, 4.0F, 0.0F, 0.0F, 0.0F);
-        this.setRotateAngle(rFin00, 0.5235987755982988F, 0.0F, 0.8726646259971648F);
-        this.tail01 = new ModelPart(this, 0, 22);
-        this.tail01.setPos(0.0F, 0.5F, 5.8F);
-        this.tail01.addBox(-3.5F, -4.0F, 0.0F, 7.0F, 8.0F, 8.0F, 0.0F, 0.0F, 0.0F);
-        this.setRotateAngle(tail01, -0.08726646259971647F, 0.0F, 0.0F);
-        this.topJaw = new ModelPart(this, 45, 32);
-        this.topJaw.setPos(0.0F, 3.4F, -5.7F);
-        this.topJaw.addBox(-1.5F, 0.0F, -9.0F, 3.0F, 2.0F, 9.0F, 0.0F, 0.0F, 0.0F);
-        this.setRotateAngle(topJaw, 0.08726646259971647F, 0.0F, 0.0F);
-        this.dorsalFin01 = new ModelPart(this, 104, 9);
-        this.dorsalFin01.setPos(0.0F, -3.1F, -0.5F);
-        this.dorsalFin01.addBox(-0.4F, -4.0F, -2.5F, 0.8F, 3.0F, 3.0F, 0.0F, 0.0F, 0.0F);
-        this.setRotateAngle(dorsalFin01, -0.3490658503988659F, 0.0F, 0.0F);
-        this.rFluke00 = new ModelPart(this, 91, 0);
-        this.rFluke00.setPos(-1.3F, 0.1F, -0.5F);
-        this.rFluke00.addBox(-0.5F, 0.0F, 0.0F, 1.0F, 4.0F, 4.0F, 0.0F, 0.0F, 0.0F);
-        this.setRotateAngle(rFluke00, 0.4886921905584123F, 0.0F, 1.3089969389957472F);
-        this.lowerTeeth = new ModelPart(this, 72, 45);
-        this.lowerTeeth.setPos(0.0F, -0.7F, -8.6F);
-        this.lowerTeeth.addBox(-1.0F, 0.0F, 0.0F, 2.0F, 1.0F, 7.0F, 0.0F, 0.0F, 0.0F);
-        this.setRotateAngle(lowerTeeth, -0.04555309164612875F, 0.0F, 0.0F);
-        this.teethUpper = new ModelPart(this, 72, 35);
-        this.teethUpper.setPos(0.0F, 1.6F, -8.4F);
-        this.teethUpper.addBox(-1.4F, 0.0F, 0.0F, 2.8F, 1.0F, 7.0F, 0.0F, 0.0F, 0.0F);
-        this.body.addChild(this.head);
-        this.tail01.addChild(this.tail02);
-        this.head.addChild(this.melon);
-        this.rFin00.addChild(this.rFin01);
-        this.tail05.addChild(this.lFluke00);
-        this.lFluke00.addChild(this.lFluke01);
-        this.body.addChild(this.lFin00);
-        this.topJaw.addChild(this.snout);
-        this.body.addChild(this.dorsalFin00);
-        this.rFluke00.addChild(this.rFluke01);
-        this.tail02.addChild(this.tail03);
-        this.lFin00.addChild(this.lFin01);
-        this.tail03.addChild(this.tail04);
-        this.tail04.addChild(this.tail05);
-        this.head.addChild(this.lowerJaw);
-        this.body.addChild(this.rFin00);
-        this.body.addChild(this.tail01);
-        this.head.addChild(this.topJaw);
-        this.dorsalFin00.addChild(this.dorsalFin01);
-        this.tail05.addChild(this.rFluke00);
-        this.lowerJaw.addChild(this.lowerTeeth);
-        this.topJaw.addChild(this.teethUpper);
+    public ModelNewDolphin(ModelPart root) {
+        this.body = root.getChild("body");
+        this.tail01 = body.getChild("tail01");
+        this.tail02 = tail01.getChild("tail02");
+        this.tail03 = tail02.getChild("tail03");
+        this.tail04 = tail03.getChild("tail04");
+        this.tail05 = tail04.getChild("tail05");
+        this.lFluke00 = tail05.getChild("lFluke00");
+        this.lFluke01 = lFluke00.getChild("lFluke01");
+        this.rFluke00 = tail05.getChild("rFluke00");
+        this.rFluke01 = rFluke00.getChild("rFluke01");
+        this.head = body.getChild("head");
+        this.topJaw = head.getChild("topJaw");
+        this.snout = topJaw.getChild("snout");
+        this.teethUpper = topJaw.getChild("teethUpper");
+        this.lowerJaw = head.getChild("lowerJaw");
+        this.lowerTeeth = lowerJaw.getChild("lowerTeeth");
+        this.melon = head.getChild("melon");
+        this.lFin00 = body.getChild("lFin00");
+        this.lFin01 = lFin00.getChild("lFin01");
+        this.rFin00 = body.getChild("rFin00");
+        this.rFin01 = rFin00.getChild("rFin01");
+        this.dorsalFin00 = body.getChild("dorsalFin00");
+        this.dorsalFin01 = dorsalFin00.getChild("dorsalFin01");
+    }
+
+    public static LayerDefinition createBodyLayer() {
+        MeshDefinition meshdefinition = new MeshDefinition();
+        PartDefinition partdefinition = meshdefinition.getRoot();
+        PartDefinition body = partdefinition.addOrReplaceChild("body", CubeListBuilder.create().texOffs(0, 0).addBox(-4.0F, -4.5F, -6.5F, 8.0F, 9.0F, 13.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 17.5F, 0.0F));
+        PartDefinition tail01 = body.addOrReplaceChild("tail01", CubeListBuilder.create().texOffs(0, 22).addBox(-3.5F, -4.0F, 0.0F, 7.0F, 8.0F, 8.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 0.5F, 5.8F, -0.0873F, 0.0F, 0.0F));
+        PartDefinition tail02 = tail01.addOrReplaceChild("tail02", CubeListBuilder.create().texOffs(0, 39).addBox(-2.5F, -4.0F, 0.0F, 5.0F, 7.0F, 7.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 1.0F, 7.5F, -0.0873F, 0.0F, 0.0F));
+        PartDefinition tail03 = tail02.addOrReplaceChild("tail03", CubeListBuilder.create().texOffs(0, 54).addBox(-2.0F, -1.0F, 0.0F, 4.0F, 5.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, -2.0F, 6.8F, -0.0873F, 0.0F, 0.0F));
+        PartDefinition tail04 = tail03.addOrReplaceChild("tail04", CubeListBuilder.create().texOffs(20, 55).addBox(-1.5F, -0.5F, 0.0F, 3.0F, 4.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 0.4F, 4.9F, -0.2276F, 0.0F, 0.0F));
+        PartDefinition tail05 = tail04.addOrReplaceChild("tail05", CubeListBuilder.create().texOffs(35, 57).addBox(-1.5F, -1.0F, 0.0F, 3.0F, 2.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 1.0F, 3.7F));
+        PartDefinition lFluke00 = tail05.addOrReplaceChild("lFluke00", CubeListBuilder.create().texOffs(91, 0).mirror().addBox(-0.5F, 0.0F, 0.0F, 1.0F, 4.0F, 4.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offsetAndRotation(1.3F, 0.1F, -0.5F, 0.4887F, 0.0F, -1.309F));
+        PartDefinition lFluke01 = lFluke00.addOrReplaceChild("lFluke01", CubeListBuilder.create().texOffs(90, 9).mirror().addBox(-0.5F, 0.0F, 0.0F, 1.0F, 6.0F, 3.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offsetAndRotation(-0.01F, 4.0F, 0.0F, 0.2618F, 0.0F, 0.0F));
+        PartDefinition rFluke00 = tail05.addOrReplaceChild("rFluke00", CubeListBuilder.create().texOffs(91, 0).mirror().addBox(-0.5F, 0.0F, 0.0F, 1.0F, 4.0F, 4.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offsetAndRotation(-1.3F, 0.1F, -0.5F, 0.4887F, 0.0F, 1.309F));
+        PartDefinition rFluke01 = rFluke00.addOrReplaceChild("rFluke01", CubeListBuilder.create().texOffs(90, 9).addBox(-0.5F, 0.0F, 0.0F, 1.0F, 6.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.01F, 4.0F, 0.0F, 0.2618F, 0.0F, 0.0F));
+        PartDefinition head = body.addOrReplaceChild("head", CubeListBuilder.create().texOffs(45, 0).addBox(-3.5F, -1.0F, -6.0F, 7.0F, 8.0F, 6.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, -3.4F, -6.2F, 0.0349F, 0.0F, 0.0F));
+        PartDefinition topJaw = head.addOrReplaceChild("topJaw", CubeListBuilder.create().texOffs(45, 32).addBox(-1.5F, 0.0F, -9.0F, 3.0F, 2.0F, 9.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, 3.4F, -5.7F, 0.0873F, 0.0F, 0.0F));
+        PartDefinition snout = topJaw.addOrReplaceChild("snout", CubeListBuilder.create().texOffs(52, 25).addBox(-2.0F, -0.5F, -3.0F, 4.0F, 2.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, -1.6F, -4.1F, 0.6981F, 0.0F, 0.0F));
+        PartDefinition teethUpper = topJaw.addOrReplaceChild("teethUpper", CubeListBuilder.create().texOffs(72, 35).addBox(-1.4F, 0.0F, 0.0F, 2.0F, 1.0F, 7.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 1.6F, -8.4F));
+        PartDefinition lowerJaw = head.addOrReplaceChild("lowerJaw", CubeListBuilder.create().texOffs(48, 45).addBox(-1.8F, 0.0F, -9.0F, 3.0F, 2.0F, 9.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, 5.0F, -5.9F));
+        PartDefinition lowerTeeth = lowerJaw.addOrReplaceChild("lowerTeeth", CubeListBuilder.create().texOffs(72, 45).addBox(-1.0F, 0.0F, 0.0F, 2.0F, 1.0F, 7.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, -0.7F, -8.6F, -0.0456F, 0.0F, 0.0F));
+        PartDefinition melon = head.addOrReplaceChild("melon", CubeListBuilder.create().texOffs(47, 14).addBox(-3.0F, 0.0F, -5.0F, 6.0F, 6.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, -1.0F, -5.9F, 0.4363F, 0.0F, 0.0F));
+        PartDefinition lFin00 = body.addOrReplaceChild("lFin00", CubeListBuilder.create().texOffs(79, 0).mirror().addBox(-0.5F, 0.0F, 0.0F, 1.0F, 5.0F, 4.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offsetAndRotation(3.8F, 4.0F, -5.0F, 0.5236F, 0.0F, -0.8727F));
+        PartDefinition lFin01 = lFin00.addOrReplaceChild("lFin01", CubeListBuilder.create().texOffs(79, 10).mirror().addBox(0.0F, 0.0F, 0.0F, 1.0F, 5.0F, 3.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offsetAndRotation(-0.51F, 4.5F, 0.0F, 0.3491F, 0.0F, 0.0F));
+        PartDefinition rFin00 = body.addOrReplaceChild("rFin00", CubeListBuilder.create().texOffs(79, 0).addBox(-0.5F, 0.0F, 0.0F, 1.0F, 5.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-3.8F, 4.0F, -5.0F, 0.5236F, 0.0F, 0.8727F));
+        PartDefinition rFin01 = rFin00.addOrReplaceChild("rFin01", CubeListBuilder.create().texOffs(79, 10).addBox(0.0F, 0.0F, 0.0F, 1.0F, 5.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-0.49F, 4.5F, 0.0F, 0.3491F, 0.0F, 0.0F));
+        PartDefinition dorsalFin00 = body.addOrReplaceChild("dorsalFin00", CubeListBuilder.create().texOffs(104, 0).addBox(-0.5F, -4.9F, -2.5F, 1.0F, 5.0F, 4.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, -2.5F, 4.0F, -0.7854F, 0.0F, 0.0F));
+        PartDefinition dorsalFin01 = dorsalFin00.addOrReplaceChild("dorsalFin01", CubeListBuilder.create().texOffs(104, 9).addBox(-0.4F, -4.0F, -2.5F, 0.0F, 3.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(0.0F, -3.1F, -0.5F, -0.3491F, 0.0F, 0.0F));
+        return LayerDefinition.create(meshdefinition, 128, 64);
     }
 
     @Override
@@ -163,7 +98,7 @@ public class ModelNewDolphin<T extends Entity> extends EntityModel<T> {
     public void setupAnim(T entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
         this.body.xRot = headPitch * ((float) Math.PI / 180F);
         this.body.yRot = netHeadYaw * ((float) Math.PI / 180F);
-        if (Entity.getHorizontalDistanceSqr(entityIn.getDeltaMovement()) > 1.0E-7D) {
+        if (entityIn.getDeltaMovement().horizontalDistanceSqr() > 1.0E-7D) {
             this.body.xRot += -0.05F + -0.05F * Mth.cos(ageInTicks * 0.3F);
             this.tail01.xRot = -0.1F * Mth.cos(ageInTicks * 0.3F);
             this.tail02.xRot = -0.1F * Mth.cos(ageInTicks * 0.3F);
@@ -179,12 +114,4 @@ public class ModelNewDolphin<T extends Entity> extends EntityModel<T> {
         }
     }
 
-    /**
-     * This is a helper function from Tabula to set the rotation of model parts
-     */
-    public void setRotateAngle(ModelPart modelRenderer, float x, float y, float z) {
-        modelRenderer.xRot = x;
-        modelRenderer.yRot = y;
-        modelRenderer.zRot = z;
-    }
 }
