@@ -78,7 +78,7 @@ task fixJar(type: Jar) {
         filter {
             line ->
                 {
-                    line = line.replaceAll('dev.itsmeow.imdlib.mixin', "${rootProject.maven_group}.imdlib.mixin")
+                    line = line.replaceAll('dev.itsmeow.imdlib', "${rootProject.maven_group}.imdlib")
                     line.replaceAll('imdlib-common-refmap.json', "imdlib-${rootProject.mod_id}-common-refmap.json")
                 }
         }
@@ -89,8 +89,7 @@ task fixJar(type: Jar) {
         filter {
             line ->
                 {
-                    line = line.replaceAll('dev.itsmeow.imdlib.mixin', "${rootProject.maven_group}.imdlib.mixin")
-                    line = line.replaceAll('dev.itsmeow.imdlib.FabricMixinPlugin', "${rootProject.maven_group}.imdlib.FabricMixinPlugin")
+                    line = line.replaceAll('dev.itsmeow.imdlib', "${rootProject.maven_group}.imdlib")
                     line.replaceAll('imdlib-fabric-refmap.json', "imdlib-${rootProject.mod_id}-fabric-refmap.json")
                 }
         }
