@@ -15,11 +15,8 @@
     },
     "license": "All Rights Reserved",
     "icon": "logo.png",
-    "environment": "*",
+    "environment": "client",
     "entrypoints": {
-        "main": [
-            "dev.itsmeow.betteranimalmodels.BetterAnimalModelsFabric"
-        ],
         "client": [
             "dev.itsmeow.betteranimalmodels.client.BetterAnimalModelsClientFabric"
         ]
