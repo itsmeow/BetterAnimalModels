@@ -20,6 +20,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.animal.*;
+import net.minecraft.world.level.LightLayer;
 
 import java.util.Map;
 import java.util.function.BiConsumer;
@@ -110,6 +111,23 @@ public class Replacements {
         })
         .handleRotation((e, p) -> -(e.oldTentacleAngle + (e.tentacleAngle - e.oldTentacleAngle) * p))
         .tSingle("squid").mSingle(ModelNewSquid::new, "squid")));
+
+        H.addReplace("minecraft", "glow_squid", () -> () -> H.lambdaReplace(EntityType.GLOW_SQUID, 0.7F, r -> r
+        .applyRotations((e, s, a, rot, p) -> {
+            float f = e.xBodyRotO + (e.xBodyRot - e.xBodyRotO) * p;
+            float f1 = e.zBodyRotO + (e.zBodyRot - e.zBodyRotO) * p;
+            s.translate(0.0F, 0.5F, 0.0F);
+            s.mulPose(Vector3f.YP.rotationDegrees(180.0F - rot));
+            s.mulPose(Vector3f.XP.rotationDegrees(f));
+            s.mulPose(Vector3f.YP.rotationDegrees(f1));
+            s.translate(0.0F, -1.2F, 0.0F);
+        })
+        .handleRotation((e, p) -> -(e.oldTentacleAngle + (e.tentacleAngle - e.oldTentacleAngle) * p))
+        .blockLightLevel((glowSquid, blockPos) -> {
+            int i = (int)Mth.clampedLerp(0.0F, 15.0F, 1.0F - (float)glowSquid.getDarkTicksRemaining() / 10.0F);
+            return i == 15 ? 15 : Math.max(i, glowSquid.isOnFire() ? 15 : glowSquid.level.getBrightness(LightLayer.BLOCK, blockPos));
+        })
+        .tSingle("glow_squid").mSingle(ModelNewSquid::new, "squid")));
 
         H.addReplace("minecraft", "spider", () -> () -> H.lambdaReplace(EntityType.SPIDER, 1F, r -> r
         .preRender((e, s, p) -> {
