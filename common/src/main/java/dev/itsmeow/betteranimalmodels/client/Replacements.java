@@ -44,7 +44,7 @@ public class Replacements {
 
     public static void init() {
         H.addReplace("minecraft", "cow", () -> () -> H.lambdaReplace(EntityType.COW, 1.2F, r -> r
-        .childScale(0.5F)
+        .ageScale(0.8F, 0.4F)
         .tSingle("cow").mSingle(ModelNewCow::new, "cow")));
 
         H.addReplace("minecraft", "pig", () -> () -> H.lambdaReplace(EntityType.PIG, 0.7F, r -> r
