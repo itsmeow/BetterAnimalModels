@@ -151,7 +151,7 @@ public class ModelNewCow<T extends LivingEntity> extends Model<T> {
     @Override
     public void setupAnim(T entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
         this.headPitch(head, headPitch);
-        this.headYaw(head, netHeadYaw);
+        this.headYaw(neck, netHeadYaw);
         this.quadriped(lLeg01, lArm01, rLeg01, rArm01, limbSwing * 0.8665F, limbSwingAmount * 0.7F);
     }
 
