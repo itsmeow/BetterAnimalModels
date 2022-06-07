@@ -14,7 +14,7 @@ loom {
         }
     }
     forge {
-        mixinConfig "mixin.imdlib-betteranimalmodels.json", "betteranimalmodels-forge.mixins.json"
+        mixinConfig "mixin.imdlib-betteranimalmodels.json", "betteranimalmodels-forge.mixins.json", "betteranimalmodels.mixins.json"
     }
 }
 

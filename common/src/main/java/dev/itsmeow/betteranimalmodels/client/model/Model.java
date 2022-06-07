@@ -93,6 +93,18 @@ public abstract class Model<T extends LivingEntity> extends EntityModel<T> {
         headYaw(head, netHeadYaw, 1F, 0F);
     }
 
+    public void headYawZ(ModelPart head, float netHeadYaw, float amplitude, float offset) {
+        if(!head_yInit) {
+            head_yInit = true;
+            headYawInit = head.zRot;
+        }
+        head.zRot = rad(netHeadYaw) * amplitude + offset + headYawInit;
+    }
+
+    public void headYawZ(ModelPart head, float netHeadYaw) {
+        headYaw(head, netHeadYaw, 1F, 0F);
+    }
+
     public float wiggle(float ageInTicks) {
         return wiggle(ageInTicks, 1F, 1F);
     }

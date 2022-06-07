@@ -27,6 +27,7 @@
         "fabric": ">=0.32.0"
     },
     "mixins": [
+        "betteranimalmodels.mixins.json",
         "mixin.imdlib.json"
     ],
     "custom": {

@@ -2,6 +2,7 @@ package dev.itsmeow.betteranimalmodels.client.model;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
+import dev.itsmeow.betteranimalmodels.mixin.SheepAccessor;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.world.entity.animal.Sheep;
@@ -351,12 +352,20 @@ public class ModelNewSheep<T extends Sheep> extends Model<T> {
 
     @Override
     public void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-        this.headPitch(head, headPitch);
-        this.headYaw(head, netHeadYaw);
+        this.headYaw(neck, netHeadYaw);
         this.quadriped(lHindLeg01, lForeleg01, rHindLeg01, rForeleg01, limbSwing * 0.8665F, limbSwingAmount * 0.9F);
         this.sheared = entity.isSheared();
-        if(!Minecraft.getInstance().isPaused()) {
-            this.neck.xRot = entity.getHeadEatAngleScale(Minecraft.getInstance().getFrameTime()) - 0.9599F;
+
+        float eatTime = ((SheepAccessor) entity).getEatAnimationTick();
+        if (eatTime > 0) {
+            this.neck.xRot = rad(40F);
+            this.head.xRot = rad(-65F) + 0.9599F;
+            this.jawLower.xRot = rad(eatTime % 20F) + 0.1F;
+        } else {
+            this.neck.xRot = -0.9599F;
+            this.head.xRot = 0.9599F;
+            this.jawLower.xRot = 0F;
+            this.headPitch(head, headPitch, 1F, 0F);
         }
     }
 
