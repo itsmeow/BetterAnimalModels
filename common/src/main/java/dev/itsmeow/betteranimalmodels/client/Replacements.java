@@ -41,7 +41,7 @@ public class Replacements {
 
     // cow
     public static final RenderDef<Cow, EntityModel<Cow>> cow_f = r -> r
-            .childScale(0.5F)
+            .ageScale(0.8F, 0.4F)
             .tSingle("cow").mSingle(new ModelNewCow<>());
 
     // pig
