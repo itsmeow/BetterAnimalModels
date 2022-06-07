@@ -13,15 +13,31 @@ import dev.itsmeow.imdlib.client.util.ModelReplacementHandler;
 import dev.itsmeow.imdlib.util.SafePlatform;
 import net.minecraft.Util;
 import net.minecraft.client.model.EntityModel;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.animal.*;
+import net.minecraft.world.entity.animal.horse.Variant;
 
 import java.util.Map;
 
 public class Replacements {
 
     public static final ModelReplacementHandler H = IMDLibClient.getReplacementHandler(BetterAnimalModels.MODID);
+
+    private static final Map<Variant, ResourceLocation> HORSE_VARIANTS = Util.make(Maps.newEnumMap(Variant.class), m -> {
+        m.put(Variant.WHITE, t("horse/horse_white"));
+        m.put(Variant.CREAMY, t("horse/horse_creamy"));
+        m.put(Variant.CHESTNUT, t("horse/horse_chestnut"));
+        m.put(Variant.BROWN, t("horse/horse_brown"));
+        m.put(Variant.BLACK, t("horse/horse_black"));
+        m.put(Variant.GRAY, t("horse/horse_gray"));
+        m.put(Variant.DARKBROWN, t("horse/horse_darkbrown"));
+    });
+
+    public static ResourceLocation t(String s) {
+        return new ResourceLocation(BetterAnimalModels.MODID, "textures/entity/" + s + ".png");
+    }
 
     // cow
     public static final RenderDef<Cow, EntityModel<Cow>> cow_f = r -> r
@@ -131,9 +147,9 @@ public class Replacements {
         .preRender((e, s, p) -> s.scale(0.5F, 0.5F, 0.5F))
         .tSingle("silverfish").mSingle(new ModelNewSilverfish<>())));
 
-        H.addReplace("minecraft", "polarbear", () -> () -> H.lambdaReplace(EntityType.POLAR_BEAR, 1F, r -> r
+        H.addReplace("minecraft", "polar_bear", () -> () -> H.lambdaReplace(EntityType.POLAR_BEAR, 1F, r -> r
         .childScale(0.7F)
-        .tSingle("polarbear").mSingle(new ModelNewBear<>())));
+        .tSingle("polar_bear").mSingle(new ModelNewPolarBear())));
 
         H.addReplace("minecraft", "ocelot", () -> () -> H.lambdaReplace(EntityType.OCELOT, 0.5F, r -> r
         .preRender((e, s, p) -> {
@@ -195,6 +211,33 @@ public class Replacements {
         .childScale(0.5F)
         .tMapped(e -> e.isAngry() ? (e.hasNectar() ? "bee/bee_angry_nectar" : "bee/bee_angry") : (e.hasNectar() ? "bee/bee_nectar" : "bee/bee"))
         .mSingle(new ModelNewBee<>())));
+
+        H.addReplace("minecraft", "horse", () -> () -> H.lambdaReplace(EntityType.HORSE, 1F, r -> r
+        .layer(LayerNewHorseMarking::new)
+        .layer(LayerNewHorseArmor::new)
+        .childScale(0.5F)
+        .tMappedRaw(e -> HORSE_VARIANTS.get(e.getVariant()))
+        .mSingle(new ModelNewHorse<>())));
+
+        H.addReplace("minecraft", "zombie_horse", () -> () -> H.lambdaReplace(EntityType.ZOMBIE_HORSE, 1F, r -> r
+        .childScale(0.5F)
+        .tSingle("horse/horse_zombie")
+        .mSingle(new ModelNewHorse<>())));
+
+        H.addReplace("minecraft", "skeleton_horse", () -> () -> H.lambdaReplace(EntityType.SKELETON_HORSE, 1F, r -> r
+        .ageScale(0.9F, 0.45F)
+        .tSingle("horse/horse_skeleton")
+        .mSingle(new ModelNewHorse<>())));
+
+        H.addReplace("minecraft", "donkey", () -> () -> H.lambdaReplace(EntityType.DONKEY, 1F, r -> r
+        .ageScale(0.8F, 0.55F)
+        .tSingle("horse/donkey")
+        .mSingle(new ModelNewHorse<>())));
+
+        H.addReplace("minecraft", "mule", () -> () -> H.lambdaReplace(EntityType.MULE, 1F, r -> r
+        .ageScale(0.85F, 0.55F)
+        .tSingle("horse/mule")
+        .mSingle(new ModelNewHorse<>())));
 
         Replacements.platformInit();
     }
