@@ -201,7 +201,7 @@ public class ModelNewWolf<T extends LivingEntity> extends Model<T> {
 
         if(entity instanceof Wolf wolf) {
             this.isWet = wolf.isWet();
-            this.nextTint = wolf.getBrightness() * wolf.getWetShade(Minecraft.getInstance().getFrameTime());
+            this.nextTint = wolf.getWetShade(Minecraft.getInstance().getFrameTime());
             tail01.xRot -= ((wolf.isTame()) ? 0.4F : 0F);
             if(wolf.isInSittingPose()) {
                 sit = true;

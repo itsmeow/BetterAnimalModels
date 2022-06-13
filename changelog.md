@@ -11,3 +11,4 @@
 - Added shiny dolphin from Quark compat
 - Fixed issues with some leg animations
 - Fixed abnormally large or small shadows
+- 1.17+: Added glow squid

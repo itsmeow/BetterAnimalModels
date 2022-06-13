@@ -1,16 +1,7 @@
 apply from: "https://maven.itsmeow.dev/scripts/architectury-forge.gradle"
-
-configurations {
-    shadowModImplementation
-    modImplementation.extendsFrom shadowModImplementation
-}
+apply from: "https://maven.itsmeow.dev/scripts/architectury-forge-imdlib.gradle"
 
 loom {
-    launches {
-        all {
-            arg "-mixin.config", "mixin.imdlib.json"
-        }
-    }
     forge {
         mixinConfig "mixin.imdlib-betteranimalmodels.json", "betteranimalmodels.mixins.json"
     }
@@ -23,52 +14,6 @@ repositories {
 }
 
 dependencies {
-    modCompileOnlyApi("curse.maven:arl-250363:${rootProject.arl_version}")
-    modCompileOnlyApi("curse.maven:quark-243121:${rootProject.quark_version}")
-    shadowModImplementation("dev.itsmeow.imdlib:imdlib-forge:${rootProject.imdlib_version}") {
-        transitive = false
-    }
+    //modCompileOnlyApi("curse.maven:arl-250363:${rootProject.arl_version}")
+    //modCompileOnlyApi("curse.maven:quark-243121:${rootProject.quark_version}")
 }
-
-shadowJar {
-    configurations = [project.configurations.shadowCommon, project.configurations.shadowModImplementation]
-    relocate 'dev.itsmeow.imdlib', "${rootProject.maven_group}.imdlib"
-    classifier "dev-shadow"
-    exclude "mixin.imdlib-${rootProject.mod_id}.json"
-    exclude "architectury-common.accessWidener"
-}
-
-remapJar {
-    classifier "remap"
-}
-
-task fixJar(type: Jar) {
-    dependsOn remapJar
-    from remapJar.archiveFile.map { zipTree(it) }
-    manifest {
-        from {
-            zipTree(remapJar.archiveFile).find {
-                it.name == "MANIFEST.MF"
-            }
-        }
-    }
-    rename("mixin.imdlib.json", "mixin.imdlib-${rootProject.mod_id}.json")
-    rename("imdlib-common-refmap.json", "imdlib-${rootProject.mod_id}-common-refmap.json")
-    filesMatching("mixin.imdlib.json") {
-        filter {
-            line ->
-                {
-                    line = line.replaceAll('dev.itsmeow.imdlib', "${rootProject.maven_group}.imdlib")
-                    line.replaceAll('imdlib-common-refmap.json', "imdlib-${rootProject.mod_id}-common-refmap.json")
-                }
-        }
-    }
-    filesMatching("imdlib-common-refmap.json") {
-        filter {
-            line -> line.replaceAll('dev/itsmeow/imdlib/mixin/', "dev/itsmeow/${rootProject.mod_id}/imdlib/mixin/")
-        }
-    }
-    classifier "forge"
-}
-
-sourcesJar.dependsOn fixJar

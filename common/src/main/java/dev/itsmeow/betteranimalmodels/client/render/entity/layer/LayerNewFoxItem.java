@@ -39,7 +39,7 @@ public class LayerNewFoxItem extends RenderLayer<Fox, ModelNewFox<Fox>> {
                     stack.mulPose(Vector3f.ZP.rotationDegrees(90F));
                 }
 
-                Minecraft.getInstance().getItemInHandRenderer().renderItem(entity, itemstack, ItemTransforms.TransformType.GROUND, false, stack, bufferIn, packedLightIn);
+                Minecraft.getInstance().getEntityRenderDispatcher().getItemInHandRenderer().renderItem(entity, itemstack, ItemTransforms.TransformType.GROUND, false, stack, bufferIn, packedLightIn);
             }
             stack.popPose();
         }

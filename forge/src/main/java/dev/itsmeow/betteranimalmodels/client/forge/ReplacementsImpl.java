@@ -4,12 +4,10 @@ import com.electronwill.nightconfig.core.CommentedConfig;
 import com.electronwill.nightconfig.core.file.CommentedFileConfig;
 import dev.itsmeow.betteranimalmodels.BetterAnimalModels;
 import dev.itsmeow.betteranimalmodels.client.Replacements;
-import dev.itsmeow.betteranimalmodels.forge.compat.QuarkHooks;
 import dev.itsmeow.imdlib.util.config.CommonConfigAPI;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ModContainer;
-import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
@@ -20,7 +18,6 @@ import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.EnumMap;
-import java.util.function.Supplier;
 
 @Mod.EventBusSubscriber(modid = BetterAnimalModels.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ReplacementsImpl {
@@ -36,16 +33,16 @@ public class ReplacementsImpl {
                     map.put("dolphin", builder.define("replace_dolphin", true));
                 }
             });
-            Supplier<Runnable> target = () -> () -> QuarkHooks.initConfig(builder);
+            /*Supplier<Runnable> target = () -> () -> QuarkHooks.initConfig(builder);
             if(ModList.get().isLoaded("quark")) {
                 target.get().run();
-            }
+            }*/
         }, () -> {});
         forceForgeLoadConfig();
-        Supplier<Runnable> target = () -> () -> QuarkHooks.configLoad();
+        /*Supplier<Runnable> target = () -> () -> QuarkHooks.configLoad();
         if(ModList.get().isLoaded("quark")) {
             target.get().run();
-        }
+        }*/
     }
 
     private static void forceForgeLoadConfig() {

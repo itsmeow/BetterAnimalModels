@@ -6,7 +6,6 @@ import com.google.common.collect.Multimaps;
 import dev.itsmeow.betteranimalmodels.BetterAnimalModels;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
-import vazkii.quark.content.client.module.VariantAnimalTexturesModule;
 
 import java.util.*;
 
@@ -36,9 +35,9 @@ public class QuarkUtil {
     public static ResourceLocation getTextureOrShiny(Entity e, VariantTextureType type, Supplier<ResourceLocation> nonShiny) {
         UUID id = e.getUUID();
         long most = id.getMostSignificantBits();
-        if (VariantAnimalTexturesModule.shinyAnimalChance > 0 && (most % VariantAnimalTexturesModule.shinyAnimalChance) == 0)
+        /*if (VariantAnimalTexturesModule.shinyAnimalChance > 0 && (most % VariantAnimalTexturesModule.shinyAnimalChance) == 0)
             return shinyTextures.get(type);
-
+*/
         return nonShiny.get();
     }
 

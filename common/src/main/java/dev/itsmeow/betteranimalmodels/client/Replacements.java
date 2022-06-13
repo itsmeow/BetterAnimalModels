@@ -23,6 +23,7 @@ import net.minecraft.world.entity.animal.*;
 import net.minecraft.world.entity.animal.horse.Variant;
 import net.minecraft.world.level.LightLayer;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.function.BiConsumer;
 
@@ -182,19 +183,7 @@ public class Replacements {
         })
         .tSingle("cat/ocelot").mSingle(ModelNewCat::new, "cat")));
 
-        Map<Integer, String> catTextures = Util.make(Maps.newHashMap(), (map) -> {
-            map.put(0, "cat/tabby");
-            map.put(1, "cat/black");
-            map.put(2, "cat/red");
-            map.put(3, "cat/siamese");
-            map.put(4, "cat/british_shorthair");
-            map.put(5, "cat/calico");
-            map.put(6, "cat/persian");
-            map.put(7, "cat/ragdoll");
-            map.put(8, "cat/white");
-            map.put(9, "cat/jellie");
-            map.put(10, "cat/all_black");
-        });
+        Map<String, ResourceLocation> catTextures = new HashMap<>();
         H.addReplace("minecraft", "cat", () -> () -> H.lambdaReplace(EntityType.CAT, 0.5F, r -> r
         .preRender((e, s, p) -> {
             s.scale(0.8F, 0.8F, 0.8F);
@@ -206,7 +195,7 @@ public class Replacements {
             }
         })
         .layer(LayerNewCatCollar::new)
-        .tMapped(e -> catTextures.get(e.getCatType())).mSingle(ModelNewCat::new, "cat")));
+        .tMappedRaw(e -> catTextures.computeIfAbsent(e.getCatVariant().texture().getPath(), s -> new ResourceLocation(BetterAnimalModels.MODID, s))).mSingle(ModelNewCat::new, "cat")));
 
         H.addReplace("minecraft", "fox", () -> () -> H.<Fox, ModelNewFox<Fox>>lambdaReplace(EntityType.FOX, 0.55F, r -> r
         .preRender((e, s, p) -> {
