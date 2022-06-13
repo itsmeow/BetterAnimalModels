@@ -34,6 +34,7 @@ public class ModelNewHorse<T extends AbstractHorse> extends Model<T> {
 	private final ModelPart rLongEar_r1;
 	private final ModelPart snout;
 	private final ModelPart nose_r1;
+	private final ModelPart snoutbox;
 	private final ModelPart skelesnout_r1;
 	private final ModelPart upperJaw;
 	private final ModelPart lowerJaw;
@@ -199,12 +200,18 @@ public class ModelNewHorse<T extends AbstractHorse> extends Model<T> {
 		setRotationAngle(nose_r1, 0.8727F, 0.0F, 0.0F);
 		nose_r1.texOffs(0, 117).addBox(-2.0F, 0.5F, -2.0F, 4.0F, 3.0F, 3.0F, 0.1F, false);
 
+		snoutbox = new ModelPart(this);
+		snoutbox.setPos(0.0F, 0.0F, 0.0F);
+		snout.addChild(snoutbox);
+		setRotationAngle(snoutbox,0.5236F, 0.0F, 0.0F);
+		snoutbox.texOffs(0, 102).addBox(-2.0F, -2.0F, -6.75F, 4.0F, 5.0F, 8.0F, -0.1F, false);
+
 		skelesnout_r1 = new ModelPart(this);
 		skelesnout_r1.setPos(0.0F, 0.0F, 0.0F);
 		snout.addChild(skelesnout_r1);
 		setRotationAngle(skelesnout_r1, 0.5236F, 0.0F, 0.0F);
 		skelesnout_r1.texOffs(114, 120).addBox(-2.0F, -2.0F, -9.5F, 4.0F, 5.0F, 3.0F, -0.1F, false);
-		skelesnout_r1.texOffs(0, 102).addBox(-2.0F, -2.0F, -6.75F, 4.0F, 5.0F, 8.0F, -0.1F, false);
+
 
 		upperJaw = new ModelPart(this);
 		upperJaw.setPos(0.0F, 4.25F, -3.0F);
